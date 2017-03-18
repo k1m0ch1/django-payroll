@@ -127,7 +127,7 @@ class Absensi2017Semester1(models.Model):
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 
-class Lembur2017Semester2(models.Model):
+class Lembur2017Semester1(models.Model):
 	name = models.CharField(max_length=25)
 	desc = models.TextField()
 	NIK = models.ManyToManyField(Karyawan)
