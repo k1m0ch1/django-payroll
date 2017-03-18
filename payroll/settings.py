@@ -27,16 +27,22 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+FIXTURE_DIRS = ['/fixture/']
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'system.apps.SystemConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_tables2',
+    'bootstrap_toolkit',
+    'autofixture',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +81,11 @@ WSGI_APPLICATION = 'payroll.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST' : '192.168.99.100',
+        'USER' : 'postgres',
+        'PASSWORD' : 'h4ck3rbandung',
+        'NAME': 'payrollsystem',
     }
 }
 
