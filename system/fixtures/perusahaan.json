@@ -1,0 +1,20 @@
+[
+	{
+		"model" : "system.Perusahaan",
+		"pk" : 1,
+		"fields" : {
+			"name" : "Perusahaan Teh Segar",
+			"desc" : "Ini adalah contoh perusahaan yang bergerak dibidang teh segar, ingat ini hanyalah dummy data, artinya data ini palsu",
+			"created_at" : "2017-03-01 12:01:15"
+		}
+	},
+	{
+		"model" : "system.Perusahaan",
+		"pk" : 2,
+		"fields" : {
+			"name" : "Perusahaan Gula Batu Merah",
+			"desc" : "Ini adalah contoh perusahaan yang bergerak dibidang gula batu merah, ingat ini hanyalah dummy data, artinya data ini palsu",
+			"created_at" : "2017-03-01 12:01:15"
+		}
+	}
+]
