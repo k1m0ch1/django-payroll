@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+
+	{% load static %}
+	{% include 'include/head-base.html' %}
+
+
+	<body class=" skin-blue sidebar-mini fixed">
+		<div class="wrapper">
+
+		  {% include 'include/sidebar.html' %}
+
+		  <!-- Content Wrapper. Contains page content -->
+		  {% autoescape off %}
+		  {% block content %} {% endblock %}
+		  <!-- /.content-wrapper -->
+
+		</div>
+		  <!-- Main Footer -->
+		  {% block footer %} {% endblock %}
+
+		  {% block javascript %} {% endblock %}
+		  {% endautoescape %}
+	</body>
+</html>

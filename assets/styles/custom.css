@@ -1,17 +1,20 @@
 .login{
-	background-color: black;
+  background-color: black;
 }
-.login h1,h2,h4{
-  /*color:#f9c751;*/
+.container-login h1,h2,h4{
+  color:#f9c751;
 }
-.login h5{
+.container-login h5{
   color:#ffffff;
 
 }
-.login-form{
+.login-row{
   background-color:rgba(195,195,195,0.2);
-  margin-right: 5px;
+}
+.login-form{
+  
   padding: 15px 15px;
+
 }
 .login-form h1,h2,h3,h4,h5{
   margin-top:5px;
@@ -61,4 +64,10 @@
 .breadcrumb{
   background-color: #ffffff;
 }
-    
+
+.vcenter {
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}

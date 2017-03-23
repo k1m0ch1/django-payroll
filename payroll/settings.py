@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_tables2',
     'bootstrap_toolkit',
-    'autofixture'
+    'autofixture',
+    'system.templatetags.sidebar'
 ]
 
 MIDDLEWARE = [
@@ -77,6 +78,10 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'django.core.context_processors.request',
 ]
 
+TEMPLATE_LOADERS = [
+    'django.template.loaders.system.load_template_source',
+]
+
 WSGI_APPLICATION = 'payroll.wsgi.application'
 
 
@@ -86,7 +91,7 @@ WSGI_APPLICATION = 'payroll.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST' : '192.168.0.3',
+        'HOST' : '192.168.0.8',
         'USER' : 'postgres',
         'PASSWORD' : '0r4ng324n3h',
         'NAME': 'payroll',

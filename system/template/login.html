@@ -2,84 +2,91 @@
 
 <html>
 	{% load static %}
-	{% include 'head/head-base.html' %}
+	{% include 'include/head-base.html' %}
 
 	<body class="login">
-		<div class="background-image"></div>
-		<div class="container">
-		  <div class="row">
-		    <div class="col-md-4 col-md-offset-2"><h1>Payroll System</h1></div>
-		    <div class="col-md-4"><h1>Logo goes here</h1></div>
-		  </div>
-		  <div class="row">
-		    <div class="col-md-8 col-md-offset-2">
-		      	{% if login == 'berhasil' %}
-		      		<div class="alert alert-success" role="alert">Selamat datang {{ user }} anda akan dipindahkan ke halaman dashboard.</div>
-		      	{% else %}
-		      		<div class="alert alert-danger" role="alert">Kombinasi user dan password salah.</div>
-		      	{% endif %}
-		    </div>
-		  </div>
-		  <div class="row">    
-		    <div class="col-md-4 col-md-offset-2 login-form">
-		      <div class="col-md-12">
-		        <div class="col-md-2 col-sm-2 col-xs-2">
-		          <i class="fa fa-arrow-circle-right fa-3x icon-login" aria-hidden="true"></i>  
-		        </div>  
-		        <div class="col-md-10 col-sm-10 col-xs-10">
-		          <h5>Silahkan untuk login</h5>
-		          <h2>Log In Here</h2>
-		        </div>     
-		      </div>
-		      <div class="col-md-12">
-		      	<form method="POST" action="{% url 'loginrequest' %}">
-		      		{% csrf_token %}
-			        <div class="input-group col-md-12">
-			          <span class="input-group-addon" style="background-color: transparent;color: #ffffff; border-right: 0px;"><i class="fa fa-user fa-fw"></i></span>
-			          <input type="text" name="username" class="form-control" placeholder="Email">
-			        </div>
-			        <div class="input-group col-md-12">
-			          <span class="input-group-addon" style="background-color: transparent;color: #ffffff; border-right: 0px;"><i class="fa fa-key fa-fw"></i></span>
-			          <input type="password" name="password" class="form-control" placeholder="Password">
-			        </div>
-			        <div class="form-group col-md-5 col-md-offset-7">
-			          <button type="submit" class="btn btn-primary btn-block float-right">Log In</button>
-			        </div>
-		        </form>
-		        <div class="form-group col-md-5 col-md-offset-7">
-		          <a href="#" class="float-right">Lupa Password?</a>
-		        </div>		        
-		      </div>
-		    </div>
-		    <div class="col-md-4 login-form">
-		      <div class="col-md-12">
-		        <div class="col-md-2 col-sm-2 col-xs-2">
-		          <i class="fa fa-envelope fa-3x icon-login" aria-hidden="true"></i>
-		        </div>  
-		        <div class="col-md-10 col-sm-10 col-xs-10">
-		          <h5>Informasi</h5>
-		          <h2>Judul Informasi</h2>
-		        </div>     
-		      </div>
-		      <div class="col-md-12">
-		        <p>"Ini adalah isi daripada informasi yang ditampilkan pada halaman login Aplikasi SIAK. Pada umumnya informasi ini mengenai pemberitahuan kepada user sebelum login."</p>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		<!-- REQUIRED JS SCRIPTS -->
+<div class="background-image"></div>
+<div class="container container-login vcenter">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2"><h1>Payroll System</h1></div>
+    <div class="col-md-4 text-right"><h1>Logo goes here</h1></div>
+  </div>
+  <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            {% if user.is_authenticated %}
+              <div class="alert alert-success" role="alert">Selamat datang {{ user.username }} anda akan dipindahkan ke halaman dashboard.</div>
+              <script>setTimeout(function () { window.location.href = "{% url 'index' %}"; }, 2300);</script>
+            {% elif login == "gagal" %}
+              <div class="alert alert-danger" role="alert">Kombinasi user dan password salah.</div>
+            {% elif login == "logout" %}
+              <div class="alert alert-success" role="alert">Anda telah logout</div>
+            {% endif %}
+        </div>
+  </div>
+  <div class="row">   
+    <div class="col-md-8 col-md-offset-2 login-row">
+      <div class="col-md-6 login-form ">
+        <div class="col-md-12">
+          <div class="col-md-2 col-sm-2 col-xs-2">
+            <i class="fa fa-arrow-circle-right fa-3x icon-login" aria-hidden="true"></i>  
+          </div>  
+          <div class="col-md-10 col-sm-10 col-xs-10">
+            <h5>Silahkan untuk login</h5>
+            <h2>Log In Here</h2>
+          </div>     
+        </div>
+        <div class="col-md-12">
+          <form method="POST" action="{% url 'loginrequest' %}">
+              {% csrf_token %}
+              <div class="input-group col-md-12">
+                <span class="input-group-addon" style="background-color: transparent;color: #ffffff; border-right: 0px;"><i class="fa fa-user fa-fw"></i></span>
+                <input type="text" name="username" class="form-control" placeholder="Email">
+              </div>
+              <div class="input-group col-md-12">
+                <span class="input-group-addon" style="background-color: transparent;color: #ffffff; border-right: 0px;"><i class="fa fa-key fa-fw"></i></span>
+                <input type="password" name="password" class="form-control" placeholder="Password">
+              </div>
+              <div class="form-group col-md-5 col-md-offset-7">
+                <button type="submit" class="btn btn-primary btn-block float-right">Log In</button>
+              </div>
+            </form>
+          <div class="form-group col-md-5 col-md-offset-7">
+            <a href="#" class="float-right">Lupa Password?</a>
+          </div>
+          
+        </div>
+      </div>
+      <div class="col-md-6 login-form">
+        <div class="col-md-12">
+          <div class="col-md-2 col-sm-2 col-xs-2">
+            <i class="fa fa-envelope fa-3x icon-login" aria-hidden="true"></i>
+          </div>  
+          <div class="col-md-10 col-sm-10 col-xs-10">
+            <h5>Informasi</h5>
+            <h2>Judul Informasi</h2>
+          </div>     
+        </div>
+        <div class="col-md-12">
+          <p>"Ini adalah isi daripada informasi yang ditampilkan pada halaman login Aplikasi SIAK. Pada umumnya informasi ini mengenai pemberitahuan kepada user sebelum login."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-		<!-- jQuery 2.2.3 -->
-		<script src="{% static 'plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
-		<!-- Bootstrap 3.3.6 -->
-		<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-		<!-- AdminLTE App -->
-		<script src="{% static 'dist/js/app.min.js' %}"></script>
+<!-- REQUIRED JS SCRIPTS -->
 
-		<!-- Optionally, you can add Slimscroll and FastClick plugins.
-		     Both of these plugins are recommended to enhance the
-		     user experience. Slimscroll is required when using the
-		     fixed layout. -->
-	</body>
+<!-- jQuery 2.2.3 -->
+<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/app.min.js"></script>
+
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. Slimscroll is required when using the
+     fixed layout. -->
+</body>
 
 </html>
