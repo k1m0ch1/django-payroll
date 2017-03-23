@@ -1,0 +1,64 @@
+.login{
+	background-color: black;
+}
+.login h1,h2,h4{
+  /*color:#f9c751;*/
+}
+.login h5{
+  color:#ffffff;
+
+}
+.login-form{
+  background-color:rgba(195,195,195,0.2);
+  margin-right: 5px;
+  padding: 15px 15px;
+}
+.login-form h1,h2,h3,h4,h5{
+  margin-top:5px;
+  margin-bottom:5px;
+}
+.login-form a{
+  text-decoration: none;
+  color: #ffffff
+}
+.login-form div{
+  margin-bottom: 10px;
+  border-radius: 
+}
+.login-form input{
+  color: #ffffff;
+  background-color: transparent;
+  border-left: 0px;
+}
+.login-form p{
+  text-align: justify;
+  color: #ffffff;
+  font-size: 20px;
+}
+.icon-login{
+  color:#f9c751;
+  position: absolute;
+    transform: translate(0, 30%);
+}
+.background-image {
+  position: fixed;
+  left: 0;
+  right: 0;
+
+  background: url('../images/bg.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+
+  -webkit-filter: blur(50px);
+  -moz-filter: blur(50px);
+  -o-filter: blur(50px);
+  -ms-filter: blur(50px);
+  filter: blur(50px);
+}
+.breadcrumb{
+  background-color: #ffffff;
+}
+    

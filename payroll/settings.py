@@ -21,13 +21,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '1*=%*w8omsw3_+jqezi7^3s39pr7kp8zt0e3zpj#gq#d6gtou&'
-
+#SESSION_ENGINE [ 'django.contrib.sessions.backends.signed_cookies' ]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-FIXTURE_DIRS = ['/fixture/']
+FIXTURE_DIRS = ['/system/fixture/']
 
 
 # Application definition
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_tables2',
     'bootstrap_toolkit',
-    'autofixture',
+    'autofixture'
 ]
 
 MIDDLEWARE = [
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'payroll.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['E:\\Document\\payroll\\system\\template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,6 +73,10 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_CONTEXT_PROCESSORS = [
+    'django.core.context_processors.request',
+]
+
 WSGI_APPLICATION = 'payroll.wsgi.application'
 
 
@@ -82,10 +86,10 @@ WSGI_APPLICATION = 'payroll.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST' : '192.168.99.100',
+        'HOST' : '192.168.0.3',
         'USER' : 'postgres',
-        'PASSWORD' : 'h4ck3rbandung',
-        'NAME': 'payrollsystem',
+        'PASSWORD' : '0r4ng324n3h',
+        'NAME': 'payroll',
     }
 }
 
@@ -126,4 +130,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/assets/'
+STATICFILES_DIRS = ['E:\\Document\\payroll\\assets\\']
+LOGIN_URL = '/index/login'

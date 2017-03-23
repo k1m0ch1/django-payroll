@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 class Perusahaan(models.Model):
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
-	create_date = models.DateTimeField(auto_now=True)
-	update_date = models.DateTimeField(auto_now_add=True, blank=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
@@ -16,8 +16,8 @@ class Department(models.Model):
 	perusahaan = models.ForeignKey(Perusahaan, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
-	create_date = models.DateTimeField(auto_now=True)
-	update_date = models.DateTimeField(auto_now_add=True, blank=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
@@ -26,8 +26,8 @@ class Bagian(models.Model):
 	department = models.ForeignKey(Department, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
-	create_date = models.DateTimeField(auto_now=True)
-	update_date = models.DateTimeField(auto_now_add=True, blank=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
@@ -36,8 +36,8 @@ class Jabatan(models.Model):
 	jabatan = models.ForeignKey(Bagian, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
-	create_date = models.DateTimeField(auto_now=True)
-	update_date = models.DateTimeField(auto_now_add=True, blank=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
@@ -46,8 +46,8 @@ class Unit(models.Model):
 	unit = models.ForeignKey(Jabatan, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
-	create_date = models.DateTimeField(auto_now=True)
-	update_date = models.DateTimeField(auto_now_add=True, blank=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
@@ -56,8 +56,8 @@ class Level(models.Model):
 	level = models.ForeignKey(Unit, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
-	create_date = models.DateTimeField(auto_now=True)
-	update_date = models.DateTimeField(auto_now_add=True, blank=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
@@ -94,9 +94,9 @@ class Karyawan(models.Model):
 	NPWP = models.CharField(max_length=30)
 	KPJ = models.CharField(max_length=30)
 	jumlahhari = models.DecimalField(max_digits=1, decimal_places=0)
-	create_date = models.DateTimeField(auto_now=True)
-	update_date = models.DateTimeField(auto_now_add=True, blank=True)
-	delete_date = models.DateTimeField(auto_now_add=True, blank=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+	delete_date = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
@@ -120,9 +120,9 @@ class Absensi2017Semester1(models.Model):
 	hari = models.CharField(max_length=10)
 	masuk = models.TimeField()
 	keluar = models.TimeField()
-	create_date = models.DateTimeField(auto_now=True)
-	update_date = models.DateTimeField(auto_now_add=True, blank=True)
-	delete_date = models.DateTimeField(auto_now_add=True, blank=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+	delete_date = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
@@ -135,9 +135,9 @@ class Lembur2017Semester1(models.Model):
 	hari = models.CharField(max_length=10)
 	masuk = models.TimeField()
 	keluar = models.TimeField()
-	create_date = models.DateTimeField(auto_now=True)
-	update_date = models.DateTimeField(auto_now_add=True, blank=True)
-	delete_date = models.DateTimeField(auto_now_add=True, blank=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+	delete_date = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
@@ -152,8 +152,8 @@ class GajiPokok(models.Model):
 	tunjanganmakan = models.DecimalField(max_digits=7, decimal_places=0)
 	tunjangantransport = models.DecimalField(max_digits=7, decimal_places=0)
 	tunjanganjabatan = models.DecimalField(max_digits=7, decimal_places=0)
-	create_date = models.DateTimeField(auto_now=True)
-	update_date = models.DateTimeField(auto_now_add=True, blank=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
@@ -163,8 +163,8 @@ class Shift(models.Model):
 	desc = models.TextField()
 	jadwalmasuk = models.TimeField()
 	jadwalkeluar = models.TimeField()
-	create_date = models.DateTimeField(auto_now=True)
-	update_date = models.DateTimeField(auto_now_add=True, blank=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
@@ -174,8 +174,8 @@ class KaryawanShift(models.Model):
 	shift = models.ManyToManyField(Shift)
 	tglawal = models.DateField()
 	tglakhir = models.DateField()
-	create_date = models.DateTimeField(auto_now=True)
-	update_date = models.DateTimeField(auto_now_add=True, blank=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
@@ -185,7 +185,7 @@ class Log(models.Model):
 	tipe = models.ForeignKey(Unit, on_delete=models.CASCADE)
 	log = models.TextField()
 	desc = models.TextField()
-	create_date = models.DateTimeField(auto_now=True)
+	created_at = models.DateTimeField(auto_now=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
