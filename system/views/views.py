@@ -31,26 +31,16 @@ def logout_view(request):
 	return render(request, "login.html", { 'login' : "logout"})
 
 @login_required()
-def perusahaan_index(request):
-	perusahaan = Perusahaan.objects.all()
-	return render(request, "perusahaan/dashboard.html", { 'perusahaan' : perusahaan})
+def perusahaan_edit(request):
+	return HttpResponse("edit")
 
 @login_required()
-def perusahaan_edit(request):
+def department_edit(request):
 	return HttpResponse("edit")
 
 @login_required()
 def perusahaan_delete(request):
 	return HttpResponse("Delete")
-
-@login_required()
-def department_index(request):
-	department = Department.objects.all()
-	return render(request, "department/dashboard.html", { 'department' : department})
-
-@login_required()
-def department_edit(request):
-	return HttpResponse("edit")
 
 @login_required()
 def department_delete(request):
