@@ -1,7 +1,8 @@
 {% load static %}
 {% load sidebar %}
+
 {% url 'perusahaan-index' as perusahaan_index %}
-{% url 'departement-index' as departement_index %}
+{% url 'department-index' as department_index %}
 {% url 'unit-index' as unit_index %}
 {% url 'bagian-index' as bagian_index %}
 {% url 'golongan-index' as golongan_index %}
@@ -9,9 +10,11 @@
 {% url 'bank-index' as bank_index %}
 {% url 'agama-index' as agama_index %}
 {% url 'warganegara-index' as warganegara_index %}
-{% url 'statusmenikah-index' as statusmenikah_index %}
+{% url 'department-create' as department_create %}
+{% url 'unit-create' as unit_create %}
 
-{% if request.path == perusahaan_index or request.path == departement_index or request.path == unit_index or request.path == bagian_index or request.path == golongan_index or request.path == jabatan_index or request.path == bank_index or request.path == agama_index or request.path == warganegara_index or request.path == statusmenikah_index %}
+
+{% if request.path == perusahaan_index or request.path == department_index or request.path == unit_index or request.path == bagian_index or request.path == golongan_index or request.path == jabatan_index or request.path == bank_index or request.path == agama_index or request.path == warganegara_index or request.path == statusmenikah_index or request.path == department_create or request.path == unit_create %}
 {% define "Data Master 1" as action %}
 {% endif %}
 
@@ -86,13 +89,13 @@
 		            {% else %}
 		            	<li>
 		            {% endif %}
-		            {% if request.path == '/index/department' %}
+		            {% if request.path == '/index/department' or request.path == '/index/department/create' %}
 		            	<li class="active">
 		            {% else %}
 		            	<li>
 		            {% endif %}
 		            <a href="{% url 'department-index' %}"><i class="fa fa-building "></i> <span>Departemen / Departement</span></a></li>
-		            {% if request.path == '/index/unit' %}
+		            {% if request.path == '/index/unit' or request.path == '/index/unit/create' %}
 		            	<li class="active">
 		            {% else %}
 		            	<li>
