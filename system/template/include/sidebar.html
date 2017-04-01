@@ -1,8 +1,17 @@
 {% load static %}
 {% load sidebar %}
 {% url 'perusahaan-index' as perusahaan_index %}
+{% url 'departement-index' as departement_index %}
+{% url 'unit-index' as unit_index %}
+{% url 'bagian-index' as bagian_index %}
+{% url 'golongan-index' as golongan_index %}
+{% url 'jabatan-index' as jabatan_index %}
+{% url 'bank-index' as bank_index %}
+{% url 'agama-index' as agama_index %}
+{% url 'warganegara-index' as warganegara_index %}
+{% url 'statusmenikah-index' as statusmenikah_index %}
 
-{% if request.path == perusahaan_index %}
+{% if request.path == perusahaan_index or request.path == departement_index or request.path == unit_index or request.path == bagian_index or request.path == golongan_index or request.path == jabatan_index or request.path == bank_index or request.path == agama_index or request.path == warganegara_index or request.path == statusmenikah_index %}
 {% define "Data Master 1" as action %}
 {% endif %}
 
@@ -77,20 +86,59 @@
 		            {% else %}
 		            	<li>
 		            {% endif %}
-		            <a href="{% url 'perusahaan-index' %}"><i class="fa fa-building "></i> <span>Profil Perusahaan</span></a></li>
 		            {% if request.path == '/index/department' %}
 		            	<li class="active">
 		            {% else %}
 		            	<li>
 		            {% endif %}
 		            <a href="{% url 'department-index' %}"><i class="fa fa-building "></i> <span>Departemen / Departement</span></a></li>
-		            <li><a href="#"><i class="fa fa-calendar"></i> <span>Bagian/ Division</span></a></li>
-		            <li><a href="#"><i class="fa fa-calendar"></i> <span>Golongan/ Category</span></a></li>
-		            <li><a href="#"><i class="fa fa-calendar"></i> <span>Jabatan/ Occupation</span></a></li>
-		            <li><a href="#"><i class="fa fa-calendar"></i> <span>Bank</span></a></li>
-		            <li><a href="#"><i class="fa fa-calendar"></i> <span>Agama/ Religion</span></a></li>
-		            <li><a href="#"><i class="fa fa-calendar"></i> <span>Warga Negara/ Nationality</span></a></li>
-		            <li><a href="#"><i class="fa fa-calendar"></i> <span>Status Menikah/ Marital Status</span></a></li>
+		            {% if request.path == '/index/unit' %}
+		            	<li class="active">
+		            {% else %}
+		            	<li>
+		            {% endif %}
+		            <a href="{% url 'unit-index' %}"><i class="fa fa-building "></i> <span>Unit</span></a></li>
+		            {% if request.path == '/index/bagian' %}
+		            	<li class="active">
+		            {% else %}
+		            	<li>
+		            {% endif %}
+		            <a href="{% url 'bagian-index' %}"><i class="fa fa-building "></i> <span>Bagian / Division</span></a></li>
+		            {% if request.path == '/index/golongan' %}
+		            	<li class="active">
+		            {% else %}
+		            	<li>
+		            {% endif %}
+		            <a href="{% url 'golongan-index' %}"><i class="fa fa-building "></i> <span>Golongan/ Category</span></a></li>
+		            {% if request.path == '/index/jabatan' %}
+		            	<li class="active">
+		            {% else %}
+		            	<li>
+		            {% endif %}
+		            <a href="{% url 'jabatan-index' %}"><i class="fa fa-building "></i> <span>Jabatan/ Occupation</span></a></li>
+		            {% if request.path == '/index/bank' %}
+		            	<li class="active">
+		            {% else %}
+		            	<li>
+		            {% endif %}
+		            <a href="{% url 'bank-index' %}"><i class="fa fa-calendar"></i> <span>Bank</span></a></li>
+		            {% if request.path == '/index/agama' %}
+		            	<li class="active">
+		            {% else %}
+		            	<li>
+		            {% endif %}
+		            <a href="{% url 'agama-index' %}"><i class="fa fa-calendar"></i> <span>Agama/ Religion</span></a></li>
+		            {% if request.path == '/index/warganegara' %}
+		            	<li class="active">
+		            {% else %}
+		            	<li>
+		            {% endif %}
+		            <a href="{% url 'warganegara-index' %}"><i class="fa fa-calendar"></i> <span>Warga Negara/ Nationality</span></a></li>
+		            {% if request.path == '/index/statusmenikah' %}
+		            	<li class="active">
+		            {% else %}
+		            	<li>
+		            {% endif %}<a href="{% url 'statusmenikah-index' %}"><i class="fa fa-calendar"></i> <span>Status Menikah/ Marital Status</span></a></li>
 		          </ul>
 		        </li>
 		        <li class="treeview {% if action == 'Data Master 2' %}active{% endif %}">

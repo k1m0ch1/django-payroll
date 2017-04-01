@@ -1,0 +1,12 @@
+cd \
+E:
+cd \
+cd Document\payroll
+python manage.py migrate --fake core zero
+python manage.py migrate system zero
+cd system\migrations
+del *.*
+cd ../../
+python manage.py makemigrations system
+python manage.py migrate
+python manage.py loaddata perusahaan departemen

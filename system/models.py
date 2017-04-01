@@ -22,8 +22,28 @@ class Department(models.Model):
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 
-class Bagian(models.Model):
+class Unit(models.Model):
 	department = models.ForeignKey(Department, on_delete=models.CASCADE)
+	name = models.CharField(max_length=200)
+	desc = models.TextField()
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
+class Bagian(models.Model):
+	unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+	name = models.CharField(max_length=200)
+	desc = models.TextField()
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
+class Golongan(models.Model):
+	bagian = models.ForeignKey(Bagian, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
@@ -34,16 +54,6 @@ class Bagian(models.Model):
 
 class Jabatan(models.Model):
 	jabatan = models.ForeignKey(Bagian, on_delete=models.CASCADE)
-	name = models.CharField(max_length=200)
-	desc = models.TextField()
-	created_at = models.DateTimeField(auto_now=True)
-	updated_at = models.DateTimeField(auto_now_add=True, null=True)
-
-	def __str__(self):              # __unicode__ on Python 2
-		return self.name
-
-class Unit(models.Model):
-	unit = models.ForeignKey(Jabatan, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
@@ -187,5 +197,42 @@ class Log(models.Model):
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
 
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
+class Bank(models.Model):
+	name = models.CharField(max_length=200)
+	cabang = models.CharField(max_length=200)
+	desc = models.TextField()
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
+class Agama(models.Model):
+	name = models.CharField(max_length=200)
+	desc = models.TextField()
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
+class WargaNegara(models.Model):
+	name = models.CharField(max_length=200)
+	desc = models.TextField()
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
+class StatusMenikah(models.Model):
+	name = models.CharField(max_length=200)
+	desc = models.TextField()
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+	
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
