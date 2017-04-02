@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 class Perusahaan(models.Model):
 	name = models.CharField(max_length=200)
+	alamat = desc = models.TextField()
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
@@ -13,7 +14,7 @@ class Perusahaan(models.Model):
 		return self.name
 
 class Department(models.Model):
-	perusahaan = models.ForeignKey(Perusahaan, on_delete=models.CASCADE)
+	#perusahaan = models.ForeignKey(Perusahaan, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
@@ -34,7 +35,7 @@ class Department(models.Model):
 # 		return self.name
 
 class Bagian(models.Model):
-	department = models.ForeignKey(Department, on_delete=models.CASCADE)
+	#department = models.ForeignKey(Department, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
@@ -44,7 +45,7 @@ class Bagian(models.Model):
 		return self.name
 
 class Golongan(models.Model):
-	bagian = models.ForeignKey(Bagian, on_delete=models.CASCADE)
+	#bagian = models.ForeignKey(Bagian, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
@@ -54,7 +55,7 @@ class Golongan(models.Model):
 		return self.name
 
 class Jabatan(models.Model):
-	jabatan = models.ForeignKey(Bagian, on_delete=models.CASCADE)
+	#jabatan = models.ForeignKey(Bagian, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
@@ -202,7 +203,6 @@ class Log(models.Model):
 
 class Bank(models.Model):
 	name = models.CharField(max_length=200)
-	cabang = models.CharField(max_length=200)
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)

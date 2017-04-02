@@ -4,7 +4,6 @@
     "pk": 1,
     "fields": 
       {
-        "bagian_id": 1,
         "name": "Golongan I",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
         "created_at": "2017-03-01 15:03+07"
@@ -15,7 +14,6 @@
     "pk": 2,
     "fields": 
       {
-        "bagian_id": 1,
         "name": "Golongan II",
         "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
         "created_at": "2017-03-01 15:03+07"
@@ -26,7 +24,6 @@
     "pk": 3,
     "fields": 
       {
-        "bagian_id": 2,
         "name": "Golongan I",
         "desc": "Malignant neoplasm of unspecified part of unspecified adrenal gland",
         "created_at": "2017-03-01 15:03+07"
@@ -37,7 +34,6 @@
     "pk": 4,
     "fields": 
       {
-        "bagian_id": 2,
         "name": "Golongan II",
         "desc": "Nondisplaced articular fracture of head of right femur, subsequent encounter for open fracture type IIIA, IIIB, or IIIC with nonunion",
         "created_at": "2017-03-01 15:03+07"
@@ -48,7 +44,6 @@
     "pk": 5,
     "fields": 
       {
-        "bagian_id": 3,
         "name": "Golongan I",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
@@ -59,7 +54,6 @@
     "pk": 6,
     "fields": 
       {
-        "bagian_id": 3,
         "name": "Golongan I-A",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
@@ -69,7 +63,6 @@
     "pk": 7,
     "fields": 
       {
-        "bagian_id": 4,
         "name": "Golongan I-3",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
@@ -80,7 +73,6 @@
     "pk": 8,
     "fields": 
       {
-        "bagian_id": 4,
         "name": "Golongan II",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
@@ -91,7 +83,6 @@
     "pk": 9,
     "fields": 
       {
-        "bagian_id": 5,
         "name": "Golongan II",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
@@ -102,7 +93,6 @@
     "pk": 10,
     "fields": 
       {
-        "bagian_id": 5,
         "name": "Golongan I-B",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"

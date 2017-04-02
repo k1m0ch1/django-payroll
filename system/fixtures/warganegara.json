@@ -1,99 +1,99 @@
 [
   {
-    "model": "system.jabatan",
+    "model": "system.warganegara",
     "pk": 1,
     "fields": 
       {
-        "name": "Staff",
+        "name": "Indonesia",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
-    "model": "system.jabatan",
+    "model": "system.warganegara",
     "pk": 2,
     "fields": 
       {
-        "name": "Supervisor",
+        "name": "Malaysia",
         "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
-    "model": "system.jabatan",
+    "model": "system.warganegara",
     "pk": 3,
     "fields": 
       {
-        "name": "Golongan I",
+        "name": "Singapura",
         "desc": "Malignant neoplasm of unspecified part of unspecified adrenal gland",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
-    "model": "system.jabatan",
+    "model": "system.warganegara",
     "pk": 4,
     "fields": 
       {
-        "name": "Golongan II",
+        "name": "Jepang",
         "desc": "Nondisplaced articular fracture of head of right femur, subsequent encounter for open fracture type IIIA, IIIB, or IIIC with nonunion",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
-    "model": "system.jabatan",
+    "model": "system.warganegara",
     "pk": 5,
     "fields": 
       {
-        "name": "Golongan I",
+        "name": "Taipei",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
-    "model": "system.jabatan",
+    "model": "system.warganegara",
     "pk": 6,
     "fields": 
       {
-        "name": "Golongan I-A",
+        "name": "Korea Selatan",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }    
   }, {
-    "model": "system.jabatan",
+    "model": "system.warganegara",
     "pk": 7,
     "fields": 
       {
-        "name": "Golongan I-3",
+        "name": "Brunei Darussalam",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
-    "model": "system.jabatan",
+    "model": "system.warganegara",
     "pk": 8,
     "fields": 
       {
-        "name": "Golongan II",
+        "name": "Australia",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
-    "model": "system.jabatan",
+    "model": "system.warganegara",
     "pk": 9,
     "fields": 
       {
-        "name": "Golongan II",
+        "name": "Papua New Guenia",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
-    "model": "system.jabatan",
+    "model": "system.warganegara",
     "pk": 10,
     "fields": 
       {
-        "name": "Golongan I-B",
+        "name": "Timor Leste",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }
