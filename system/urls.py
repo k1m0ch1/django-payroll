@@ -10,7 +10,7 @@ urlpatterns = [
 
     url(r'^perusahaan$', views.dashboard.perusahaan_index,  name="perusahaan-index"),
     url(r'^department$', views.dashboard.department_index,  name="department-index"),
-    url(r'^unit$', views.dashboard.unit_index, name="unit-index"),
+    #url(r'^unit$', views.dashboard.unit_index, name="unit-index"),
   	url(r'^bagian$', views.dashboard.bagian_index, name="bagian-index"),
   	url(r'^golongan$', views.dashboard.golongan_index, name="golongan-index"),
   	url(r'^jabatan$', views.dashboard.jabatan_index, name="jabatan-index"),
@@ -26,7 +26,7 @@ urlpatterns = [
 
   	#url(r'^perusahaan$', views.dashboard.perusahaan_index,  name="perusahaan-index"),
     url(r'^department/create$', views.create.department,  name="department-create"),
-    url(r'^unit/create$', views.create.unit, name="unit-create"),
+    #url(r'^unit/create$', views.create.unit, name="unit-create"),
   	#url(r'^bagian/create$', views.dashboard.bagian, name="bagian-create"),
   	#url(r'^golongan/create$', views.dashboard.golongan, name="golongan-create"),
   	#url(r'^jabatan/create$', views.dashboard.jabatan, name="jabatan-create"),

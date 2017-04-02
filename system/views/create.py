@@ -5,13 +5,10 @@ import django_tables2 as tables
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from system.models import Perusahaan, Department, Bagian, Unit, Golongan, Jabatan
+from system.models import Perusahaan, Department, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah
 
 @login_required()
 def department(request):
 	return render(request, "department/create.html")
 
-@login_required()
-def unit(request):
-	return render(request, "unit/create.html")

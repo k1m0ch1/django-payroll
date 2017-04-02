@@ -5,7 +5,7 @@ import django_tables2 as tables
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from system.models import Perusahaan, Department, Bagian, Unit, Golongan, Jabatan
+from system.models import Perusahaan, Department, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah
 
 @login_required()
@@ -17,11 +17,6 @@ def perusahaan_index(request):
 def department_index(request):
 	department = Department.objects.all()
 	return render(request, "department/dashboard.html", { 'department' : department})
-
-@login_required()
-def unit_index(request):
-	unit = Unit.objects.all()
-	return render(request, "unit/dashboard.html", { 'unit' : unit})
 
 @login_required()
 def bagian_index(request):

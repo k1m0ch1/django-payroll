@@ -1,0 +1,112 @@
+[
+  {
+    "model": "system.bagian",
+    "pk": 1,
+    "fields": 
+      {
+        "department_id": 1,
+        "name": "Perencanaan",
+        "desc": "Other fracture of unspecified thoracic vertebra, sequela",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.bagian",
+    "pk": 2,
+    "fields": 
+      {
+        "department_id": 1,
+        "name": "Informasi Technology",
+        "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.bagian",
+    "pk": 3,
+    "fields": 
+      {
+        "department_id": 2,
+        "name": "Human Resource Development",
+        "desc": "Malignant neoplasm of unspecified part of unspecified adrenal gland",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.bagian",
+    "pk": 4,
+    "fields": 
+      {
+        "department_id": 2,
+        "name": "Mesin",
+        "desc": "Nondisplaced articular fracture of head of right femur, subsequent encounter for open fracture type IIIA, IIIB, or IIIC with nonunion",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.bagian",
+    "pk": 5,
+    "fields": 
+      {
+        "department_id": 3,
+        "name": "Accounting",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.bagian",
+    "pk": 6,
+    "fields": 
+      {
+        "department_id": 3,
+        "name": "Accounting 2",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.bagian",
+    "pk": 7,
+    "fields": 
+      {
+        "department_id": 4,
+        "name": "Salah Satu Bagian",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.bagian",
+    "pk": 8,
+    "fields": 
+      {
+        "department_id": 4,
+        "name": "Bagian 3",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.bagian",
+    "pk": 9,
+    "fields": 
+      {
+        "department_id": 5,
+        "name": "Bagian 2",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.bagian",
+    "pk": 10,
+    "fields": 
+      {
+        "department_id": 5,
+        "name": "Bagian 4",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }
+]

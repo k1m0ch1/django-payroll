@@ -22,18 +22,19 @@ class Department(models.Model):
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 
-class Unit(models.Model):
-	department = models.ForeignKey(Department, on_delete=models.CASCADE)
-	name = models.CharField(max_length=200)
-	desc = models.TextField()
-	created_at = models.DateTimeField(auto_now=True)
-	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+# Deprecated table
+# class Unit(models.Model):
+# 	department = models.ForeignKey(Department, on_delete=models.CASCADE)
+# 	name = models.CharField(max_length=200)
+# 	desc = models.TextField()
+# 	created_at = models.DateTimeField(auto_now=True)
+# 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
-	def __str__(self):              # __unicode__ on Python 2
-		return self.name
+# 	def __str__(self):              # __unicode__ on Python 2
+# 		return self.name
 
 class Bagian(models.Model):
-	unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+	department = models.ForeignKey(Department, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
@@ -63,7 +64,6 @@ class Jabatan(models.Model):
 		return self.name
 
 class Level(models.Model):
-	level = models.ForeignKey(Unit, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
@@ -79,8 +79,8 @@ class Karyawan(models.Model):
 	perusahaan = models.ForeignKey(Perusahaan, on_delete=models.CASCADE)
 	department = models.ForeignKey(Department, on_delete=models.CASCADE)
 	jabatan = models.ForeignKey(Bagian, on_delete=models.CASCADE)
-	unit = models.ForeignKey(Jabatan, on_delete=models.CASCADE)
-	level = models.ForeignKey(Unit, on_delete=models.CASCADE)
+	#unit = models.ForeignKey(Jabatan, on_delete=models.CASCADE)
+	level = models.ForeignKey(Level, on_delete=models.CASCADE)
 	#linkacc = undefined
 	#groupkat = undefined
 	name = models.CharField(max_length=200)
@@ -192,7 +192,7 @@ class KaryawanShift(models.Model):
 
 class Log(models.Model):
 	name = models.CharField(max_length=200) #short 25 char from log
-	tipe = models.ForeignKey(Unit, on_delete=models.CASCADE)
+	tipe = models.CharField(max_length=200)
 	log = models.TextField()
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
