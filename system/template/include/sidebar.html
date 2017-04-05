@@ -11,10 +11,9 @@
 {% url 'agama-index' as agama_index %}
 {% url 'warganegara-index' as warganegara_index %}
 {% url 'department-create' as department_create %}
-{% url 'unit-create' as unit_create %}
 
 
-{% if request.path == perusahaan_index or request.path == department_index or request.path == unit_index or request.path == bagian_index or request.path == golongan_index or request.path == jabatan_index or request.path == bank_index or request.path == agama_index or request.path == warganegara_index or request.path == statusmenikah_index or request.path == department_create or request.path == unit_create %}
+{% if request.path == perusahaan_index or request.path == department_index or request.path == unit_index or request.path == bagian_index or request.path == golongan_index or request.path == jabatan_index or request.path == bank_index or request.path == agama_index or request.path == warganegara_index or request.path == statusmenikah_index or request.path == department_create %}
 {% define "Data Master 1" as action %}
 {% endif %}
 
@@ -95,12 +94,6 @@
 		            	<li>
 		            {% endif %}
 		            <a href="{% url 'department-index' %}"><i class="fa fa-building "></i> <span>Departemen / Departement</span></a></li>
-		            {% if request.path == '/index/unit' or request.path == '/index/unit/create' %}
-		            	<li class="active">
-		            {% else %}
-		            	<li>
-		            {% endif %}
-		            <a href="{% url 'unit-index' %}"><i class="fa fa-building "></i> <span>Unit</span></a></li>
 		            {% if request.path == '/index/bagian' %}
 		            	<li class="active">
 		            {% else %}

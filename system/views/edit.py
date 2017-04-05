@@ -9,13 +9,12 @@ from system.models import Perusahaan, Department, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah
 
 @login_required()
-def department(request):
-	return render(request, "department/form.html")
+def department(request, department_id):
+	d = Department.objects.get(pk=department_id)
+	return render(request, "department/form.html", { 'data' : d })
 
 @login_required()
-def department_save(request):
-	nama = request.POST['name']
-	desc = request.POST['desc']
-	d = Department(name=nama, desc=desc)
-	d.save()
+def department_save(request, department_id):
+	d = Department.objects.select_for_update().filter(id=department_id)
+	d.update(name=request.POST['name'], desc=request.POST['desc'])
 	return redirect("department-index")

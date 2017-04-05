@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load sidebar %}
+
+{% url 'department-create' as department_create %}
+{% url 'department-edit' department_id=department_id as department_edit %}
+
 
 {% block content %} 
 <div class="content-wrapper">
@@ -23,27 +28,19 @@
               <div class="box-header">
                 <h3 class="box-title">Tambah Departemen Baru</h3>
               </div>
+            {% if request.path == "/index/department/create" %}
+            <form method="post" action="{% url 'department-create-save' %}" > {% csrf_token %}
+            {% else %}
+            <form method="post" action="{% url 'department-edit-save' department_id=data.id %}" > {% csrf_token %}
+            {% endif %}
               <div class="box-body">
-                <div class="row"> 
-                  <div class="col-md-2 ">
-                    <p class="text-right">Nama Perusahaan</p>
-                  </div>
-                  <div class="col-md-10">
-                    <div class="form-group col-md-5">
-                      <select class="form-control">
-                        <option>Nama Perusahaan</option>
-                        <option>2</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
                 <div class="row"> 
                   <div class="col-md-2 ">
                     <p class="text-right">Nama Departemen</p>
                   </div>
                   <div class="col-md-10">
                     <div class="form-group col-md-5">
-                      <input type="text" class="form-control" placeholder="Nama Departemen">
+                      <input type="text" class="form-control" placeholder="Nama Departemen" name="name" value="{{ data.name }}">
                     </div>
                   </div>
                 </div>
@@ -53,7 +50,7 @@
                   </div>
                   <div class="col-md-10">
                     <div class="form-group col-md-12">
-                      <textarea class="form-control" placeholder="Deskripsi" rows="3"></textarea>
+                      <textarea class="form-control" placeholder="Deskripsi" rows="3" name="desc">{{ data.desc }}</textarea>
                     </div>
                   </div>
                 </div>
@@ -63,11 +60,12 @@
                   <div class="col-md-4 col-md-offset-8">
                     <div class="form-group">
                         <button class="btn btn-primary"><i class="fa fa-plus"></i> Simpan dan Tambah Departemen Baru</button> 
-                        <button class="btn btn-primary"><i class="fa fa-plus"></i> Simpan </button> 
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Simpan </button> 
                     </div>
                   </div>               
                 </div>
               </div>
+            </form>
             </div>
           </div>
 

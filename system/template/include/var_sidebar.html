@@ -1,18 +1,2 @@
 {% load sidebar %}
 
-{% url 'perusahaan-index' as perusahaan_index %}
-{% url 'department-index' as department_index %}
-{% url 'unit-index' as unit_index %}
-{% url 'bagian-index' as bagian_index %}
-{% url 'golongan-index' as golongan_index %}
-{% url 'jabatan-index' as jabatan_index %}
-{% url 'bank-index' as bank_index %}
-{% url 'agama-index' as agama_index %}
-{% url 'warganegara-index' as warganegara_index %}
-{% url 'department-create' as department_create %}
-{% url 'unit-create' as unit_create %}
-
-
-{% if request.path == perusahaan_index or request.path == department_index or request.path == unit_index or request.path == bagian_index or request.path == golongan_index or request.path == jabatan_index or request.path == bank_index or request.path == agama_index or request.path == warganegara_index or request.path == statusmenikah_index or request.path == department_create or request.path == unit_create %}
-{% define "Data Master 1" as action %}
-{% endif %}

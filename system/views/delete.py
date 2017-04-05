@@ -9,13 +9,7 @@ from system.models import Perusahaan, Department, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah
 
 @login_required()
-def department(request):
-	return render(request, "department/form.html")
-
-@login_required()
-def department_save(request):
-	nama = request.POST['name']
-	desc = request.POST['desc']
-	d = Department(name=nama, desc=desc)
-	d.save()
+def department(request, department_id):
+	d = Department.objects.filter(id=department_id)
+	d.delete()
 	return redirect("department-index")

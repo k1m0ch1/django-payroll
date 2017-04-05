@@ -61,7 +61,7 @@ ROOT_URLCONF = 'payroll.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['D:\\Document\\payroll\\system\\template'],
+        'DIRS': ['E:\\Document\\payroll\\system\\template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,10 +91,10 @@ WSGI_APPLICATION = 'payroll.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST' : 'wawadukan.id',
+        'HOST' : '192.168.0.8',
         'USER' : 'postgres',
         'PASSWORD' : '0r4ng324n3h',
-        'NAME': 'payroll_2',
+        'NAME': 'payroll',
     }
 }
 
@@ -136,5 +136,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/assets/'
-STATICFILES_DIRS = ['D:\\Document\\payroll\\assets\\']
+STATICFILES_DIRS = ['E:\\Document\\payroll\\assets\\']
 LOGIN_URL = '/index/login'
