@@ -27,8 +27,8 @@ urlpatterns = [
   	#url(r'^perusahaan$', views.dashboard.perusahaan_index,  name="perusahaan-index"),
     url(r'^department/create$', views.create.department,  name="department-create"),
     url(r'^department/create/save$', views.create.department_save,  name="department-create-save"),
-    #url(r'^unit/create$', views.create.unit, name="unit-create"),
-  	#url(r'^bagian/create$', views.dashboard.bagian, name="bagian-create"),
+    url(r'^bagian/create$', views.create.bagian,  name="bagian-create"),
+    url(r'^bagian/create/save$', views.create.bagian_save,  name="bagian-create-save"),
   	#url(r'^golongan/create$', views.dashboard.golongan, name="golongan-create"),
   	#url(r'^jabatan/create$', views.dashboard.jabatan, name="jabatan-create"),
   	#url(r'^bank/create$', views.dashboard.bank, name="bank-create"),
@@ -38,7 +38,10 @@ urlpatterns = [
 
   	url(r'^department/(?P<department_id>[0-9]+)/edit/$', views.edit.department, name="department-edit"),
   	url(r'^department/(?P<department_id>[0-9]+)/edit/save$', views.edit.department_save, name="department-edit-save"),
+  	url(r'^bagian/(?P<bagian_id>[0-9]+)/edit/$', views.edit.bagian, name="bagian-edit"),
+  	url(r'^bagian/(?P<bagian_id>[0-9]+)/edit/save$', views.edit.bagian_save, name="bagian-edit-save"),
 
     url(r'^perusahaan/(?P<perusahaan_id>[0-9]+)/delete/$', views.perusahaan_delete, name="perusahaan-delete"),
-    url(r'^department/(?P<department_id>[0-9]+)/delete/$', views.delete.department, name="department-delete")
+    url(r'^department/(?P<department_id>[0-9]+)/delete/$', views.delete.department, name="department-delete"),
+    url(r'^bagian/(?P<bagian_id>[0-9]+)/delete/$', views.delete.bagian, name="bagian-delete")
 ]

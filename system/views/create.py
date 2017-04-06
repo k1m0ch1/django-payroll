@@ -19,3 +19,15 @@ def department_save(request):
 	d = Department(name=nama, desc=desc)
 	d.save()
 	return redirect("department-index")
+
+@login_required()
+def bagian(request):
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : 'Bagian/ Division', 'idpk' : 0})
+
+@login_required()
+def bagian_save(request):
+	nama = request.POST['name']
+	desc = request.POST['desc']
+	b = Bagian(name=nama, desc=desc)
+	b.save()
+	return redirect("bagian-index")

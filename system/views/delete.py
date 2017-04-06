@@ -13,3 +13,9 @@ def department(request, department_id):
 	d = Department.objects.filter(id=department_id)
 	d.delete()
 	return redirect("department-index")
+
+@login_required()
+def bagian(request, bagian_id):
+	b = Bagian.objects.filter(id=bagian_id)
+	b.delete()
+	return redirect("bagian-index")

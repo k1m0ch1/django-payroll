@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load dashboard %}
 
 {% block content %} 
 	<div class="content-wrapper">
@@ -9,7 +10,7 @@
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
             <li><i class="fa fa-flask"></i> Data Master 1</li>
-            <li class="active">Bagian/ Division</li>
+            <li class="active"><a href="{{ indeks }}">{{ module }}</a></li>
           </ol>
       </div>
     </section>
@@ -19,7 +20,7 @@
       <div class="row">
           <div class="col-md-12">
               <div class="col-md-4">
-                <p><h3 class="control-label">Data Master Bagian/ Division</h3></p>
+                <p><h3 class="control-label">Data Master {{ module }}</h3></p>
               </div>
           </div>                
       </div>
@@ -54,19 +55,19 @@
               <table class="table table-hover">
                 <tbody><tr>
                   <th class="col-md-1">#</th>
-                  <th class="col-md-3">Bagian</th>
+                  <th class="col-md-3">{{ module }}</th>
                   <th class="col-md-4">Deskripsi</th>
                   <th class="col-md-1">Action</th>
                 </tr>
-                {% for data in bagian %}
+                {% for data in ulang %}
                 <tr>
                   <td>{{ data.id }}</td>
                   <td>{{ data.name }}</td>
                   <td>{{ data.desc }}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                      <a href="{% url 'bagian-delete' bagian_id=data.id %}" class="btn btn-default"><i class="fa fa-trash"></i></a>
-                      <a  href="{% url 'bagian-edit' bagian_id=data.id  %}" class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                        <a data-confirm="Yakin mau Hapus data {{ data.name }} ???" href="{% dashboard module 'hapus' data.id %}" class="btn btn-default"><i class="fa fa-trash"></i></a>
+                        <a href="{% dashboard module 'ubah' data.id %}" class="btn btn-default"><i class="fa fa-pencil"></i></a>
                     </div>                  
                   </td>
                 </tr>
@@ -81,7 +82,7 @@
               <div class="row">
                 <div class="col-md-4">
                   <div class="form-group">
-                      <button class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Bagian/ Division</button> 
+                      <a href="{% dashboard module 'tambah' 0 %}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah {{ module }}</a> 
                   </div>
                 </div> 
                 <div class="col-md-4 col-md-offset-4">

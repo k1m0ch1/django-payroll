@@ -8,6 +8,8 @@ from django.conf import settings
 from system.models import Perusahaan, Department, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah
 
+BAGIAN = 'Bagian/ Division'
+
 @login_required()
 def perusahaan_index(request):
 	perusahaan = Perusahaan.objects.all()
@@ -21,7 +23,7 @@ def department_index(request):
 @login_required()
 def bagian_index(request):
 	bagian = Bagian.objects.all()
-	return render(request, "bagian/dashboard.html", { 'bagian' : bagian})
+	return render(request, "include/base-dashboard.html", { 'ulang' : bagian, 'module' : BAGIAN})
 
 @login_required()
 def golongan_index(request):
