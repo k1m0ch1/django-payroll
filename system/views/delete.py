@@ -49,3 +49,9 @@ def warganegara(request, warganegara_id):
 	w = WargaNegara.objects.filter(id=warganegara_id)
 	w.delete()
 	return redirect("warganegara-index")
+
+@login_required()
+def statusmenikah(request, statusmenikah_id):
+	s = StatusMenikah.objects.filter(id=statusmenikah_id)
+	s.delete()
+	return redirect("statusmenikah-index")

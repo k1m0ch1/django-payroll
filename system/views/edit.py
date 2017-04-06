@@ -93,3 +93,14 @@ def warganegara_save(request, warganegara_id):
 	w = WargaNegara.objects.select_for_update().filter(id=warganegara_id)
 	w.update(name=request.POST['name'], desc=request.POST['desc'])
 	return redirect("warganegara-index")
+
+@login_required()
+def statusmenikah(request, statusmenikah_id):
+	s = StatusMenikah.objects.get(pk=statusmenikah_id)
+	return render(request, "include/base-form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : STATUSMENIKAH, 'idpk' : statusmenikah_id})
+
+@login_required()
+def statusmenikah_save(request, statusmenikah_id):
+	s = StatusMenikah.objects.select_for_update().filter(id=statusmenikah_id)
+	s.update(name=request.POST['name'], desc=request.POST['desc'])
+	return redirect("statusmenikah-index")

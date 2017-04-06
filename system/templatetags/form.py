@@ -40,4 +40,9 @@ def form(module=None, mode=None, idpk=None):
 			'Tambah' : reverse('warganegara-create-save'),
 			'Ubah'   : reverse('warganegara-edit-save', kwargs={'warganegara_id': idpk})
 		}[mode]
+	elif module == 'Status Menikah/ Marital Status':
+	    return{
+			'Tambah' : reverse('statusmenikah-create-save'),
+			'Ubah'   : reverse('statusmenikah-edit-save', kwargs={'statusmenikah_id': idpk})
+		}[mode]
 	return "null"

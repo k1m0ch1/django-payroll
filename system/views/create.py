@@ -100,3 +100,15 @@ def warganegara_save(request):
 	w = WargaNegara(name=nama, desc=desc)
 	w.save()
 	return redirect("warganegara-index")
+
+@login_required()
+def statusmenikah(request):
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : STATUSMENIKAH, 'idpk' : 0})
+
+@login_required()
+def statusmenikah_save(request):
+	nama = request.POST['name']
+	desc = request.POST['desc']
+	s = StatusMenikah(name=nama, desc=desc)
+	s.save()
+	return redirect("statusmenikah-index")

@@ -40,6 +40,8 @@ urlpatterns = [
   	url(r'^agama/create/save$', views.create.agama_save, name="agama-create-save"),
   	url(r'^warganegara/create$', views.create.warganegara, name="warganegara-create"),
   	url(r'^warganegara/create/save$', views.create.warganegara_save, name="warganegara-create-save"),
+    url(r'^statusmenikah/create$', views.create.statusmenikah, name="statusmenikah-create"),
+    url(r'^statusmenikah/create/save$', views.create.statusmenikah_save, name="statusmenikah-create-save"),
 
   	url(r'^department/(?P<department_id>[0-9]+)/edit/$', views.edit.department, name="department-edit"),
   	url(r'^department/(?P<department_id>[0-9]+)/edit/save$', views.edit.department_save, name="department-edit-save"),
@@ -56,6 +58,8 @@ urlpatterns = [
   	url(r'^agama/(?P<agama_id>[0-9]+)/edit/save$', views.edit.agama_save, name="agama-edit-save"),
   	url(r'^warganegara/(?P<warganegara_id>[0-9]+)/edit/$', views.edit.warganegara, name="warganegara-edit"),
   	url(r'^warganegara/(?P<warganegara_id>[0-9]+)/edit/save$', views.edit.warganegara_save, name="warganegara-edit-save"),
+    url(r'^statusmenikah/(?P<statusmenikah_id>[0-9]+)/edit/$', views.edit.statusmenikah, name="statusmenikah-edit"),
+    url(r'^statusmenikah/(?P<statusmenikah_id>[0-9]+)/edit/save$', views.edit.statusmenikah_save, name="statusmenikah-edit-save"),
 
     url(r'^perusahaan/(?P<perusahaan_id>[0-9]+)/delete/$', views.perusahaan_delete, name="perusahaan-delete"),
     url(r'^department/(?P<department_id>[0-9]+)/delete/$', views.delete.department, name="department-delete"),
@@ -64,5 +68,6 @@ urlpatterns = [
     url(r'^jabatan/(?P<jabatan_id>[0-9]+)/delete/$', views.delete.jabatan, name="jabatan-delete"),
     url(r'^bank/(?P<bank_id>[0-9]+)/delete/$', views.delete.bank, name="bank-delete"),
     url(r'^agama/(?P<agama_id>[0-9]+)/delete/$', views.delete.agama, name="agama-delete"),
-    url(r'^warganegara/(?P<warganegara_id>[0-9]+)/delete/$', views.delete.warganegara, name="warganegara-delete")
+    url(r'^warganegara/(?P<warganegara_id>[0-9]+)/delete/$', views.delete.warganegara, name="warganegara-delete"),
+    url(r'^statusmenikah/(?P<statusmenikah_id>[0-9]+)/delete/$', views.delete.statusmenikah, name="statusmenikah-delete")
 ]

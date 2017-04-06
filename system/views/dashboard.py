@@ -60,4 +60,4 @@ def warganegara_index(request):
 @login_required()
 def statusmenikah_index(request):
 	statusmenikah = StatusMenikah.objects.all()
-	return render(request, "statusmenikah/dashboard.html", { 'statusmenikah' : statusmenikah})
+	return render(request, "include/base-dashboard.html", { 'ulang' : statusmenikah, 'module' : STATUSMENIKAH})

@@ -58,4 +58,11 @@ def dashboard(module=None, mode=None, idpk=None):
       'ubah'   : reverse('warganegara-edit', kwargs={'warganegara_id': idpk}),
       'hapus'  : reverse('warganegara-delete', kwargs={'warganegara_id': idpk})
     }[mode]
+  elif module == 'Status Menikah/ Marital Status':
+    return{
+      'indeks' : reverse('statusmenikah-index'),
+      'tambah' : reverse('statusmenikah-create'),
+      'ubah'   : reverse('statusmenikah-edit', kwargs={'statusmenikah_id': idpk}),
+      'hapus'  : reverse('statusmenikah-delete', kwargs={'statusmenikah_id': idpk})
+    }[mode]
   return "null"
