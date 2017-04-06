@@ -19,3 +19,33 @@ def bagian(request, bagian_id):
 	b = Bagian.objects.filter(id=bagian_id)
 	b.delete()
 	return redirect("bagian-index")
+
+@login_required()
+def golongan(request, golongan_id):
+	g = Golongan.objects.filter(id=golongan_id)
+	g.delete()
+	return redirect("golongan-index")
+
+@login_required()
+def jabatan(request, jabatan_id):
+	j = Jabatan.objects.filter(id=jabatan_id)
+	j.delete()
+	return redirect("jabatan-index")
+
+@login_required()
+def bank(request, bank_id):
+	j = Bank.objects.filter(id=bank_id)
+	j.delete()
+	return redirect("bank-index")
+
+@login_required()
+def agama(request, agama_id):
+	a = Agama.objects.filter(id=agama_id)
+	a.delete()
+	return redirect("agama-index")
+
+@login_required()
+def warganegara(request, warganegara_id):
+	w = WargaNegara.objects.filter(id=warganegara_id)
+	w.delete()
+	return redirect("warganegara-index")
