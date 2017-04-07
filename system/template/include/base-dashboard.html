@@ -52,14 +52,16 @@
         <div class="col-md-12">
           <div class="box">
             <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tbody><tr>
+              <table class="table table-hover" id="myTable">
+                <thead><tr>
                   <th class="col-md-1">#</th>
                   <th class="col-md-3">{{ module }}</th>
                   <th class="col-md-4">Deskripsi</th>
                   <th class="col-md-1">Action</th>
                 </tr>
-                {% for data in ulang %}
+                </thead>
+                <tbody>
+                {% for data in ulang %}                
                 <tr>
                   <td>{{ data.id }}</td>
                   <td>{{ data.name }}</td>
@@ -70,9 +72,10 @@
                         <a href="{% dashboard module 'ubah' data.id %}" class="btn btn-default"><i class="fa fa-pencil"></i></a>
                     </div>                  
                   </td>
-                </tr>
+                </tr>                
                 {% endfor %}
-              </tbody></table>
+                </tbody>
+              </table>
 
             </div>
             
@@ -127,7 +130,12 @@
 	<script src="{% static 'dist/js/app.min.js' %}"></script>
 	<!-- SlimScroll 1.3.0 -->
 	<script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+  <script src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 	<script>
+    $(document).ready(function(){
+      $('#myTable').DataTable();
+    });
+
     $(document).on('click', ':not(form)[data-confirm]', function(e){
       if(!confirm($(this).data('confirm'))){
           e.stopImmediatePropagation();
