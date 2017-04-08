@@ -45,4 +45,13 @@ def form(module=None, mode=None, idpk=None):
 			'Tambah' : reverse('statusmenikah-create-save'),
 			'Ubah'   : reverse('statusmenikah-edit-save', kwargs={'statusmenikah_id': idpk})
 		}[mode]
+	elif module == 'Lokasi Perusahaan':
+	    return{
+			'Tambah' : reverse('profile-perusahaan-create-save'),
+			'Ubah'   : reverse('profile-perusahaan-edit-save', kwargs={'lokasiperusahaan_id': idpk})
+		}[mode]
+	elif module == 'Profile Perusahaan':
+	    return{
+			'Ubah'   : reverse('profile-edit-save')
+		}[mode]
 	return "null"

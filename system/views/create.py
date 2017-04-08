@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
+from system.models import LokasiPerusahaan
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
@@ -114,6 +115,19 @@ def statusmenikah_save(request):
 	s = StatusMenikah(name=nama, desc=desc)
 	s.save()
 	return redirect("statusmenikah-index")
+
+@login_required()
+def profile_perusahaan(request):
+	return render(request, "profile-perusahaan/form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def profile_perusahaan_save(request):
+	alamat = request.POST['name']
+	desc = request.POST['desc']
+	pp = LokasiPerusahaan(name=alamat, alamat=alamat, desc=desc, perusahaan_id=1)
+	pp.save()
+	return redirect("profile-perusahaan-index")
 
 def getModule(request):
 	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]

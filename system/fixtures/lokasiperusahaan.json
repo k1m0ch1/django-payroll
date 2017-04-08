@@ -1,0 +1,39 @@
+[
+  {
+    "model": "system.lokasiperusahaan",
+    "pk": 1,
+    "fields": 
+      {
+        "name": "Lokasi-1",
+        "alamat": "Jalan Nama Contoh Jalan No 2A Komplek B",
+        "desc": "Other fracture of unspecified thoracic vertebra, sequela",
+        "perusahaan_id": 1,
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.lokasiperusahaan",
+    "pk": 2,
+    "fields": 
+      {
+        "name": "Lokasi-2",
+        "alamat": "Jalan DiJalan No 2A Komplek B",
+        "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
+        "perusahaan_id": 1,
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.lokasiperusahaan",
+    "pk": 3,
+    "fields": 
+      {
+        "name": "Lokasi-3",
+        "alamat": "Jalan Kelompok Jalan No 2A Komplek B",
+        "desc": "Malignant neoplasm of unspecified part of unspecified adrenal gland",
+        "perusahaan_id": 1,
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }
+]

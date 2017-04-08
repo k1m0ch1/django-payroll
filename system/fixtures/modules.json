@@ -208,10 +208,11 @@
     "pk": 17,
     "fields": 
       {
-        "name": "PROFILEPERUSAHAAN",
+        "name": "PROFILE-PERUSAHAAN",
         "fungsi": "Profile Perusahaan",
         "menu": "DATAMASTER2",
         "icon": "fa fa-file-text-o",
+        "url_slug": "profile-perusahaan-index",
         "created_at": "2017-03-01 15:03+07"
       }
   }, {

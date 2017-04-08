@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
+from system.models import LokasiPerusahaan
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
@@ -58,9 +59,11 @@ def statusmenikah_index(request):
 
 @login_required()
 def profile_perusahaan_index(request):
-	#lokasi = LokasiPerusahaan.objects.all()
+	lokasi = LokasiPerusahaan.objects.all()
+	perusahaan = Perusahaan.objects.get(id=1)
 	#return render(request, "profile-perusahaan/dashboard.html", { 'ulang' : lokasi, 'module' : PROFILEPERUSAHAAN})
-	return render(request, "profile-perusahaan/dashboard.html")
+	return render(request, "profile-perusahaan/dashboard.html", {'ulang': lokasi, 'perusahaan' : perusahaan, 'module' : getModule(request), 
+																 'dsb' : modules, 'parent' : getParent(request)})
 
 def getModule(request):
 	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]

@@ -2,8 +2,13 @@
   background-color: black;
 }
 .container-login h1,h2,h4{
-  color:#f9c751;
+  /*color:#f9c751;*/
 }
+
+.cipleu h4{
+  color:#000000;
+}
+
 .container-login h5{
   color:#ffffff;
 

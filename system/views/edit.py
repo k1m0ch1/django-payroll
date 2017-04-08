@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
+from system.models import LokasiPerusahaan
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
@@ -106,6 +107,31 @@ def statusmenikah_save(request, statusmenikah_id):
 	s = StatusMenikah.objects.select_for_update().filter(id=statusmenikah_id)
 	s.update(name=request.POST['name'], desc=request.POST['desc'])
 	return redirect("statusmenikah-index")
+
+@login_required()
+def profile_perusahaan(request, lokasiperusahaan_id):
+	s = LokasiPerusahaan.objects.get(pk=lokasiperusahaan_id)
+	return render(request, "profile-perusahaan/form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : "Lokasi Perusahaan", 
+													   		 'idpk' : lokasiperusahaan_id, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def profile_perusahaan_save(request, lokasiperusahaan_id):
+	s = LokasiPerusahaan.objects.select_for_update().filter(id=lokasiperusahaan_id)
+	s.update(alamat=request.POST['name'], desc=request.POST['desc'])
+	return redirect("profile-perusahaan-index")
+
+@login_required()
+def profile_edit(request):
+	s = Perusahaan.objects.get(pk=1)
+	return render(request, "include/base-form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   		 'idpk' : 1, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def profile_edit_save(request):
+	s = Perusahaan.objects.select_for_update().filter(id=1)
+	s.update(name=request.POST['name'], desc=request.POST['desc'])
+	return redirect("profile-perusahaan-index")
+
 
 def getModule(request):
 	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]

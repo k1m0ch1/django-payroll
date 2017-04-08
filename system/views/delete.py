@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah
+from system.models import LokasiPerusahaan
 
 @login_required()
 def departemen(request, departemen_id):
@@ -55,3 +56,9 @@ def statusmenikah(request, statusmenikah_id):
 	s = StatusMenikah.objects.filter(id=statusmenikah_id)
 	s.delete()
 	return redirect("statusmenikah-index")
+
+@login_required()
+def profile_perusahaan(request, lokasiperusahaan_id):
+	s = LokasiPerusahaan.objects.filter(id=lokasiperusahaan_id)
+	s.delete()
+	return redirect("profile-perusahaan-index")

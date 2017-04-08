@@ -55,7 +55,7 @@
 		      					<li {% if request.path == "index" %} class="active" {% endif %}>
 		      					<a href="{% url 'index' %}"><i class="{{ sb.icon }}"></i> <span>{{ sb.fungsi }}</span></a><ul>
 		      				{% elif sb.mode == "alone" %}
-		      					</ul></li><li class=""><a href="#"><i class="{{ sb.icon }}"></i> <span>{{ sb.fungsi }}</span></a><ul>
+		      					</ul></li><li class=""><a href="{{ sb.url_slug }}"><i class="{{ sb.icon }}"></i> <span>{{ sb.fungsi }}</span></a><ul>
 		      				{% elif sb.mode == "divider-hr" %}
 		      					</ul></li><li class="divider"><hr><ul>
 		      				{% else %}

@@ -43,6 +43,8 @@ urlpatterns = [
   	url(r'^warganegara/create/save$', views.create.warganegara_save, name="warganegara-create-save"),
     url(r'^statusmenikah/create$', views.create.statusmenikah, name="statusmenikah-create"),
     url(r'^statusmenikah/create/save$', views.create.statusmenikah_save, name="statusmenikah-create-save"),
+    url(r'^profile-perusahaan/create$', views.create.profile_perusahaan, name="profile-perusahaan-create"),
+    url(r'^profile-perusahaan/create/save$', views.create.profile_perusahaan_save, name="profile-perusahaan-create-save"),
 
   	url(r'^departemen/(?P<departemen_id>[0-9]+)/edit/$', views.edit.departemen, name="departemen-edit"),
   	url(r'^departemen/(?P<departemen_id>[0-9]+)/edit/save$', views.edit.departemen_save, name="departemen-edit-save"),
@@ -61,6 +63,10 @@ urlpatterns = [
   	url(r'^warganegara/(?P<warganegara_id>[0-9]+)/edit/save$', views.edit.warganegara_save, name="warganegara-edit-save"),
     url(r'^statusmenikah/(?P<statusmenikah_id>[0-9]+)/edit/$', views.edit.statusmenikah, name="statusmenikah-edit"),
     url(r'^statusmenikah/(?P<statusmenikah_id>[0-9]+)/edit/save$', views.edit.statusmenikah_save, name="statusmenikah-edit-save"),
+    url(r'^profile-perusahaan/(?P<lokasiperusahaan_id>[0-9]+)/edit/$', views.edit.profile_perusahaan, name="profile-perusahaan-edit"),
+    url(r'^profile-perusahaan/(?P<lokasiperusahaan_id>[0-9]+)/edit/save$', views.edit.profile_perusahaan_save, name="profile-perusahaan-edit-save"),
+    url(r'^profile-perusahaan/profile-edit/$', views.edit.profile_edit, name="profile-edit"),
+    url(r'^profile-perusahaan/profile-edit/edit/save$', views.edit.profile_edit_save, name="profile-edit-save"),
 
     url(r'^perusahaan/(?P<perusahaan_id>[0-9]+)/delete/$', views.perusahaan_delete, name="perusahaan-delete"),
     url(r'^departemen/(?P<departemen_id>[0-9]+)/delete/$', views.delete.departemen, name="departemen-delete"),
@@ -70,5 +76,6 @@ urlpatterns = [
     url(r'^bank/(?P<bank_id>[0-9]+)/delete/$', views.delete.bank, name="bank-delete"),
     url(r'^agama/(?P<agama_id>[0-9]+)/delete/$', views.delete.agama, name="agama-delete"),
     url(r'^warganegara/(?P<warganegara_id>[0-9]+)/delete/$', views.delete.warganegara, name="warganegara-delete"),
-    url(r'^statusmenikah/(?P<statusmenikah_id>[0-9]+)/delete/$', views.delete.statusmenikah, name="statusmenikah-delete")
+    url(r'^statusmenikah/(?P<statusmenikah_id>[0-9]+)/delete/$', views.delete.statusmenikah, name="statusmenikah-delete"),
+    url(r'^profile-perusahaan/(?P<lokasiperusahaan_id>[0-9]+)/delete/$', views.delete.profile_perusahaan, name="profile-perusahaan-delete")
 ]
