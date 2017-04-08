@@ -84,7 +84,7 @@
         "fungsi": "Karyawan/ Employee",
         "menu": "DATAMASTER1",
         "icon": "fa fa-user-md",
-        "url_slug": "index",
+        "url_slug": "karyawan-index",
         "created_at": "2017-03-01 15:03+07"
       }
     

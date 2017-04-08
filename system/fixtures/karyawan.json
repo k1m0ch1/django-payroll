@@ -4,99 +4,73 @@
     "pk": 1,
     "fields": 
       {
-        "name": "Indonesia",
-        "desc": "Other fracture of unspecified thoracic vertebra, sequela",
+        "NIK": "AD00561A22051",
+        "name": "Yahya Fadhlulloh Al Fatih",
+        "shortname": "Yahya",
+        "tempatlahir": "Bandung",
+        "tanggallahir": "1991-06-22",
+        "alamat": "Jalan Sukabumi Dalam no 297/123 Block A Komplek B",
+        "provinsi": "Jawa Barat",
+        "kota": "Bandung",
+        "gender": "Laki-Laki",
+        "telepon": "0227207366",
+        "handphone": "08123123123",
+        "ktpid": "3210028371777001",
+        "atasnama": "Yahya Fadhluloh A",
+        "norek": "825671263",
+        "fingerid": "00256",
+        "NPWP": "12928371293031",
+        "KPJ": "12928371293031",
+        "statuskaryawan": "Kontrak 1 (PKWT)",
+        "masakaryawan": "2020-05-12",
+        "jumlahhari": 5,
+        "agama_id": 1,
+        "warganegara_id": 1,
+        "statusmenikah_id": 3,
+        "bank_id": 2,
+        "departemen_id": 1,
+        "perusahaan_id": 1,
+        "bagian_id": 1,
+        "golongan_id": 1,
+        "jabatan_id": 2,
         "created_at": "2017-03-01 15:03+07"
-      }
-    
-  }, {
+      }    
+  },
+  {
     "model": "system.Karyawan",
     "pk": 2,
     "fields": 
       {
-        "name": "Malaysia",
-        "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
-  }, {
-    "model": "system.Karyawan",
-    "pk": 3,
-    "fields": 
-      {
-        "name": "Singapura",
-        "desc": "Malignant neoplasm of unspecified part of unspecified adrenal gland",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
-  }, {
-    "model": "system.Karyawan",
-    "pk": 4,
-    "fields": 
-      {
-        "name": "Jepang",
-        "desc": "Nondisplaced articular fracture of head of right femur, subsequent encounter for open fracture type IIIA, IIIB, or IIIC with nonunion",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
-  }, {
-    "model": "system.Karyawan",
-    "pk": 5,
-    "fields": 
-      {
-        "name": "Taipei",
-        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
-  }, {
-    "model": "system.Karyawan",
-    "pk": 6,
-    "fields": 
-      {
-        "name": "Korea Selatan",
-        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "NIK": "AD00582B23018",
+        "name": "Adjiwirawan Suryanto",
+        "shortname": "Adji",
+        "tempatlahir": "Jakarta",
+        "tanggallahir": "1987-05-21",
+        "alamat": "Jalan Sukabumi Dalam no 297/123 Block A Komplek B",
+        "provinsi": "Jawa Barat",
+        "kota": "Bandung",
+        "gender": "Laki-Laki",
+        "telepon": "0227207366",
+        "handphone": "08123123123",
+        "ktpid": "3210028371777001",
+        "atasnama": "Irawan Setiaso",
+        "norek": "825671263",
+        "fingerid": "00257",
+        "NPWP": "12928371293031",
+        "KPJ": "12928371293031",
+        "statuskaryawan": "Kontrak 1 (PKWT)",
+        "masakaryawan": "2020-05-12",
+        "jumlahhari": 5,
+        "statusmenikah_id": 2,
+        "agama_id": 1,
+        "warganegara_id": 1,
+        "bank_id": 1,
+        "departemen_id": 1,
+        "perusahaan_id": 1,
+        "bagian_id": 1,
+        "golongan_id": 3,
+        "jabatan_id": 2,
         "created_at": "2017-03-01 15:03+07"
       }    
-  }, {
-    "model": "system.Karyawan",
-    "pk": 7,
-    "fields": 
-      {
-        "name": "Brunei Darussalam",
-        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
-  }, {
-    "model": "system.Karyawan",
-    "pk": 8,
-    "fields": 
-      {
-        "name": "Australia",
-        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
-  }, {
-    "model": "system.Karyawan",
-    "pk": 9,
-    "fields": 
-      {
-        "name": "Papua New Guenia",
-        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
-  }, {
-    "model": "system.Karyawan",
-    "pk": 10,
-    "fields": 
-      {
-        "name": "Timor Leste",
-        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
   }
 ]

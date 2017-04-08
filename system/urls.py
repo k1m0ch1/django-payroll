@@ -19,6 +19,7 @@ urlpatterns = [
   	url(r'^warganegara$', views.dashboard.warganegara_index, name="warganegara-index"),
   	url(r'^statusmenikah$', views.dashboard.statusmenikah_index, name="statusmenikah-index"),
     url(r'^profile-perusahaan$', views.dashboard.profile_perusahaan_index, name="profile-perusahaan-index"),
+    url(r'^karaywan$', views.dashboard.karyawan_index, name="karyawan-index"),
   	#url(r'^notif-system$', views.dashboard.notif_system, name="notif-system-index"),
   	#url(r'^notif-login$', views.dashboard.notif_login, name="notif-login-index"),
   	#url(r'^notif-aplikasi$', views.dashboard.notif_aplikasi, name="notif-aplikasi-index"),

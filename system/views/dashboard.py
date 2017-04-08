@@ -7,10 +7,15 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
-from system.models import LokasiPerusahaan
+from system.models import LokasiPerusahaan, Karyawan
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
+
+@login_required()
+def karyawan_index(request):
+	karyawan = Karyawan.objects.all()
+	return render(request, "karyawan/dashboard.html", { 'karyawan' : karyawan, 'dsb' : modules })
 
 @login_required()
 def perusahaan_index(request):

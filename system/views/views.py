@@ -6,13 +6,14 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from system.models import Perusahaan, Departemen, Modules
+from system.models import Perusahaan, Departemen, Modules, Karyawan
 
 modules = Modules.objects.all()
 
 @login_required()
 def index(request):
-	dataPayroll = { 'dsb' : modules }
+	banyak = Karyawan.objects.all().count()
+	dataPayroll = { 'dsb' : modules, 'banyakKaryawan' :  banyak }
 	return render(request, "dashboard.html", dataPayroll)
 
 def loginpage(request):
