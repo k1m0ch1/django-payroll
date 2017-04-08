@@ -5,59 +5,65 @@ import django_tables2 as tables
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from system.models import Perusahaan, Department, Bagian, Golongan, Jabatan
-from system.models import Bank, Agama, WargaNegara, StatusMenikah
+from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
+from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
 
-BAGIAN 			= 'Bagian/ Division'
-DEPARTEMEN 		= 'Departemen/ Department'
-GOLONGAN 		= 'Golongan/ Category'
-JABATAN 		= 'Jabatan/ Occupation'
-BANK 			= 'Bank'
-AGAMA 			= 'Agama/ Religion'
-WARGANEGARA 	= 'Warga Negara/ Nationality'
-STATUSMENIKAH 	= 'Status Menikah/ Marital Status'
+modules = Modules.objects.all()
+allmenu = Modules.objects.only('name')
 
 @login_required()
 def perusahaan_index(request):
 	perusahaan = Perusahaan.objects.all()
-	return render(request, "perusahaan/dashboard.html", { 'perusahaan' : perusahaan})
+	return render(request, "perusahaan/dashboard.html", { 'perusahaan' : perusahaan, 'dsb' : modules })
 
 @login_required()
-def department_index(request):
-	department = Department.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : department, 'module' : DEPARTEMEN})
+def departemen_index(request):
+	departemen = Departemen.objects.all()
+	return render(request, "include/base-dashboard.html", { 'ulang' : departemen, 'module' : getModule(request), 'dsb' : modules})
 
 @login_required()
 def bagian_index(request):
 	bagian = Bagian.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : bagian, 'module' : BAGIAN})
+	return render(request, "include/base-dashboard.html", { 'ulang' : bagian, 'module' : getModule(request), 'dsb' : modules})
 
 @login_required()
 def golongan_index(request):
 	golongan = Golongan.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : golongan, 'module' : GOLONGAN})
+	return render(request, "include/base-dashboard.html", { 'ulang' : golongan, 'module' : getModule(request), 'dsb' : modules})
 
 @login_required()
 def jabatan_index(request):
 	jabatan = Jabatan.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : jabatan, 'module' : JABATAN})
+	return render(request, "include/base-dashboard.html", { 'ulang' : jabatan, 'module' : getModule(request), 'dsb' : modules})
 
 @login_required()
 def bank_index(request):
 	bank = Bank.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : bank, 'module' : BANK})
+	return render(request, "include/base-dashboard.html", { 'ulang' : bank, 'module' : getModule(request), 'dsb' : modules})
 
 @login_required()
 def agama_index(request):
 	agama = Agama.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : agama, 'module' : AGAMA})
+	return render(request, "include/base-dashboard.html", { 'ulang' : agama, 'module' : getModule(request), 'dsb' : modules})
 
 @login_required()
 def warganegara_index(request):
 	warganegara = WargaNegara.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : warganegara, 'module' : WARGANEGARA})
+	return render(request, "include/base-dashboard.html", { 'ulang' : warganegara, 'module' : getModule(request), 'dsb' : modules})
 
 @login_required()
 def statusmenikah_index(request):
 	statusmenikah = StatusMenikah.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : statusmenikah, 'module' : STATUSMENIKAH})
+	return render(request, "include/base-dashboard.html", { 'ulang' : statusmenikah, 'module' : getModule(request), 'dsb' : modules})
+
+@login_required()
+def profile_perusahaan_index(request):
+	#lokasi = LokasiPerusahaan.objects.all()
+	#return render(request, "profile-perusahaan/dashboard.html", { 'ulang' : lokasi, 'module' : PROFILEPERUSAHAAN})
+	return render(request, "profile-perusahaan/dashboard.html")
+
+def getModule(request):
+	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]
+	for sb in modules:
+		if getmodule.upper() == sb.name:
+			return sb.fungsi

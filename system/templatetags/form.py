@@ -12,8 +12,8 @@ def form(module=None, mode=None, idpk=None):
 		}[mode]
 	elif module == "Departemen/ Department":
 	    return{
-			'Tambah' : reverse('department-create-save'),
-			'Ubah'   : reverse('department-edit-save', kwargs={'department_id': idpk})
+			'Tambah' : reverse('departemen-create-save'),
+			'Ubah'   : reverse('departemen-edit-save', kwargs={'departemen_id': idpk})
 		}[mode]
 	elif module == 'Golongan/ Category':
 	    return{

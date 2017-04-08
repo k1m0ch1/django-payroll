@@ -1,6 +1,6 @@
 [
   {
-    "model": "system.WargaNegara",
+    "model": "system.Karyawan",
     "pk": 1,
     "fields": 
       {
@@ -10,7 +10,7 @@
       }
     
   }, {
-    "model": "system.WargaNegara",
+    "model": "system.Karyawan",
     "pk": 2,
     "fields": 
       {
@@ -20,7 +20,7 @@
       }
     
   }, {
-    "model": "system.WargaNegara",
+    "model": "system.Karyawan",
     "pk": 3,
     "fields": 
       {
@@ -30,7 +30,7 @@
       }
     
   }, {
-    "model": "system.WargaNegara",
+    "model": "system.Karyawan",
     "pk": 4,
     "fields": 
       {
@@ -40,7 +40,7 @@
       }
     
   }, {
-    "model": "system.WargaNegara",
+    "model": "system.Karyawan",
     "pk": 5,
     "fields": 
       {
@@ -50,7 +50,7 @@
       }
     
   }, {
-    "model": "system.WargaNegara",
+    "model": "system.Karyawan",
     "pk": 6,
     "fields": 
       {
@@ -59,7 +59,7 @@
         "created_at": "2017-03-01 15:03+07"
       }    
   }, {
-    "model": "system.WargaNegara",
+    "model": "system.Karyawan",
     "pk": 7,
     "fields": 
       {
@@ -69,7 +69,7 @@
       }
     
   }, {
-    "model": "system.WargaNegara",
+    "model": "system.Karyawan",
     "pk": 8,
     "fields": 
       {
@@ -79,7 +79,7 @@
       }
     
   }, {
-    "model": "system.WargaNegara",
+    "model": "system.Karyawan",
     "pk": 9,
     "fields": 
       {
@@ -89,7 +89,7 @@
       }
     
   }, {
-    "model": "system.WargaNegara",
+    "model": "system.Karyawan",
     "pk": 10,
     "fields": 
       {

@@ -18,10 +18,10 @@ def dashboard(module=None, mode=None, idpk=None):
   	}[mode]
   elif module == 'Departemen/ Department':
     return{
-      'indeks' : reverse('department-index'),
-      'tambah' : reverse('department-create'),
-      'ubah'   : reverse('department-edit', kwargs={'department_id': idpk}),
-      'hapus'  : reverse('department-delete', kwargs={'department_id': idpk})
+      'indeks' : reverse('departemen-index'),
+      'tambah' : reverse('departemen-create'),
+      'ubah'   : reverse('departemen-edit', kwargs={'departemen_id': idpk}),
+      'hapus'  : reverse('departemen-delete', kwargs={'departemen_id': idpk})
     }[mode]
   elif module == 'Golongan/ Category':
     return{

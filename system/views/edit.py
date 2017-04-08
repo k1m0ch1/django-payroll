@@ -5,33 +5,27 @@ import django_tables2 as tables
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from system.models import Perusahaan, Department, Bagian, Golongan, Jabatan
-from system.models import Bank, Agama, WargaNegara, StatusMenikah
+from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
+from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
 
-BAGIAN 			= 'Bagian/ Division'
-DEPARTEMEN 		= 'Departemen/ Department'
-GOLONGAN 		= 'Golongan/ Category'
-JABATAN 		= 'Jabatan/ Occupation'
-BANK 			= 'Bank'
-AGAMA 			= 'Agama/ Religion'
-WARGANEGARA 	= 'Warga Negara/ Nationality'
-STATUSMENIKAH 	= 'Status Menikah/ Marital Status'
+modules = Modules.objects.all()
+allmenu = Modules.objects.only('name')
 
 @login_required()
-def department(request, department_id):
-	d = Department.objects.get(pk=department_id)
-	return render(request, "include/base-form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : DEPARTEMEN, 'idpk' : department_id})
+def departemen(request, departemen_id):
+	d = Departemen.objects.get(pk=departemen_id)
+	return render(request, "include/base-form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : departemen_id, 'dsb' : modules})
 
 @login_required()
-def department_save(request, department_id):
-	d = Department.objects.select_for_update().filter(id=department_id)
+def departemen_save(request, departemen_id):
+	d = Departemen.objects.select_for_update().filter(id=departemen_id)
 	d.update(name=request.POST['name'], desc=request.POST['desc'])
-	return redirect("department-index")
+	return redirect("departemen-index")
 
 @login_required()
 def bagian(request, bagian_id):
 	b = Bagian.objects.get(pk=bagian_id)
-	return render(request, "include/base-form.html", { 'data' : b , 'mode' : 'Ubah', 'module' : BAGIAN, 'idpk' : bagian_id})
+	return render(request, "include/base-form.html", { 'data' : b , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : bagian_id, 'dsb' : modules})
 
 @login_required()
 def bagian_save(request, bagian_id):
@@ -42,7 +36,7 @@ def bagian_save(request, bagian_id):
 @login_required()
 def golongan(request, golongan_id):
 	g = Golongan.objects.get(pk=golongan_id)
-	return render(request, "include/base-form.html", { 'data' : g , 'mode' : 'Ubah', 'module' : GOLONGAN, 'idpk' : golongan_id})
+	return render(request, "include/base-form.html", { 'data' : g , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : golongan_id, 'dsb' : modules})
 
 @login_required()
 def golongan_save(request, golongan_id):
@@ -53,7 +47,7 @@ def golongan_save(request, golongan_id):
 @login_required()
 def jabatan(request, jabatan_id):
 	j = Jabatan.objects.get(pk=jabatan_id)
-	return render(request, "include/base-form.html", { 'data' : j , 'mode' : 'Ubah', 'module' : JABATAN, 'idpk' : jabatan_id})
+	return render(request, "include/base-form.html", { 'data' : j , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : jabatan_id, 'dsb' : modules})
 
 @login_required()
 def jabatan_save(request, jabatan_id):
@@ -64,7 +58,7 @@ def jabatan_save(request, jabatan_id):
 @login_required()
 def bank(request, bank_id):
 	b = Bank.objects.get(pk=bank_id)
-	return render(request, "include/base-form.html", { 'data' : b , 'mode' : 'Ubah', 'module' : BANK, 'idpk' : bank_id})
+	return render(request, "include/base-form.html", { 'data' : b , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : bank_id, 'dsb' : modules})
 
 @login_required()
 def bank_save(request, bank_id):
@@ -75,7 +69,7 @@ def bank_save(request, bank_id):
 @login_required()
 def agama(request, agama_id):
 	a = Agama.objects.get(pk=agama_id)
-	return render(request, "include/base-form.html", { 'data' : a , 'mode' : 'Ubah', 'module' : AGAMA, 'idpk' : agama_id})
+	return render(request, "include/base-form.html", { 'data' : a , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : agama_id, 'dsb' : modules})
 
 @login_required()
 def agama_save(request, agama_id):
@@ -86,7 +80,7 @@ def agama_save(request, agama_id):
 @login_required()
 def warganegara(request, warganegara_id):
 	w = WargaNegara.objects.get(pk=warganegara_id)
-	return render(request, "include/base-form.html", { 'data' : w , 'mode' : 'Ubah', 'module' : WARGANEGARA, 'idpk' : warganegara_id})
+	return render(request, "include/base-form.html", { 'data' : w , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : warganegara_id, 'dsb' : modules})
 
 @login_required()
 def warganegara_save(request, warganegara_id):
@@ -97,10 +91,16 @@ def warganegara_save(request, warganegara_id):
 @login_required()
 def statusmenikah(request, statusmenikah_id):
 	s = StatusMenikah.objects.get(pk=statusmenikah_id)
-	return render(request, "include/base-form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : STATUSMENIKAH, 'idpk' : statusmenikah_id})
+	return render(request, "include/base-form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : statusmenikah_id, 'dsb' : modules})
 
 @login_required()
 def statusmenikah_save(request, statusmenikah_id):
 	s = StatusMenikah.objects.select_for_update().filter(id=statusmenikah_id)
 	s.update(name=request.POST['name'], desc=request.POST['desc'])
 	return redirect("statusmenikah-index")
+
+def getModule(request):
+	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]
+	for sb in modules:
+		if getmodule.upper() == sb.name:
+			return sb.fungsi

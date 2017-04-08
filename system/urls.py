@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^logout$', views.logout_view,  name="logout"),
 
     url(r'^perusahaan$', views.dashboard.perusahaan_index,  name="perusahaan-index"),
-    url(r'^department$', views.dashboard.department_index,  name="department-index"),
+    url(r'^departemen$', views.dashboard.departemen_index,  name="departemen-index"),
     #url(r'^unit$', views.dashboard.unit_index, name="unit-index"),
   	url(r'^bagian$', views.dashboard.bagian_index, name="bagian-index"),
   	url(r'^golongan$', views.dashboard.golongan_index, name="golongan-index"),
@@ -18,6 +18,7 @@ urlpatterns = [
   	url(r'^agama$', views.dashboard.agama_index, name="agama-index"),
   	url(r'^warganegara$', views.dashboard.warganegara_index, name="warganegara-index"),
   	url(r'^statusmenikah$', views.dashboard.statusmenikah_index, name="statusmenikah-index"),
+    url(r'^profile-perusahaan$', views.dashboard.profile_perusahaan_index, name="profile-perusahaan-index"),
   	#url(r'^notif-system$', views.dashboard.notif_system, name="notif-system-index"),
   	#url(r'^notif-login$', views.dashboard.notif_login, name="notif-login-index"),
   	#url(r'^notif-aplikasi$', views.dashboard.notif_aplikasi, name="notif-aplikasi-index"),
@@ -25,8 +26,8 @@ urlpatterns = [
   	#url(r'^notif-system$', views.dashboard.notif_system, name="notif-system-index"),
 
   	#url(r'^perusahaan$', views.dashboard.perusahaan_index,  name="perusahaan-index"),
-    url(r'^department/create$', views.create.department,  name="department-create"),
-    url(r'^department/create/save$', views.create.department_save,  name="department-create-save"),
+    url(r'^departemen/create$', views.create.departemen,  name="departemen-create"),
+    url(r'^departemen/create/save$', views.create.departemen_save,  name="departemen-create-save"),
     url(r'^bagian/create$', views.create.bagian,  name="bagian-create"),
     url(r'^bagian/create/save$', views.create.bagian_save,  name="bagian-create-save"),
   	url(r'^golongan/create$', views.create.golongan, name="golongan-create"),
@@ -43,8 +44,8 @@ urlpatterns = [
     url(r'^statusmenikah/create$', views.create.statusmenikah, name="statusmenikah-create"),
     url(r'^statusmenikah/create/save$', views.create.statusmenikah_save, name="statusmenikah-create-save"),
 
-  	url(r'^department/(?P<department_id>[0-9]+)/edit/$', views.edit.department, name="department-edit"),
-  	url(r'^department/(?P<department_id>[0-9]+)/edit/save$', views.edit.department_save, name="department-edit-save"),
+  	url(r'^departemen/(?P<departemen_id>[0-9]+)/edit/$', views.edit.departemen, name="departemen-edit"),
+  	url(r'^departemen/(?P<departemen_id>[0-9]+)/edit/save$', views.edit.departemen_save, name="departemen-edit-save"),
   	url(r'^bagian/(?P<bagian_id>[0-9]+)/edit/$', views.edit.bagian, name="bagian-edit"),
   	url(r'^bagian/(?P<bagian_id>[0-9]+)/edit/save$', views.edit.bagian_save, name="bagian-edit-save"),
   	url(r'^golongan/(?P<golongan_id>[0-9]+)/edit/$', views.edit.golongan, name="golongan-edit"),
@@ -62,7 +63,7 @@ urlpatterns = [
     url(r'^statusmenikah/(?P<statusmenikah_id>[0-9]+)/edit/save$', views.edit.statusmenikah_save, name="statusmenikah-edit-save"),
 
     url(r'^perusahaan/(?P<perusahaan_id>[0-9]+)/delete/$', views.perusahaan_delete, name="perusahaan-delete"),
-    url(r'^department/(?P<department_id>[0-9]+)/delete/$', views.delete.department, name="department-delete"),
+    url(r'^departemen/(?P<departemen_id>[0-9]+)/delete/$', views.delete.departemen, name="departemen-delete"),
     url(r'^bagian/(?P<bagian_id>[0-9]+)/delete/$', views.delete.bagian, name="bagian-delete"),
     url(r'^golongan/(?P<golongan_id>[0-9]+)/delete/$', views.delete.golongan, name="golongan-delete"),
     url(r'^jabatan/(?P<jabatan_id>[0-9]+)/delete/$', views.delete.jabatan, name="jabatan-delete"),

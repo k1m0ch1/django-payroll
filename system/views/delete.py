@@ -5,14 +5,14 @@ import django_tables2 as tables
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from system.models import Perusahaan, Department, Bagian, Golongan, Jabatan
+from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah
 
 @login_required()
-def department(request, department_id):
-	d = Department.objects.filter(id=department_id)
+def departemen(request, departemen_id):
+	d = Departemen.objects.filter(id=departemen_id)
 	d.delete()
-	return redirect("department-index")
+	return redirect("departemen-index")
 
 @login_required()
 def bagian(request, bagian_id):

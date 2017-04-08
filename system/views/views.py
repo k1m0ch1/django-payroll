@@ -6,11 +6,14 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from system.models import Perusahaan, Department
+from system.models import Perusahaan, Departemen, Modules
+
+modules = Modules.objects.all()
 
 @login_required()
 def index(request):
-	return render(request, "dashboard.html")
+	dataPayroll = { 'dsb' : modules }
+	return render(request, "dashboard.html", dataPayroll)
 
 def loginpage(request):
 	return render(request, "login.html", { 'login' : "firsttime"})
@@ -35,7 +38,7 @@ def perusahaan_edit(request):
 	return HttpResponse("edit")
 
 @login_required()
-def department_edit(request):
+def departemen_edit(request):
 	return HttpResponse("edit")
 
 @login_required()
@@ -43,5 +46,5 @@ def perusahaan_delete(request):
 	return HttpResponse("Delete")
 
 @login_required()
-def department_delete(request):
+def departemen_delete(request):
 	return HttpResponse("Delete")

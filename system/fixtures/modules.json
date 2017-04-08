@@ -1,0 +1,418 @@
+[
+  {
+    "model": "system.modules",
+    "pk": 1,
+    "fields": 
+      {
+        "name": "DASHBOARD",
+        "fungsi": "Dashboard",
+        "menu": "root",
+        "icon": "fa fa-home",
+        "mode": "index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  },{
+    "model": "system.modules",
+    "pk": 2,
+    "fields": 
+      {
+        "name": "NOTIFIKASI",
+        "fungsi": "Notifikasi",
+        "menu": "root",
+        "icon": "fa fa-commenting",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  },{
+    "model": "system.modules",
+    "pk": 3,
+    "fields": 
+      {
+        "name": "NOTIFIKASISISTEM",
+        "fungsi": "Notifikasi Sistem",
+        "menu": "NOTIFIKASI",
+        "icon": "fa fa-commenting",
+        "url_slug": "index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  },{
+    "model": "system.modules",
+    "pk": 4,
+    "fields": 
+      {
+        "name": "NOTIFIKASIUSERLOGIN",
+        "fungsi": "Notifikasi User Login",
+        "menu": "NOTIFIKASI",
+        "icon": "fa fa-commenting",
+        "url_slug": "index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  },{
+    "model": "system.modules",
+    "pk": 5,
+    "fields": 
+      {
+        "name": "NOTIFIKASIAPLIKASi",
+        "fungsi": "Notifikasi Aplikasi",
+        "menu": "NOTIFIKASI",
+        "icon": "fa fa-commenting",
+        "url_slug": "index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.modules",
+    "pk": 6,
+    "fields": 
+      {
+        "name": "DATAMASTER1",
+        "fungsi": "Data Master 1",
+        "menu": "root",
+        "icon": "fa fa-flask",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  },{
+    "model": "system.modules",
+    "pk": 7,
+    "fields": 
+      {
+        "name": "KARYAWAN",
+        "fungsi": "Karyawan/ Employee",
+        "menu": "DATAMASTER1",
+        "icon": "fa fa-user-md",
+        "url_slug": "index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  },{
+    "model": "system.modules",
+    "pk": 8,
+    "fields": 
+      {
+        "name": "DEPARTEMEN",
+        "fungsi": "Departemen/ Department",
+        "menu": "DATAMASTER1",
+        "icon": "fa fa-industry",
+        "url_slug": "departemen-index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.modules",
+    "pk": 9,
+    "fields": 
+      {
+        "name": "BAGIAN",
+        "fungsi": "Bagian/ Division",
+        "menu": "DATAMASTER1",
+        "icon": "fa fa-building",
+        "url_slug": "bagian-index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.modules",
+    "pk": 10,
+    "fields": 
+      {
+        "name": "GOLONGAN",
+        "fungsi": "Golongan/ Category",
+        "menu": "DATAMASTER1",
+        "icon": "fa fa-group",
+        "url_slug": "golongan-index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.modules",
+    "pk": 11,
+    "fields": 
+      {
+        "name": "JABATAN",
+        "fungsi": "Jabatan/ Occupation",
+        "menu": "DATAMASTER1",
+        "icon": "fa fa-briefcase",
+        "url_slug": "jabatan-index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.modules",
+    "pk": 12,
+    "fields": 
+      {
+        "name": "BANK",
+        "fungsi": "Bank",
+        "menu": "DATAMASTER1",
+        "icon": "fa fa-bank",
+        "url_slug": "bank-index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.modules",
+    "pk": 13,
+    "fields": 
+      {
+        "name": "AGAMA",
+        "fungsi": "Agama/ Religion",
+        "menu": "DATAMASTER1",
+        "icon": "fa fa-gear",
+        "url_slug": "agama-index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.modules",
+    "pk": 14,
+    "fields": 
+      {
+        "name": "WARGANEGARA",
+        "fungsi": "Warga Negara/ Nationality",
+        "menu": "DATAMASTER1",
+        "icon": "fa fa-flag",
+        "url_slug": "warganegara-index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.modules",
+    "pk": 15,
+    "fields": 
+      {
+        "name": "STATUSMENIKAH",
+        "fungsi": "Status Menikah/ Marital Status",
+        "menu": "DATAMASTER1",
+        "icon": "fa fa-user-plus",
+        "url_slug": "statusmenikah-index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.modules",
+    "pk": 16,
+    "fields": 
+      {
+        "name": "DATAMASTER2",
+        "fungsi": "Data Master 2",
+        "menu": "root",
+        "icon": "fa fa-archive",
+        "created_at": "2017-03-01 15:03+07"
+      }
+  }, {
+    "model": "system.modules",
+    "pk": 17,
+    "fields": 
+      {
+        "name": "PROFILEPERUSAHAAN",
+        "fungsi": "Profile Perusahaan",
+        "menu": "DATAMASTER2",
+        "icon": "fa fa-file-text-o",
+        "created_at": "2017-03-01 15:03+07"
+      }
+  }, {
+    "model": "system.modules",
+    "pk": 18,
+    "fields": 
+      {
+        "name": "SHIFT",
+        "fungsi": "Shift",
+        "menu": "DATAMASTER2",
+        "icon": "fa fa-info",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 19,
+    "fields": 
+      {
+        "name": "CUTI",
+        "fungsi": "Cuti",
+        "menu": "DATAMASTER2",
+        "icon": "fa fa-user-times",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 20,
+    "fields": 
+      {
+        "name": "INVENTORY",
+        "fungsi": "Inventory",
+        "menu": "DATAMASTER2",
+        "icon": "fa fa-clipboard",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 21  ,
+    "fields": 
+      {
+        "name": "POTONGAN",
+        "fungsi": "Potongan Karyawan",
+        "menu": "DATAMASTER2",
+        "icon": "fa fa-dedent",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 22,
+    "fields": 
+      {
+        "name": "MASSATENGGANG",
+        "fungsi": "Massa Tenggang Closing",
+        "menu": "DATAMASTER2",
+        "icon": "fa fa-cloud-download",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 23,
+    "fields": 
+      {
+        "name": "PINJAMAN",
+        "fungsi": "List Karyawan yang<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;melakukan pinjaman",
+        "menu": "DATAMASTER2",
+        "icon": "fa fa-cart-arrow-down",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 24,
+    "fields": 
+      {
+        "name": "TRANSAKSI",
+        "fungsi": "Transaksi",
+        "menu": "root",
+        "icon": "fa fa-pie-chart",
+        "mode": "alone",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 25,
+    "fields": 
+      {
+        "name": "LAPORAN",
+        "fungsi": "Laporan",
+        "menu": "root",
+        "icon": "fa fa-table",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 26,
+    "fields": 
+      {
+        "name": "LAPORANGAJI",
+        "fungsi": "Laporan Gaji",
+        "menu": "LAPORAN",
+        "icon": "fa fa-table",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 27,
+    "fields": 
+      {
+        "name": "LAPORANLEMBUR",
+        "fungsi": "Laporan Lembur",
+        "menu": "LAPORAN",
+        "icon": "fa fa-table",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 28,
+    "fields": 
+      {
+        "name": "LAPORANBPJS",
+        "fungsi": "Laporan BPJS",
+        "menu": "LAPORAN",
+        "icon": "fa fa-table",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 29,
+    "fields": 
+      {
+        "name": "LAPORANPOTONGAN",
+        "fungsi": "Laporan Potongan",
+        "menu": "LAPORAN",
+        "icon": "fa fa-table",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 30,
+    "fields": 
+      {
+        "name": "LAPORANABSENSICUTI",
+        "fungsi": "Laporan Absensi & Cuti",
+        "menu": "LAPORAN",
+        "icon": "fa fa-table",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  } , {
+    "model": "system.modules",
+    "pk": 31,
+    "fields": 
+      {
+        "name": "DIVIDER",
+        "fungsi": "DIVIDER",
+        "menu": "root",
+        "mode": "divider-hr",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 32,
+    "fields": 
+      {
+        "name": "USER",
+        "fungsi": "User",
+        "mode": "alone",
+        "menu": "root",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 33,
+    "fields": 
+      {
+        "name": "PENGATURANSISTEM",
+        "fungsi": "Pengaturan Sistem",
+        "mode": "alone",
+        "menu": "root",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 34,
+    "fields": 
+      {
+        "name": "PENGATURANAPLIKASI",
+        "fungsi": "Pengaturan Aplikasi",
+        "mode": "alone",
+        "menu": "root",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 35,
+    "fields": 
+      {
+        "name": "LOGOUT",
+        "fungsi": "Logout",
+        "mode": "alone",
+        "url_slug": "logout",
+        "menu": "root",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }
+]

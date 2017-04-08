@@ -5,33 +5,27 @@ import django_tables2 as tables
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from system.models import Perusahaan, Department, Bagian, Golongan, Jabatan
-from system.models import Bank, Agama, WargaNegara, StatusMenikah
+from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
+from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
 
-BAGIAN 			= 'Bagian/ Division'
-DEPARTEMEN 		= 'Departemen/ Department'
-GOLONGAN 		= 'Golongan/ Category'
-JABATAN 		= 'Jabatan/ Occupation'
-BANK 			= 'Bank'
-AGAMA 			= 'Agama/ Religion'
-WARGANEGARA 	= 'Warga Negara/ Nationality'
-STATUSMENIKAH 	= 'Status Menikah/ Marital Status'
+modules = Modules.objects.all()
+allmenu = Modules.objects.only('name')
 
 @login_required()
-def department(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : DEPARTEMEN, 'idpk' : 0})
+def departemen(request):
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
 
 @login_required()
-def department_save(request):
+def departemen_save(request):
 	nama = request.POST['name']
 	desc = request.POST['desc']
-	d = Department(name=nama, desc=desc)
+	d = Departemen(name=nama, desc=desc)
 	d.save()
-	return redirect("department-index")
+	return redirect("departemen-index")
 
 @login_required()
 def bagian(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : BAGIAN, 'idpk' : 0})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
 
 @login_required()
 def bagian_save(request):
@@ -43,7 +37,7 @@ def bagian_save(request):
 
 @login_required()
 def golongan(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : GOLONGAN, 'idpk' : 0})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
 
 @login_required()
 def golongan_save(request):
@@ -55,7 +49,7 @@ def golongan_save(request):
 
 @login_required()
 def jabatan(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : JABATAN, 'idpk' : 0})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
 
 @login_required()
 def jabatan_save(request):
@@ -67,7 +61,7 @@ def jabatan_save(request):
 
 @login_required()
 def bank(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : BANK, 'idpk' : 0})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
 
 @login_required()
 def bank_save(request):
@@ -79,7 +73,7 @@ def bank_save(request):
 
 @login_required()
 def agama(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : AGAMA, 'idpk' : 0})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
 
 @login_required()
 def agama_save(request):
@@ -91,7 +85,7 @@ def agama_save(request):
 
 @login_required()
 def warganegara(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : WARGANEGARA, 'idpk' : 0})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
 
 @login_required()
 def warganegara_save(request):
@@ -103,7 +97,7 @@ def warganegara_save(request):
 
 @login_required()
 def statusmenikah(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : STATUSMENIKAH, 'idpk' : 0})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
 
 @login_required()
 def statusmenikah_save(request):
@@ -112,3 +106,9 @@ def statusmenikah_save(request):
 	s = StatusMenikah(name=nama, desc=desc)
 	s.save()
 	return redirect("statusmenikah-index")
+
+def getModule(request):
+	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]
+	for sb in modules:
+		if getmodule.upper() == sb.name:
+			return sb.fungsi

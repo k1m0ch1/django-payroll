@@ -5,18 +5,28 @@ from django.contrib.auth.models import User
 
 class Perusahaan(models.Model):
 	name = models.CharField(max_length=200)
-	alamat = desc = models.TextField()
-	desc = models.TextField()
+	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 
-class Department(models.Model):
+class LokasiPerusahaan(models.Model):
+	perusahaan = models.ForeignKey(Perusahaan, on_delete=models.CASCADE)
+	name = models.CharField(max_length=200, null=True)
+	alamat = desc = models.TextField()
+	desc = models.TextField(null=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
+class Departemen(models.Model):
 	#perusahaan = models.ForeignKey(Perusahaan, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
-	desc = models.TextField()
+	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -25,7 +35,7 @@ class Department(models.Model):
 
 # Deprecated table
 # class Unit(models.Model):
-# 	department = models.ForeignKey(Department, on_delete=models.CASCADE)
+# 	departemen = models.ForeignKey(departemen, on_delete=models.CASCADE)
 # 	name = models.CharField(max_length=200)
 # 	desc = models.TextField()
 # 	created_at = models.DateTimeField(auto_now=True)
@@ -35,9 +45,9 @@ class Department(models.Model):
 # 		return self.name
 
 class Bagian(models.Model):
-	#department = models.ForeignKey(Department, on_delete=models.CASCADE)
+	#departemen = models.ForeignKey(departemen, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
-	desc = models.TextField()
+	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -47,7 +57,7 @@ class Bagian(models.Model):
 class Golongan(models.Model):
 	#bagian = models.ForeignKey(Bagian, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
-	desc = models.TextField()
+	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -57,7 +67,7 @@ class Golongan(models.Model):
 class Jabatan(models.Model):
 	#jabatan = models.ForeignKey(Bagian, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
-	desc = models.TextField()
+	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -66,10 +76,46 @@ class Jabatan(models.Model):
 
 class Level(models.Model):
 	name = models.CharField(max_length=200)
-	desc = models.TextField()
+	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
+class Bank(models.Model):
+	name = models.CharField(max_length=200)
+	desc = models.TextField(null=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
+class Agama(models.Model):
+	name = models.CharField(max_length=200)
+	desc = models.TextField(null=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
+class WargaNegara(models.Model):
+	name = models.CharField(max_length=200)
+	desc = models.TextField(null=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
+class StatusMenikah(models.Model):
+	name = models.CharField(max_length=200)
+	desc = models.TextField(null=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+	
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 
@@ -78,7 +124,7 @@ class Level(models.Model):
 class Karyawan(models.Model):
 	NIK = models.CharField(max_length=15)
 	perusahaan = models.ForeignKey(Perusahaan, on_delete=models.CASCADE)
-	department = models.ForeignKey(Department, on_delete=models.CASCADE)
+	departemen = models.ForeignKey(Departemen, on_delete=models.CASCADE)
 	jabatan = models.ForeignKey(Bagian, on_delete=models.CASCADE)
 	#unit = models.ForeignKey(Jabatan, on_delete=models.CASCADE)
 	level = models.ForeignKey(Level, on_delete=models.CASCADE)
@@ -95,10 +141,10 @@ class Karyawan(models.Model):
 	telepon = models.DecimalField(max_digits=12, decimal_places=0)
 	handphone = models.DecimalField(max_digits=18, decimal_places=0)
 	ktpid = models.DecimalField(max_digits=30, decimal_places=0)
-	agama = models.CharField(max_length=20)
-	warganegara = models.CharField(max_length=20)
-	statusmenikah = models.CharField(max_length=12)
-	bankname = models.CharField(max_length=50)
+	agama = models.ForeignKey(Agama, on_delete=models.CASCADE)
+	warganegara = models.ForeignKey(WargaNegara, on_delete=models.CASCADE)
+	statusmenikah = models.ForeignKey(StatusMenikah, on_delete=models.CASCADE)
+	bank = models.ForeignKey(Bank, on_delete=models.CASCADE)
 	atasnama = models.CharField(max_length=200)
 	norek = models.CharField(max_length=70)
 	fingerid = models.CharField(max_length=30)
@@ -201,38 +247,17 @@ class Log(models.Model):
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 
-class Bank(models.Model):
+class Modules(models.Model):
+	isi = "#"
 	name = models.CharField(max_length=200)
-	desc = models.TextField()
+	fungsi = models.CharField(max_length=200)
+	menu = models.CharField(max_length=200, null=True)
+	icon = models.CharField(max_length=200, null=True)
+	url_slug = models.CharField(max_length=200, default=isi)
+	mode = models.CharField(max_length=200, null=True)
+	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
-	def __str__(self):              # __unicode__ on Python 2
-		return self.name
-
-class Agama(models.Model):
-	name = models.CharField(max_length=200)
-	desc = models.TextField()
-	created_at = models.DateTimeField(auto_now=True)
-	updated_at = models.DateTimeField(auto_now_add=True, null=True)
-
-	def __str__(self):              # __unicode__ on Python 2
-		return self.name
-
-class WargaNegara(models.Model):
-	name = models.CharField(max_length=200)
-	desc = models.TextField()
-	created_at = models.DateTimeField(auto_now=True)
-	updated_at = models.DateTimeField(auto_now_add=True, null=True)
-
-	def __str__(self):              # __unicode__ on Python 2
-		return self.name
-
-class StatusMenikah(models.Model):
-	name = models.CharField(max_length=200)
-	desc = models.TextField()
-	created_at = models.DateTimeField(auto_now=True)
-	updated_at = models.DateTimeField(auto_now_add=True, null=True)
-	
-	def __str__(self):              # __unicode__ on Python 2
+	def __str__(self):
 		return self.name

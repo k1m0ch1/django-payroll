@@ -64,126 +64,34 @@
 		      <!-- Sidebar Menu -->
 		      <ul class="sidebar-menu">
 		        <!-- Optionally, you can add icons to the links -->
-		        <li class="active"><a href="{% url 'index' %}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-		        <li class="treeview">
-		          <a href="#"><i class="fa fa-commenting"></i> <span>Notifikasi</span>            
-		              <span class="label label-primary pull-right">42</span>          
-		          </a>
-		          <ul class="treeview-menu">
-		            <li><a href="#"><i class="fa fa-commenting"></i> <span>Sistem</span><span class="label label-primary pull-right">10</span></a></li>
-		            <li><a href="#"><i class="fa fa-commenting"></i> <span>User Login</span><span class="label label-primary pull-right">20</span></a></li>
-		            <li><a href="#"><i class="fa fa-commenting"></i> <span>Aplikasi</span><span class="label label-danger pull-right">12</span></a></li>
-		          </ul>
-		        </li>
-		        <li class="treeview {% if action == 'Data Master 1' %}active{% endif %}">
-		          <a href="#"><i class="fa fa-flask"></i> <span>Data Master 1</span>
-		            <span class="pull-right-container">
-		              <i class="fa fa-angle-left pull-right"></i>
-		            </span>
-		          </a>
-		          <ul class="treeview-menu">
-		            <li><a href="#"><i class="fa fa-users"></i> <span>Karyawan/ Employee</span></a></li>
-		            {% if request.path == perusahaan_index %}
-		            	<li class="active">
-		            {% else %}
-		            	<li>
-		            {% endif %}
-		            {% if request.path == '/index/department' or request.path == '/index/department/create' %}
-		            	<li class="active">
-		            {% else %}
-		            	<li>
-		            {% endif %}
-		            <a href="{% url 'department-index' %}"><i class="fa fa-building "></i> <span>Departemen / Departement</span></a></li>
-		            {% if request.path == '/index/bagian' %}
-		            	<li class="active">
-		            {% else %}
-		            	<li>
-		            {% endif %}
-		            <a href="{% url 'bagian-index' %}"><i class="fa fa-building "></i> <span>Bagian / Division</span></a></li>
-		            {% if request.path == '/index/golongan' %}
-		            	<li class="active">
-		            {% else %}
-		            	<li>
-		            {% endif %}
-		            <a href="{% url 'golongan-index' %}"><i class="fa fa-building "></i> <span>Golongan/ Category</span></a></li>
-		            {% if request.path == '/index/jabatan' %}
-		            	<li class="active">
-		            {% else %}
-		            	<li>
-		            {% endif %}
-		            <a href="{% url 'jabatan-index' %}"><i class="fa fa-building "></i> <span>Jabatan/ Occupation</span></a></li>
-		            {% if request.path == '/index/bank' %}
-		            	<li class="active">
-		            {% else %}
-		            	<li>
-		            {% endif %}
-		            <a href="{% url 'bank-index' %}"><i class="fa fa-calendar"></i> <span>Bank</span></a></li>
-		            {% if request.path == '/index/agama' %}
-		            	<li class="active">
-		            {% else %}
-		            	<li>
-		            {% endif %}
-		            <a href="{% url 'agama-index' %}"><i class="fa fa-calendar"></i> <span>Agama/ Religion</span></a></li>
-		            {% if request.path == '/index/warganegara' %}
-		            	<li class="active">
-		            {% else %}
-		            	<li>
-		            {% endif %}
-		            <a href="{% url 'warganegara-index' %}"><i class="fa fa-calendar"></i> <span>Warga Negara/ Nationality</span></a></li>
-		            {% if request.path == '/index/statusmenikah' %}
-		            	<li class="active">
-		            {% else %}
-		            	<li>
-		            {% endif %}<a href="{% url 'statusmenikah-index' %}"><i class="fa fa-calendar"></i> <span>Status Menikah/ Marital Status</span></a></li>
-		          </ul>
-		        </li>
-		        <li class="treeview {% if action == 'Data Master 2' %}active{% endif %}">
-		          <a href="#"><i class="fa fa-flask"></i> <span>Data Master 2</span>
-		            <span class="pull-right-container">
-		              <i class="fa fa-angle-left pull-right"></i>
-		            </span>
-		          </a>
-		          <ul class="treeview-menu">
-		            {% if request.path == perusahaan_index %}
-		            	<li class="active">
-		            {% else %}
-		            	<li>
-		            {% endif %}
-		            <a href="{% url 'perusahaan-index' %}"><i class="fa fa-building "></i> <span>Profil Perusahaan</span></a></li>
-		            {% if request.path == '/index/department' %}
-		            	<li class="active">
-		            {% else %}
-		            	<li>
-		            {% endif %}
-		            <a href="{% url 'perusahaan-index' %}"><i class="fa fa-building "></i> <span>Shift</span></a></li>
-		            <li><a href="#"><i class="fa fa-calendar"></i> <span>Cuti</span></a></li>
-		            <li><a href="#"><i class="fa fa-calendar"></i> <span>Inventory</span></a></li>
-		            <li><a href="#"><i class="fa fa-calendar"></i> <span>Potongan Karyawan</span></a></li>
-		            <li><a href="#"><i class="fa fa-calendar"></i> <span>Masa tenggang Closing</span></a></li>
-		            <li><a href="#"><i class="fa fa-calendar"></i> <span>List Karyawan yang <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;melakukan pinjaman</span></a></li>
-		          </ul>
-		        </li>
-		        <li class=""><a href="#"><i class="fa fa-pie-chart"></i> <span>Transaksi</span></a></li>
-		        <li class="treeview">
-		          <a href="#"><i class="fa fa-table"></i> <span>Laporan</span>
-		            <span class="pull-right-container">
-		              <i class="fa fa-angle-left pull-right"></i>
-		            </span>
-		          </a>
-		          <ul class="treeview-menu">
-		            <li><a href="#"><i class="fa fa-table"></i> <span>Laporan Gaji</span></a></li>
-		            <li><a href="#"><i class="fa fa-table"></i> <span>Laporan Lembur</span></a></li>
-		            <li><a href="#"><i class="fa fa-table"></i> <span>Laporan BPJS</span></a></li>
-		            <li><a href="#"><i class="fa fa-table"></i> <span>Laporan Potongan</span></a></li>
-		            <li><a href="#"><i class="fa fa-table"></i> <span>Laporan Absensi & Cuti</span></a></li>
-		          </ul>
-		        </li>
-		        <li class="divider"><hr></li>
-		        <li><a href="#"><span>User</span></a></li>
-		        <li><a href="#"><span>Pengaturan Sistem</span></a></li>
-		        <li><a href="#"><span>Pengaturan Aplikasi</span></a></li>
-		        <li><a href="{% url 'logout' %}"><span>Logout</span></a></li>
-		      </ul>
+		        {% autoescape off %}
+		        {% for sb in dsb %}
+		      			{% if sb.menu == "root" %}
+		      				{% if sb.mode == "index" %}
+		      					<li class="active"><a href="{% url 'index' %}"><i class="{{ sb.icon }}"></i> <span>{{ sb.fungsi }}</span></a><ul>
+		      				{% elif sb.mode == "alone" %}
+		      					</ul></li><li class=""><a href="#"><i class="{{ sb.icon }}"></i> <span>{{ sb.fungsi }}</span></a><ul>
+		      				{% elif sb.mode == "divider-hr" %}
+		      					</ul></li><li class="divider"><hr><ul>
+		      				{% else %}
+		      					</ul></li>
+		      					<li class="treeview">
+		      						<a href="#"><i class="{{ sb.icon }}"></i> <span>{{ sb.fungsi }}</span>
+		      							<span class="pull-right-container">
+							              <i class="fa fa-angle-left pull-right"></i>
+							            </span>
+							        </a>
+							    <ul class="treeview-menu">
+		      				{% endif %}
+		      			{% else %}
+		      				<li>{% if sb.url_slug != "" and sb.url_slug != "#" %} 
+		      						<a href="{% url sb.url_slug %}"> 
+		      					{% else %}
+		      						<a href="#"> 
+		      					{% endif %}<i class="{{ sb.icon }}"></i> <span>{{ sb.fungsi }}</span></a></li>
+		      			{% endif %}
+		      	{% endfor %}
+		      	{% endautoescape %}
 		      <!-- /.sidebar-menu -->
 		    </section>
 		    <!-- /.sidebar -->
