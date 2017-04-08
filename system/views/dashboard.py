@@ -19,42 +19,42 @@ def perusahaan_index(request):
 @login_required()
 def departemen_index(request):
 	departemen = Departemen.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : departemen, 'module' : getModule(request), 'dsb' : modules})
+	return render(request, "include/base-dashboard.html", { 'ulang' : departemen, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request) })
 
 @login_required()
 def bagian_index(request):
 	bagian = Bagian.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : bagian, 'module' : getModule(request), 'dsb' : modules})
+	return render(request, "include/base-dashboard.html", { 'ulang' : bagian, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def golongan_index(request):
 	golongan = Golongan.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : golongan, 'module' : getModule(request), 'dsb' : modules})
+	return render(request, "include/base-dashboard.html", { 'ulang' : golongan, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def jabatan_index(request):
 	jabatan = Jabatan.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : jabatan, 'module' : getModule(request), 'dsb' : modules})
+	return render(request, "include/base-dashboard.html", { 'ulang' : jabatan, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def bank_index(request):
 	bank = Bank.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : bank, 'module' : getModule(request), 'dsb' : modules})
+	return render(request, "include/base-dashboard.html", { 'ulang' : bank, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def agama_index(request):
 	agama = Agama.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : agama, 'module' : getModule(request), 'dsb' : modules})
+	return render(request, "include/base-dashboard.html", { 'ulang' : agama, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def warganegara_index(request):
 	warganegara = WargaNegara.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : warganegara, 'module' : getModule(request), 'dsb' : modules})
+	return render(request, "include/base-dashboard.html", { 'ulang' : warganegara, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def statusmenikah_index(request):
 	statusmenikah = StatusMenikah.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : statusmenikah, 'module' : getModule(request), 'dsb' : modules})
+	return render(request, "include/base-dashboard.html", { 'ulang' : statusmenikah, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def profile_perusahaan_index(request):
@@ -67,3 +67,9 @@ def getModule(request):
 	for sb in modules:
 		if getmodule.upper() == sb.name:
 			return sb.fungsi
+
+def getParent(request):
+	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]
+	for sb in modules:
+		if getmodule.upper() == sb.name:
+			return sb.menu

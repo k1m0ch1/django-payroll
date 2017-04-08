@@ -13,7 +13,8 @@ allmenu = Modules.objects.only('name')
 
 @login_required()
 def departemen(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def departemen_save(request):
@@ -25,7 +26,8 @@ def departemen_save(request):
 
 @login_required()
 def bagian(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def bagian_save(request):
@@ -37,7 +39,8 @@ def bagian_save(request):
 
 @login_required()
 def golongan(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def golongan_save(request):
@@ -49,7 +52,8 @@ def golongan_save(request):
 
 @login_required()
 def jabatan(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def jabatan_save(request):
@@ -61,7 +65,8 @@ def jabatan_save(request):
 
 @login_required()
 def bank(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def bank_save(request):
@@ -73,7 +78,8 @@ def bank_save(request):
 
 @login_required()
 def agama(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def agama_save(request):
@@ -85,7 +91,8 @@ def agama_save(request):
 
 @login_required()
 def warganegara(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def warganegara_save(request):
@@ -97,7 +104,8 @@ def warganegara_save(request):
 
 @login_required()
 def statusmenikah(request):
-	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 'idpk' : 0, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def statusmenikah_save(request):
@@ -112,3 +120,9 @@ def getModule(request):
 	for sb in modules:
 		if getmodule.upper() == sb.name:
 			return sb.fungsi
+
+def getParent(request):
+	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]
+	for sb in modules:
+		if getmodule.upper() == sb.name:
+			return sb.menu

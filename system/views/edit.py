@@ -14,7 +14,8 @@ allmenu = Modules.objects.only('name')
 @login_required()
 def departemen(request, departemen_id):
 	d = Departemen.objects.get(pk=departemen_id)
-	return render(request, "include/base-form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : departemen_id, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : departemen_id, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def departemen_save(request, departemen_id):
@@ -25,7 +26,8 @@ def departemen_save(request, departemen_id):
 @login_required()
 def bagian(request, bagian_id):
 	b = Bagian.objects.get(pk=bagian_id)
-	return render(request, "include/base-form.html", { 'data' : b , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : bagian_id, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'data' : b , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : bagian_id, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def bagian_save(request, bagian_id):
@@ -36,7 +38,8 @@ def bagian_save(request, bagian_id):
 @login_required()
 def golongan(request, golongan_id):
 	g = Golongan.objects.get(pk=golongan_id)
-	return render(request, "include/base-form.html", { 'data' : g , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : golongan_id, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'data' : g , 'mode' : 'Ubah', 'module' : getModule(request),
+													   'idpk' : golongan_id, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def golongan_save(request, golongan_id):
@@ -47,7 +50,8 @@ def golongan_save(request, golongan_id):
 @login_required()
 def jabatan(request, jabatan_id):
 	j = Jabatan.objects.get(pk=jabatan_id)
-	return render(request, "include/base-form.html", { 'data' : j , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : jabatan_id, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'data' : j , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : jabatan_id, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def jabatan_save(request, jabatan_id):
@@ -58,7 +62,8 @@ def jabatan_save(request, jabatan_id):
 @login_required()
 def bank(request, bank_id):
 	b = Bank.objects.get(pk=bank_id)
-	return render(request, "include/base-form.html", { 'data' : b , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : bank_id, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'data' : b , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : bank_id, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def bank_save(request, bank_id):
@@ -69,7 +74,8 @@ def bank_save(request, bank_id):
 @login_required()
 def agama(request, agama_id):
 	a = Agama.objects.get(pk=agama_id)
-	return render(request, "include/base-form.html", { 'data' : a , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : agama_id, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'data' : a , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : agama_id, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def agama_save(request, agama_id):
@@ -80,7 +86,8 @@ def agama_save(request, agama_id):
 @login_required()
 def warganegara(request, warganegara_id):
 	w = WargaNegara.objects.get(pk=warganegara_id)
-	return render(request, "include/base-form.html", { 'data' : w , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : warganegara_id, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'data' : w , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : warganegara_id, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def warganegara_save(request, warganegara_id):
@@ -91,7 +98,8 @@ def warganegara_save(request, warganegara_id):
 @login_required()
 def statusmenikah(request, statusmenikah_id):
 	s = StatusMenikah.objects.get(pk=statusmenikah_id)
-	return render(request, "include/base-form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : getModule(request), 'idpk' : statusmenikah_id, 'dsb' : modules})
+	return render(request, "include/base-form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : statusmenikah_id, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def statusmenikah_save(request, statusmenikah_id):
@@ -104,3 +112,9 @@ def getModule(request):
 	for sb in modules:
 		if getmodule.upper() == sb.name:
 			return sb.fungsi
+
+def getParent(request):
+	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]
+	for sb in modules:
+		if getmodule.upper() == sb.name:
+			return sb.menu

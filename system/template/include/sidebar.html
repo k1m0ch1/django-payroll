@@ -1,22 +1,6 @@
 {% load static %}
 {% load sidebar %}
 
-{% url 'perusahaan-index' as perusahaan_index %}
-{% url 'department-index' as department_index %}
-{% url 'unit-index' as unit_index %}
-{% url 'bagian-index' as bagian_index %}
-{% url 'golongan-index' as golongan_index %}
-{% url 'jabatan-index' as jabatan_index %}
-{% url 'bank-index' as bank_index %}
-{% url 'agama-index' as agama_index %}
-{% url 'warganegara-index' as warganegara_index %}
-{% url 'department-create' as department_create %}
-
-
-{% if request.path == perusahaan_index or request.path == department_index or request.path == unit_index or request.path == bagian_index or request.path == golongan_index or request.path == jabatan_index or request.path == bank_index or request.path == agama_index or request.path == warganegara_index or request.path == statusmenikah_index or request.path == department_create %}
-{% define "Data Master 1" as action %}
-{% endif %}
-
 		<header class="main-header">
 		    <a href="index2.html" class="logo">
 		      <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -76,7 +60,7 @@
 		      					</ul></li><li class="divider"><hr><ul>
 		      				{% else %}
 		      					</ul></li>
-		      					<li class="treeview ">
+		      					<li class="treeview {% if sb.name == parent %}active{% endif %} ">
 		      						<a href="#"><i class="{{ sb.icon }}"></i> <span>{{ sb.fungsi }}</span>
 		      							<span class="pull-right-container">
 							              <i class="fa fa-angle-left pull-right"></i>
