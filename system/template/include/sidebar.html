@@ -68,14 +68,15 @@
 		        {% for sb in dsb %}
 		      			{% if sb.menu == "root" %}
 		      				{% if sb.mode == "index" %}
-		      					<li class="active"><a href="{% url 'index' %}"><i class="{{ sb.icon }}"></i> <span>{{ sb.fungsi }}</span></a><ul>
+		      					<li {% if request.path == "index" %} class="active" {% endif %}>
+		      					<a href="{% url 'index' %}"><i class="{{ sb.icon }}"></i> <span>{{ sb.fungsi }}</span></a><ul>
 		      				{% elif sb.mode == "alone" %}
 		      					</ul></li><li class=""><a href="#"><i class="{{ sb.icon }}"></i> <span>{{ sb.fungsi }}</span></a><ul>
 		      				{% elif sb.mode == "divider-hr" %}
 		      					</ul></li><li class="divider"><hr><ul>
 		      				{% else %}
 		      					</ul></li>
-		      					<li class="treeview">
+		      					<li class="treeview ">
 		      						<a href="#"><i class="{{ sb.icon }}"></i> <span>{{ sb.fungsi }}</span>
 		      							<span class="pull-right-container">
 							              <i class="fa fa-angle-left pull-right"></i>
@@ -84,7 +85,7 @@
 							    <ul class="treeview-menu">
 		      				{% endif %}
 		      			{% else %}
-		      				<li>{% if sb.url_slug != "" and sb.url_slug != "#" %} 
+		      				<li {% if module == sb.fungsi %}class="active"{% endif %}>{% if sb.url_slug != "" and sb.url_slug != "#" %} 
 		      						<a href="{% url sb.url_slug %}"> 
 		      					{% else %}
 		      						<a href="#"> 
