@@ -300,6 +300,17 @@ class PotonganKaryawan(models.Model):
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 
+class HariRaya(models.Model):
+	name = models.CharField(max_length=200)
+	tanggal = models.DateField()
+	sd = models.DateFiled(null=True)
+	desc = models.TextField()
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
 class Log(models.Model):
 	name = models.CharField(max_length=200) #short 25 char from log
 	tipe = models.CharField(max_length=200)
