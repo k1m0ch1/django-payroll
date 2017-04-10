@@ -1,0 +1,589 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
+            <li><i class="fa fa-flask"></i> Data Master</li>
+            <li class="active">Shift</li>
+          </ol>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-2">
+                <p><h3 class="control-label">Jadwal Shift</h3></p>
+              </div>
+          </div>                
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-2">
+                <p><h4 class="control-label">Proses Shift</h4></p>
+              </div>
+          </div>                
+      </div>
+      
+      <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-2">
+              <label class="control-label">List Karyawan</label>               
+            </div>
+            <div class="col-md-10">
+              <p class=""> A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A </p>
+            
+              <button class="btn btn-primary" id="pilihKaryawan" data-toggle="modal" data-target="#pilihKaryawanModal"><i class="fa fa-plus"></i> Pilih Karyawan</button>                 
+              </div>             
+          </div>                
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-2">
+                <p><h4 class="control-label">Rolling Shift</h4></p>
+              </div>
+          </div>                
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-2">
+              <label class="control-label pull-right">Untuk Tanggal</label>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right" id="reservation">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-2">
+              <label class="control-label pull-right">Shift</label>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                  <select class="form-control">
+                    <option>Shift 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                  <select class="form-control">
+                    <option>Shift 2</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-2 col-md-offset-2">
+              <div class="form-group">
+                  <select class="form-control">
+                    <option>Shift 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                  <select class="form-control">
+                    <option>Shift 2</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary"><i class="fa fa-plus"></i> Simpan</button> 
+            </div>
+          </div>          
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-2">
+                <p><h4 class="control-label">Ubah Shift</h4></p>
+              </div>
+          </div>                
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-2">
+              <label class="control-label pull-right">Untuk Tanggal</label>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right" id="reservation">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                  <select class="form-control">
+                    <option>Shift 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary"><i class="fa fa-plus"></i> Simpan</button> 
+            </div>
+          </div>          
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-2">
+                <p><h4 class="control-label">Table Shift</h4></p>
+              </div>
+          </div>                
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label for="pencarian" class="col-sm-2 control-label">Pencarian</label>
+                <div class="col-sm-2">
+                  <select class="form-control">
+                  <option>Kategori</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+                </div>
+                <div class="input-group col-sm-4">
+                  <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-primary btn-flat">Search</button>
+                    </span>
+                </div>
+              </div>              
+            </form>              
+          </div>                
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th class="col-md-1">#</th>
+                  <th class="col-md-2">Tanggal</th>
+                  <th class="col-md-1">NIK</th>
+                  <th class="col-md-4">Nama</th>
+                  <th class="col-md-3">Shift</th>
+                  <th class="col-md-1">Action</th>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" value=""></td>
+                  <td>2 Agustus 2016</td>
+                  <td>A02551</td>
+                  <td>Ahmad F.A</td>
+                  <td>Pagi</td>
+                  <td>
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
+                    </div>                  
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" value=""></td>
+                  <td>2 Agustus 2016</td>
+                  <td>A02551</td>
+                  <td>Ahmad F.A</td>
+                  <td>Pagi</td>
+                  <td>
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
+                    </div>                  
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" value=""></td>
+                  <td>2 Agustus 2016</td>
+                  <td>A02551</td>
+                  <td>Ahmad F.A</td>
+                  <td>Pagi</td>
+                  <td>
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
+                    </div>                  
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" value=""></td>
+                  <td>2 Agustus 2016</td>
+                  <td>A02551</td>
+                  <td>Ahmad F.A</td>
+                  <td>Pagi</td>
+                  <td>
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
+                    </div>                  
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" value=""></td>
+                  <td>2 Agustus 2016</td>
+                  <td>A02551</td>
+                  <td>Ahmad F.A</td>
+                  <td>Pagi</td>
+                  <td>
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
+                    </div>                  
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" value=""></td>
+                  <td>2 Agustus 2016</td>
+                  <td>A02551</td>
+                  <td>Ahmad F.A</td>
+                  <td>Pagi</td>
+                  <td>
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
+                    </div>                  
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" value=""></td>
+                  <td>2 Agustus 2016</td>
+                  <td>A02551</td>
+                  <td>Ahmad F.A</td>
+                  <td>Pagi</td>
+                  <td>
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
+                    </div>                  
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" value=""></td>
+                  <td>2 Agustus 2016</td>
+                  <td>A02551</td>
+                  <td>Ahmad F.A</td>
+                  <td>Pagi</td>
+                  <td>
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
+                    </div>                  
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" value=""></td>
+                  <td>2 Agustus 2016</td>
+                  <td>A02551</td>
+                  <td>Ahmad F.A</td>
+                  <td>Pagi</td>
+                  <td>
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
+                    </div>                  
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" value=""></td>
+                  <td>2 Agustus 2016</td>
+                  <td>A02551</td>
+                  <td>Ahmad F.A</td>
+                  <td>Pagi</td>
+                  <td>
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
+                    </div>                  
+                  </td>
+                </tr>
+
+
+              </tbody></table>
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              <div class="col-md-8 ">
+                <div class="col-md-3">
+                  <label class="control-label">Ubah yang dipilih</label>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                      <select class="form-control ">
+                        <option>Shift 1</option>
+                        <option>option 2</option>
+                        <option>option 3</option>
+                        <option>option 4</option>
+                        <option>option 5</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary"><i class="fa fa-plus"></i> Simpan</button> 
+                </div>
+              </div>
+              <div class="col-md-4">
+                <ul class="pagination pagination-sm no-margin pull-right">
+                  <li class="active"><a href="#">PREV</a></li>
+                  <li><a href="#" >1</a></li>
+                  <li class="active"><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li class="active"><a href="#">NEXT</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+      <!-- Your Page Content Here -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  <footer class="main-footer">
+      <!-- To the right -->
+      <div class="pull-right hidden-xs">
+        Anything you want
+      </div>
+      <!-- Default to the left -->
+      <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    </footer>
+
+    <div class="modal fade" id="pilihKaryawanModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3 class="modal-title">Pilih Karyawan</h3>
+          <small>Pilih karyawan terlebih dahulu untuk menambahkan atau mengubah Absensi</small>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+              <div class="col-md-12">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="pencarian" class="col-sm-2 control-label">Pencarian</label>
+                    <div class="col-md-5">
+                      <select class="form-control">
+                      <option>Departemen</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                    </div>
+                    <div class="col-md-5">
+                      <select class="form-control">
+                      <option>Bagian</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      <select class="form-control">
+                      <option>Golongan</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                    </div>
+                    <div class="col-md-5">
+                      <select class="form-control">
+                      <option>Jabatan</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                    </div>
+                    <div class="col-md-3"></div>
+                    <div class="input-group col-md-6">
+                      <input placeholder="NIK" type="text" class="form-control" >
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-primary btn-flat">Search</button>
+                        </span>
+                    </div>
+                  </div>              
+                </form>              
+              </div>                
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tbody><tr>
+                      <th class="col-md-1">#</th>
+                      <th class="col-md-2">NIK</th>
+                      <th class="col-md-8">Nama</th>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" value=""></td>
+                      <td>A02551</td>
+                      <td>Ahmad F.A</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" value=""></td>
+                      <td>A02551</td>
+                      <td>Ahmad F.A</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" value=""></td>
+                      <td>A02551</td>
+                      <td>Ahmad F.A</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" value=""></td>
+                      <td>A02551</td>
+                      <td>Ahmad F.A</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" value=""></td>
+                      <td>A02551</td>
+                      <td>Ahmad F.A</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" value=""></td>
+                      <td>A02551</td>
+                      <td>Ahmad F.A</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" value=""></td>
+                      <td>A02551</td>
+                      <td>Ahmad F.A</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" value=""></td>
+                      <td>A02551</td>
+                      <td>Ahmad F.A</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" value=""></td>
+                      <td>A02551</td>
+                      <td>Ahmad F.A</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" value=""></td>
+                      <td>A02551</td>
+                      <td>Ahmad F.A</td>
+                    </tr>
+
+                  </tbody></table>
+
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                  <ul class="pagination pagination-sm no-margin pull-right">
+                    <li class="active"><a href="#">PREV</a></li>
+                    <li><a href="#" >1</a></li>
+                    <li class="active"><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li class="active"><a href="#">NEXT</a></li>
+                  </ul>
+                </div>
+              </div>
+              <!-- /.box -->
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Simpan</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+{% endblock %}
+
+{% block javascript %} 
+  <script src="{% static 'plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <!-- AdminLTE App -->
+  <script src="{% static 'dist/js/app.min.js' %}"></script>
+  <!-- SlimScroll 1.3.0 -->
+  <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+  <script src="{% static 'plugins/daterangepicker/daterangepicker.js' %}"></script>
+  <script src="{% static 'plugins/datepicker/bootstrap-datepicker.js' %}"></script>
+  <script src="{% static 'plugins/colorpicker/bootstrap-colorpicker.min.js' %}"></script>
+  <script src="{% static 'plugins/timepicker/bootstrap-timepicker.min.js' %}"></script>
+  <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+
+  <script>
+  $(function () {
+    
+
+    //Date range picker
+    $('#reservation').daterangepicker();
+
+  });
+</script>
+{% endblock %}

@@ -13,6 +13,10 @@ modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
 
 @login_required()
+def shift_index(request):
+	return render(request, "karyawanshift/dashboard.html", { 'dsb' : modules})
+
+@login_required()
 def karyawan_index(request):
 	karyawan = Karyawan.objects.all()
 	return render(request, "karyawan/dashboard.html", { 'karyawan' : karyawan, 'dsb' : modules })
