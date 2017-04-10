@@ -1,0 +1,73 @@
+[
+  {
+    "model": "system.cuti",
+    "pk": 1,
+    "fields": 
+      {
+        "name": "Random A",
+        "karyawan_id": 1,
+        "alasan": "sakit",
+        "tglmulai": "2012-12-12",
+        "tglakhir": "2012-12-15",
+        "desc": "Other fracture of unspecified thoracic vertebra, sequela",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.cuti",
+    "pk": 2,
+    "fields": 
+      {
+        "name": "Random B",
+        "karyawan_id": 1,
+        "alasan": "sakit",
+        "tglmulai": "2012-12-6",
+        "tglakhir": "2012-12-8",
+        "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.cuti",
+    "pk": 3,
+    "fields": 
+      {
+        "name": "Random C",
+        "karyawan_id": 1,
+        "alasan": "sakit",
+        "tglmulai": "2012-12-28",
+        "tglakhir": "2012-12-02",
+        "desc": "Malignant neoplasm of unspecified part of unspecified adrenal gland",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.cuti",
+    "pk": 4,
+    "fields": 
+      {
+        "name": "Random D",
+        "karyawan_id": 2,
+        "alasan": "sakit",
+        "tglmulai": "2012-12-12",
+        "tglakhir": "2012-12-15",
+        "desc": "Nondisplaced articular fracture of head of right femur, subsequent encounter for open fracture type IIIA, IIIB, or IIIC with nonunion",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.cuti",
+    "pk": 5,
+    "fields": 
+      {
+        "name": "Random E",
+        "karyawan_id": 2,
+        "alasan": "sakit",
+        "tglmulai": "2012-12-12",
+        "tglakhir": "2012-12-15",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }
+]
