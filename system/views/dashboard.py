@@ -7,10 +7,15 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
-from system.models import LokasiPerusahaan, Karyawan
+from system.models import LokasiPerusahaan, Karyawan, HariRaya
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
+
+@login_required()
+def hariraya_index(request):
+	hariraya = HariRaya.objects.all()
+	return render(request, "hariraya/dashboard.html", { 'ulang' : hariraya, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def karyawan_index(request):

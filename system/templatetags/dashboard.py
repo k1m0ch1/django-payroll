@@ -65,4 +65,11 @@ def dashboard(module=None, mode=None, idpk=None):
       'ubah'   : reverse('statusmenikah-edit', kwargs={'statusmenikah_id': idpk}),
       'hapus'  : reverse('statusmenikah-delete', kwargs={'statusmenikah_id': idpk})
     }[mode]
+  elif module == 'Hari Raya':
+    return{
+      'indeks' : reverse('hariraya-index'),
+      'tambah' : reverse('hariraya-create'),
+      'ubah'   : reverse('hariraya-edit', kwargs={'hariraya_id': idpk}),
+      'hapus'  : reverse('hariraya-delete', kwargs={'hariraya_id': idpk})
+    }[mode]
   return "null"

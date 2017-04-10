@@ -54,4 +54,9 @@ def form(module=None, mode=None, idpk=None):
 	    return{
 			'Ubah'   : reverse('profile-edit-save')
 		}[mode]
+	elif module == 'Hari Raya':
+	    return{
+			'Tambah' : reverse('hariraya-create-save'),
+			'Ubah'   : reverse('hariraya-edit-save', kwargs={'hariraya_id': idpk})
+		}[mode]
 	return "null"
