@@ -1,0 +1,51 @@
+[
+  {
+    "model": "system.Shift",
+    "pk": 1,
+    "fields": 
+      {
+        "name": "Pagi(07:00-15:00)",
+        "jammasuk": "07:00",
+        "jamkeluar": "15:00",
+        "desc": "Other fracture of unspecified thoracic vertebra, sequela",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  },{
+    "model": "system.Shift",
+    "pk": 2,
+    "fields": 
+      {
+        "name": "Siang(12:00-20:00)",
+        "jammasuk": "12:00",
+        "jamkeluar": "20:00",
+        "desc": "Other fracture of unspecified thoracic vertebra, sequela",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  },{
+    "model": "system.Shift",
+    "pk": 3,
+    "fields": 
+      {
+        "name": "Sore(15:00-21:00)",
+        "jammasuk": "15:00",
+        "jamkeluar": "21:00",
+        "desc": "Other fracture of unspecified thoracic vertebra, sequela",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  },{
+    "model": "system.Shift",
+    "pk": 4,
+    "fields": 
+      {
+        "name": "Malam(19:00-03:00)",
+        "jammasuk": "19:00",
+        "jamkeluar": "03:00",
+        "desc": "Other fracture of unspecified thoracic vertebra, sequela",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }
+]

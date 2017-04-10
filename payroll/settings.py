@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'payroll.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST' : '192.168.0.5',
+        'HOST' : '192.168.0.2',
         'USER' : 'postgres',
         'PASSWORD' : '0r4ng324n3h',
         'NAME': 'payroll',

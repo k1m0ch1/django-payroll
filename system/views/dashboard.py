@@ -18,6 +18,11 @@ def karyawan_index(request):
 	return render(request, "karyawan/dashboard.html", { 'karyawan' : karyawan, 'dsb' : modules })
 
 @login_required()
+def karyawan_detail(request, karyawan_id):
+	karyawan = Karyawan.objects.get(pk=karyawan_id)
+	return render(request, "karyawan/detail.html", {'karyawan':karyawan, 'dsb': modules})
+
+@login_required()
 def perusahaan_index(request):
 	perusahaan = Perusahaan.objects.all()
 	return render(request, "perusahaan/dashboard.html", { 'perusahaan' : perusahaan, 'dsb' : modules })

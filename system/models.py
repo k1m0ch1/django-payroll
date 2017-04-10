@@ -222,8 +222,8 @@ class GajiPokok(models.Model):
 class Shift(models.Model):
 	name = models.CharField(max_length=25)
 	desc = models.TextField()
-	jadwalmasuk = models.TimeField()
-	jadwalkeluar = models.TimeField()
+	jammasuk = models.TimeField()
+	jamkeluar = models.TimeField()
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -231,10 +231,12 @@ class Shift(models.Model):
 		return self.name
 
 class KaryawanShift(models.Model):
-	NIK = models.ManyToManyField(Karyawan)
+	name = models.CharField(max_length=75, null=True)
+	karyawan = models.ManyToManyField(Karyawan)
 	shift = models.ManyToManyField(Shift)
 	tglawal = models.DateField()
 	tglakhir = models.DateField()
+	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 

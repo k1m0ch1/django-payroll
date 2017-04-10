@@ -71,7 +71,7 @@
                   <td>{{data.jabatan.name}}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
+                      <a href="{% url 'karyawan-detail' karyawan_id=data.id %}" type="button" class="btn btn-default"><i class="fa fa-user"></i></a>
                       <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
                       <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>                      
                     </div>                  
