@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
-from system.models import LokasiPerusahaan
+from system.models import LokasiPerusahaan, HariRaya
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
@@ -131,6 +131,23 @@ def profile_edit_save(request):
 	s = Perusahaan.objects.select_for_update().filter(id=1)
 	s.update(name=request.POST['name'], desc=request.POST['desc'])
 	return redirect("profile-perusahaan-index")
+
+@login_required()
+def hariraya_edit(request, hariraya_id):
+	s = HariRaya.objects.get(pk=hariraya_id)
+	return render(request, "include/form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   		 'idpk' : hariraya_id, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def hariraya_edit_save(request, hariraya_id):
+	name = request.POST['name']
+	tanggal = request.POST['desc']
+	sd = request.POST['desc']
+	desc = request.POST['desc']
+	s = HariRaya.objects.select_for_update().filter(id=hariraya_id)
+	s.update(name=name, tanggal=tanggal, sd=sd, desc=desc)
+	return redirect("hariraya-index")
+
 
 
 def getModule(request):

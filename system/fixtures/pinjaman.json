@@ -1,0 +1,63 @@
+[
+  {
+    "model": "system.pinjaman",
+    "pk": 1,
+    "fields": 
+      {
+        "inventory_id" : 1,
+        "karyawan_id" : 1,
+        "tglpinjam": "2017-05-01",
+        "desc": "Other fracture of unspecified thoracic vertebra, sequela",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.pinjaman",
+    "pk": 2,
+    "fields": 
+      {
+        "inventory_id" : 1,
+        "karyawan_id" : 2,
+        "tglpinjam": "2017-05-01",
+        "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.pinjaman",
+    "pk": 3,
+    "fields": 
+      {
+        "inventory_id" : 2,
+        "karyawan_id" : 1,
+        "tglpinjam": "2017-05-01",
+        "desc": "Malignant neoplasm of unspecified part of unspecified adrenal gland",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.pinjaman",
+    "pk": 4,
+    "fields": 
+      {
+        "inventory_id" : 2,
+        "karyawan_id" : 2,
+        "tglpinjam": "2017-05-01",
+        "desc": "Nondisplaced articular fracture of head of right femur, subsequent encounter for open fracture type IIIA, IIIB, or IIIC with nonunion",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.pinjaman",
+    "pk": 5,
+    "fields": 
+      {
+        "inventory_id" : 2,
+        "karyawan_id" : 2,
+        "tglpinjam": "2017-05-01",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }
+]

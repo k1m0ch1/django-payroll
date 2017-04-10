@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
-from system.models import LokasiPerusahaan
+from system.models import LokasiPerusahaan, HariRaya
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
@@ -128,6 +128,21 @@ def profile_perusahaan_save(request):
 	pp = LokasiPerusahaan(name=alamat, alamat=alamat, desc=desc, perusahaan_id=1)
 	pp.save()
 	return redirect("profile-perusahaan-index")
+
+@login_required()
+def hariraya(request):
+	return render(request, "hariraya/form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def hariraya_save(request):
+	name = request.POST['name']
+	tanggal = request.POST['desc']
+	sd = request.POST['desc']
+	desc = request.POST['desc']
+	pp = HariRaya(name=name, tanggal=tanggal, sd=sd, desc=desc)
+	pp.save()
+	return redirect("hariraya-index")
 
 def getModule(request):
 	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]

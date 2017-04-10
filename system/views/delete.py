@@ -62,3 +62,9 @@ def profile_perusahaan(request, lokasiperusahaan_id):
 	s = LokasiPerusahaan.objects.filter(id=lokasiperusahaan_id)
 	s.delete()
 	return redirect("profile-perusahaan-index")
+
+@login_required()
+def hariraya(request, hariraya_id):
+	s = HariRaya.objects.filter(id=hariraya_id)
+	s.delete()
+	return redirect("hariraya-index")
