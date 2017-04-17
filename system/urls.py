@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^karaywan$', views.dashboard.karyawan_index, name="karyawan-index"),
     url(r'^karaywan/(?P<karyawan_id>[0-9]+)/detail/$', views.dashboard.karyawan_detail, name="karyawan-detail"),
     url(r'^shift$', views.dashboard.shift_index, name="shift-index"),
+    url(r'^hariraya$', views.dashboard.hariraya_index, name="hariraya-index"),
   	#url(r'^notif-system$', views.dashboard.notif_system, name="notif-system-index"),
   	#url(r'^notif-login$', views.dashboard.notif_login, name="notif-login-index"),
   	#url(r'^notif-aplikasi$', views.dashboard.notif_aplikasi, name="notif-aplikasi-index"),

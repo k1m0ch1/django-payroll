@@ -7,14 +7,23 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
-from system.models import LokasiPerusahaan, Karyawan, HariRaya
+from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
 
 @login_required()
 def shift_index(request):
-	return render(request, "karyawanshift/dashboard.html", { 'dsb' : modules})
+	karyawan = Karyawan.objects.get(pk=1)
+	k = Karyawan.objects.all()
+	dep = Departemen.objects.all()
+	bag = Bagian.objects.all()
+	gol = Golongan.objects.all()
+	jab = Jabatan.objects.all()
+	shift = Shift. objects.all()
+	ks = KaryawanShift.objects.filter(karyawan=karyawan)
+	return render(request, "karyawanshift/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+															 'golongan' : gol, 'jabatan' : jab, 'ks': ks})
 
 @login_required()
 def hariraya_index(request):

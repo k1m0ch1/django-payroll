@@ -37,8 +37,9 @@
             <div class="col-md-2">
               <label class="control-label">List Karyawan</label>               
             </div>
+            <input type="hidden" id="idKaryawan" name="idkaryawan" />
             <div class="col-md-10">
-              <p class=""> A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A </p>
+              <p class="" id="textKaraywan"> A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A </p>
             
               <button class="btn btn-primary" id="pilihKaryawan" data-toggle="modal" data-target="#pilihKaryawanModal"><i class="fa fa-plus"></i> Pilih Karyawan</button>                 
               </div>             
@@ -209,12 +210,13 @@
                   <th class="col-md-3">Shift</th>
                   <th class="col-md-1">Action</th>
                 </tr>
+                {% for d in ks %}
                 <tr>
                   <td><input type="checkbox" value=""></td>
-                  <td>2 Agustus 2016</td>
-                  <td>A02551</td>
-                  <td>Ahmad F.A</td>
-                  <td>Pagi</td>
+                  <td>{{ d.tglawal|date:"d M Y" }} sd {{ d.tglakhir|date:"d M Y" }}</td>
+                  <td>{{ d.karyawan.nik }}</td>
+                  <td>{{ d.karyawan.name }}</td>
+                  <td>{{ d.shift.name }}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                       <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
@@ -223,135 +225,8 @@
                     </div>                  
                   </td>
                 </tr>
-                <tr>
-                  <td><input type="checkbox" value=""></td>
-                  <td>2 Agustus 2016</td>
-                  <td>A02551</td>
-                  <td>Ahmad F.A</td>
-                  <td>Pagi</td>
-                  <td>
-                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
-                    </div>                  
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" value=""></td>
-                  <td>2 Agustus 2016</td>
-                  <td>A02551</td>
-                  <td>Ahmad F.A</td>
-                  <td>Pagi</td>
-                  <td>
-                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
-                    </div>                  
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" value=""></td>
-                  <td>2 Agustus 2016</td>
-                  <td>A02551</td>
-                  <td>Ahmad F.A</td>
-                  <td>Pagi</td>
-                  <td>
-                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
-                    </div>                  
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" value=""></td>
-                  <td>2 Agustus 2016</td>
-                  <td>A02551</td>
-                  <td>Ahmad F.A</td>
-                  <td>Pagi</td>
-                  <td>
-                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
-                    </div>                  
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" value=""></td>
-                  <td>2 Agustus 2016</td>
-                  <td>A02551</td>
-                  <td>Ahmad F.A</td>
-                  <td>Pagi</td>
-                  <td>
-                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
-                    </div>                  
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" value=""></td>
-                  <td>2 Agustus 2016</td>
-                  <td>A02551</td>
-                  <td>Ahmad F.A</td>
-                  <td>Pagi</td>
-                  <td>
-                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
-                    </div>                  
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" value=""></td>
-                  <td>2 Agustus 2016</td>
-                  <td>A02551</td>
-                  <td>Ahmad F.A</td>
-                  <td>Pagi</td>
-                  <td>
-                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
-                    </div>                  
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" value=""></td>
-                  <td>2 Agustus 2016</td>
-                  <td>A02551</td>
-                  <td>Ahmad F.A</td>
-                  <td>Pagi</td>
-                  <td>
-                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
-                    </div>                  
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" value=""></td>
-                  <td>2 Agustus 2016</td>
-                  <td>A02551</td>
-                  <td>Ahmad F.A</td>
-                  <td>Pagi</td>
-                  <td>
-                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
-                    </div>                  
-                  </td>
-                </tr>
-
-
-              </tbody></table>
+                {% endfor %}
+            </tbody></table>
 
             </div>
             <!-- /.box-body -->
@@ -425,38 +300,34 @@
                     <div class="col-md-5">
                       <select class="form-control">
                       <option>Departemen</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                      {% for dp in departemen %}
+                        <option value="{{dp.id}}">{{ dp.name }}</option>
+                      {% endfor %}
                     </select>
                     </div>
                     <div class="col-md-5">
                       <select class="form-control">
                       <option>Bagian</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                      {% for bg in bagian %}
+                        <option value="{{bg.id}}">{{ bg.name }}</option>
+                      {% endfor %}
                     </select>
                     </div>
                     <div class="col-md-2"></div>
                     <div class="col-md-5">
                       <select class="form-control">
                       <option>Golongan</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                      {% for gl in golongan %}
+                        <option value="{{gl.id}}">{{ gl.name }}</option>
+                      {% endfor %}
                     </select>
                     </div>
                     <div class="col-md-5">
                       <select class="form-control">
                       <option>Jabatan</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                      {% for jb in jabatan %}
+                        <option value="{{jb.id}}">{{ jb.name }}</option>
+                      {% endfor %}
                     </select>
                     </div>
                     <div class="col-md-3"></div>
@@ -475,63 +346,20 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
+                  <table class="table table-hover" id="tabelKaryawan">
                     <tbody><tr>
                       <th class="col-md-1">#</th>
                       <th class="col-md-2">NIK</th>
                       <th class="col-md-8">Nama</th>
                     </tr>
+                    {% for k in karyawan %}
                     <tr>
-                      <td><input type="checkbox" value=""></td>
-                      <td>A02551</td>
-                      <td>Ahmad F.A</td>
+                      <td><input type="checkbox" value="{{ k.NIK }} - {{ k.name }}" data-id="{{ k.id }}"></td>
+                      <td>{{ k.NIK }}</td>
+                      <td>{{ k.name }}</td>
                     </tr>
-                    <tr>
-                      <td><input type="checkbox" value=""></td>
-                      <td>A02551</td>
-                      <td>Ahmad F.A</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" value=""></td>
-                      <td>A02551</td>
-                      <td>Ahmad F.A</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" value=""></td>
-                      <td>A02551</td>
-                      <td>Ahmad F.A</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" value=""></td>
-                      <td>A02551</td>
-                      <td>Ahmad F.A</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" value=""></td>
-                      <td>A02551</td>
-                      <td>Ahmad F.A</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" value=""></td>
-                      <td>A02551</td>
-                      <td>Ahmad F.A</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" value=""></td>
-                      <td>A02551</td>
-                      <td>Ahmad F.A</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" value=""></td>
-                      <td>A02551</td>
-                      <td>Ahmad F.A</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" value=""></td>
-                      <td>A02551</td>
-                      <td>Ahmad F.A</td>
-                    </tr>
-
+                    {% endfor %}
+                    
                   </tbody></table>
 
                 </div>
@@ -554,7 +382,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Simpan</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -578,11 +406,26 @@
   <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
 
   <script>
-  $(function () {
-    
+  $(function () {    
 
     //Date range picker
     $('#reservation').daterangepicker();
+
+    var countChecked = function() {
+      var n = [];
+      var o = [];
+
+      $('#tabelKaryawan input:checked').each(function () {
+          n.push($(this).val());
+          o.push($(this).data("id"));
+      });
+      console.log(n);
+      $("#textKaraywan").text( n );
+      $("#idKaryawan").val( o );
+    };
+    countChecked();
+
+    $("#tabelKaryawan input[type=checkbox]" ).on( "click", countChecked );
 
   });
 </script>

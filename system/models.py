@@ -237,8 +237,8 @@ class Shift(models.Model):
 
 class KaryawanShift(models.Model):
 	name = models.CharField(max_length=75, null=True)
-	karyawan = models.ManyToManyField(Karyawan)
-	shift = models.ManyToManyField(Shift)
+	karyawan = models.ManyToManyField(Karyawan,related_name="karyawan")
+	shift = models.ManyToManyField(Shift, related_name="shift")
 	tglawal = models.DateField()
 	tglakhir = models.DateField()
 	desc = models.TextField()
@@ -303,7 +303,7 @@ class PotonganKaryawan(models.Model):
 class HariRaya(models.Model):
 	name = models.CharField(max_length=200)
 	tanggal = models.DateField()
-	sd = models.DateFiled(null=True)
+	sd = models.DateField(null=True)
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
