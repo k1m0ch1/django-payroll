@@ -14,14 +14,14 @@ allmenu = Modules.objects.only('name')
 
 @login_required()
 def shift_index(request):
-	karyawan = Karyawan.objects.get(pk=1)
+	karyawan = Karyawan.objects.all()
 	k = Karyawan.objects.all()
 	dep = Departemen.objects.all()
 	bag = Bagian.objects.all()
 	gol = Golongan.objects.all()
 	jab = Jabatan.objects.all()
-	shift = Shift. objects.all()
-	ks = KaryawanShift.objects.filter(karyawan=karyawan)
+	shift = Shift.objects.all()
+	ks = KaryawanShift.objects.all()
 	return render(request, "karyawanshift/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
 															 'golongan' : gol, 'jabatan' : jab, 'ks': ks})
 

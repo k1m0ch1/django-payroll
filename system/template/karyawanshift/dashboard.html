@@ -205,8 +205,8 @@
                 <tbody><tr>
                   <th class="col-md-1">#</th>
                   <th class="col-md-2">Tanggal</th>
-                  <th class="col-md-1">NIK</th>
-                  <th class="col-md-4">Nama</th>
+                  <th class="col-md-2">NIK</th>
+                  <th class="col-md-3">Nama</th>
                   <th class="col-md-3">Shift</th>
                   <th class="col-md-1">Action</th>
                 </tr>
@@ -214,7 +214,7 @@
                 <tr>
                   <td><input type="checkbox" value=""></td>
                   <td>{{ d.tglawal|date:"d M Y" }} sd {{ d.tglakhir|date:"d M Y" }}</td>
-                  <td>{{ d.karyawan.nik }}</td>
+                  <td>{{ d.karyawan.NIK }}</td>
                   <td>{{ d.karyawan.name }}</td>
                   <td>{{ d.shift.name }}</td>
                   <td>

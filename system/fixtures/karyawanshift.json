@@ -4,8 +4,8 @@
     "pk": 1,
     "fields": 
       {
-        "karyawan": [1],
-        "shift": [1],
+        "karyawan": 1,
+        "shift": 1,
         "tglawal": "2017-04-10",
         "tglakhir": "2017-04-14",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
@@ -16,8 +16,8 @@
     "pk": 2,
     "fields": 
       {
-        "karyawan": [1],
-        "shift": [2],
+        "karyawan": 1,
+        "shift": 2,
         "tglawal": "2017-04-17",
         "tglakhir": "2017-04-21",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
@@ -28,8 +28,8 @@
     "pk": 3,
     "fields": 
       {
-        "karyawan": [1],
-        "shift": [1],
+        "karyawan": 1,
+        "shift": 1,
         "tglawal": "2017-04-24",
         "tglakhir": "2017-04-28",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
@@ -40,8 +40,8 @@
     "pk": 4,
     "fields": 
       {
-        "karyawan": [1],
-        "shift": [2],
+        "karyawan": 1,
+        "shift": 2,
         "tglawal": "2017-05-01",
         "tglakhir": "2017-05-05",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
@@ -52,8 +52,8 @@
     "pk": 5,
     "fields": 
       {
-        "karyawan": [2],
-        "shift": [2],
+        "karyawan": 2,
+        "shift": 2,
         "tglawal": "2017-04-10",
         "tglakhir": "2017-04-14",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
@@ -64,8 +64,8 @@
     "pk": 6,
     "fields": 
       {
-        "karyawan": [2],
-        "shift": [1],
+        "karyawan": 2,
+        "shift": 1,
         "tglawal": "2017-04-17",
         "tglakhir": "2017-04-21",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
@@ -76,8 +76,8 @@
     "pk": 7,
     "fields": 
       {
-        "karyawan": [2],
-        "shift": [2],
+        "karyawan": 2,
+        "shift": 2,
         "tglawal": "2017-04-24",
         "tglakhir": "2017-04-28",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
@@ -88,8 +88,8 @@
     "pk": 8,
     "fields": 
       {
-        "karyawan": [2],
-        "shift": [2],
+        "karyawan": 2,
+        "shift": 2,
         "tglawal": "2017-05-01",
         "tglakhir": "2017-05-05",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",

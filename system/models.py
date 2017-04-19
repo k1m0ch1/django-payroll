@@ -237,8 +237,8 @@ class Shift(models.Model):
 
 class KaryawanShift(models.Model):
 	name = models.CharField(max_length=75, null=True)
-	karyawan = models.ManyToManyField(Karyawan,related_name="karyawan")
-	shift = models.ManyToManyField(Shift, related_name="shift")
+	karyawan = models.ForeignKey(Karyawan,related_name="karyawan")
+	shift = models.ForeignKey(Shift, related_name="shift")
 	tglawal = models.DateField()
 	tglakhir = models.DateField()
 	desc = models.TextField()
