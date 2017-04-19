@@ -7,10 +7,28 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
-from system.models import LokasiPerusahaan, HariRaya
+from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift
+from dateutil.parser import parse
+from sys import getsizeof
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
+
+@login_required()
+def shift_save(request):
+	shift = [request.POST['shift1'], request.POST['shift2'], request.POST['shift3'],request.POST['shift4']]
+	idkaryawan = request.POST['idkaryawan']
+	tanggal = request.POST['tanggal']
+	tglawal = parse([x.strip() for x in tanggal.split(' ')][0]).strftime("%Y-%m-%d")
+	tglakhir = parse([x.strip() for x in tanggal.split(' ')][2]).strftime("%Y-%m-%d")
+	listid = [x.strip() for x in idkaryawan.split(',')]
+	for y in range(0, len(listid)):
+		for z in range(0, 4):
+			s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[z], tglawal=tglawal, tglakhir=tglakhir)
+			s.save()
+
+	return HttpResponse("yay berhasil")
+
 
 @login_required()
 def departemen(request):

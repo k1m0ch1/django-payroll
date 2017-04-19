@@ -76,23 +76,19 @@
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                  <select class="form-control">
-                    <option>Shift 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                  <select class="form-control" id="shift1">
+                    {% for y in shift %}
+                    <option value="{{y.id}}">{{ y.name }}</option>
+                    {% endfor %}
                   </select>
                 </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                  <select class="form-control">
-                    <option>Shift 2</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                  <select class="form-control" id="shift2">
+                    {% for z in shift %}
+                    <option value="{{z.id}}">{{ z.name }}</option>
+                    {% endfor %}
                   </select>
                 </div>
             </div>
@@ -100,28 +96,24 @@
           <div class="col-md-12">
             <div class="col-md-2 col-md-offset-2">
               <div class="form-group">
-                  <select class="form-control">
-                    <option>Shift 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                  <select class="form-control" id="shift3">
+                    {% for a in shift %}
+                    <option value="{{a.id}}">{{ a.name }}</option>
+                    {% endfor %}
                   </select>
                 </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                  <select class="form-control">
-                    <option>Shift 2</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                  <select class="form-control" id="shift4">
+                    {% for b in shift %}
+                    <option value="{{b.id}}">{{ b.name }}</option>
+                    {% endfor %}
                   </select>
                 </div>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary"><i class="fa fa-plus"></i> Simpan</button> 
+                <button class="btn btn-primary" id="simpanRolling"><i class="fa fa-plus"></i> Simpan</button> 
             </div>
           </div>          
       </div>
@@ -364,16 +356,30 @@
 
                 </div>
                 <!-- /.box-body -->
+                {% if karyawan.has_other_pages %}
                 <div class="box-footer clearfix">
                   <ul class="pagination pagination-sm no-margin pull-right">
-                    <li class="active"><a href="#">PREV</a></li>
-                    <li><a href="#" >1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li class="active"><a href="#">NEXT</a></li>
+                    {% if karyawan.has_previous %}
+                      <li class="active"><a href="?page={{ karyawan.previous_page_number }}">PREV</a></li>
+                    {% else %}
+                      <li class="disabled"><a href="#">PREV</a></li>
+                    {% endif %}
+
+                    {% for i in karyawan.paginator.page_range %}
+                      {% if karyawan.number == i %}
+                        <li class="active"><a href="#">{{ i }}</a></li>
+                      {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    {% if karyawan.has_next %}
+                      <li class="active"><a href="?page={{ karyawan.next_page_number }}">NEXT</a></li>
+                    {% else %}
+                      <li class="disabled"><a href="#">NEXT</a></li>
+                    {% endif %}
                   </ul>
                 </div>
+                {% endif %}
               </div>
               <!-- /.box -->
             </div>
@@ -426,6 +432,17 @@
     countChecked();
 
     $("#tabelKaryawan input[type=checkbox]" ).on( "click", countChecked );
+
+    $("#simpanRolling").on("click", function(){
+        $.ajax({
+        type: "POST",
+        url: 'http://localhost/index/shift/save',
+        data: {idkaryawan: $('#idKaryawan').val(), shift1: $('#shift1').val(), shift2: $('#shift2').val(), shift3: $('#shift3').val(), shift4: $('#shift4').val(), tanggal: $('#reservation').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+        success: function(result) {
+            alert('Berhasil Simpan Rolling Shift');
+        }
+    });
+    });
 
   });
 </script>

@@ -40,6 +40,7 @@ urlpatterns = [
   	url(r'^jabatan/create/save$', views.create.jabatan_save, name="jabatan-create-save"),
   	url(r'^bank/create$', views.create.bank, name="bank-create"),
   	url(r'^bank/create/save$', views.create.bank_save, name="bank-create-save"),
+    url(r'^shift/save$', views.create.shift_save, name="shift-create-save"),
 
   	url(r'^agama/create$', views.create.agama, name="agama-create"),
   	url(r'^agama/create/save$', views.create.agama_save, name="agama-create-save"),

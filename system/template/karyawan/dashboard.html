@@ -91,16 +91,30 @@
                       <button class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Karyawan</button> 
                   </div>
                 </div> 
+                {% if karyawan.has_other_pages %}
                 <div class="col-md-4 col-md-offset-4">
                   <ul class="pagination pagination-sm no-margin pull-right">
-                    <li class="active"><a href="#">PREV</a></li>
-                    <li><a href="#" >1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li class="active"><a href="#">NEXT</a></li>
+                    {% if karyawan.has_previous %}
+                      <li class="active"><a href="?page={{ karyawan.previous_page_number }}">PREV</a></li>
+                    {% else %}
+                      <li class="disabled"><a href="#">PREV</a></li>
+                    {% endif %}
+
+                    {% for i in karyawan.paginator.page_range %}
+                      {% if karyawan.number == i %}
+                        <li class="active"><a href="#">{{ i }}</a></li>
+                      {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    {% if karyawan.has_next %}
+                      <li class="active"><a href="?page={{ karyawan.next_page_number }}">NEXT</a></li>
+                    {% else %}
+                      <li class="disabled"><a href="#">NEXT</a></li>
+                    {% endif %}
                   </ul>
-                </div>               
+                </div>  
+                {% endif %}             
               </div>
             </div>
           </div>

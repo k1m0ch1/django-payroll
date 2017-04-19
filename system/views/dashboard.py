@@ -8,13 +8,14 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from sys import getsizeof
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
 
 @login_required()
 def shift_index(request):
-	karyawan = Karyawan.objects.all()
 	k = Karyawan.objects.all()
 	dep = Departemen.objects.all()
 	bag = Bagian.objects.all()
@@ -22,8 +23,20 @@ def shift_index(request):
 	jab = Jabatan.objects.all()
 	shift = Shift.objects.all()
 	ks = KaryawanShift.objects.all()
+
+	karyawan_list = Karyawan.objects.all()
+	page = request.GET.get('page', 1)
+	paginator = Paginator(karyawan_list, 10)	
+    
+	try:
+ 		k = paginator.page(page)
+	except PageNotAnInteger:
+		k = paginator.page(1)
+	except EmptyPage:
+   		k = paginator.page(paginator.num_pages)
+
 	return render(request, "karyawanshift/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
-															 'golongan' : gol, 'jabatan' : jab, 'ks': ks})
+															 'golongan' : gol, 'jabatan' : jab, 'ks': ks, 'shift' : shift})
 
 @login_required()
 def hariraya_index(request):
@@ -32,8 +45,18 @@ def hariraya_index(request):
 
 @login_required()
 def karyawan_index(request):
-	karyawan = Karyawan.objects.all()
-	return render(request, "karyawan/dashboard.html", { 'karyawan' : karyawan, 'dsb' : modules })
+	karyawan_list = Karyawan.objects.all()
+	page = request.GET.get('page', 1)
+	paginator = Paginator(karyawan_list, 10)	
+    
+	try:
+ 		karyawan = paginator.page(page)
+	except PageNotAnInteger:
+		karyawan = paginator.page(1)
+	except EmptyPage:
+   		karyawan = paginator.page(paginator.num_pages)
+
+	return render(request, "karyawan/dashboard.html", { 'karyawan' : karyawan, 'dsb' : modules})
 
 @login_required()
 def karyawan_detail(request, karyawan_id):
