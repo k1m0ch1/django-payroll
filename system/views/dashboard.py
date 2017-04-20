@@ -10,9 +10,63 @@ from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
+from django.core import serializers
+import json
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
+
+def api_karyawan(request):
+	
+	k = Karyawan.objects.all()
+	if request.method == "GET":
+		if 'departemen' in request.GET:
+			departemen = "" if request.GET['departemen'] == "" else request.GET['departemen']
+			k = k.filter(departemen_id=departemen) if departemen != "" else k
+
+		if 'bagian' in request.GET:
+			bagian = "" if request.GET['bagian'] == "" else request.GET['bagian']
+			k = k.filter(bagian_id=bagian) if bagian != "" else k
+
+		if 'golongan' in request.GET:
+			golongan = "" if request.GET['golongan'] == "" else request.GET['golongan']
+			k = k.filter(golongan_id=golongan) if golongan != "" else k
+
+		if 'jabatan' in request.GET:
+			jabatan = "" if request.GET['jabatan'] == "" else request.GET['jabatan']
+			k = k.filter(jabatan_id=jabatan) if jabatan != "" else k
+
+		if 'nik' in request.GET:
+			nik = "" if request.GET['nik'] == "" else request.GET['nik']
+			k = k.filter(NIK__contains=nik) if nik != "" else k
+
+		if 'name' in request.GET:
+			name = request.GET['name'] if request.GET['name'] != "" else ""
+			k = k.filter(name__contains=name) if name != "" else k			
+
+	dep = Departemen.objects.all()
+	bag = Bagian.objects.all()
+	gol = Golongan.objects.all()
+	jab = Jabatan.objects.all()
+	ks = KaryawanShift.objects.all()
+
+	page = request.GET.get('page', 1)
+	paginator = Paginator(k, 10)	
+    
+	try:
+ 		k = paginator.page(page)
+	except PageNotAnInteger:
+		k = paginator.page(1)
+	except EmptyPage:
+   		k = paginator.page(paginator.num_pages)
+
+	return render(request, "karyawanshift/modal.html", { 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+															 'golongan' : gol, 'jabatan' : jab, 'ks': ks})
+
+   	# return HttpResponse(serializers.serialize("json", [q for q in k.object_list]), content_type='application/json')
+   	# return HttpResponse(json.dumps([k.get_queryset()]))
+   	# return HttpResponse(json.dumps(tai))
+
 
 @login_required()
 def shift_index(request):
@@ -24,16 +78,15 @@ def shift_index(request):
 	shift = Shift.objects.all()
 	ks = KaryawanShift.objects.all()
 
-	karyawan_list = Karyawan.objects.all()
 	page = request.GET.get('page', 1)
-	paginator = Paginator(karyawan_list, 10)	
+	paginator = Paginator(ks, 20)	
     
 	try:
- 		k = paginator.page(page)
+ 		ks = paginator.page(page)
 	except PageNotAnInteger:
-		k = paginator.page(1)
+		ks = paginator.page(1)
 	except EmptyPage:
-   		k = paginator.page(paginator.num_pages)
+   		ks = paginator.page(paginator.num_pages)
 
 	return render(request, "karyawanshift/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
 															 'golongan' : gol, 'jabatan' : jab, 'ks': ks, 'shift' : shift})

@@ -7,10 +7,27 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
-from system.models import LokasiPerusahaan, HariRaya
+from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from sys import getsizeof
+from django.core import serializers
+import json
+from dateutil.parser import parse
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
+
+@login_required()
+def karyawan_shift(request):
+	idkaryawan = request.POST['idkaryawan']
+	listid = [x.strip() for x in idkaryawan.split(',')]
+	tanggal = request.POST['tanggal']
+	tglawal = parse([x.strip() for x in tanggal.split(' ')][0]).strftime("%Y-%m-%d")
+	tglakhir = parse([x.strip() for x in tanggal.split(' ')][2]).strftime("%Y-%m-%d")
+	for y in range(0, len(listid)-1):
+		ks  = KaryawanShift.objects.select_for_update().filter(karyawan_id=listid[y]).filter(tglawal=tglawal).filter(tglakhir=tglakhir)
+		ks.update(shift_id=request.POST['shift'])
+	return HttpResponse("Berhasil Simpan")
 
 @login_required()
 def departemen(request, departemen_id):

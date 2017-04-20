@@ -22,7 +22,7 @@ def shift_save(request):
 	tglawal = parse([x.strip() for x in tanggal.split(' ')][0]).strftime("%Y-%m-%d")
 	tglakhir = parse([x.strip() for x in tanggal.split(' ')][2]).strftime("%Y-%m-%d")
 	listid = [x.strip() for x in idkaryawan.split(',')]
-	for y in range(0, len(listid)):
+	for y in range(0, len(listid)-1):
 		for z in range(0, 4):
 			s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[z], tglawal=tglawal, tglakhir=tglakhir)
 			s.save()

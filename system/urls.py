@@ -82,5 +82,8 @@ urlpatterns = [
     url(r'^agama/(?P<agama_id>[0-9]+)/delete/$', views.delete.agama, name="agama-delete"),
     url(r'^warganegara/(?P<warganegara_id>[0-9]+)/delete/$', views.delete.warganegara, name="warganegara-delete"),
     url(r'^statusmenikah/(?P<statusmenikah_id>[0-9]+)/delete/$', views.delete.statusmenikah, name="statusmenikah-delete"),
-    url(r'^profile-perusahaan/(?P<lokasiperusahaan_id>[0-9]+)/delete/$', views.delete.profile_perusahaan, name="profile-perusahaan-delete")
+    url(r'^profile-perusahaan/(?P<lokasiperusahaan_id>[0-9]+)/delete/$', views.delete.profile_perusahaan, name="profile-perusahaan-delete"),
+
+    url(r'^api/karyawan$', views.dashboard.api_karyawan, name="karyawan-api"),
+    url(r'^shift/edit/save$', views.edit.karyawan_shift, name="karyawan-shift-simpan-api"),
 ]

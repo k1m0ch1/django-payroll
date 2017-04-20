@@ -39,9 +39,9 @@
             </div>
             <input type="hidden" id="idKaryawan" name="idkaryawan" />
             <div class="col-md-10">
-              <p class="" id="textKaraywan"> A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A, A005215 - Ahmad F.A </p>
+              <p class="" id="textKaraywan">  </p>
             
-              <button class="btn btn-primary" id="pilihKaryawan" data-toggle="modal" data-target="#pilihKaryawanModal"><i class="fa fa-plus"></i> Pilih Karyawan</button>                 
+              <button class="btn btn-primary" id="pilihKaryawan" data-toggle="modal" data-target="#pilihKaryawanModal"><i class="fa fa-plus"></i> Pilih Karyawan</button> <button class="btn btn-primary" id="bersih"><i class="fa fa-plus"></i> Clear</button>             
               </div>             
           </div>                
       </div>
@@ -137,23 +137,21 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="reservation">
+                  <input type="text" class="form-control pull-right" id="reservationKedua">
                 </div>
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                  <select class="form-control">
-                    <option>Shift 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                  <select class="form-control" id="shift5">
+                    {% for b in shift %}
+                    <option value="{{b.id}}">{{ b.name }}</option>
+                    {% endfor %}
                   </select>
                 </div>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary"><i class="fa fa-plus"></i> Simpan</button> 
+                <button class="btn btn-primary" id="ubahShift"><i class="fa fa-plus"></i> Simpan</button> 
             </div>
           </div>          
       </div>
@@ -242,16 +240,30 @@
                     <button class="btn btn-primary"><i class="fa fa-plus"></i> Simpan</button> 
                 </div>
               </div>
-              <div class="col-md-4">
-                <ul class="pagination pagination-sm no-margin pull-right">
-                  <li class="active"><a href="#">PREV</a></li>
-                  <li><a href="#" >1</a></li>
-                  <li class="active"><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li class="active"><a href="#">NEXT</a></li>
-                </ul>
-              </div>
+              {% if ks.has_other_pages %}
+                <div class="col-md-4">
+                  <ul class="pagination pagination-sm no-margin pull-right">
+                    {% if ks.has_previous %}
+                      <li class="active"><a href="?page={{ ks.previous_page_number }}">PREV</a></li>
+                    {% else %}
+                      <li class="disabled"><a href="#">PREV</a></li>
+                    {% endif %}
+
+                    {% for i in ks.paginator.page_range %}
+                      {% if ks.number == i %}
+                        <li class="active"><a href="#">{{ i }}</a></li>
+                      {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    {% if ks.has_next %}
+                      <li class="active"><a href="?page={{ ks.next_page_number }}">NEXT</a></li>
+                    {% else %}
+                      <li class="disabled"><a href="#">NEXT</a></li>
+                    {% endif %}
+                  </ul>
+                </div>  
+                {% endif %}  
             </div>
           </div>
           <!-- /.box -->
@@ -290,16 +302,16 @@
                   <div class="form-group">
                     <label for="pencarian" class="col-sm-2 control-label">Pencarian</label>
                     <div class="col-md-5">
-                      <select class="form-control">
-                      <option>Departemen</option>
+                      <select class="form-control" id="departemen">
+                      <option value="">Departemen</option>
                       {% for dp in departemen %}
                         <option value="{{dp.id}}">{{ dp.name }}</option>
                       {% endfor %}
                     </select>
                     </div>
                     <div class="col-md-5">
-                      <select class="form-control">
-                      <option>Bagian</option>
+                      <select class="form-control" id="bagian">
+                      <option value="">Bagian</option>
                       {% for bg in bagian %}
                         <option value="{{bg.id}}">{{ bg.name }}</option>
                       {% endfor %}
@@ -307,26 +319,30 @@
                     </div>
                     <div class="col-md-2"></div>
                     <div class="col-md-5">
-                      <select class="form-control">
-                      <option>Golongan</option>
+                      <select class="form-control" id="golongan">
+                      <option value="">Golongan</option>
                       {% for gl in golongan %}
                         <option value="{{gl.id}}">{{ gl.name }}</option>
                       {% endfor %}
                     </select>
                     </div>
                     <div class="col-md-5">
-                      <select class="form-control">
-                      <option>Jabatan</option>
+                      <select class="form-control" id="jabatan">
+                      <option value="">Jabatan</option>
                       {% for jb in jabatan %}
                         <option value="{{jb.id}}">{{ jb.name }}</option>
                       {% endfor %}
                     </select>
                     </div>
-                    <div class="col-md-3"></div>
-                    <div class="input-group col-md-6">
-                      <input placeholder="NIK" type="text" class="form-control" >
+                    <label for="pencarian" class="col-sm-2 control-label">NIK</label>
+                    <div class="input-group col-sm-8">
+                      <input placeholder="NIK" type="text" class="form-control" id="nik">
+                    </div>
+                    <label for="nama" class="col-sm-2 control-label">Nama</label>
+                    <div class="input-group col-sm-8">
+                      <input placeholder="Nama" type="text" class="form-control" id="name">
                         <span class="input-group-btn">
-                          <button type="button" class="btn btn-primary btn-flat">Search</button>
+                          <button type="button" class="btn btn-primary btn-flat" id="caripaketext">Search</button>
                         </span>
                     </div>
                   </div>              
@@ -336,50 +352,8 @@
 
           <div class="row">
             <div class="col-xs-12">
-              <div class="box">
-                <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover" id="tabelKaryawan">
-                    <tbody><tr>
-                      <th class="col-md-1">#</th>
-                      <th class="col-md-2">NIK</th>
-                      <th class="col-md-8">Nama</th>
-                    </tr>
-                    {% for k in karyawan %}
-                    <tr>
-                      <td><input type="checkbox" value="{{ k.NIK }} - {{ k.name }}" data-id="{{ k.id }}"></td>
-                      <td>{{ k.NIK }}</td>
-                      <td>{{ k.name }}</td>
-                    </tr>
-                    {% endfor %}
-                    
-                  </tbody></table>
-
-                </div>
-                <!-- /.box-body -->
-                {% if karyawan.has_other_pages %}
-                <div class="box-footer clearfix">
-                  <ul class="pagination pagination-sm no-margin pull-right">
-                    {% if karyawan.has_previous %}
-                      <li class="active"><a href="?page={{ karyawan.previous_page_number }}">PREV</a></li>
-                    {% else %}
-                      <li class="disabled"><a href="#">PREV</a></li>
-                    {% endif %}
-
-                    {% for i in karyawan.paginator.page_range %}
-                      {% if karyawan.number == i %}
-                        <li class="active"><a href="#">{{ i }}</a></li>
-                      {% else %}
-                        <li><a href="?page={{ i }}">{{ i }}</a></li>
-                      {% endif %}
-                    {% endfor %}
-                    {% if karyawan.has_next %}
-                      <li class="active"><a href="?page={{ karyawan.next_page_number }}">NEXT</a></li>
-                    {% else %}
-                      <li class="disabled"><a href="#">NEXT</a></li>
-                    {% endif %}
-                  </ul>
-                </div>
-                {% endif %}
+              <div class="box" id="contentKaryawan">
+                
               </div>
               <!-- /.box -->
             </div>
@@ -417,31 +391,48 @@
     //Date range picker
     $('#reservation').daterangepicker();
 
-    var countChecked = function() {
-      var n = [];
-      var o = [];
+    $('#reservationKedua').daterangepicker();
+        
+    $.ajax({
+        type: "GET",
+        url: 'http://{{ request.get_host }}/index/api/karyawan',
+        success: function(result) {
+            $('#contentKaryawan').html(result);
+      }
+    });
 
-      $('#tabelKaryawan input:checked').each(function () {
-          n.push($(this).val());
-          o.push($(this).data("id"));
-      });
-      console.log(n);
-      $("#textKaraywan").text( n );
-      $("#idKaryawan").val( o );
-    };
-    countChecked();
-
-    $("#tabelKaryawan input[type=checkbox]" ).on( "click", countChecked );
+    $('#bersih').on("click", function(){
+        $('#textKaraywan').text("");
+        $('#idKaryawan').val("");   
+        $.ajax({
+            type: "GET",
+            url: 'http://{{ request.get_host }}/index/api/karyawan',
+            success: function(result) {
+                $('#contentKaryawan').html(result);
+          }
+        });  
+    });
 
     $("#simpanRolling").on("click", function(){
         $.ajax({
         type: "POST",
-        url: 'http://localhost/index/shift/save',
+        url: 'http://{{ request.get_host }}/index/shift/save',
         data: {idkaryawan: $('#idKaryawan').val(), shift1: $('#shift1').val(), shift2: $('#shift2').val(), shift3: $('#shift3').val(), shift4: $('#shift4').val(), tanggal: $('#reservation').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Simpan Rolling Shift');
         }
+      });
     });
+
+    $("#ubahShift").on("click", function(){
+        $.ajax({
+        type: "POST",
+        url: 'http://{{ request.get_host }}/index/shift/edit/save',
+        data: {idkaryawan: $('#idKaryawan').val(), shift: $('#shift5').val(), tanggal: $('#reservationKedua').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+        success: function(result) {
+            alert('Berhasil Ubah Shift');
+        }
+      });
     });
 
   });
