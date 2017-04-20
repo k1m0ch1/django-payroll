@@ -1,4 +1,4 @@
- {% extends 'base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
@@ -22,6 +22,8 @@
               <div class="box-header">
                 <h3 class="box-title">Tambah Karyawan Baru</h3>
               </div>
+              <form method="POST" action="{% url 'karyawan-create-save' %}" >
+              {% csrf_token %}
               <div class="box-body">
                 <div class="col-md-6 border-right">
                   <div class="row"> 
@@ -30,7 +32,7 @@
                     </div>
                     <div class="form-group col-md-10">
                       <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="Nomor Induk Kepegawaian">
+                        <input type="text" class="form-control" placeholder="Nomor Induk Kepegawaian" name="NIK">
                       </div>
                     </div>
                   </div>
@@ -40,10 +42,10 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Nama Depan">
+                        <input type="text" class="form-control" placeholder="Nama Depan" name="nama1">
                       </div>
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Nama Belakang">
+                        <input type="text" class="form-control" placeholder="Nama Belakang" name="nama2">
                       </div>
                     </div>
                   </div>
@@ -53,7 +55,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <select class="form-control">
+                        <select class="form-control" name="gender">
                           <option>Laki-laki</option>
                           <option>Perempuan</option>
                         </select>
@@ -66,10 +68,10 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Kota Lahir">
+                        <input type="text" class="form-control" placeholder="Kota Lahir" name="tempatlahir">
                       </div>
                       <div class="form-group col-md-6 date">
-                        <input type="text" class="form-control " id="datepicker" placeholder="Tanggal Lahir">
+                        <input type="text" class="form-control " id="datepicker" placeholder="Tanggal Lahir" name="tanggallahir">
                       </div>
                     </div>
                   </div>
@@ -79,7 +81,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-12">
-                        <textarea class="form-control" placeholder="Alamat Lengkap"></textarea>
+                        <textarea class="form-control" placeholder="Alamat Lengkap" name="alamat"></textarea>
                       </div>
                     </div>
                   </div>
@@ -89,7 +91,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Kota">
+                        <input type="text" class="form-control" placeholder="Kota" name="kota">
                       </div>
                     </div>
                   </div>
@@ -99,7 +101,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Provinsi">
+                        <input type="text" class="form-control" placeholder="Provinsi" name="provinsi">
                       </div>
                     </div>
                   </div>
@@ -110,10 +112,10 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Telepon">
+                        <input type="text" class="form-control" placeholder="Telepon" name="telepon">
                       </div>
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Handphone">
+                        <input type="text" class="form-control" placeholder="Handphone" name="handphone">
                       </div>
                     </div>
                   </div>
@@ -124,13 +126,15 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <select class="form-control">
-                          <option>Kontrak 1 (PKWT)</option>
-                          <option>2</option>
+                        <select class="form-control" name="statuskaryawan">
+                          <option value="Kontrak 1 (PKWT)">Kontrak 1 (PKWT)</option>
+                          <option value="Kontrak 2 (PKWTT)">Kontrak 2 (PKWTT)</option>
+                          <option value="Probation">Probation</option>
+                          <option value="Permanent">Permanent</option>
                         </select>
                       </div>
                       <div class="form-group col-md-6 date">
-                        <input type="text" class="form-control " id="datepicker2" placeholder="Berlaku Sampai">
+                        <input type="text" class="form-control " id="datepicker2" placeholder="Berlaku Sampai" name="masakaryawan">
                       </div>
                     </div>
                   </div>
@@ -140,24 +144,30 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="ID KTP">
+                        <input type="text" class="form-control" placeholder="ID KTP" name="ktp">
                       </div>
                       <div class="form-group col-md-6 ">
-                        <select class="form-control">
+                        <select class="form-control" name="warganegara">
                           <option>Warga Negara</option>
-                          <option>2</option>
+                          {% for wg in warganegara %}
+                            <option value="{{wg.id}}">{{wg.name}}</option>
+                          {% endfor %}
                         </select>
                       </div>
                       <div class="form-group col-md-6">
-                        <select class="form-control">
+                        <select class="form-control" name="agama">
                           <option>Agama</option>
-                          <option>2</option>
+                          {% for ag in agama %}
+                            <option value="{{ag.id}}">{{ag.name}}</option>
+                          {% endfor %}
                         </select>
                       </div>
                       <div class="form-group col-md-6">
-                        <select class="form-control">
+                        <select class="form-control" name="statusmenikah">
                           <option>Status Menikah</option>
-                          <option>2</option>
+                          {% for sm in statusmenikah %}
+                            <option value="{{sm.id}}">{{sm.name}}</option>
+                          {% endfor %}
                         </select>
                       </div>
                     </div>
@@ -168,16 +178,18 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <select class="form-control">
+                        <select class="form-control" name="bank">
                           <option>Nama Bank</option>
-                          <option>2</option>
+                          {% for bk in bank %}
+                            <option value="{{bk.id}}">{{bk.name}}</option>
+                          {% endfor %}
                         </select>
                       </div>
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="No Rekening">
+                        <input type="text" class="form-control" placeholder="No Rekening" name="norekening">
                       </div>
                       <div class="form-group col-md-12">
-                        <input type="text" class="form-control" placeholder="Rekening Atas Nama">
+                        <input type="text" class="form-control" placeholder="Rekening Atas Nama" name="atasnama">
                       </div>
                     </div>
                   </div>
@@ -189,11 +201,11 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Finger ID">
+                        <input type="text" class="form-control" placeholder="Finger ID" name="fingerid">
                       </div>
                     </div>
                   </div>
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-md-2 ">
                       <p class="text-right">Link Acc</p>
                     </div>
@@ -205,9 +217,9 @@
                         </select>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
-                  <div class="row"> 
+                  <!-- <div class="row"> 
                     <div class="col-md-2 ">
                       <p class="text-right">Status Jamsostek</p>
                     </div>
@@ -219,8 +231,8 @@
                         </select>
                       </div>
                     </div>
-                  </div>
-                  <div class="row"> 
+                  </div> -->
+                  <!-- <div class="row"> 
                     <div class="col-md-2">
                       <p class="text-right">Ketegori Group</p>
                     </div>
@@ -232,7 +244,7 @@
                         </select>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="row"> 
                     <div class="col-md-2 ">
@@ -240,11 +252,11 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="NPWP">
+                        <input type="text" class="form-control" placeholder="NPWP" name="NPWP">
                       </div>
                     </div>
                   </div>
-                  <div class="row"> 
+                  <!-- <div class="row"> 
                     <div class="col-md-2 ">
                       <p class="text-right">Level</p>
                     </div>
@@ -256,14 +268,14 @@
                         </select>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="row"> 
                     <div class="col-md-2 ">
                       <p class="text-right">KPJ</p>
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="KPJ">
+                        <input type="text" class="form-control" placeholder="KPJ" name="KPJ">
                       </div>
                     </div>
                   </div>
@@ -273,9 +285,13 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <select class="form-control">
+                        <select class="form-control" name="jumlahhari">
                           <option>Jumlah Hari</option>
-                          <option>2</option>
+                          <option value="1">2</option>
+                          <option value="1">3</option>
+                          <option value="1">4</option>
+                          <option value="1">5</option>
+                          <option value="1">6</option>
                         </select>
                       </div>
                     </div>
@@ -285,46 +301,36 @@
                       <p class="text-right">Perusahaan</p>
                     </div>
                     <div class="col-md-10">
-                      <div class="form-group col-md-6 ">
-                        <select class="form-control">
-                          <option>Perusahaan</option>
-                          <option>2</option>
-                        </select>
-                      </div>
                       <div class="form-group col-md-6">
-                        <select class="form-control">
-                          <option>Lokasi</option>
-                          <option>2</option>
-                        </select>
-                      </div>
-                      <div class="form-group col-md-6">
-                        <select class="form-control">
+                        <select class="form-control" name="departemen">
                           <option>Departemen</option>
-                          <option>2</option>
+                          {% for d in departemen %}
+                            <option value="{{d.id}}">{{d.name}}</option>
+                          {% endfor %}
                         </select>
-                      </div>
+                      </div>                      
                       <div class="form-group col-md-6">
-                        <select class="form-control">
-                          <option>Unit</option>
-                          <option>2</option>
-                        </select>
-                      </div>
-                      <div class="form-group col-md-6">
-                        <select class="form-control">
+                        <select class="form-control" name="bagian">
                           <option>Bagian</option>
-                          <option>2</option>
+                          {% for b in bagian %}
+                            <option value="{{b.id}}">{{b.name}}</option>
+                          {% endfor %}
                         </select>
                       </div>
                       <div class="form-group col-md-6">
-                        <select class="form-control">
+                        <select class="form-control" name="golongan">
                           <option>Golongan</option>
-                          <option>2</option>
+                          {% for g in golongan %}
+                            <option value="{{g.id}}">{{g.name}}</option>
+                          {% endfor %}
                         </select>
                       </div>
                       <div class="form-group col-md-6">
-                        <select class="form-control">
+                        <select class="form-control" name="jabatan">
                           <option>Jabatan</option>
-                          <option>2</option>
+                          {% for j in jabatan %}
+                            <option value="{{j.id}}">{{j.name}}</option>
+                          {% endfor %}
                         </select>
                       </div>
 
@@ -332,15 +338,19 @@
                   </div>  
 
                 </div>
-              </div>
-              <div class="box-footer clearfix">                
                 <div class="row">
-                  <div class="col-md-4 col-md-offset-8">
+                  <div class="col-md-3 text-right">
                     <div class="form-group">
                         <button class="btn btn-primary"><i class="fa fa-plus"></i> Simpan dan Tambah Karyawan Baru</button> 
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Simpan</button> 
                     </div>
-                  </div>               
+                  </div>        
+
                 </div>
+              </div>
+              </form>
+              <div class="box-footer clearfix">                
+                
               </div>
             </div>
           </div>

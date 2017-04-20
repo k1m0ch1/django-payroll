@@ -7,12 +7,51 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
-from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift
+from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan
 from dateutil.parser import parse
 from sys import getsizeof
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
+
+@login_required()
+def karyawan(request):
+	dep = Departemen.objects.all()
+	bag = Bagian.objects.all()
+	gol = Golongan.objects.all()
+	jab = Jabatan.objects.all()
+	wg = WargaNegara.objects.all()
+	sm = StatusMenikah.objects.all()
+	bank = Bank.objects.all()
+	agama = Agama.objects.all()
+
+	return render(request, "karyawan/form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request), 'departemen':dep,
+													   'bagian': bag, 'golongan':gol, 'jabatan': jab, 'warganegara' : wg,
+													   'statusmenikah' : sm, 'bank':bank, 'agama':agama})
+
+@login_required()
+def karyawan_save(request):
+	k = Karyawan(NIK = request.POST['NIK'], name = request.POST['nama1'] + " " + request.POST['nama2'],
+					shortname = request.POST['nama1'], tempatlahir = request.POST['tempatlahir'],
+					tanggallahir = parse(request.POST['tanggallahir']).strftime("%Y-%m-%d"), gender = request.POST['gender'],
+					alamat = request.POST['alamat'], kota = request.POST['kota'],
+					provinsi = request.POST['provinsi'], telepon = request.POST['telepon'],
+					handphone = request.POST['handphone'], statuskaryawan = request.POST['statuskaryawan'],
+					masakaryawan = parse(request.POST['masakaryawan']).strftime("%Y-%m-%d"), ktpid = request.POST['ktp'],
+					warganegara_id = request.POST['warganegara'], agama_id = request.POST['agama'],
+					statusmenikah_id = request.POST['statusmenikah'], bank_id = request.POST['bank'],
+					norek = request.POST['norekening'], atasnama = request.POST['atasnama'],
+					fingerid = request.POST['fingerid'], NPWP = request.POST['NPWP'],
+					KPJ = request.POST['KPJ'], jumlahhari = request.POST['jumlahhari'],
+					departemen_id = request.POST['departemen'], bagian_id = request.POST['bagian'],
+					golongan_id = request.POST['golongan'], jabatan_id = request.POST['jabatan'],
+					perusahaan_id= '1')
+	k.save()
+
+	return redirect('karyawan-index')
+
+
 
 @login_required()
 def shift_save(request):

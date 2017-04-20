@@ -50,6 +50,8 @@ urlpatterns = [
     url(r'^statusmenikah/create/save$', views.create.statusmenikah_save, name="statusmenikah-create-save"),
     url(r'^profile-perusahaan/create$', views.create.profile_perusahaan, name="profile-perusahaan-create"),
     url(r'^profile-perusahaan/create/save$', views.create.profile_perusahaan_save, name="profile-perusahaan-create-save"),
+    url(r'^karyawan/create$', views.create.karyawan, name="karyawan-create"),
+    url(r'^karyawan/create/save$', views.create.karyawan_save, name="karyawan-create-save"),
 
   	url(r'^departemen/(?P<departemen_id>[0-9]+)/edit/$', views.edit.departemen, name="departemen-edit"),
   	url(r'^departemen/(?P<departemen_id>[0-9]+)/edit/save$', views.edit.departemen_save, name="departemen-edit-save"),

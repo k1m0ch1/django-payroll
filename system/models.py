@@ -133,7 +133,7 @@ class Karyawan(models.Model):
 	#linkacc = undefined
 	#groupkat = undefined
 	name = models.CharField(max_length=200)
-	shortname = models.CharField(max_length=200)
+	shortname = models.CharField(max_length=200, null=True)
 	tempatlahir = models.CharField(max_length=200)
 	tanggallahir = models.DateField()
 	alamat = models.TextField()
