@@ -54,7 +54,7 @@ def karyawan_save(request):
 
 
 @login_required()
-def shift_save(request):
+def karyawan_shift_save(request):
 	shift = [request.POST['shift1'], request.POST['shift2'], request.POST['shift3'],request.POST['shift4']]
 	idkaryawan = request.POST['idkaryawan']
 	tanggal = request.POST['tanggal']

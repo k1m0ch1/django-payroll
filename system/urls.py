@@ -21,8 +21,10 @@ urlpatterns = [
     url(r'^profile-perusahaan$', views.dashboard.profile_perusahaan_index, name="profile-perusahaan-index"),
     url(r'^karaywan$', views.dashboard.karyawan_index, name="karyawan-index"),
     url(r'^karaywan/(?P<karyawan_id>[0-9]+)/detail/$', views.dashboard.karyawan_detail, name="karyawan-detail"),
+    url(r'^karyawan-shift$', views.dashboard.karyawan_shift_index, name="karyawan-shift-index"),
     url(r'^shift$', views.dashboard.shift_index, name="shift-index"),
     url(r'^hariraya$', views.dashboard.hariraya_index, name="hariraya-index"),
+    url(r'^absensi$', views.dashboard.absensi_index, name="absensi-index"),
   	#url(r'^notif-system$', views.dashboard.notif_system, name="notif-system-index"),
   	#url(r'^notif-login$', views.dashboard.notif_login, name="notif-login-index"),
   	#url(r'^notif-aplikasi$', views.dashboard.notif_aplikasi, name="notif-aplikasi-index"),
@@ -40,7 +42,7 @@ urlpatterns = [
   	url(r'^jabatan/create/save$', views.create.jabatan_save, name="jabatan-create-save"),
   	url(r'^bank/create$', views.create.bank, name="bank-create"),
   	url(r'^bank/create/save$', views.create.bank_save, name="bank-create-save"),
-    url(r'^shift/save$', views.create.shift_save, name="shift-create-save"),
+    url(r'^karyawan-shift/save$', views.create.karyawan_shift_save, name="karyawan-shift-create-save"),
 
   	url(r'^agama/create$', views.create.agama, name="agama-create"),
   	url(r'^agama/create/save$', views.create.agama_save, name="agama-create-save"),
@@ -87,5 +89,5 @@ urlpatterns = [
     url(r'^profile-perusahaan/(?P<lokasiperusahaan_id>[0-9]+)/delete/$', views.delete.profile_perusahaan, name="profile-perusahaan-delete"),
 
     url(r'^api/karyawan$', views.dashboard.api_karyawan, name="karyawan-api"),
-    url(r'^shift/edit/save$', views.edit.karyawan_shift, name="karyawan-shift-simpan-api"),
+    url(r'^karyawan-shift/edit/save$', views.edit.karyawan_shift, name="karyawan-shift-simpan-api"),
 ]

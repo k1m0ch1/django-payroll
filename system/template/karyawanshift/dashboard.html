@@ -41,7 +41,9 @@
             <div class="col-md-10">
               <p class="" id="textKaraywan">  </p>
             
-              <button class="btn btn-primary" id="pilihKaryawan" data-toggle="modal" data-target="#pilihKaryawanModal"><i class="fa fa-plus"></i> Pilih Karyawan</button> <button class="btn btn-primary" id="bersih"><i class="fa fa-plus"></i> Clear</button>             
+              <button class="btn btn-primary" id="pilihKaryawan" data-toggle="modal" data-target="#pilihKaryawanModal"><i class="fa fa-plus"></i> Pilih Karyawan</button> 
+              <button class="btn btn-primary" id="bersih"><i class="fa fa-plus"></i> Clear</button>   
+              <a class="btn btn-primary" href="{% url 'shift-index' %}" ><i class="fa fa-plus"></i> Shift</a>   
               </div>             
           </div>                
       </div>
@@ -416,7 +418,7 @@
     $("#simpanRolling").on("click", function(){
         $.ajax({
         type: "POST",
-        url: 'http://{{ request.get_host }}/index/shift/save',
+        url: 'http://{{ request.get_host }}/index/karyawan-shift/save',
         data: {idkaryawan: $('#idKaryawan').val(), shift1: $('#shift1').val(), shift2: $('#shift2').val(), shift3: $('#shift3').val(), shift4: $('#shift4').val(), tanggal: $('#reservation').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Simpan Rolling Shift');
@@ -427,7 +429,7 @@
     $("#ubahShift").on("click", function(){
         $.ajax({
         type: "POST",
-        url: 'http://{{ request.get_host }}/index/shift/edit/save',
+        url: 'http://{{ request.get_host }}/index/karyawan-shift/edit/save',
         data: {idkaryawan: $('#idKaryawan').val(), shift: $('#shift5').val(), tanggal: $('#reservationKedua').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Ubah Shift');

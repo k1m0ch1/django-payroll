@@ -72,4 +72,11 @@ def dashboard(module=None, mode=None, idpk=None):
       'ubah'   : reverse('hariraya-edit', kwargs={'hariraya_id': idpk}),
       'hapus'  : reverse('hariraya-delete', kwargs={'hariraya_id': idpk})
     }[mode]
+  elif module == 'Shift':
+    return{
+      'indeks' : reverse('shift-index'),
+      'tambah' : reverse('shift-create'),
+      'ubah'   : reverse('shift-edit', kwargs={'shift_id': idpk}),
+      'hapus'  : reverse('shift-delete', kwargs={'shift_id': idpk})
+    }[mode]
   return "null"

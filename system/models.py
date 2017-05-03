@@ -123,11 +123,11 @@ class StatusMenikah(models.Model):
 
 class Karyawan(models.Model):
 	NIK = models.CharField(max_length=15)
-	perusahaan = models.ForeignKey(Perusahaan, on_delete=models.CASCADE)
-	departemen = models.ForeignKey(Departemen, on_delete=models.CASCADE)
-	jabatan = models.ForeignKey(Jabatan, on_delete=models.CASCADE)
-	bagian = models.ForeignKey(Bagian, on_delete=models.CASCADE)
-	golongan = models.ForeignKey(Golongan, on_delete=models.CASCADE)
+	perusahaan = models.ForeignKey(Perusahaan)
+	departemen = models.ForeignKey(Departemen)
+	jabatan = models.ForeignKey(Jabatan)
+	bagian = models.ForeignKey(Bagian)
+	golongan = models.ForeignKey(Golongan)
 	#unit = models.ForeignKey(Jabatan, on_delete=models.CASCADE)
 	#level = models.ForeignKey(Level, on_delete=models.CASCADE)
 	#linkacc = undefined
@@ -143,9 +143,9 @@ class Karyawan(models.Model):
 	telepon = models.DecimalField(max_digits=12, decimal_places=0)
 	handphone = models.DecimalField(max_digits=18, decimal_places=0)
 	ktpid = models.DecimalField(max_digits=30, decimal_places=0)
-	agama = models.ForeignKey(Agama, on_delete=models.CASCADE)
-	warganegara = models.ForeignKey(WargaNegara, on_delete=models.CASCADE)
-	statusmenikah = models.ForeignKey(StatusMenikah, on_delete=models.CASCADE)
+	agama = models.ForeignKey(Agama)
+	warganegara = models.ForeignKey(WargaNegara)
+	statusmenikah = models.ForeignKey(StatusMenikah)
 	bank = models.ForeignKey(Bank, on_delete=models.CASCADE)
 	atasnama = models.CharField(max_length=200)
 	norek = models.CharField(max_length=70)
@@ -173,10 +173,10 @@ class Karyawan(models.Model):
 #== 
 #== around 12 AM, the database will generate this table and then convert it
 
-class Absensi2017Semester1(models.Model):
-	name = models.CharField(max_length=25)
-	desc = models.TextField()
-	karyawan = models.ManyToManyField(Karyawan)
+class Absensi(models.Model):
+	name = models.CharField(max_length=25, null=True)
+	desc = models.TextField(null=True)
+	karyawan = models.ForeignKey(Karyawan)
 	tanggal = models.DateField()
 	hari = models.CharField(max_length=10)
 	masuk = models.TimeField()
@@ -188,10 +188,10 @@ class Absensi2017Semester1(models.Model):
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 
-class Lembur2017Semester1(models.Model):
+class Lembur(models.Model):
 	name = models.CharField(max_length=25)
 	desc = models.TextField()
-	karyawan = models.ManyToManyField(Karyawan)
+	karyawan = models.ForeignKey(Karyawan)
 	tanggal = models.DateField()
 	hari = models.CharField(max_length=10)
 	masuk = models.TimeField()

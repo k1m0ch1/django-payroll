@@ -16,6 +16,10 @@ import json
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
 
+@login_required
+def absensi_index(request):
+	return HttpResponse("HEY")
+
 def api_karyawan(request):
 	
 	k = Karyawan.objects.all()
@@ -69,7 +73,7 @@ def api_karyawan(request):
 
 
 @login_required()
-def shift_index(request):
+def karyawan_shift_index(request):
 	k = Karyawan.objects.all()
 	dep = Departemen.objects.all()
 	bag = Bagian.objects.all()
@@ -120,6 +124,16 @@ def karyawan_detail(request, karyawan_id):
 def perusahaan_index(request):
 	perusahaan = Perusahaan.objects.all()
 	return render(request, "perusahaan/dashboard.html", { 'perusahaan' : perusahaan, 'dsb' : modules })
+
+@login_required()
+def shift_index(request):
+	shift = Shift.objects.all()
+	return render(request, "include/base-dashboard.html", { 'ulang' : shift, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def departemen_index(request):
+	departemen = Departemen.objects.all()
+	return render(request, "include/base-dashboard.html", { 'ulang' : departemen, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request) })
 
 @login_required()
 def departemen_index(request):
