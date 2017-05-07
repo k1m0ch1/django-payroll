@@ -318,7 +318,7 @@
         "menu": "root",
         "icon": "fa fa-pie-chart",
         "mode": "alone",
-        "url_slug" : "absensi-index",
+        "url_slug" : "absensi",
         "created_at": "2017-03-01 15:03+07"
       }    
   }, {

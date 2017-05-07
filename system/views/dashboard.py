@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
-from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
+from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
@@ -18,8 +18,10 @@ allmenu = Modules.objects.only('name')
 
 @login_required
 def absensi_index(request):
-	return HttpResponse("HEY")
+	a = Absensi.objects.all()
+	return render(request, "absen/dashboard.html", { 'absen': a, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
+@login_required
 def api_karyawan(request):
 	
 	k = Karyawan.objects.all()

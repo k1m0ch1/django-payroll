@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'autofixture',
     'system.templatetags.sidebar',
     'system.templatetags.dashboard',
-    'system.templatetags.form'
+    'system.templatetags.form',
+    'system.templatetags.hari',
 ]
 
 MIDDLEWARE = [
@@ -93,7 +94,7 @@ WSGI_APPLICATION = 'payroll.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST' : '192.168.0.4',
+        'HOST' : '192.168.99.100',
         'USER' : 'postgres',
         'PASSWORD' : '0r4ng324n3h',
         'NAME': 'payroll',

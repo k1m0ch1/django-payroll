@@ -1,0 +1,401 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"r",
+				"border-right"
+			],
+			[
+				"st",
+				"style\tTag"
+			],
+			[
+				"dep",
+				"department_id"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 81.0,
+		"last_filter": "Package Control: Install Package",
+		"selected_items":
+		[
+			[
+				"Package Control: Install Package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/E/Document/crowde/apps/backend/app",
+		"/E/Document/crowde/apps/backend/app/Http",
+		"/E/Document/crowde/apps/backend/app/Http/Controllers",
+		"/E/Document/crowde/apps/backend/app/Http/Controllers/Api"
+	],
+	"file_history":
+	[
+		"/E/Document/crowde/apps/backend/routes/api.php",
+		"/E/Document/crowde/apps/backend/.env.example",
+		"/E/Document/crowde/apps/backend/app/Http/Controllers/Api/MeController.php",
+		"/E/Document/crowde/apps/backend/app/Http/Controllers/Api/VerificationController.php",
+		"/E/Document/crowde/apps/backend/app/Http/Controllers/Api/PaymentController.php",
+		"/E/Document/crowde/apps/backend/app/Users.php",
+		"/E/Document/crowde/apps/backend/app/User.php",
+		"/E/Document/crowde/apps/frontend/app/Models/User.php",
+		"/E/Document/crowde/apps/frontend/routes/web.php",
+		"/E/Document/crowde/apps/backend/app/Http/Controllers/Api/AddressController.php",
+		"/E/Document/crowde/apps/frontend/resources/views/pages/auth/v2/settings.blade.php",
+		"/E/Document/crowde/apps/frontend/resources/views/pages/auth/settings.blade.php",
+		"/E/Document/payroll/system/template/include/base-dashboard.html",
+		"/E/Document/payroll/system/template/karyawanshift/dashboard.html",
+		"/E/Document/payroll/system/views/create.py",
+		"/E/Document/payroll/system/urls.py",
+		"/E/Document/payroll/system/fixtures/modules.json",
+		"/E/Document/payroll/system/models.py",
+		"/E/Document/crowde/apps/backend/public/index.php",
+		"/E/Document/High-Performance-Web/Dockerfile",
+		"/E/Document/crowde/apps/backend/.env",
+		"/E/Document/crowde/apps/backend/app/Http/Controllers/Auth/RegisterController.php",
+		"/E/Document/crowde/apps/frontend/resources/views/pages/auth/v2/registerSuccess.blade.php",
+		"/E/Document/crowde/apps/frontend/app/Http/Controllers/AuthController.php",
+		"/E/Document/crowde/apps/backend/app/Verification.php",
+		"/E/Document/payroll/system/template/karyawan/dashboard.html",
+		"/E/Document/payroll/system/templatetags/dashboard.py",
+		"/E/Document/payroll/system/template/karyawanshift/modal.html",
+		"/E/Document/payroll/system/views/edit.py",
+		"/E/Document/payroll/system/views/delete.py",
+		"/E/Document/payroll/system/views/dashboard.py",
+		"/E/Document/payroll/system/fixtures/karyawanshift.json",
+		"/E/Document/payroll/resetData.bat",
+		"/E/Document/payroll/system/fixtures/absensi.json",
+		"/E/Document/payroll/system/fixtures/shift.json",
+		"/E/Document/payroll/system/fixtures/karyawan.json",
+		"/E/Document/payroll/system/fixtures/agama.json",
+		"/E/Document/payroll/resetData.sh",
+		"/E/Document/payroll/payroll/settings.py",
+		"/E/keep/hacking/bpkp/list-target",
+		"/E/Document/bpkp/ipms_pro_2_perdana_3_sept_2015.sql",
+		"/E/keep/hacking/bpkp/petugas.sql",
+		"/E/Document/crowde/apps/backend/app/Http/Controllers/Api/ContactusController.php",
+		"/E/Document/crowde/apps/backend/UserRepository.php",
+		"/C/Users/Yahya Kimochi/AppData/Local/Arduino15/packages/esp8266/hardware/esp8266/2.0.0/tools/sdk/include/user_interface.h",
+		"/E/Document/crowde/apps/backend/app/Http/Controllers/Api/MessagingServiceController.php",
+		"/E/Document/crowde/apps/backend/README.md",
+		"/E/Document/crowde/apps/backend/app/Http/Controllers/Api/UsersController.php",
+		"/E/Document/crowde/apps/backend/composer.json",
+		"/E/Document/crowde/apps/backend/config/app.php",
+		"/E/Document/payroll/system/template/karyawan/form.html",
+		"/E/Document/payroll/system/template/include/base-form.html",
+		"/E/Document/payroll/payroll/.gitignore",
+		"/E/Document/payroll/system/migrations/.gitignore",
+		"/E/Document/payroll/system/template/.gitginore",
+		"/E/Document/payroll/system/templatetags/.gitignore",
+		"/E/Document/payroll/system/views/.gitignore",
+		"/E/Document/payroll/system/.gitignore",
+		"/E/Document/payroll/.gitignore",
+		"/E/Document/payroll-system-design/tambahkaryawan.html",
+		"/E/Document/payroll/payroll/urls.py",
+		"/E/Document/payroll/system/template/profile-perusahaan/dashboard.html",
+		"/E/Document/payroll/system/template/hariraya/dashboard.html",
+		"/E/Document/payroll-system-design/shift.html",
+		"/E/Document/payroll/system/template/base.html",
+		"/E/Document/exploit/samba3.py",
+		"/E/Document/pindad/pindad-202.51.233.1-16.xml",
+		"/E/Document/exploit/sambaddos.py",
+		"/E/Document/payroll/system/template/include/head-base.html",
+		"/E/Document/payroll/system/template/karyawan/detail.html",
+		"/E/Document/payroll-system-design/detailkaryawan.html",
+		"/E/Document/payroll/system/views/views.py",
+		"/E/Document/payroll/system/template/dashboard.html",
+		"/E/Document/payroll/system/template/profile-perusahaan/profile-edit.html",
+		"/E/Document/payroll/system/templatetags/form.py",
+		"/E/Document/payroll/system/template/profile-perusahaan/form.html",
+		"/E/Document/payroll/assets/styles/custom.css",
+		"/E/Document/payroll/system/template/include/sidebar.html",
+		"/E/Document/payroll/system/fixtures/lokasiperusahaan.json",
+		"/E/Document/payroll/system/template/login.html",
+		"/E/Document/payroll-system-design/sidebar.html",
+		"/E/Document/payroll/system/fixtures/departemen.json",
+		"/E/Document/payroll/system/templatetags/sidebar.py",
+		"/E/Document/payroll-system-design/karyawan.html",
+		"/E/Document/payroll/system/fixtures/warganegara.json",
+		"/E/Document/payroll/system/fixtures/statusmenikah.json",
+		"/E/Document/note",
+		"/E/Document/payroll/system/template/department/dashboard.html",
+		"/E/Document/payroll/system/template/bagian/dashboard.html",
+		"/E/Document/payroll/system/template/bagian/form.html",
+		"/E/Document/payroll/system/template/department/form.html",
+		"/E/Document/payroll/system/views/__init__.py",
+		"/E/keep/hacking/bandung/dirserach",
+		"/E/Document/crowde/awsbackup/api.3.4.2017/api/app/Http/Controllers/Auth/LoginController.php",
+		"/E/Document/crowde/awsbackup/api.3.4.2017/api/vendor/laravel/framework/src/Illuminate/Support/Facades/Auth.php",
+		"/E/Document/crowde/awsbackup/api.3.4.2017/api/vendor/laravel/framework/src/Illuminate/Foundation/Auth/Access/AuthorizesRequests.php",
+		"/E/Document/crowde/awsbackup/api.3.4.2017/api/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php",
+		"/E/keep/hacking/bandung/nikto",
+		"/E/keep/hacking/bandung/list domain 2",
+		"/E/Document/payroll/system/template/include/var_sidebar.html",
+		"/E/Document/payroll/system/template/unit/create.html",
+		"/E/Document/payroll/system/template/unit/dashboard.html",
+		"/E/Document/payroll/system/template/department/create.html",
+		"/E/Document/payroll-system-design/tambahdepartmen.html",
+		"/E/Document/payroll/system/template/warganegara/dashboard.html",
+		"/E/Document/payroll/system/template/statusmenikah/dashboard.html",
+		"/E/Document/payroll/system/template/agama/dashboard.html",
+		"/E/Document/payroll/system/template/bank/dashboard.html",
+		"/E/Document/payroll/system/template/jabatan/dashboard.html",
+		"/E/Document/payroll/system/template/golongan/dashboard.html",
+		"/E/Document/payroll/system/fixtures/perusahaan.json",
+		"/E/Document/crowde/-.crowde.co.chain+root.crt",
+		"/E/Document/crowde/-.crowde.co.chain.crt",
+		"/E/Document/eauctin",
+		"/E/Document/payroll/system/__init__.py",
+		"/E/Document/payroll/system/views.py",
+		"/E/Document/payroll/system/controller/__init__.py",
+		"/E/Document/payroll/system/template/dashboard.py",
+		"/E/Document/payroll/system/template/departement/dashboard.html",
+		"/E/Document/payroll/system/template/perusahaan/dashboard.html",
+		"/E/Document/payroll-system-design/login2.html",
+		"/E/Document/payroll/system/Controller/perusahaan.py",
+		"/E/Document/payroll/system/templatetags/__init__.py",
+		"/E/Document/payroll/system/controller/perusahaan.py",
+		"/E/Document/payroll-system-design/perusahaan.html",
+		"/E/Document/payroll-system-design/index.html",
+		"/E/Document/payroll/system/template/head/sidebar.html",
+		"/E/Document/idvn/idvn_dev/idvn/views.py"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"E:\\Document\\crowde\\apps\\frontend\\resources\\views\\pages\\auth\\v2",
+			"E:\\Document\\payroll\\system\\templatetags",
+			"E:\\Document\\wawadukan.id"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"payment",
+			"/>\n",
+			"name=\"email\"",
+			"verifi",
+			"url",
+			"href=",
+			"shift",
+			"url",
+			"shift",
+			"url",
+			"shift",
+			"`petugas`",
+			"admin",
+			"redirectTo",
+			"')",
+			"('",
+			"id=\"reser",
+			"                  \n",
+			"null",
+			"n",
+			"shift",
+			"id=\"reser",
+			"shift_id",
+			"karayawan_id",
+			"</p>",
+			"<p class=\"text-right\">",
+			"department",
+			"departemen",
+			"department",
+			"#",
+			"shift",
+			"index",
+			"url-slug",
+			"system.agama",
+			"WargaNegara",
+			"WargaNegar",
+			"statusmenikah",
+			"warganegara",
+			"if",
+			"dashbo",
+			"||",
+			"view",
+			"departement",
+			"img",
+			"form",
+			"login",
+			"SESSION",
+			"ssh",
+			"]",
+			"[",
+			"blank=True",
+			"update_date",
+			"create_date",
+			"merah",
+			"Decimal",
+			"t(",
+			"report",
+			".content",
+			"Recent"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"']",
+			"['",
+			"'aw'",
+			"shift",
+			"karyawan",
+			"",
+			"departemen",
+			"url_slug",
+			"system.modules",
+			"Karyawan",
+			"StatusMenikah",
+			"WargaNegara",
+			"statusmenikah",
+			"or",
+			"department",
+			"",
+			"null=True",
+			"updated_at",
+			"created_at"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.hex_viewer_inspector":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "projectsublime.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 264.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
