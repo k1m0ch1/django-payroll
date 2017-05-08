@@ -23,7 +23,7 @@ def hari(day=None):
 		return "Sabtu"
 
 @register.simple_tag
-def waktu(waktu=None, jadwal=None):
+def waktu(waktu=None, jadwal=None, masuk=None):
 	hasil = ""
 	akhir = ""
 	wj, wm, wd = waktu.strftime("%H:%M:%S").split(':')
@@ -55,7 +55,7 @@ def waktu(waktu=None, jadwal=None):
 		akhir = akhir + menit + " menit "
 	elif menitA > 0 :
 		hasil = hasil + str(int(menitA%60)) + " menit "
-		akhir = akhir + " > " + hasil if jamB == False else akhir + hasil
+		akhir = akhir + (" > " if masuk else " < ") + hasil if jamB == False else akhir + hasil
 		menitB = True
 
 	if detikA <= -1 :

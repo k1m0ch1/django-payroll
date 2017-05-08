@@ -46,8 +46,8 @@
                   <td>{% hari data.hari %}, {{ data.tanggal|date:"d F Y" }}</td>
                   <td>{{ data.karyawanshift.shift.name }}</td>
                   <td>{{ data.karyawan.name }}</td>
-                  <td>{% plainwaktu data.masuk %} {% waktu data.masuk data.karyawanshift.shift.jammasuk %}</td>
-                  <td>{% plainwaktu data.keluar %} {% waktu data.keluar data.karyawanshift.shift.jamkeluar %}</td>
+                  <td>{% plainwaktu data.masuk %} {% waktu data.masuk data.karyawanshift.shift.jammasuk True %}</td>
+                  <td>{% plainwaktu data.keluar %} {% waktu data.keluar data.karyawanshift.shift.jamkeluar False %}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                         <a data-confirm="Yakin mau Hapus data {{ data.name }} ???" href="" class="btn btn-default"><i class="fa fa-trash"></i></a>

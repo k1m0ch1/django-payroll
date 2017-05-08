@@ -26,5 +26,117 @@
         "keluar": "20:00",
         "created_at": "2017-03-01 15:03+07"
       }    
+  },
+  {
+    "model": "system.absensi",
+    "pk": 3,
+    "fields": 
+      {
+        "karyawan_id": 1,
+        "karyawanshift_id": 1,
+        "tanggal": "2017-04-11",
+        "hari": "Mon",
+        "masuk": "06:55",
+        "keluar": "15:00",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.absensi",
+    "pk": 4,
+    "fields": 
+      {
+        "karyawan_id": 1,
+        "karyawanshift_id": 1,
+        "tanggal": "2017-04-12",
+        "hari": "Mon",
+        "masuk": "07:00",
+        "keluar": "16:58",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.absensi",
+    "pk": 5,
+    "fields": 
+      {
+        "karyawan_id": 1,
+        "karyawanshift_id": 1,
+        "tanggal": "2017-04-13",
+        "hari": "Mon",
+        "masuk": "07:11",
+        "keluar": "15:05",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.absensi",
+    "pk": 6,
+    "fields": 
+      {
+        "karyawan_id": 1,
+        "karyawanshift_id": 1,
+        "tanggal": "2017-04-14",
+        "hari": "Mon",
+        "masuk": "07:00",
+        "keluar": "15:01",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.absensi",
+    "pk": 7,
+    "fields": 
+      {
+        "karyawan_id": 2,
+        "karyawanshift_id": 5,
+        "tanggal": "2017-04-14",
+        "hari": "Mon",
+        "masuk": "12:00",
+        "keluar": "20:01",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.absensi",
+    "pk": 8,
+    "fields": 
+      {
+        "karyawan_id": 2,
+        "karyawanshift_id": 5,
+        "tanggal": "2017-04-14",
+        "hari": "Mon",
+        "masuk": "12:00",
+        "keluar": "20:01",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.absensi",
+    "pk": 9,
+    "fields": 
+      {
+        "karyawan_id": 2,
+        "karyawanshift_id": 5,
+        "tanggal": "2017-04-14",
+        "hari": "Mon",
+        "masuk": "12:00",
+        "keluar": "20:01",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.absensi",
+    "pk": 10,
+    "fields": 
+      {
+        "karyawan_id": 2,
+        "karyawanshift_id": 5,
+        "tanggal": "2017-04-14",
+        "hari": "Mon",
+        "masuk": "12:05",
+        "keluar": "20:05",
+        "created_at": "2017-03-01 15:03+07"
+      }    
   }
 ]
