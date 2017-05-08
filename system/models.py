@@ -146,7 +146,7 @@ class Karyawan(models.Model):
 	agama = models.ForeignKey(Agama)
 	warganegara = models.ForeignKey(WargaNegara)
 	statusmenikah = models.ForeignKey(StatusMenikah)
-	bank = models.ForeignKey(Bank, on_delete=models.CASCADE)
+	bank = models.ForeignKey(Bank)
 	atasnama = models.CharField(max_length=200)
 	norek = models.CharField(max_length=70)
 	fingerid = models.CharField(max_length=30)
@@ -173,10 +173,35 @@ class Karyawan(models.Model):
 #== 
 #== around 12 AM, the database will generate this table and then convert it
 
+class Shift(models.Model):
+	name = models.CharField(max_length=25)
+	desc = models.TextField()
+	jammasuk = models.TimeField()
+	jamkeluar = models.TimeField()
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
+class KaryawanShift(models.Model):
+	name = models.CharField(max_length=75, null=True)
+	karyawan = models.ForeignKey(Karyawan,related_name="karyawan")
+	shift = models.ForeignKey(Shift, related_name="shift")
+	tglawal = models.DateField()
+	tglakhir = models.DateField()
+	desc = models.TextField()
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+		
 class Absensi(models.Model):
 	name = models.CharField(max_length=25, null=True)
 	desc = models.TextField(null=True)
 	karyawan = models.ForeignKey(Karyawan)
+	karyawanshift = models.ForeignKey(KaryawanShift)
 	tanggal = models.DateField()
 	hari = models.CharField(max_length=10)
 	masuk = models.TimeField()
@@ -206,7 +231,7 @@ class Lembur(models.Model):
 #== EOF
 
 class GajiPokok(models.Model):
-	karyawan = models.ForeignKey(Karyawan, on_delete=models.CASCADE)
+	karyawan = models.ForeignKey(Karyawan)
 	name = models.CharField(max_length=25)
 	desc = models.TextField()
 	gajipokok = models.DecimalField(max_digits=10, decimal_places=0)
@@ -218,30 +243,6 @@ class GajiPokok(models.Model):
 	makanlembur = models.DecimalField(max_digits=7, decimal_places=0)
 	translembur = models.DecimalField(max_digits=7, decimal_places=0)
 	masakerja = models.DecimalField(max_digits=7, decimal_places=0)
-	created_at = models.DateTimeField(auto_now=True)
-	updated_at = models.DateTimeField(auto_now_add=True, null=True)
-
-	def __str__(self):              # __unicode__ on Python 2
-		return self.name
-
-class Shift(models.Model):
-	name = models.CharField(max_length=25)
-	desc = models.TextField()
-	jammasuk = models.TimeField()
-	jamkeluar = models.TimeField()
-	created_at = models.DateTimeField(auto_now=True)
-	updated_at = models.DateTimeField(auto_now_add=True, null=True)
-
-	def __str__(self):              # __unicode__ on Python 2
-		return self.name
-
-class KaryawanShift(models.Model):
-	name = models.CharField(max_length=75, null=True)
-	karyawan = models.ForeignKey(Karyawan,related_name="karyawan")
-	shift = models.ForeignKey(Shift, related_name="shift")
-	tglawal = models.DateField()
-	tglakhir = models.DateField()
-	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
