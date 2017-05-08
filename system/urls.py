@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^shift$', views.dashboard.shift_index, name="shift-index"),
     url(r'^hariraya$', views.dashboard.hariraya_index, name="hariraya-index"),
     url(r'^absensi$', views.dashboard.absensi_index, name="absensi-index"),
+    url(r'^inventory$', views.dashboard.inventory_index, name="inventory-index"),
   	#url(r'^notif-system$', views.dashboard.notif_system, name="notif-system-index"),
   	#url(r'^notif-login$', views.dashboard.notif_login, name="notif-login-index"),
   	#url(r'^notif-aplikasi$', views.dashboard.notif_aplikasi, name="notif-aplikasi-index"),
@@ -43,6 +44,10 @@ urlpatterns = [
   	url(r'^bank/create$', views.create.bank, name="bank-create"),
   	url(r'^bank/create/save$', views.create.bank_save, name="bank-create-save"),
     url(r'^karyawan-shift/save$', views.create.karyawan_shift_save, name="karyawan-shift-create-save"),
+    url(r'^shift/create$', views.create.shift, name="shift-create"),
+    url(r'^shift/create/save$', views.create.shift_save, name="shift-create-save"),
+    url(r'^hariraya/create$', views.create.hariraya, name="hariraya-create"),
+    url(r'^hariraya/create/save$', views.create.hariraya_save, name="hariraya-create-save"),
 
   	url(r'^agama/create$', views.create.agama, name="agama-create"),
   	url(r'^agama/create/save$', views.create.agama_save, name="agama-create-save"),
@@ -54,6 +59,8 @@ urlpatterns = [
     url(r'^profile-perusahaan/create/save$', views.create.profile_perusahaan_save, name="profile-perusahaan-create-save"),
     url(r'^karyawan/create$', views.create.karyawan, name="karyawan-create"),
     url(r'^karyawan/create/save$', views.create.karyawan_save, name="karyawan-create-save"),
+    url(r'^inventory/create$', views.create.inventory, name="inventory-create"),
+    url(r'^inventory/create/save$', views.create.inventory_save, name="inventory-create-save"),
 
   	url(r'^departemen/(?P<departemen_id>[0-9]+)/edit/$', views.edit.departemen, name="departemen-edit"),
   	url(r'^departemen/(?P<departemen_id>[0-9]+)/edit/save$', views.edit.departemen_save, name="departemen-edit-save"),
@@ -76,6 +83,13 @@ urlpatterns = [
     url(r'^profile-perusahaan/(?P<lokasiperusahaan_id>[0-9]+)/edit/save$', views.edit.profile_perusahaan_save, name="profile-perusahaan-edit-save"),
     url(r'^profile-perusahaan/profile-edit/$', views.edit.profile_edit, name="profile-edit"),
     url(r'^profile-perusahaan/profile-edit/edit/save$', views.edit.profile_edit_save, name="profile-edit-save"),
+    url(r'^shift/(?P<shift_id>[0-9]+)/edit/$', views.edit.shift, name="shift-edit"),
+    url(r'^shift/(?P<shift_id>[0-9]+)/edit/save$', views.edit.shift_save, name="shift-edit-save"),
+
+    url(r'^hariraya/(?P<hariraya_id>[0-9]+)/edit/$', views.edit.hariraya, name="hariraya-edit"),
+    url(r'^hariraya/(?P<hariraya_id>[0-9]+)/edit/save$', views.edit.hariraya_save, name="hariraya-edit-save"),
+    url(r'^inventory/(?P<inventory_id>[0-9]+)/edit/$', views.edit.inventory, name="inventory-edit"),
+    url(r'^inventory/(?P<inventory_id>[0-9]+)/edit/save$', views.edit.inventory_save, name="inventory-edit-save"),
 
     url(r'^perusahaan/(?P<perusahaan_id>[0-9]+)/delete/$', views.perusahaan_delete, name="perusahaan-delete"),
     url(r'^departemen/(?P<departemen_id>[0-9]+)/delete/$', views.delete.departemen, name="departemen-delete"),
@@ -87,7 +101,12 @@ urlpatterns = [
     url(r'^warganegara/(?P<warganegara_id>[0-9]+)/delete/$', views.delete.warganegara, name="warganegara-delete"),
     url(r'^statusmenikah/(?P<statusmenikah_id>[0-9]+)/delete/$', views.delete.statusmenikah, name="statusmenikah-delete"),
     url(r'^profile-perusahaan/(?P<lokasiperusahaan_id>[0-9]+)/delete/$', views.delete.profile_perusahaan, name="profile-perusahaan-delete"),
+    url(r'^shift/(?P<shift_id>[0-9]+)/delete/$', views.delete.shift, name="shift-delete"),
+
+    url(r'^hariraya/(?P<hariraya_id>[0-9]+)/delete/$', views.delete.hariraya, name="hariraya-delete"),
+    url(r'^inventory/(?P<inventory_id>[0-9]+)/delete/$', views.delete.inventory, name="inventory-delete"),
 
     url(r'^api/karyawan$', views.dashboard.api_karyawan, name="karyawan-api"),
     url(r'^karyawan-shift/edit/save$', views.edit.karyawan_shift, name="karyawan-shift-simpan-api"),
+
 ]

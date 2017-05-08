@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
-from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan
+from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
 from dateutil.parser import parse
 from sys import getsizeof
 
@@ -81,6 +81,35 @@ def departemen_save(request):
 	d = Departemen(name=nama, desc=desc)
 	d.save()
 	return redirect("departemen-index")
+
+@login_required()
+def shift(request):
+	return render(request, "shift/form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def shift_save(request):
+	nama = request.POST['name']
+	desc = request.POST['desc']
+	d = Shift(name=nama, desc=desc)
+	d.save()
+	return redirect("departemen-index")
+
+@login_required()
+def inventory(request):
+	exfield = [["nomer", "text", "Nomer Barang", "Nomer Inventory"]]
+	return render(request, "include/base-dyn-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request),
+													   'exfield' : exfield
+													  })
+
+@login_required()
+def inventory_save(request):
+	nama = request.POST['name']
+	desc = request.POST['desc']
+	d = Inventory(name=nama, desc=desc)
+	d.save()
+	return redirect("inventory-index")
 
 @login_required()
 def bagian(request):

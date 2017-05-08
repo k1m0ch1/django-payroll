@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
-from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
+from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Inventory
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
@@ -40,6 +40,18 @@ def departemen_save(request, departemen_id):
 	d = Departemen.objects.select_for_update().filter(id=departemen_id)
 	d.update(name=request.POST['name'], desc=request.POST['desc'])
 	return redirect("departemen-index")
+
+@login_required()
+def shift(request, shift_id):
+	d = Shift.objects.get(pk=shift_id)
+	return render(request, "include/base-form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : shift_id, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def shift_save(request, shift_id):
+	d = Shift.objects.select_for_update().filter(id=shift_id)
+	d.update(name=request.POST['name'], desc=request.POST['desc'])
+	return redirect("shift-index")
 
 @login_required()
 def bagian(request, bagian_id):
@@ -150,13 +162,13 @@ def profile_edit_save(request):
 	return redirect("profile-perusahaan-index")
 
 @login_required()
-def hariraya_edit(request, hariraya_id):
+def hariraya(request, hariraya_id):
 	s = HariRaya.objects.get(pk=hariraya_id)
-	return render(request, "include/form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : getModule(request), 
+	return render(request, "include/base-form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : getModule(request), 
 													   		 'idpk' : hariraya_id, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
-def hariraya_edit_save(request, hariraya_id):
+def hariraya_save(request, hariraya_id):
 	name = request.POST['name']
 	tanggal = request.POST['desc']
 	sd = request.POST['desc']
@@ -165,6 +177,22 @@ def hariraya_edit_save(request, hariraya_id):
 	s.update(name=name, tanggal=tanggal, sd=sd, desc=desc)
 	return redirect("hariraya-index")
 
+
+@login_required()
+def inventory(request, inventory_id):
+	s = Inventory.objects.get(pk=inventory_id)
+	return render(request, "include/base-form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   		 'idpk' : inventory_id, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def inventory_save(request, inventory_id):
+	name = request.POST['name']
+	tanggal = request.POST['desc']
+	sd = request.POST['desc']
+	desc = request.POST['desc']
+	s = Inventory.objects.select_for_update().filter(id=inventory_id)
+	s.update(name=name, desc=desc)
+	return redirect("inventory-index")
 
 
 def getModule(request):

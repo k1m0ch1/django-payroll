@@ -55,7 +55,7 @@ def waktu(waktu=None, jadwal=None, masuk=None):
 		akhir = akhir + menit + " menit "
 	elif menitA > 0 :
 		hasil = hasil + str(int(menitA%60)) + " menit "
-		akhir = akhir + (" > " if masuk else " < ") + hasil if jamB == False else akhir + hasil
+		akhir = akhir + ">" + hasil if jamB == False else akhir + hasil
 		menitB = True
 
 	if detikA <= -1 :

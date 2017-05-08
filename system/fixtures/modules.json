@@ -272,6 +272,7 @@
         "name": "INVENTORY",
         "fungsi": "Inventory",
         "menu": "DATAMASTER2",
+        "url_slug": "inventory-index",
         "icon": "fa fa-clipboard",
         "created_at": "2017-03-01 15:03+07"
       }    

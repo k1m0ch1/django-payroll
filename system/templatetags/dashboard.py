@@ -79,4 +79,11 @@ def dashboard(module=None, mode=None, idpk=None):
       'ubah'   : reverse('shift-edit', kwargs={'shift_id': idpk}),
       'hapus'  : reverse('shift-delete', kwargs={'shift_id': idpk})
     }[mode]
+  elif module == 'Inventory':
+    return{
+      'indeks' : reverse('inventory-index'),
+      'tambah' : reverse('inventory-create'),
+      'ubah'   : reverse('inventory-edit', kwargs={'inventory_id': idpk}),
+      'hapus'  : reverse('inventory-delete', kwargs={'inventory_id': idpk})
+    }[mode]
   return "null"

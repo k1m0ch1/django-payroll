@@ -8,6 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
+from system.models import Inventory
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -98,11 +99,6 @@ def karyawan_shift_index(request):
 															 'golongan' : gol, 'jabatan' : jab, 'ks': ks, 'shift' : shift})
 
 @login_required()
-def hariraya_index(request):
-	hariraya = HariRaya.objects.all()
-	return render(request, "hariraya/dashboard.html", { 'ulang' : hariraya, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
-
-@login_required()
 def karyawan_index(request):
 	karyawan_list = Karyawan.objects.all()
 	page = request.GET.get('page', 1)
@@ -131,6 +127,15 @@ def perusahaan_index(request):
 def shift_index(request):
 	shift = Shift.objects.all()
 	return render(request, "include/base-dashboard.html", { 'ulang' : shift, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def hariraya_index(request):
+	hariraya = HariRaya.objects.all()
+	return render(request, "include/base-dashboard.html", { 'ulang' : hariraya, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
+@login_required()
+def inventory_index(request):
+	inventory = Inventory.objects.all()
+	return render(request, "include/base-dashboard.html", { 'ulang' : inventory, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def departemen_index(request):

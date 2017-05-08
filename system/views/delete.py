@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah
-from system.models import LokasiPerusahaan
+from system.models import LokasiPerusahaan, Shift
 
 @login_required()
 def departemen(request, departemen_id):
@@ -68,3 +68,15 @@ def hariraya(request, hariraya_id):
 	s = HariRaya.objects.filter(id=hariraya_id)
 	s.delete()
 	return redirect("hariraya-index")
+
+@login_required()
+def shift(request, shift_id):
+	s = Shift.objects.filter(id=shift_id)
+	s.delete()
+	return redirect("shift-index")
+
+@login_required()
+def inventory(request, inventory_id):
+	s = Inventory.objects.filter(id=inventory_id)
+	s.delete()
+	return redirect("inventory-index")
