@@ -12,6 +12,16 @@ class Perusahaan(models.Model):
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 
+class Konfigurasi(models.Model):
+	name = models.CharField(max_length=200)
+	value = models.CharField(max_length=200)
+	desc = models.TextField(null=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
 class LokasiPerusahaan(models.Model):
 	perusahaan = models.ForeignKey(Perusahaan, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200, null=True)

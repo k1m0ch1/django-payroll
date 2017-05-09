@@ -86,4 +86,11 @@ def dashboard(module=None, mode=None, idpk=None):
       'ubah'   : reverse('inventory-edit', kwargs={'inventory_id': idpk}),
       'hapus'  : reverse('inventory-delete', kwargs={'inventory_id': idpk})
     }[mode]
+  elif module == 'Pengaturan Aplikasi':
+    return{
+      'indeks' : reverse('konfigurasi-index'),
+      'tambah' : reverse('konfigurasi-create'),
+      'ubah'   : reverse('konfigurasi-edit', kwargs={'konfigurasi_id': idpk}),
+      'hapus'  : reverse('konfigurasi-delete', kwargs={'konfigurasi_id': idpk})
+    }[mode]
   return "null"

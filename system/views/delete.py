@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah
-from system.models import LokasiPerusahaan, Shift
+from system.models import LokasiPerusahaan, Shift, Inventory, Konfigurasi
 
 @login_required()
 def departemen(request, departemen_id):
@@ -80,3 +80,9 @@ def inventory(request, inventory_id):
 	s = Inventory.objects.filter(id=inventory_id)
 	s.delete()
 	return redirect("inventory-index")
+
+@login_required()
+def konfigurasi(request, konfigurasi_id):
+	s = Konfigurasi.objects.filter(id=konfigurasi_id)
+	s.delete()
+	return redirect("konfigurasi-index")

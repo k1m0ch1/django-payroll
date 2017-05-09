@@ -13,7 +13,9 @@
 <div class="container container-login vcenter">
   <div class="row">
     <div class="col-md-4 col-md-offset-2"><h1>Payroll System</h1></div>
-    <div class="col-md-4 text-right"><h1>Logo goes here</h1></div>
+    {% for x in settings.logo %}
+    <div class="col-md-4 text-right"><h1>{{x.value}}</h1></div>
+    {% endfor %}
   </div>
   <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -67,11 +69,15 @@
           </div>  
           <div class="col-md-10 col-sm-10 col-xs-10">
             <h5>Informasi</h5>
-            <h2>Judul Informasi</h2>
+            {% for x in settings.judul %}
+            <h2>{{x.value}}</h2>
+            {% endfor %}
           </div>     
         </div>
         <div class="col-md-12">
-          <p>"Ini adalah isi daripada informasi yang ditampilkan pada halaman login Aplikasi SIAK. Pada umumnya informasi ini mengenai pemberitahuan kepada user sebelum login."</p>
+        {% for x in settings.informasi %}
+          <p>"{{x.value}}"</p>
+        {% endfor %}
         </div>
       </div>
     </div>

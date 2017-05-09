@@ -40,11 +40,11 @@
                 {% for fill in exfield %}
                  <div class="row"> 
                   <div class="col-md-2 ">
-                    <p class="text-right">{{ fille }}</p>
+                    <p class="text-right">{{ fill.label }}</p>
                   </div>
                   <div class="col-md-10">
-                    <div class="form-group col-md-12">
-                      <input type="text" class="form-control" placeholder="Nama {{ module }}" name="name" value="{{ data.name }}">
+                    <div class="form-group col-md-5">
+                      <input type="{{fill.type}}" class="form-control" placeholder="{{ fill.placeholder }}" name="{{ fill.name }}" value="{{ fill.data }}">
                     </div>
                   </div>
                 </div>

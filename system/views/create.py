@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
-from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules
+from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konfigurasi
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
 from dateutil.parser import parse
 from sys import getsizeof
@@ -97,7 +97,7 @@ def shift_save(request):
 
 @login_required()
 def inventory(request):
-	exfield = [["nomer", "text", "Nomer Barang", "Nomer Inventory"]]
+	exfield = [{"name": "nomer","type":"text", "placeholder":"Nomer Barang", "label":"Nomer Barang", "data": ""}]
 	return render(request, "include/base-dyn-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
 													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request),
 													   'exfield' : exfield
@@ -106,10 +106,28 @@ def inventory(request):
 @login_required()
 def inventory_save(request):
 	nama = request.POST['name']
+	nomer = request.POST['nomer']
 	desc = request.POST['desc']
-	d = Inventory(name=nama, desc=desc)
+	d = Inventory(name=nama, nomer=nomer, desc=desc)
 	d.save()
 	return redirect("inventory-index")
+
+@login_required()
+def konfigurasi(request):
+	exfield = [{"name": "value","type":"text", "placeholder":"Value", "label":"Value", "data": ""}]
+	return render(request, "include/base-dyn-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request),
+													   'exfield' : exfield
+													  })
+
+@login_required()
+def konfigurasi_save(request):
+	nama = request.POST['name']
+	value = request.POST['value']
+	desc = request.POST['desc']
+	d = Inventory(name=nama, value=value, desc=desc)
+	d.save()
+	return redirect("konfigurasi-index")
 
 @login_required()
 def bagian(request):

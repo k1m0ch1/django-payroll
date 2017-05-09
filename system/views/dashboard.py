@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
-from system.models import Inventory
+from system.models import Inventory, Konfigurasi
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -132,10 +132,12 @@ def shift_index(request):
 def hariraya_index(request):
 	hariraya = HariRaya.objects.all()
 	return render(request, "include/base-dashboard.html", { 'ulang' : hariraya, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
+
 @login_required()
 def inventory_index(request):
-	inventory = Inventory.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : inventory, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
+	data = serializers.serialize( "python", Inventory.objects.all(),fields=('name','nomer', 'desc'))
+	exfield = [{'field': 'Nomer'}]
+	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request), 'exfield' : exfield})
 
 @login_required()
 def departemen_index(request):
@@ -181,6 +183,12 @@ def warganegara_index(request):
 def statusmenikah_index(request):
 	statusmenikah = StatusMenikah.objects.all()
 	return render(request, "include/base-dashboard.html", { 'ulang' : statusmenikah, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def konfigurasi_index(request):
+	data = serializers.serialize( "python", Konfigurasi.objects.all(),fields=('name', 'value', 'desc'))
+	exfield = [{'field': 'Value'}]
+	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request), 'exfield' : exfield})
 
 @login_required()
 def profile_perusahaan_index(request):

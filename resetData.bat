@@ -9,4 +9,4 @@ cd ../../
 python manage.py makemigrations system
 python manage.py migrate 
 python manage.py loaddata perusahaan departemen bagian golongan jabatan bank warganegara agama statusmenikah modules
-python manage.py loaddata lokasiperusahaan karyawan shift karyawanshift pinjaman inventory absensi hariraya
+python manage.py loaddata lokasiperusahaan karyawan shift karyawanshift pinjaman inventory absensi hariraya settings

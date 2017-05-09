@@ -6,7 +6,7 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from system.models import Perusahaan, Departemen, Modules, Karyawan
+from system.models import Perusahaan, Departemen, Modules, Karyawan, Konfigurasi
 
 modules = Modules.objects.all()
 
@@ -17,7 +17,11 @@ def index(request):
 	return render(request, "dashboard.html", dataPayroll)
 
 def loginpage(request):
-	return render(request, "login.html", { 'login' : "firsttime"})
+	informasi = Konfigurasi.objects.filter(name="isi-informasi").all()
+	logo = Konfigurasi.objects.filter(name="logo").all()
+	judul = Konfigurasi.objects.filter(name="judul-informasi").all()
+	settings = {'informasi': informasi, 'logo' : logo, 'judul': judul}
+	return render(request, "login.html", { 'settings': settings, 'login' : "firsttime"})
 
 def loginrequest(request):
 	username = request.POST['username']
