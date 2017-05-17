@@ -10,6 +10,7 @@ from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konf
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
 from dateutil.parser import parse
 from sys import getsizeof
+from zk import ZK, const
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
@@ -32,7 +33,26 @@ def karyawan(request):
 
 @login_required()
 def karyawan_save(request):
-	k = Karyawan(NIK = request.POST['NIK'], name = request.POST['nama1'] + " " + request.POST['nama2'],
+	# nama = request.POST['nama1'] + " " + request.POST['nama2']
+	# conn = None 
+	# zk = ZK('192.168.0.225', port=4370, timeout=5)
+	# try:
+	# 	conn = zk.connect()
+	# 	datausers = conn.get_users()
+	# 	userid = 1
+	# 	for user in datausers:
+	# 		userid = userid + 1
+	# 	request.POST['fingerid']
+	# 	conn.set_user(uid=userid, name=nama, privilege=const.USER_DEFAULT, password="", group_id="", user_id=request.POST['fingerid'])
+	# 	conn.test_voice()
+	# except Exception, e:
+	# 	print "Process terminate : {}" . format(e)
+	# finally:
+	# 	if conn:
+	# 		conn.disconnect()
+
+	nama = request.POST['nama1'] + " " + request.POST['nama2']
+	k = Karyawan(NIK = request.POST['NIK'], name = nama,
 					shortname = request.POST['nama1'], tempatlahir = request.POST['tempatlahir'],
 					tanggallahir = parse(request.POST['tanggallahir']).strftime("%Y-%m-%d"), gender = request.POST['gender'],
 					alamat = request.POST['alamat'], kota = request.POST['kota'],
@@ -50,6 +70,28 @@ def karyawan_save(request):
 	k.save()
 
 	return redirect('karyawan-index')
+
+@login_required()
+def karyawan_save_api(request):
+	k = Karyawan(NIK = request.POST['NIK'], name = request.POST['nama1'] + " " + request.POST['nama2'],
+					shortname = request.POST['nama1'], tempatlahir = request.POST['tempatlahir'],
+					tanggallahir = parse(request.POST['tanggallahir']).strftime("%Y-%m-%d"), gender = request.POST['gender'],
+					alamat = request.POST['alamat'], kota = request.POST['kota'],
+					provinsi = request.POST['provinsi'], telepon = request.POST['telepon'],
+					handphone = request.POST['handphone'], statuskaryawan = request.POST['statuskaryawan'],
+					masakaryawan = parse(request.POST['masakaryawan']).strftime("%Y-%m-%d"), ktpid = request.POST['ktp'],
+					warganegara_id = request.POST['warganegara'], agama_id = request.POST['agama'],
+					statusmenikah_id = request.POST['statusmenikah'], bank_id = request.POST['bank'],
+					norek = request.POST['norekening'], atasnama = request.POST['atasnama'],
+					fingerid = request.POST['fingerid'], NPWP = request.POST['NPWP'],
+					KPJ = request.POST['KPJ'], jumlahhari = request.POST['jumlahhari'],
+					departemen_id = request.POST['departemen'], bagian_id = request.POST['bagian'],
+					golongan_id = request.POST['golongan'], jabatan_id = request.POST['jabatan'],
+					perusahaan_id= '1')
+	k.save()
+
+	return HttpResponse("berhasil-simpan-karyawan")
+
 
 
 

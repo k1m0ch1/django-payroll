@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group col-md-10">
                       <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="Nomor Induk Kepegawaian" name="NIK">
+                        <input type="text" class="form-control NIK" placeholder="Nomor Induk Kepegawaian" name="NIK">
                       </div>
                     </div>
                   </div>
@@ -42,10 +42,10 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Nama Depan" name="nama1">
+                        <input type="text" class="form-control nama1" placeholder="Nama Depan" name="nama1">
                       </div>
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Nama Belakang" name="nama2">
+                        <input type="text" class="form-control nama2" placeholder="Nama Belakang" name="nama2">
                       </div>
                     </div>
                   </div>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <select class="form-control" name="gender">
+                        <select class="form-control gender" name="gender">
                           <option>Laki-laki</option>
                           <option>Perempuan</option>
                         </select>
@@ -68,10 +68,10 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Kota Lahir" name="tempatlahir">
+                        <input type="text" class="form-control tempatlahir" placeholder="Kota Lahir" name="tempatlahir">
                       </div>
                       <div class="form-group col-md-6 date">
-                        <input type="text" class="form-control " id="datepicker" placeholder="Tanggal Lahir" name="tanggallahir">
+                        <input type="text" class="form-control tanggallahir" id="datepicker" placeholder="Tanggal Lahir" name="tanggallahir">
                       </div>
                     </div>
                   </div>
@@ -81,7 +81,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-12">
-                        <textarea class="form-control" placeholder="Alamat Lengkap" name="alamat"></textarea>
+                        <textarea class="form-control alamat" placeholder="Alamat Lengkap" name="alamat"></textarea>
                       </div>
                     </div>
                   </div>
@@ -91,7 +91,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Kota" name="kota">
+                        <input type="text" class="form-control kota" placeholder="Kota" name="kota">
                       </div>
                     </div>
                   </div>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Provinsi" name="provinsi">
+                        <input type="text" class="form-control provinsi" placeholder="Provinsi" name="provinsi">
                       </div>
                     </div>
                   </div>
@@ -112,10 +112,10 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Telepon" name="telepon">
+                        <input type="text" class="form-control telepon" placeholder="Telepon" name="telepon">
                       </div>
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Handphone" name="handphone">
+                        <input type="text" class="form-control handphone" placeholder="Handphone" name="handphone">
                       </div>
                     </div>
                   </div>
@@ -126,7 +126,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <select class="form-control" name="statuskaryawan">
+                        <select class="form-control statuskaryawan" name="statuskaryawan">
                           <option value="Kontrak 1 (PKWT)">Kontrak 1 (PKWT)</option>
                           <option value="Kontrak 2 (PKWTT)">Kontrak 2 (PKWTT)</option>
                           <option value="Probation">Probation</option>
@@ -134,7 +134,7 @@
                         </select>
                       </div>
                       <div class="form-group col-md-6 date">
-                        <input type="text" class="form-control " id="datepicker2" placeholder="Berlaku Sampai" name="masakaryawan">
+                        <input type="text" class="form-control masakaryawan" id="datepicker2" placeholder="Berlaku Sampai" name="masakaryawan">
                       </div>
                     </div>
                   </div>
@@ -144,7 +144,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="ID KTP" name="ktp">
+                        <input type="text" class="form-control ktp" placeholder="ID KTP" name="ktp">
                       </div>
                       <div class="form-group col-md-6 ">
                         <select class="form-control" name="warganegara">
@@ -341,7 +341,7 @@
                 <div class="row">
                   <div class="col-md-3 text-right">
                     <div class="form-group">
-                        <button class="btn btn-primary"><i class="fa fa-plus"></i> Simpan dan Tambah Karyawan Baru</button> 
+                        <!-- <button class="btn btn-primary simpanKaryawan"><i class="fa fa-plus"></i> Simpan dan Tambah Karyawan Baru</button>  -->
                         <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Simpan</button> 
                     </div>
                   </div>        
@@ -388,6 +388,17 @@ $(function () {
   $('#datepicker2').datepicker({
     autoclose: true
   });
+
+  // $(".simpanKaryawan").on("click", function(){
+  //       $.ajax({
+  //       type: "POST",
+  //       url: 'http://{{ request.get_host }}/index/api/karyawan/create/save',
+  //       data: { csrfmiddlewaretoken: '{{ csrf_token }}'},
+  //       success: function(result) {
+  //           alert('Berhasil Ubah Shift');
+  //       }
+  //     });
+  //   });
 
 });
 </script>
