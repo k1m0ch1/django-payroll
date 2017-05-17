@@ -1,11 +1,9 @@
-cd \
-D:
-cd \
-cd Document\payroll
+SET basenya=D:\Document\payroll
+cd %basenya%
 python manage.py migrate system zero
-cd system\migrations
+cd %basenya%\system\migrations
 echo Y | del *.*
-cd ../../
+cd %basenya%
 python manage.py makemigrations system
 python manage.py migrate 
 python manage.py loaddata perusahaan departemen bagian golongan jabatan bank warganegara agama statusmenikah modules
