@@ -33,7 +33,7 @@ def karyawan(request):
 
 @login_required()
 def karyawan_save(request):
-	# nama = request.POST['nama1'] + " " + request.POST['nama2']
+	nama = request.POST['nama1'] + " " + request.POST['nama2']
 	# conn = None 
 	# zk = ZK('192.168.0.225', port=4370, timeout=5)
 	# try:
@@ -42,7 +42,7 @@ def karyawan_save(request):
 	# 	userid = 1
 	# 	for user in datausers:
 	# 		userid = userid + 1
-	# 	request.POST['fingerid']
+	# 	print request.POST['fingerid']
 	# 	conn.set_user(uid=userid, name=nama, privilege=const.USER_DEFAULT, password="", group_id="", user_id=request.POST['fingerid'])
 	# 	conn.test_voice()
 	# except Exception, e:
@@ -51,7 +51,6 @@ def karyawan_save(request):
 	# 	if conn:
 	# 		conn.disconnect()
 
-	nama = request.POST['nama1'] + " " + request.POST['nama2']
 	k = Karyawan(NIK = request.POST['NIK'], name = nama,
 					shortname = request.POST['nama1'], tempatlahir = request.POST['tempatlahir'],
 					tanggallahir = parse(request.POST['tanggallahir']).strftime("%Y-%m-%d"), gender = request.POST['gender'],
