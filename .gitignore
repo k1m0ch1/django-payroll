@@ -3,3 +3,4 @@ payroll/settings.py
 __pycache__
 .DS_Store
 system/migrations/*
+db.sqlite3
