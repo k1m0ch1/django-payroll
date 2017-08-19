@@ -10,6 +10,11 @@ def form(module=None, mode=None, idpk=None):
 			'Tambah' : reverse('bagian-create-save'),
 			'Ubah'   : reverse('bagian-edit-save', kwargs={'bagian_id': idpk})
 		}[mode]
+	elif module == "Perusahaan/ Company":
+	    return{
+			'Tambah' : reverse('perusahaan-create-save'),
+			'Ubah'   : reverse('perusahaan-edit-save', kwargs={'perusahaan_id': idpk})
+		}[mode]
 	elif module == "Departemen/ Department":
 	    return{
 			'Tambah' : reverse('departemen-create-save'),

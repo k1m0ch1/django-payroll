@@ -16,6 +16,13 @@ def dashboard(module=None, mode=None, idpk=None):
   		'ubah'	 : reverse('bagian-edit', kwargs={'bagian_id': idpk}),
   		'hapus'	 : reverse('bagian-delete', kwargs={'bagian_id': idpk})
   	}[mode]
+  elif module == 'Perusahaan/ Company':
+    return{
+      'indeks' : reverse('perusahaan-index'),
+      'tambah' : reverse('perusahaan-create'),
+      'ubah'   : reverse('perusahaan-edit', kwargs={'perusahaan_id': idpk}),
+      'hapus'  : reverse('perusahaan-delete', kwargs={'perusahaan_id': idpk})
+    }[mode]
   elif module == 'Departemen/ Department':
     return{
       'indeks' : reverse('departemen-index'),

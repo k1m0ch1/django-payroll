@@ -111,6 +111,20 @@ def karyawan_shift_save(request):
 
 
 @login_required()
+def perusahaan(request):
+	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def perusahaan_save(request):
+	nama = request.POST['name']
+	desc = request.POST['desc']
+	d = Perusahaan(name=nama, desc=desc)
+	d.save()
+	return redirect("perusahaan-index")
+
+
+@login_required()
 def departemen(request):
 	return render(request, "include/base-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
 													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})

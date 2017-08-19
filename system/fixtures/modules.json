@@ -1,7 +1,6 @@
 [
   {
     "model": "system.modules",
-    "pk": 1,
     "fields": 
       {
         "name": "DASHBOARD",
@@ -14,7 +13,6 @@
     
   },{
     "model": "system.modules",
-    "pk": 2,
     "fields": 
       {
         "name": "NOTIFIKASI",
@@ -26,7 +24,6 @@
     
   },{
     "model": "system.modules",
-    "pk": 3,
     "fields": 
       {
         "name": "NOTIFIKASISISTEM",
@@ -39,7 +36,6 @@
     
   },{
     "model": "system.modules",
-    "pk": 4,
     "fields": 
       {
         "name": "NOTIFIKASIUSERLOGIN",
@@ -52,7 +48,6 @@
     
   },{
     "model": "system.modules",
-    "pk": 5,
     "fields": 
       {
         "name": "NOTIFIKASIAPLIKASi",
@@ -65,7 +60,6 @@
     
   }, {
     "model": "system.modules",
-    "pk": 6,
     "fields": 
       {
         "name": "DATAMASTER1",
@@ -77,7 +71,6 @@
     
   },{
     "model": "system.modules",
-    "pk": 7,
     "fields": 
       {
         "name": "KARYAWAN",
@@ -90,7 +83,18 @@
     
   },{
     "model": "system.modules",
-    "pk": 8,
+    "fields": 
+      {
+        "name": "PERUSAHAAN",
+        "fungsi": "Perusahaan/ Company",
+        "menu": "DATAMASTER1",
+        "icon": "fa fa-industry",
+        "url_slug": "perusahaan-index",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  },{
+    "model": "system.modules",
     "fields": 
       {
         "name": "DEPARTEMEN",
@@ -103,7 +107,6 @@
     
   }, {
     "model": "system.modules",
-    "pk": 9,
     "fields": 
       {
         "name": "BAGIAN",
@@ -116,7 +119,6 @@
     
   }, {
     "model": "system.modules",
-    "pk": 10,
     "fields": 
       {
         "name": "GOLONGAN",
@@ -129,20 +131,6 @@
     
   }, {
     "model": "system.modules",
-    "pk": 11,
-    "fields": 
-      {
-        "name": "JABATAN",
-        "fungsi": "Jabatan/ Occupation",
-        "menu": "DATAMASTER1",
-        "icon": "fa fa-briefcase",
-        "url_slug": "jabatan-index",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
-  }, {
-    "model": "system.modules",
-    "pk": 12,
     "fields": 
       {
         "name": "BANK",
@@ -155,7 +143,6 @@
     
   }, {
     "model": "system.modules",
-    "pk": 13,
     "fields": 
       {
         "name": "AGAMA",
@@ -168,7 +155,6 @@
     
   }, {
     "model": "system.modules",
-    "pk": 14,
     "fields": 
       {
         "name": "WARGANEGARA",
@@ -181,7 +167,6 @@
     
   }, {
     "model": "system.modules",
-    "pk": 15,
     "fields": 
       {
         "name": "STATUSMENIKAH",
@@ -194,7 +179,6 @@
     
   },{
     "model": "system.modules",
-    "pk": 16,
     "fields": 
       {
         "name": "HARIRAYA",
@@ -207,7 +191,6 @@
     
   },{
     "model": "system.modules",
-    "pk": 17,
     "fields": 
       {
         "name": "SHIFT",
@@ -220,7 +203,6 @@
     
   }, {
     "model": "system.modules",
-    "pk": 18,
     "fields": 
       {
         "name": "DATAMASTER2",
@@ -231,7 +213,6 @@
       }
   }, {
     "model": "system.modules",
-    "pk": 19,
     "fields": 
       {
         "name": "PROFILE-PERUSAHAAN",
@@ -243,7 +224,6 @@
       }
   }, {
     "model": "system.modules",
-    "pk": 20,
     "fields": 
       {
         "name": "KARYAWANSHIFT",
@@ -255,7 +235,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 21,
     "fields": 
       {
         "name": "CUTI",
@@ -266,7 +245,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 22,
     "fields": 
       {
         "name": "INVENTORY",
@@ -278,7 +256,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 23,
     "fields": 
       {
         "name": "POTONGAN",
@@ -289,7 +266,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 24,
     "fields": 
       {
         "name": "MASSATENGGANG",
@@ -300,7 +276,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 25,
     "fields": 
       {
         "name": "PINJAMAN",
@@ -311,7 +286,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 26,
     "fields": 
       {
         "name": "POSTINGGAJI",
@@ -324,7 +298,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 27,
     "fields": 
       {
         "name": "LAPORAN",
@@ -335,7 +308,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 28,
     "fields": 
       {
         "name": "LAPORANGAJI",
@@ -346,7 +318,6 @@
       }    
   },{
     "model": "system.modules",
-    "pk": 29,
     "fields": 
       {
         "name": "Absensi",
@@ -358,7 +329,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 30,
     "fields": 
       {
         "name": "LAPORANLEMBUR",
@@ -369,7 +339,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 31,
     "fields": 
       {
         "name": "LAPORANBPJS",
@@ -380,7 +349,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 32,
     "fields": 
       {
         "name": "LAPORANPOTONGAN",
@@ -391,7 +359,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 33,
     "fields": 
       {
         "name": "LAPORANABSENSICUTI",
@@ -402,7 +369,6 @@
       }    
   } , {
     "model": "system.modules",
-    "pk": 34,
     "fields": 
       {
         "name": "DIVIDER",
@@ -413,7 +379,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 35,
     "fields": 
       {
         "name": "USER",
@@ -424,7 +389,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 36,
     "fields": 
       {
         "name": "PENGATURANSISTEM",
@@ -435,7 +399,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 37,
     "fields": 
       {
         "name": "PENGATURANAPLIKASI",
@@ -447,7 +410,6 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 38,
     "fields": 
       {
         "name": "LOGOUT",

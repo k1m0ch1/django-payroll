@@ -40,6 +40,8 @@ urlpatterns = [
 
     url(r'^departemen/create$', views.create.departemen,  name="departemen-create"),
     url(r'^departemen/create/save$', views.create.departemen_save,  name="departemen-create-save"),
+    url(r'^perusahaan/create$', views.create.perusahaan,  name="perusahaan-create"),
+    url(r'^perusahaan/create/save$', views.create.perusahaan_save,  name="perusahaan-create-save"),
     url(r'^bagian/create$', views.create.bagian,  name="bagian-create"),
     url(r'^bagian/create/save$', views.create.bagian_save,  name="bagian-create-save"),
   	url(r'^golongan/create$', views.create.golongan, name="golongan-create"),
@@ -76,6 +78,8 @@ urlpatterns = [
 
   	url(r'^departemen/(?P<departemen_id>[0-9]+)/edit/$', views.edit.departemen, name="departemen-edit"),
   	url(r'^departemen/(?P<departemen_id>[0-9]+)/edit/save$', views.edit.departemen_save, name="departemen-edit-save"),
+    url(r'^perusahaan/(?P<perusahaan_id>[0-9]+)/edit/$', views.edit.perusahaan, name="perusahaan-edit"),
+    url(r'^perusahaan/(?P<perusahaan_id>[0-9]+)/edit/save$', views.edit.perusahaan_save, name="perusahaan-edit-save"),
   	url(r'^bagian/(?P<bagian_id>[0-9]+)/edit/$', views.edit.bagian, name="bagian-edit"),
   	url(r'^bagian/(?P<bagian_id>[0-9]+)/edit/save$', views.edit.bagian_save, name="bagian-edit-save"),
   	url(r'^golongan/(?P<golongan_id>[0-9]+)/edit/$', views.edit.golongan, name="golongan-edit"),

@@ -36,6 +36,18 @@ def departemen(request, departemen_id):
 													   'idpk' : departemen_id, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
+def perusahaan_save(request, departemen_id):
+	d = Perusahaan.objects.select_for_update().filter(id=perusahaan_id)
+	d.update(name=request.POST['name'], desc=request.POST['desc'])
+	return redirect("perusahaan-index")
+
+@login_required()
+def perusahaan(request, departemen_id):
+	d = Perusahaan.objects.get(pk=perusahaan_id)
+	return render(request, "include/base-form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : departemen_id, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
 def departemen_save(request, departemen_id):
 	d = Departemen.objects.select_for_update().filter(id=departemen_id)
 	d.update(name=request.POST['name'], desc=request.POST['desc'])

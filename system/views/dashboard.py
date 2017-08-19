@@ -121,7 +121,7 @@ def karyawan_detail(request, karyawan_id):
 @login_required()
 def perusahaan_index(request):
 	perusahaan = Perusahaan.objects.all()
-	return render(request, "perusahaan/dashboard.html", { 'perusahaan' : perusahaan, 'dsb' : modules })
+	return render(request, "include/base-dashboard.html", { 'ulang' : perusahaan, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request) })
 
 @login_required()
 def shift_index(request):
