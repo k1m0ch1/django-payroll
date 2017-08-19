@@ -288,12 +288,50 @@
     "model": "system.modules",
     "fields": 
       {
-        "name": "POSTINGGAJI",
-        "fungsi": "GAJI",
+        "name": "TRANSAKSI",
+        "fungsi": "Transaksi",
         "menu": "root",
         "icon": "fa fa-pie-chart",
-        "mode": "alone",
-        "url_slug" : "posting-gaji",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },{
+    "model": "system.modules",
+    "fields": 
+      {
+        "name": "TRANSAKSI",
+        "fungsi": "Absensi",
+        "menu": "TRANSAKSI",
+        "icon": "fa fa-pie-chart",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },{
+    "model": "system.modules",
+    "fields": 
+      {
+        "name": "KOREKSIABSENSI",
+        "fungsi": "Koreksi Absensi",
+        "menu": "TRANSAKSI",
+        "icon": "fa fa-pie-chart",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },{
+    "model": "system.modules",
+    "fields": 
+      {
+        "name": "OVERTIME",
+        "fungsi": "Overtime",
+        "menu": "TRANSAKSI",
+        "icon": "fa fa-pie-chart",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },{
+    "model": "system.modules",
+    "fields": 
+      {
+        "name": "POSTINGGAJI",
+        "fungsi": "Posting Gaji",
+        "menu": "TRANSAKSI",
+        "icon": "fa fa-pie-chart",
         "created_at": "2017-03-01 15:03+07"
       }    
   }, {
@@ -320,7 +358,7 @@
     "model": "system.modules",
     "fields": 
       {
-        "name": "Absensi",
+        "name": "LAPORANABSENSI",
         "fungsi": "Laporan Absensi",
         "menu": "LAPORAN",
         "icon": "fa fa-table",

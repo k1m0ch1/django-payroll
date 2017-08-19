@@ -252,7 +252,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="NPWP" name="NPWP">
+                        <input type="text" class="form-control NPWP" placeholder="NPWP" name="NPWP">
                       </div>
                     </div>
                   </div>
@@ -275,7 +275,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="KPJ" name="KPJ">
+                        <input type="text" class="form-control KPJ" placeholder="KPJ" name="KPJ">
                       </div>
                     </div>
                   </div>
@@ -285,7 +285,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <select class="form-control" name="jumlahhari">
+                        <select class="form-control jumlahhari" name="jumlahhari">
                           <option>Jumlah Hari</option>
                           <option value="1">2</option>
                           <option value="1">3</option>
@@ -302,7 +302,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-12">
-                        <select class="form-control" name="departemen">
+                        <select class="form-control perusahaan" name="perusahaan">
                           <option>== Pilih Perusahaan ==</option>
                           {% for p in perusahaan %}
                             <option value="{{d.id}}">{{p.name}}</option>
@@ -310,7 +310,7 @@
                         </select>
                       </div>
                       <div class="form-group col-md-12">
-                        <select class="form-control" name="departemen">
+                        <select class="form-control departemen" name="departemen">
                           <option>== Pilih Departemen ==</option>
                           {% for d in departemen %}
                             <option value="{{d.id}}">{{d.name}}</option>
@@ -318,7 +318,7 @@
                         </select>
                       </div>                      
                       <div class="form-group col-md-12">
-                        <select class="form-control" name="bagian">
+                        <select class="form-control bagian" name="bagian">
                           <option>== Pilih Bagian ==</option>
                           {% for b in bagian %}
                             <option value="{{b.id}}">{{b.name}}</option>
@@ -326,7 +326,7 @@
                         </select>
                       </div>
                       <div class="form-group col-md-12">
-                        <select class="form-control" name="golongan">
+                        <select class="form-control golongan" name="golongan">
                           <option>== Pilih Golongan ==</option>
                           {% for g in golongan %}
                             <option value="{{g.id}}">{{g.name}}</option>
@@ -402,8 +402,8 @@ $(function () {
               agama: $('.agama').filter(":selected").val(),statusmenikah: $('.statusmenikah').filter(":selected").val(),bank: $('.bank').filter(":selected").val(),
               norekening: $('.norekening').val(),atasnama: $('.atasnama').val(),fingerid: $('.fingerid').val(),
               NPWP: $('.NPWP').val(),KPJ: $('.KPJ').val(),jumlahhari: $('.jumlahhari').filter(":selected").val(),
-              departemen: $('.departemen').val(),bagian: $('.bagian').val(),golongan: $('.golongan').val(),
-              perusahaan: $('.perusahaan').val(),
+              departemen: $('.departemen').filter(":selected").val(),bagian: $('.bagian').filter(":selected").val(),golongan: $('.golongan').filter(":selected").val(),
+              perusahaan: $('.perusahaan').filter(":selected").val(),
               csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Simpan Karyawan Baru');
