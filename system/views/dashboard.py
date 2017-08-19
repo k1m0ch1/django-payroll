@@ -23,6 +23,11 @@ def absensi_index(request):
 	return render(request, "absen/dashboard.html", { 'absen': a, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required
+def overtime_index(request):
+	a = Absensi.objects.all()
+	return render(request, "overtime/dashboard.html", { 'absen': a, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required
 def api_karyawan(request):
 	
 	k = Karyawan.objects.all()

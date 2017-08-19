@@ -302,16 +302,7 @@
         "fungsi": "Absensi",
         "menu": "TRANSAKSI",
         "icon": "fa fa-pie-chart",
-        "created_at": "2017-03-01 15:03+07"
-      }    
-  },{
-    "model": "system.modules",
-    "fields": 
-      {
-        "name": "KOREKSIABSENSI",
-        "fungsi": "Koreksi Absensi",
-        "menu": "TRANSAKSI",
-        "icon": "fa fa-pie-chart",
+        "url_slug" : "absensi-index",
         "created_at": "2017-03-01 15:03+07"
       }    
   },{
@@ -322,6 +313,7 @@
         "fungsi": "Overtime",
         "menu": "TRANSAKSI",
         "icon": "fa fa-pie-chart",
+        "url_slug" : "overtime-index",
         "created_at": "2017-03-01 15:03+07"
       }    
   },{

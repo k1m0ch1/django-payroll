@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load hari %}
+
+{% block content %} 
+	<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div>
+          <ol class="breadcrumb">
+            <li><a href="/index"><i class="fa fa-home"></i> Dashboard</a></li>
+            <li class="active"><a href="{{ indeks }}">{{ module }}</a></li>
+          </ol>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-4">
+                <p><h3 class="control-label">Data Master {{ Absensi }}</h3></p>
+              </div>
+          </div>                
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-body table-responsive">
+              <table class="table table-hover" id="myTable">
+                <thead><tr>
+                  <th class="col-md-1">#</th>
+                  <th class="col-md-2">Tanggal</th>
+                  <th class="col-md-2">Shift</th>
+                  <th class="col-md-2">Nama</th>
+                  <th class="col-md-2">Masuk</th>
+                  <th class="col-md-2">Keluar</th>                  
+                  <th class="col-md-1">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in absen %}                
+                <tr>
+                  <td>{{ data.id }}</td>
+                  <td>{% hari data.hari %}, {{ data.tanggal|date:"d F Y" }}</td>
+                  <td>{{ data.karyawanshift.shift.name }}</td>
+                  <td>{{ data.karyawan.name }}</td>
+                  <td>{% plainwaktu data.masuk %} {% waktu data.masuk data.karyawanshift.shift.jammasuk True %}</td>
+                  <td>{% plainwaktu data.keluar %} {% waktu data.keluar data.karyawanshift.shift.jamkeluar False %}</td>
+                  <td>
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                        <a data-confirm="Yakin mau Hapus data {{ data.name }} ???" href="" class="btn btn-default"><i class="fa fa-trash"></i></a>
+                        <a href="" class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                    </div>                  
+                  </td>
+                </tr>                
+                {% endfor %}
+                </tbody>
+              </table>
+
+            </div>
+            
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                      <a href="" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah {{ module }}</a> 
+                  </div>
+                </div>      
+              </div>
+            </div>
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+      <!-- Your Page Content Here -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+{% endblock %}
+
+{% block footer %}
+	<footer class="main-footer">
+	    <!-- To the right -->
+	    <div class="pull-right hidden-xs">
+	      Anything you want
+	    </div>
+	    <!-- Default to the left -->
+	    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+  	</footer>
+{% endblock %}
+
+{% block javascript %} 
+	<script src="{% static 'plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
+	<!-- Bootstrap 3.3.6 -->
+	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- AdminLTE App -->
+	<script src="{% static 'dist/js/app.min.js' %}"></script>
+	<!-- SlimScroll 1.3.0 -->
+	<script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+  <script src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	<script>
+    $(document).ready(function(){
+      $('#myTable').DataTable({
+            "language": {
+                "url": "dataTables.indonesia.lang"
+            }
+        });
+    });
+
+    $(document).on('click', ':not(form)[data-confirm]', function(e){
+      if(!confirm($(this).data('confirm'))){
+          e.stopImmediatePropagation();
+          e.preventDefault();
+      }
+    });
+  </script>
+{% endblock %}
