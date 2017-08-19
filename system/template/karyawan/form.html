@@ -22,7 +22,7 @@
               <div class="box-header">
                 <h3 class="box-title">Tambah Karyawan Baru</h3>
               </div>
-              <form method="POST" action="{% url 'karyawan-create-save' %}" >
+              <form method="POST" action="{% url 'karyawan-create-save' %}" id="tambahkaryawan">
               {% csrf_token %}
               <div class="box-body">
                 <div class="col-md-6 border-right">
@@ -147,7 +147,7 @@
                         <input type="text" class="form-control ktp" placeholder="ID KTP" name="ktp">
                       </div>
                       <div class="form-group col-md-6 ">
-                        <select class="form-control" name="warganegara">
+                        <select class="form-control warganegara" name="warganegara">
                           <option>Warga Negara</option>
                           {% for wg in warganegara %}
                             <option value="{{wg.id}}">{{wg.name}}</option>
@@ -155,7 +155,7 @@
                         </select>
                       </div>
                       <div class="form-group col-md-6">
-                        <select class="form-control" name="agama">
+                        <select class="form-control agama" name="agama">
                           <option>Agama</option>
                           {% for ag in agama %}
                             <option value="{{ag.id}}">{{ag.name}}</option>
@@ -163,7 +163,7 @@
                         </select>
                       </div>
                       <div class="form-group col-md-6">
-                        <select class="form-control" name="statusmenikah">
+                        <select class="form-control statusmenikah" name="statusmenikah">
                           <option>Status Menikah</option>
                           {% for sm in statusmenikah %}
                             <option value="{{sm.id}}">{{sm.name}}</option>
@@ -178,7 +178,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <select class="form-control" name="bank">
+                        <select class="form-control bank" name="bank">
                           <option>Nama Bank</option>
                           {% for bk in bank %}
                             <option value="{{bk.id}}">{{bk.name}}</option>
@@ -186,10 +186,10 @@
                         </select>
                       </div>
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="No Rekening" name="norekening">
+                        <input type="text" class="form-control norekening" placeholder="No Rekening" name="norekening">
                       </div>
                       <div class="form-group col-md-12">
-                        <input type="text" class="form-control" placeholder="Rekening Atas Nama" name="atasnama">
+                        <input type="text" class="form-control atasnama" placeholder="Rekening Atas Nama" name="atasnama">
                       </div>
                     </div>
                   </div>
@@ -201,7 +201,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Finger ID" name="fingerid">
+                        <input type="text" class="form-control fingerid" placeholder="Finger ID" name="fingerid">
                       </div>
                     </div>
                   </div>
@@ -395,18 +395,19 @@ $(function () {
         type: "POST",
         url: 'http://{{ request.get_host }}/index/api/karyawan/create/save',
         data: {NIK: $('.NIK').val(), nama1: $('.nama1').val()
-              ,nama2: $('.nama2').val(), tempatlahir: $('tempatlahir').val(), tanggallahir: $('.tanggallahir').val(), gender: $('.gender').val(), bagian: $('.bagian').val(),
+              ,nama2: $('.nama2').val(), tempatlahir: $('tempatlahir').val(), tanggallahir: $('.tanggallahir').val(), gender: $('.gender').filter(":selected").val(), bagian: $('.bagian').val(),
               alamat: $('.alamat').val(), kota: $('.kota').val(), provinsi: $('.provinsi').val(),
-              telepon: $('.telepon').val(), handphone: $('.handphone').val(), statuskaryawan: $('.statuskaryawan').val(),
-              masakaryawan: $('.masakaryawan').val(), ktp: $('.ktp').val(), warganegara: $('.warganegara').val(),
-              agama: $('.agama').val(),statusmenikah: $('.statusmenikah').val(),bank: $('.bank').val(),
+              telepon: $('.telepon').val(), handphone: $('.handphone').val(), statuskaryawan: $('.statuskaryawan').filter(":selected").val(),
+              masakaryawan: $('.masakaryawan').val(), ktp: $('.ktp').val(), warganegara: $('.warganegara').filter(":selected").val(),
+              agama: $('.agama').filter(":selected").val(),statusmenikah: $('.statusmenikah').filter(":selected").val(),bank: $('.bank').filter(":selected").val(),
               norekening: $('.norekening').val(),atasnama: $('.atasnama').val(),fingerid: $('.fingerid').val(),
-              NPWP: $('.NPWP').val(),KPJ: $('.KPJ').val(),jumlahhari: $('.jumlahhari').val(),
+              NPWP: $('.NPWP').val(),KPJ: $('.KPJ').val(),jumlahhari: $('.jumlahhari').filter(":selected").val(),
               departemen: $('.departemen').val(),bagian: $('.bagian').val(),golongan: $('.golongan').val(),
               perusahaan: $('.perusahaan').val(),
               csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Simpan Karyawan Baru');
+            $("#tambahkaryawan").trigger('reset');
         }
       });
     });
