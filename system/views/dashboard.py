@@ -84,9 +84,9 @@ def karyawan_shift_index(request):
 	jab = Jabatan.objects.all()
 	shift = Shift.objects.all()
 	ks = KaryawanShift.objects.all()
-
+	
 	page = request.GET.get('page', 1)
-	paginator = Paginator(ks, 20)	
+	paginator = Paginator(ks, 20)
     
 	try:
  		ks = paginator.page(page)

@@ -314,12 +314,12 @@
     "pk": 26,
     "fields": 
       {
-        "name": "TRANSAKSI",
-        "fungsi": "Transaksi",
+        "name": "POSTINGGAJI",
+        "fungsi": "GAJI",
         "menu": "root",
         "icon": "fa fa-pie-chart",
         "mode": "alone",
-        "url_slug" : "absensi",
+        "url_slug" : "posting-gaji",
         "created_at": "2017-03-01 15:03+07"
       }    
   }, {
@@ -344,9 +344,21 @@
         "icon": "fa fa-table",
         "created_at": "2017-03-01 15:03+07"
       }    
-  }, {
+  },{
     "model": "system.modules",
     "pk": 29,
+    "fields": 
+      {
+        "name": "Absensi",
+        "fungsi": "Laporan Absensi",
+        "menu": "LAPORAN",
+        "icon": "fa fa-table",
+        "url_slug" : "absensi-index",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.modules",
+    "pk": 30,
     "fields": 
       {
         "name": "LAPORANLEMBUR",
@@ -357,7 +369,7 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 30,
+    "pk": 31,
     "fields": 
       {
         "name": "LAPORANBPJS",
@@ -368,7 +380,7 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 31,
+    "pk": 32,
     "fields": 
       {
         "name": "LAPORANPOTONGAN",
@@ -379,7 +391,7 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 32,
+    "pk": 33,
     "fields": 
       {
         "name": "LAPORANABSENSICUTI",
@@ -390,7 +402,7 @@
       }    
   } , {
     "model": "system.modules",
-    "pk": 33,
+    "pk": 34,
     "fields": 
       {
         "name": "DIVIDER",
@@ -401,7 +413,7 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 34,
+    "pk": 35,
     "fields": 
       {
         "name": "USER",
@@ -412,7 +424,7 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 35,
+    "pk": 36,
     "fields": 
       {
         "name": "PENGATURANSISTEM",
@@ -423,7 +435,7 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 36,
+    "pk": 37,
     "fields": 
       {
         "name": "PENGATURANAPLIKASI",
@@ -435,7 +447,7 @@
       }    
   }, {
     "model": "system.modules",
-    "pk": 37,
+    "pk": 38,
     "fields": 
       {
         "name": "LOGOUT",

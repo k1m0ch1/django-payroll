@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^absensi$', views.dashboard.absensi_index, name="absensi-index"),
     url(r'^inventory$', views.dashboard.inventory_index, name="inventory-index"),
     url(r'^konfigurasi$', views.dashboard.konfigurasi_index, name="konfigurasi-index"),
+    # url(r'^gaji$', views.dashboard.gaji_index, name="gaji-index"),
   	#url(r'^notif-system$', views.dashboard.notif_system, name="notif-system-index"),
   	#url(r'^notif-login$', views.dashboard.notif_login, name="notif-login-index"),
   	#url(r'^notif-aplikasi$', views.dashboard.notif_aplikasi, name="notif-aplikasi-index"),
@@ -67,6 +68,8 @@ urlpatterns = [
     url(r'^inventory/create/save$', views.create.inventory_save, name="inventory-create-save"),
     url(r'^konfigurasi/create$', views.create.konfigurasi, name="konfigurasi-create"),
     url(r'^konfigurasi/create/save$', views.create.konfigurasi_save, name="konfigurasi-create-save"),
+    # url(r'^gaji/create$', views.create.gaji, name="gaji-create"),
+    # url(r'^gaji/create/save$', views.create.gaji_save, name="gaji-create-save"),
 
     #==eof-create
     #==edit
@@ -101,6 +104,8 @@ urlpatterns = [
     url(r'^inventory/(?P<inventory_id>[0-9]+)/edit/save$', views.edit.inventory_save, name="inventory-edit-save"),
     url(r'^konfigurasi/(?P<konfigurasi_id>[0-9]+)/edit/$', views.edit.konfigurasi, name="konfigurasi-edit"),
     url(r'^konfigurasi/(?P<konfigurasi_id>[0-9]+)/edit/save$', views.edit.konfigurasi_save, name="konfigurasi-edit-save"),
+    # url(r'^gaji/(?P<gaji_id>[0-9]+)/edit/$', views.edit.gaji, name="gaji-edit"),
+    # url(r'^gaji/(?P<gaji_id>[0-9]+)/edit/save$', views.edit.gaji_save, name="gaji-edit-save"),
 
     #==eofedit
 
@@ -118,6 +123,10 @@ urlpatterns = [
 
     url(r'^hariraya/(?P<hariraya_id>[0-9]+)/delete/$', views.delete.hariraya, name="hariraya-delete"),
     url(r'^inventory/(?P<inventory_id>[0-9]+)/delete/$', views.delete.inventory, name="inventory-delete"),
+    # url(r'^gaji/(?P<gajia_id>[0-9]+)/delete/$', views.delete.gaji, name="gaji-delete"),
+
+
+    #===api
 
     url(r'^api/karyawan$', views.dashboard.api_karyawan, name="karyawan-api"),
     url(r'^karyawan-shift/edit/save$', views.edit.karyawan_shift, name="karyawan-shift-simpan-api"),
