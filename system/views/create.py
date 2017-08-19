@@ -17,6 +17,7 @@ allmenu = Modules.objects.only('name')
 
 @login_required()
 def karyawan(request):
+	per = Perusahaan.objects.all()
 	dep = Departemen.objects.all()
 	bag = Bagian.objects.all()
 	gol = Golongan.objects.all()
@@ -29,7 +30,8 @@ def karyawan(request):
 	return render(request, "karyawan/form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
 													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request), 'departemen':dep,
 													   'bagian': bag, 'golongan':gol, 'jabatan': jab, 'warganegara' : wg,
-													   'statusmenikah' : sm, 'bank':bank, 'agama':agama})
+													   'statusmenikah' : sm, 'bank':bank, 'agama':agama,
+													   'perusahaan': per})
 
 @login_required()
 def karyawan_save(request):
@@ -65,7 +67,7 @@ def karyawan_save(request):
 					KPJ = request.POST['KPJ'], jumlahhari = request.POST['jumlahhari'],
 					departemen_id = request.POST['departemen'], bagian_id = request.POST['bagian'],
 					golongan_id = request.POST['golongan'], jabatan_id = request.POST['jabatan'],
-					perusahaan_id= '1')
+					perusahaan_id= request.POST['perusahaan'])
 	k.save()
 
 	return redirect('karyawan-index')
@@ -86,7 +88,7 @@ def karyawan_save_api(request):
 					KPJ = request.POST['KPJ'], jumlahhari = request.POST['jumlahhari'],
 					departemen_id = request.POST['departemen'], bagian_id = request.POST['bagian'],
 					golongan_id = request.POST['golongan'], jabatan_id = request.POST['jabatan'],
-					perusahaan_id= '1')
+					perusahaan_id= request.POST['perusahaan'])
 	k.save()
 
 	return HttpResponse("berhasil-simpan-karyawan")
