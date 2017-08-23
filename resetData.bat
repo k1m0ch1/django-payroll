@@ -1,4 +1,4 @@
-SET basenya=%1
+SET basenya=E:\Document\payroll
 cd %basenya%
 python manage.py migrate system zero
 cd %basenya%\system\migrations
