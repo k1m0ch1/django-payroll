@@ -305,7 +305,7 @@
                         <select class="form-control perusahaan" name="perusahaan">
                           <option>== Pilih Perusahaan ==</option>
                           {% for p in perusahaan %}
-                            <option value="{{d.id}}">{{p.name}}</option>
+                            <option value="{{p.id}}">{{p.name}}</option>
                           {% endfor %}
                         </select>
                       </div>
@@ -344,7 +344,16 @@
 
                     </div>
                   </div>  
-
+                  <div class="row"> 
+                    <div class="col-md-2 ">
+                      <p class="text-right">Gaji Pokok</p>
+                    </div>
+                    <div class="col-md-10">
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control gajipokok" placeholder="Rp. Gaji Pokok" name="gajipokok">
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col-md-5 text-right">
@@ -395,15 +404,15 @@ $(function () {
         type: "POST",
         url: 'http://{{ request.get_host }}/index/api/karyawan/create/save',
         data: {NIK: $('.NIK').val(), nama1: $('.nama1').val()
-              ,nama2: $('.nama2').val(), tempatlahir: $('tempatlahir').val(), tanggallahir: $('.tanggallahir').val(), gender: $('.gender').filter(":selected").val(), bagian: $('.bagian').val(),
+              ,nama2: $('.nama2').val(), tempatlahir: $('tempatlahir').val(), tanggallahir: $('.tanggallahir').val(), gender: $('.gender').find(":selected").val(), bagian: $('.bagian').val(),
               alamat: $('.alamat').val(), kota: $('.kota').val(), provinsi: $('.provinsi').val(),
-              telepon: $('.telepon').val(), handphone: $('.handphone').val(), statuskaryawan: $('.statuskaryawan').filter(":selected").val(),
-              masakaryawan: $('.masakaryawan').val(), ktp: $('.ktp').val(), warganegara: $('.warganegara').filter(":selected").val(),
-              agama: $('.agama').filter(":selected").val(),statusmenikah: $('.statusmenikah').filter(":selected").val(),bank: $('.bank').filter(":selected").val(),
+              telepon: $('.telepon').val(), handphone: $('.handphone').val(), statuskaryawan: $('.statuskaryawan').find(":selected").val(),
+              masakaryawan: $('.masakaryawan').val(), ktp: $('.ktp').val(), warganegara: $('.warganegara').find(":selected").val(),
+              agama: $('.agama').find(":selected").val(),statusmenikah: $('.statusmenikah').find(":selected").val(),bank: $('.bank').find(":selected").val(),
               norekening: $('.norekening').val(),atasnama: $('.atasnama').val(),fingerid: $('.fingerid').val(),
-              NPWP: $('.NPWP').val(),KPJ: $('.KPJ').val(),jumlahhari: $('.jumlahhari').filter(":selected").val(),
-              departemen: $('.departemen').filter(":selected").val(),bagian: $('.bagian').filter(":selected").val(),golongan: $('.golongan').filter(":selected").val(),
-              perusahaan: $('.perusahaan').filter(":selected").val(),
+              NPWP: $('.NPWP').val(),KPJ: $('.KPJ').val(),jumlahhari: $('.jumlahhari').find(":selected").val(),
+              departemen: $('.departemen').find(":selected").val(),bagian: $('.bagian').find(":selected").val(),golongan: $('.golongan').find(":selected").val(),
+              perusahaan: $('.perusahaan').find(":selected").val(),
               csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Simpan Karyawan Baru');
@@ -411,6 +420,14 @@ $(function () {
         }
       });
     });
+
+  $(".statuskaryawan").on("change", function(){
+      if($('.statuskaryawan').find(":selected").val()=="Permanent"){
+        $(".masakaryawan").hide();
+      }else{
+        $(".masakaryawan").show();
+      }
+  });
   
   $('#datepicker').datepicker({
     autoclose: true

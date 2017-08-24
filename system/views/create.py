@@ -8,6 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konfigurasi
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
+from system.models import GajiPokok
 from dateutil.parser import parse
 from sys import getsizeof
 from zk import ZK, const
@@ -66,9 +67,11 @@ def karyawan_save(request):
 					fingerid = request.POST['fingerid'], NPWP = request.POST['NPWP'],
 					KPJ = request.POST['KPJ'], jumlahhari = request.POST['jumlahhari'],
 					departemen_id = request.POST['departemen'], bagian_id = request.POST['bagian'],
-					golongan_id = request.POST['golongan'], jabatan_id = request.POST['jabatan'],
+					golongan_id = request.POST['golongan'], #jabatan_id = request.POST['jabatan'],
 					perusahaan_id= request.POST['perusahaan'])
 	k.save()
+
+	g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'])
 
 	return redirect('karyawan-index')
 
@@ -87,7 +90,7 @@ def karyawan_save_api(request):
 					fingerid = request.POST['fingerid'], NPWP = request.POST['NPWP'],
 					KPJ = request.POST['KPJ'], jumlahhari = request.POST['jumlahhari'],
 					departemen_id = request.POST['departemen'], bagian_id = request.POST['bagian'],
-					golongan_id = request.POST['golongan'], jabatan_id = request.POST['jabatan'],
+					golongan_id = request.POST['golongan'], #jabatan_id = request.POST['jabatan'],
 					perusahaan_id= request.POST['perusahaan'])
 	k.save()
 
