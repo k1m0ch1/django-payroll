@@ -58,7 +58,7 @@
                   <th class="col-md-2">Departemen</th>
                   <th class="col-md-2">Bagian</th>
                   <th class="col-md-2">Golongan</th>
-                  <th class="col-md-2">Jabatan</th>
+                  <!-- <th class="col-md-2">Jabatan</th> -->
                   <th class="col-md-1">Action</th>
                 </tr>
                 {% for data in karyawan %}
@@ -68,7 +68,7 @@
                   <td>{{data.departemen.name}}</td>
                   <td>{{data.bagian.name}}</td>
                   <td>{{data.golongan.name}}</td>
-                  <td>{{data.jabatan.name}}</td>
+                  <!-- <td>{{data.jabatan.name}}</td> -->
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                       <a href="{% url 'karyawan-detail' karyawan_id=data.id %}" type="button" class="btn btn-default"><i class="fa fa-user"></i></a>

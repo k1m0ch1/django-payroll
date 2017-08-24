@@ -105,7 +105,7 @@ def karyawan_shift_index(request):
 
 @login_required()
 def karyawan_index(request):
-	karyawan_list = Karyawan.objects.all()
+	karyawan_list = Karyawan.objects.all().order_by('-created_at')
 	page = request.GET.get('page', 1)
 	paginator = Paginator(karyawan_list, 10)	
     
