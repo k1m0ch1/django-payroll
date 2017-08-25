@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
+            <li><i class="fa fa-flask"></i> Data Master</li>
+            <li class="active">Shift</li>
+          </ol>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-2">
+                <p><h3 class="control-label">Posting Gaji</h3></p>
+              </div>
+          </div>                
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-2">
+                <p><h4 class="control-label">---</h4></p>
+              </div>
+          </div>                
+      </div>
+      
+      <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-2">
+              <label class="control-label">List Karyawan</label>               
+            </div>
+            <input type="hidden" id="idKaryawan" name="idkaryawan" />
+            <div class="col-md-10">
+              <p class="" id="textKaraywan">  </p>
+            
+              <button class="btn btn-primary" id="pilihKaryawan" data-toggle="modal" data-target="#pilihKaryawanModal"><i class="fa fa-plus"></i> Pilih Karyawan</button> 
+              <button class="btn btn-primary" id="bersih"><i class="fa fa-plus"></i> Clear</button>  
+              </div>             
+          </div>                
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-2">
+                <p><h4 class="control-label">Posting Gaji</h4></p>
+              </div>
+          </div>                
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-2">
+              <label class="control-label pull-right">Banyak Jam Lembur</label>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" id="btnposting"><i class="fa fa-plus"></i> Posting</button> 
+            </div>
+          </div>          
+      </div>
+      <!-- Your Page Content Here -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  <footer class="main-footer">
+      <!-- To the right -->
+      <div class="pull-right hidden-xs">
+        Anything you want
+      </div>
+      <!-- Default to the left -->
+      <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    </footer>
+
+    <div class="modal fade" id="pilihKaryawanModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3 class="modal-title">Pilih Karyawan</h3>
+          <small>Pilih karyawan terlebih dahulu untuk menambahkan atau mengubah Absensi</small>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+              <div class="col-md-12">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="pencarian" class="col-sm-2 control-label">Pencarian</label>
+                    <div class="col-md-5">
+                      <select class="form-control" id="departemen">
+                      <option value="">Departemen</option>
+                      {% for dp in departemen %}
+                        <option value="{{dp.id}}">{{ dp.name }}</option>
+                      {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-md-5">
+                      <select class="form-control" id="bagian">
+                      <option value="">Bagian</option>
+                      {% for bg in bagian %}
+                        <option value="{{bg.id}}">{{ bg.name }}</option>
+                      {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      <select class="form-control" id="golongan">
+                      <option value="">Golongan</option>
+                      {% for gl in golongan %}
+                        <option value="{{gl.id}}">{{ gl.name }}</option>
+                      {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-md-5">
+                      <select class="form-control" id="jabatan">
+                      <option value="">Jabatan</option>
+                      {% for jb in jabatan %}
+                        <option value="{{jb.id}}">{{ jb.name }}</option>
+                      {% endfor %}
+                    </select>
+                    </div>
+                    <label for="pencarian" class="col-sm-2 control-label">NIK</label>
+                    <div class="input-group col-sm-8">
+                      <input placeholder="NIK" type="text" class="form-control" id="nik">
+                    </div>
+                    <label for="nama" class="col-sm-2 control-label">Nama</label>
+                    <div class="input-group col-sm-8">
+                      <input placeholder="Nama" type="text" class="form-control" id="name">
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-primary btn-flat" id="caripaketext">Search</button>
+                        </span>
+                    </div>
+                  </div>              
+                </form>              
+              </div>                
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="box" id="contentKaryawan">
+                
+              </div>
+              <!-- /.box -->
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+{% endblock %}
+
+{% block javascript %} 
+  <script src="{% static 'plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <!-- AdminLTE App -->
+  <script src="{% static 'dist/js/app.min.js' %}"></script>
+  <!-- SlimScroll 1.3.0 -->
+  <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+  <script src="{% static 'plugins/daterangepicker/daterangepicker.js' %}"></script>
+  <script src="{% static 'plugins/datepicker/bootstrap-datepicker.js' %}"></script>
+  <script src="{% static 'plugins/colorpicker/bootstrap-colorpicker.min.js' %}"></script>
+  <script src="{% static 'plugins/timepicker/bootstrap-timepicker.min.js' %}"></script>
+  <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+
+  <script>
+  $(function () {    
+        
+    $.ajax({
+        type: "GET",
+        url: 'http://{{ request.get_host }}/index/api/karyawan',
+        success: function(result) {
+            $('#contentKaryawan').html(result);
+      }
+    });
+
+    $('#bersih').on("click", function(){
+        $('#textKaraywan').text("");
+        $('#idKaryawan').val("");   
+        $.ajax({
+            type: "GET",
+            url: 'http://{{ request.get_host }}/index/api/karyawan',
+            success: function(result) {
+                $('#contentKaryawan').html(result);
+          }
+        });  
+    });
+
+    $('#btnposting').on("click", function(){
+      $.ajax({
+            type: "POST",
+            url: 'http://{{ request.get_host }}/index/postinggaji/do',
+            data: {idkaryawan: $('#idKaryawan').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+            success: function(result) {
+                //var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+                //mywindow.document.write(result);
+                //$('#contentKaryawan').html(result);
+                //mywindow.print();
+                //$('#contentKaryawan').printElement();
+          }
+        }); 
+    });
+
+  });
+</script>
+{% endblock %}

@@ -127,9 +127,8 @@ def karyawan_lembur_save_api(request):
 	idkaryawan = request.POST['idkaryawan']
 	listid = [x.strip() for x in idkaryawan.split(',')]
 	for y in range(0, len(listid)-1):
-		for z in range(0, 4):
-			a = Absensi.objects.select_for_update().filter(karyawan_id=listid[y]).filter(tanggal=datetime.datetime.now().strftime("%Y-%m-%d"))
-			a.update(SPL = 1, SPL_banyak=request.POST['lamalembur'])
+		a = Absensi.objects.select_for_update().filter(karyawan_id=listid[y]).filter(tanggal=datetime.datetime.now().strftime("%Y-%m-%d"))
+		a.update(SPL = 1, SPL_banyak=request.POST['lamalembur'])
 
 	return HttpResponse("berhasil-simpan-lembur")
 

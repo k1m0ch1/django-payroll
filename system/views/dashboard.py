@@ -104,6 +104,17 @@ def karyawan_shift_index(request):
 															 'golongan' : gol, 'jabatan' : jab, 'ks': ks, 'shift' : shift})
 
 @login_required()
+def postinggaji_index(request):
+	k = Karyawan.objects.all()
+	dep = Departemen.objects.all()
+	bag = Bagian.objects.all()
+	gol = Golongan.objects.all()
+	jab = Jabatan.objects.all()
+
+	return render(request, "postinggaji/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+															 'golongan' : gol, 'jabatan' : jab,})
+
+@login_required()
 def karyawan_index(request):
    	class Selected(object):
 			kategori = ""

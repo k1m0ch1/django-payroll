@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^inventory$', views.dashboard.inventory_index, name="inventory-index"),
     url(r'^konfigurasi$', views.dashboard.konfigurasi_index, name="konfigurasi-index"),
     url(r'^overtime$', views.dashboard.overtime_index, name="overtime-index"),
+    url(r'^postinggaji$', views.dashboard.postinggaji_index, name="postinggaji-index"),
     # url(r'^gaji$', views.dashboard.gaji_index, name="gaji-index"),
   	#url(r'^notif-system$', views.dashboard.notif_system, name="notif-system-index"),
   	#url(r'^notif-login$', views.dashboard.notif_login, name="notif-login-index"),
@@ -77,6 +78,7 @@ urlpatterns = [
     url(r'^konfigurasi/create/save$', views.create.konfigurasi_save, name="konfigurasi-create-save"),
     # url(r'^gaji/create$', views.create.gaji, name="gaji-create"),
     # url(r'^gaji/create/save$', views.create.gaji_save, name="gaji-create-save"),
+    url(r'^postinggaji/do$', views.posting.postinggaji, name="postinggaji-do"),
 
     #==eof-create
     #==edit

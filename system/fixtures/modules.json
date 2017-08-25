@@ -324,6 +324,7 @@
         "fungsi": "Posting Gaji",
         "menu": "TRANSAKSI",
         "icon": "fa fa-pie-chart",
+        "url_slug" : "postinggaji-index",
         "created_at": "2017-03-01 15:03+07"
       }    
   }, {
