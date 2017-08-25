@@ -37,6 +37,7 @@ def karyawan(request):
 @login_required()
 def karyawan_save(request):
 	nama = request.POST['nama1'] + " " + request.POST['nama2']
+	
 	# conn = None 
 	# zk = ZK('192.168.0.225', port=4370, timeout=5)
 	# try:

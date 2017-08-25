@@ -245,7 +245,7 @@ class Lembur(models.Model):
 
 class GajiPokok(models.Model):
 	karyawan = models.ForeignKey(Karyawan)
-	name = models.CharField(max_length=255)
+	name = models.CharField(max_length=255, null=True)
 	desc = models.TextField(null=True)
 	gajipokok = models.DecimalField(max_digits=20, decimal_places=0)
 	tmakan = models.DecimalField(max_digits=7, decimal_places=0, null=True)

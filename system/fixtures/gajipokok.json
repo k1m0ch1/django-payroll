@@ -1,0 +1,202 @@
+[
+  {
+    "model": "system.GajiPokok",
+    "pk": 1,
+    "fields": 
+      {
+        "karyawan_id": 1,
+        "gajipokok" : 1500000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 2,
+    "fields": 
+      {
+        "karyawan_id": 2,
+        "gajipokok" : 300000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 3,
+    "fields": 
+      {
+        "karyawan_id": 3,
+        "gajipokok" : 500000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+{
+    "model": "system.Karyawan",
+    "pk": 4,
+    "fields": 
+      {
+        "karyawan_id": 4,
+        "gajipokok" : 1000000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 5,
+    "fields": 
+      {
+        "karyawan_id": 5,
+        "gajipokok" : 150000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 6,
+    "fields": 
+      {
+        "karyawan_id": 6,
+        "gajipokok" : 150000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 7,
+    "fields": 
+      {
+        "karyawan_id": 7,
+        "gajipokok" : 500000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 8,
+    "fields": 
+      {
+        "karyawan_id": 8,
+        "gajipokok" : 100000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 9,
+    "fields": 
+      {
+        "karyawan_id": 9,
+        "gajipokok" : 7000000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 10,
+    "fields": 
+      {
+        "karyawan_id": 10,
+        "gajipokok" : 1500000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 11,
+    "fields": 
+      {
+        "karyawan_id": 11,
+        "gajipokok" : 5000000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 12,
+    "fields": 
+      {
+        "karyawan_id": 12,
+        "gajipokok" : 2000000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 13,
+    "fields": 
+      {
+        "karyawan_id": 13,
+        "gajipokok" : 150000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 14,
+    "fields": 
+      {
+        "karyawan_id": 14,
+        "gajipokok" : 1500000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 15,
+    "fields": 
+      {
+        "karyawan_id": 15,
+        "gajipokok" : 500000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 16,
+    "fields": 
+      {
+        "karyawan_id": 16,
+        "gajipokok" : 4000000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 17,
+    "fields": 
+      {
+        "karyawan_id": 17,
+        "gajipokok" : 450000,
+        "created_at": "2017-03-01 15:03+07"
+      }
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 18,
+    "fields": 
+      {
+        "karyawan_id": 18,
+        "gajipokok" : 350000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 19,
+    "fields": 
+      {
+        "karyawan_id": 19,
+        "gajipokok" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      } 
+  },
+  {
+    "model": "system.Karyawan",
+    "pk": 20,
+    "fields": 
+      {
+        "karyawan_id": 20,
+        "gajipokok" : 170000,
+        "created_at": "2017-03-01 15:03+07"
+      }
+  }
+]

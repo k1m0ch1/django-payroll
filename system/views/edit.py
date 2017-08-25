@@ -42,9 +42,29 @@ def karyawan_save(request, karyawan_id):
 	k = Karyawan.objects.get(pk=karyawan_id)
 	g = GajiPokok.objects.filter(karyawan_id=karyawan_id)
 
-	
-	
-	return HttpResponse("kosong")
+	k.update(NIK = request.POST['NIK'], name = request.POST['nama1'],
+			shortname = request.POST['nama1'], tempatlahir = request.POST['tempatlahir'],
+			tanggallahir = parse(request.POST['tanggallahir']).strftime("%Y-%m-%d"), gender = request.POST['gender'],
+			alamat = request.POST['alamat'], kota = request.POST['kota'],
+			provinsi = request.POST['provinsi'], telepon = request.POST['telepon'],
+			handphone = request.POST['handphone'], statuskaryawan = request.POST['statuskaryawan'],
+			masakaryawan = parse(request.POST['masakaryawan']).strftime("%Y-%m-%d"), ktpid = request.POST['ktp'],
+			warganegara_id = request.POST['warganegara'], agama_id = request.POST['agama'],
+			statusmenikah_id = request.POST['statusmenikah'], bank_id = request.POST['bank'],
+			norek = request.POST['norekening'], atasnama = request.POST['atasnama'],
+			fingerid = request.POST['fingerid'], NPWP = request.POST['NPWP'],
+			KPJ = request.POST['KPJ'], jumlahhari = request.POST['jumlahhari'],
+			departemen_id = request.POST['departemen'], bagian_id = request.POST['bagian'],
+			golongan_id = request.POST['golongan'], #jabatan_id = request.POST['jabatan'],
+			perusahaan_id= request.POST['perusahaan'])
+
+	if len(g)>0:
+		g.update(name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], jumlahhari = request.POST['jumlahhari'])
+	else:
+		g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], jumlahhari = request.POST['jumlahhari'])
+		g.save()
+
+	return redirect("karyawan-index")
 
 @login_required()
 def karyawan_shift(request):

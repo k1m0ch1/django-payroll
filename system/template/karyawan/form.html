@@ -356,10 +356,18 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-5 text-right">
+                  <div class="col-md-5 text-left">
                     <div class="form-group">
-                        <button class="btn btn-primary simpanKaryawan" type="button" id="simpantambah"><i class="fa fa-plus"></i> Simpan dan Tambah Karyawan Baru</button> 
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Simpan</button> 
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                          <button type="submit" class=" btn btn-primary"><i class="fa fa-plus"></i> Simpan</button> 
+                        </div>
+                        <div class="col-md-5">
+                        {% if mode == "Tambah" %} 
+                          <button class="btn btn-primary simpanKaryawan" type="button" id="simpantambah"><i class="fa fa-plus"></i> Simpan dan Tambah Karyawan Baru</button> 
+                        {% endif %}
+                        </div>
+                        
                     </div>
                   </div>        
 
