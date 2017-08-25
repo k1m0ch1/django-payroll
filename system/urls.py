@@ -37,6 +37,10 @@ urlpatterns = [
 
   	#url(r'^perusahaan$', views.dashboard.perusahaan_index,  name="perusahaan-index"),
 
+    #==search
+    url(r'^karyawan/search$', views.search.karyawan,  name="karyawan-search"),
+    #==eof
+
     #==create
 
     url(r'^departemen/create$', views.create.departemen,  name="departemen-create"),

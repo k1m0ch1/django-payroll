@@ -25,22 +25,24 @@
       </div>
       <div class="row">
           <div class="col-md-12">
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="{% url 'karyawan-search' %}" method="POST">
+            {% csrf_token %}
               <div class="form-group">
                 <label for="pencarian" class="col-sm-2 control-label">Pencarian</label>
                 <div class="col-sm-2">
-                  <select class="form-control">
-                  <option>Kategori</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <select class="form-control" name="kategori">
+                  <option value="Kategori" {{ selected.kategori }}>Kategori</option>
+                  <option value="NIK" {{ selected.nik }}>NIK</option>
+                  <option value="Nama" {{ selected.nama }}>Nama</option>
+                  <option value="Departemen" {{ selected.departemen }}>Departemen</option>
+                  <option value="Bagian" {{ selected.bagian }}>Bagian</option>
+                  <option value="Golongan" {{ selected.golongan }}>Golongan</option>
                 </select>
                 </div>
                 <div class="input-group col-sm-4">
-                  <input type="text" class="form-control">
+                  <input type="text" name="keywords" class="form-control">
                     <span class="input-group-btn">
-                      <button type="button" class="btn btn-primary btn-flat">Search</button>
+                      <input type="submit" class="btn btn-primary btn-flat">Search</button>
                     </span>
                 </div>
               </div>              

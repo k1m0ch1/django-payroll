@@ -105,9 +105,25 @@ def karyawan_shift_index(request):
 
 @login_required()
 def karyawan_index(request):
+   	class Selected(object):
+			kategori = ""
+			nik = ""
+			nama = ""
+			departemen = ""
+			bagian = ""
+			golongan = ""
+
+			def __init__(self, kategori, nik, nama, departemen, bagian, golongan):
+				self.kategori = kategori
+				self.nik = nik
+				self.nama = nama
+				self.departemen = departemen
+				self.bagian = bagian
+				self.golongan = golongan
+
 	karyawan_list = Karyawan.objects.all().order_by('-created_at')
 	page = request.GET.get('page', 1)
-	paginator = Paginator(karyawan_list, 10)	
+	paginator = Paginator(karyawan_list, 30)	
     
 	try:
  		karyawan = paginator.page(page)
@@ -116,7 +132,11 @@ def karyawan_index(request):
 	except EmptyPage:
    		karyawan = paginator.page(paginator.num_pages)
 
-	return render(request, "karyawan/dashboard.html", { 'karyawan' : karyawan, 'dsb' : modules})
+
+
+   	ilihan = Selected("selected" ,"", "", "", "", "")
+
+	return render(request, "karyawan/dashboard.html", { 'karyawan' : karyawan, 'dsb' : modules, 'selected': "Kategori"})
 
 @login_required()
 def karyawan_detail(request, karyawan_id):
