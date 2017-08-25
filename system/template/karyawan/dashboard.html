@@ -74,7 +74,7 @@
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                       <a href="{% url 'karyawan-detail' karyawan_id=data.id %}" type="button" class="btn btn-default"><i class="fa fa-user"></i></a>
-                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                      <a href="{% url 'karyawan-edit' karyawan_id=data.id %}" type="button" class="btn btn-default"><i class="fa fa-pencil"></i></a>
                       <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>                      
                     </div>                  
                   </td>

@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan, Konfigurasi
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Inventory
-from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
+from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift, GajiPokok
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -29,15 +29,21 @@ def karyawan(request, karyawan_id):
 	bank = Bank.objects.all()
 	agama = Agama.objects.all()
 	kar = Karyawan.objects.get(pk=karyawan_id)
+	gajipokok = GajiPokok.objects.filter(karyawan_id=karyawan_id)
 
 	return render(request, "karyawan/form.html", { 'mode' : 'Ubah', 'module' : getModule(request), 
 													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request), 'departemen':dep,
 													   'bagian': bag, 'golongan':gol, 'jabatan': jab, 'warganegara' : wg,
 													   'statusmenikah' : sm, 'bank':bank, 'agama':agama,
-													   'perusahaan': per, 'karyawan': kar})
+													   'perusahaan': per, 'karyawan': kar, 'gajipokok': gajipokok })
 
 @login_required()
 def karyawan_save(request, karyawan_id):
+	k = Karyawan.objects.get(pk=karyawan_id)
+	g = GajiPokok.objects.filter(karyawan_id=karyawan_id)
+
+	
+	
 	return HttpResponse("kosong")
 
 @login_required()
