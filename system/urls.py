@@ -115,6 +115,8 @@ urlpatterns = [
     url(r'^konfigurasi/(?P<konfigurasi_id>[0-9]+)/edit/save$', views.edit.konfigurasi_save, name="konfigurasi-edit-save"),
     # url(r'^gaji/(?P<gaji_id>[0-9]+)/edit/$', views.edit.gaji, name="gaji-edit"),
     # url(r'^gaji/(?P<gaji_id>[0-9]+)/edit/save$', views.edit.gaji_save, name="gaji-edit-save"),
+    url(r'^karyawan/(?P<karyawan_id>[0-9]+)/edit/$', views.edit.karyawan, name="karyawan-edit"),
+    url(r'^karyawan/(?P<karyawan_id>[0-9]+)/edit/save$', views.edit.karyawan_save, name="karyawan-edit-save"),
 
     #==eofedit
 

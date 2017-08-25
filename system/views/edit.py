@@ -18,6 +18,29 @@ modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
 
 @login_required()
+def karyawan(request, karyawan_id):
+	per = Perusahaan.objects.all()
+	dep = Departemen.objects.all()
+	bag = Bagian.objects.all()
+	gol = Golongan.objects.all()
+	jab = Jabatan.objects.all()
+	wg = WargaNegara.objects.all()
+	sm = StatusMenikah.objects.all()
+	bank = Bank.objects.all()
+	agama = Agama.objects.all()
+	kar = Karyawan.objects.get(pk=karyawan_id)
+
+	return render(request, "karyawan/form.html", { 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request), 'departemen':dep,
+													   'bagian': bag, 'golongan':gol, 'jabatan': jab, 'warganegara' : wg,
+													   'statusmenikah' : sm, 'bank':bank, 'agama':agama,
+													   'perusahaan': per, 'karyawan': kar})
+
+@login_required()
+def karyawan_save(request, karyawan_id):
+	return HttpResponse("kosong")
+
+@login_required()
 def karyawan_shift(request):
 	idkaryawan = request.POST['idkaryawan']
 	listid = [x.strip() for x in idkaryawan.split(',')]
