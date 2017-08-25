@@ -71,14 +71,16 @@ def karyawan_save(request):
 					perusahaan_id= request.POST['perusahaan'])
 	k.save()
 
-	g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'])
+	g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], jumlahhari = request.POST['jumlahhari'])
 	g.save()
 
 	return redirect('karyawan-index')
 
 @login_required()
 def karyawan_save_api(request):
-	k = Karyawan(NIK = request.POST['NIK'], name = request.POST['nama1'] + " " + request.POST['nama2'],
+	nama = request.POST['nama1'] + " " + request.POST['nama2']
+
+	k = Karyawan(NIK = request.POST['NIK'], name = nama,
 					shortname = request.POST['nama1'], tempatlahir = request.POST['tempatlahir'],
 					tanggallahir = parse(request.POST['tanggallahir']).strftime("%Y-%m-%d"), gender = request.POST['gender'],
 					alamat = request.POST['alamat'], kota = request.POST['kota'],
@@ -95,7 +97,7 @@ def karyawan_save_api(request):
 					perusahaan_id= request.POST['perusahaan'])
 	k.save()
 
-	g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'])
+	g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], jumlahhari = request.POST['jumlahhari'])
 	g.save()
 
 	return HttpResponse("berhasil-simpan-karyawan")

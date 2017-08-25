@@ -242,9 +242,9 @@ class Lembur(models.Model):
 
 class GajiPokok(models.Model):
 	karyawan = models.ForeignKey(Karyawan)
-	name = models.CharField(max_length=25)
+	name = models.CharField(max_length=255)
 	desc = models.TextField(null=True)
-	gajipokok = models.DecimalField(max_digits=10, decimal_places=0)
+	gajipokok = models.DecimalField(max_digits=20, decimal_places=0)
 	tmakan = models.DecimalField(max_digits=7, decimal_places=0, null=True)
 	transportexec = models.DecimalField(max_digits=7, decimal_places=0, null=True)
 	transportnonexec = models.DecimalField(max_digits=7, decimal_places=0, null=True)
@@ -252,7 +252,7 @@ class GajiPokok(models.Model):
 	shift = models.DecimalField(max_digits=7, decimal_places=0, null=True)
 	makanlembur = models.DecimalField(max_digits=7, decimal_places=0, null=True)
 	translembur = models.DecimalField(max_digits=7, decimal_places=0, null=True)
-	masakerja = models.DecimalField(max_digits=7, decimal_places=0)
+	jumlahhari = models.DecimalField(max_digits=7, decimal_places=0)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 

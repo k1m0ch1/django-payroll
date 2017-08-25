@@ -287,11 +287,11 @@
                       <div class="form-group col-md-6">
                         <select class="form-control jumlahhari" name="jumlahhari">
                           <option>Jumlah Hari</option>
-                          <option value="1">2</option>
-                          <option value="1">3</option>
-                          <option value="1">4</option>
-                          <option value="1">5</option>
-                          <option value="1">6</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
                         </select>
                       </div>
                     </div>
@@ -404,7 +404,7 @@ $(function () {
         type: "POST",
         url: 'http://{{ request.get_host }}/index/api/karyawan/create/save',
         data: {NIK: $('.NIK').val(), nama1: $('.nama1').val()
-              ,nama2: $('.nama2').val(), tempatlahir: $('tempatlahir').val(), tanggallahir: $('.tanggallahir').val(), gender: $('.gender').find(":selected").val(), bagian: $('.bagian').val(),
+              ,nama2: $('.nama2').val(), tempatlahir: $('.tempatlahir').val(), tanggallahir: $('.tanggallahir').val(), gender: $('.gender').find(":selected").val(), bagian: $('.bagian').val(),
               alamat: $('.alamat').val(), kota: $('.kota').val(), provinsi: $('.provinsi').val(),
               telepon: $('.telepon').val(), handphone: $('.handphone').val(), statuskaryawan: $('.statuskaryawan').find(":selected").val(),
               masakaryawan: $('.masakaryawan').val(), ktp: $('.ktp').val(), warganegara: $('.warganegara').find(":selected").val(),
@@ -412,7 +412,7 @@ $(function () {
               norekening: $('.norekening').val(),atasnama: $('.atasnama').val(),fingerid: $('.fingerid').val(),
               NPWP: $('.NPWP').val(),KPJ: $('.KPJ').val(),jumlahhari: $('.jumlahhari').find(":selected").val(),
               departemen: $('.departemen').find(":selected").val(),bagian: $('.bagian').find(":selected").val(),golongan: $('.golongan').find(":selected").val(),
-              perusahaan: $('.perusahaan').find(":selected").val(),
+              perusahaan: $('.perusahaan').find(":selected").val(), gajipokok: $('.gajipokok').val(),
               csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Simpan Karyawan Baru');
