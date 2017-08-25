@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
-from system.models import Inventory, Konfigurasi
+from system.models import Inventory, Konfigurasi, GajiPokok
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -142,8 +142,8 @@ def karyawan_index(request):
 def karyawan_detail(request, karyawan_id):
 	karyawan = Karyawan.objects.get(pk=karyawan_id)
 	absen = Absensi.objects.filter(karyawan_id=karyawan_id)
-	gajipokok = GajiPokok.objects.filter(karyawan_id=karyawan_id)
-	return render(request, "karyawan/detail.html", {'karyawan':karyawan, 'absen': absen, 'gajipokok': gajipokok, 'dsb': modules})
+	gajipokok = GajiPokok.objects.get(karyawan_id=karyawan_id)
+	return render(request, "karyawan/detail.html", {'karyawan' : karyawan, 'absen': absen, 'gajipokok': gajipokok , 'dsb': modules})
 
 @login_required()
 def perusahaan_index(request):

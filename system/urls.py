@@ -142,5 +142,6 @@ urlpatterns = [
     url(r'^api/karyawan$', views.dashboard.api_karyawan, name="karyawan-api"),
     url(r'^karyawan-shift/edit/save$', views.edit.karyawan_shift, name="karyawan-shift-simpan-api"),
     url(r'^api/karyawan/create/save$', views.create.karyawan_save_api, name="karyawan-create-save-api"),
+    url(r'^api/karyawan/lembur/create/save$', views.create.karyawan_lembur_save_api, name="karyawan-lembur-create-save-api"),
 
 ]

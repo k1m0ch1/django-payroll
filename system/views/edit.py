@@ -29,7 +29,7 @@ def karyawan(request, karyawan_id):
 	bank = Bank.objects.all()
 	agama = Agama.objects.all()
 	kar = Karyawan.objects.get(pk=karyawan_id)
-	gajipokok = GajiPokok.objects.filter(karyawan_id=karyawan_id)
+	gajipokok = GajiPokok.objects.get(karyawan_id=karyawan_id)
 
 	return render(request, "karyawan/form.html", { 'mode' : 'Ubah', 'module' : getModule(request), 
 													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request), 'departemen':dep,

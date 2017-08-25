@@ -8,10 +8,11 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konfigurasi
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
-from system.models import GajiPokok
+from system.models import GajiPokok, Absensi
 from dateutil.parser import parse
 from sys import getsizeof
 from zk import ZK, const
+import datetime
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
@@ -121,6 +122,16 @@ def karyawan_shift_save(request):
 
 	return HttpResponse("yay berhasil")
 
+@login_required()
+def karyawan_lembur_save_api(request):
+	idkaryawan = request.POST['idkaryawan']
+	listid = [x.strip() for x in idkaryawan.split(',')]
+	for y in range(0, len(listid)-1):
+		for z in range(0, 4):
+			a = Absensi.objects.select_for_update().filter(karyawan_id=listid[y]).filter(tanggal=datetime.datetime.now().strftime("%Y-%m-%d"))
+			a.update(SPL = 1, SPL_banyak=request.POST['lamalembur'])
+
+	return HttpResponse("berhasil-simpan-lembur")
 
 @login_required()
 def perusahaan(request):
