@@ -216,6 +216,8 @@ class Absensi(models.Model):
 	hari = models.CharField(max_length=10)
 	masuk = models.TimeField()
 	keluar = models.TimeField()
+	SPL = models.DecimalField(max_digits=1, decimal_places=0, null=True, default=0)
+	SPL_banyak = models.DecimalField(max_digits=2, decimal_places=0, null=True, default=0)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 	delete_date = models.DateTimeField(auto_now_add=True, null=True)
@@ -224,13 +226,14 @@ class Absensi(models.Model):
 		return self.name
 
 class Lembur(models.Model):
-	name = models.CharField(max_length=25)
-	desc = models.TextField()
+	name = models.CharField(max_length=25, null=True)
+	desc = models.TextField(null=True)
 	karyawan = models.ForeignKey(Karyawan)
 	tanggal = models.DateField()
-	hari = models.CharField(max_length=10)
-	masuk = models.TimeField()
-	keluar = models.TimeField()
+	hari = models.CharField(max_length=10, null=True)
+	masuk = models.TimeField(null=True)
+	keluar = models.TimeField(null=True)
+	jumlahjam = models.DecimalField( max_digits=2 , decimal_places=0)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 	delete_date = models.DateTimeField(auto_now_add=True, null=True)

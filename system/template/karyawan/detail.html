@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load hari %}
 
 {% block content %}
 	<div class="content-wrapper">
@@ -39,12 +40,12 @@
                   <p class="text-right">Jenis Kelamin</p>
                 </div>
                 <div class="col-md-4">
-                  <p>L{{ karyawan.gender }}</p>
+                  <p>{{ karyawan.gender }}</p>
                 </div>
                 <div class="col-md-2">
                   <p class="text-right">Tempat Tanggal Lahir</p>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-4">
                   <p>{{ karyawan.tempatlahir }}, {{ karyawan.tanggallahir|date:"d-M-Y"}}</p>
                 </div>
                 <div class="col-md-2">
@@ -76,145 +77,139 @@
                   <p class="text-right">Status Karyawan</p>
                 </div>
                 <div class="col-md-10">
-                  <p>{{ karyawan.statuskaryawan }}s.d. {{ karyawan.masakaryawan }}</p>
+                  <p>{{ karyawan.statuskaryawan }} s.d. {{ karyawan.masakaryawan }}</p>
                 </div>
 
                 <div class="col-md-2">
                   <p class="text-right">KTP</p>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                   <p>{{ karyawan.ktpid }}</p>
                 </div>
                 <div class="col-md-2">
                   <p class="text-right">Agama</p>
                 </div>
-                <div class="col-md-6">
-                  <p>Islam</p>
+                <div class="col-md-4">
+                  <p>{{ karyawan.agama.name }}</p>
                 </div>
                 <div class="col-md-2">
                   <p class="text-right"></p>
                 </div>
-                <div class="col-md-2">
-                  <p>Warga Negara Indonesia</p>
+                <div class="col-md-4">
+                  <p>Warga Negara {{ karyawan.warganegara }}</p>
                 </div>
                 <div class="col-md-2">
                   <p class="text-right">Status Menikah</p>
                 </div>
-                <div class="col-md-6">
-                  <p>Belum Menikah</p>
+                <div class="col-md-4">
+                  <p>{{ karyawan.statusmenikah }}</p>
                 </div>
 
                 <div class="col-md-2">
                   <p class="text-right">Bank</p>
                 </div>
-                <div class="col-md-2">
-                  <p>Bank Kalimantan Barat</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="">a.n. Budi Komarudin</p>
-                </div>
-                <div class="col-md-6">
-                  <p>No. Rek. 1234567890</p>
+                <div class="col-md-10">
+                  <p>{{ karyawan.bank.name }} &nbsp;&nbsp; a.n. &nbsp;  {{ karyawan.atasnama }} &nbsp;&nbsp;No. Rek. {{ karyawan.norek }} </p>
                 </div>
 
                 <div class="col-md-2">
                   <p class="text-right">Finger ID</p>
                 </div>
                 <div class="col-md-4">
-                  <p>08255</p>
+                  <p>{{ karyawan.fingerid }}</p>
                 </div>
-                <div class="col-md-2">
+
+                <!-- <div class="col-md-2">
                   <p class="text-right">Link Acc</p>
                 </div>
                 <div class="col-md-4">
                   <p>---</p>
-                </div>
+                </div> -->
 
-                <div class="col-md-2">
+                <!-- <div class="col-md-2">
                   <p class="text-right">Status Jamsostek</p>
                 </div>
                 <div class="col-md-4">
                   <p>Aktif</p>
-                </div>
-                <div class="col-md-2">
+                </div> -->
+                <!-- <div class="col-md-2">
                   <p class="text-right">Ketegori Group</p>
                 </div>
                 <div class="col-md-4">
                   <p>---</p>
-                </div>
+                </div> -->
 
                 <div class="col-md-2">
                   <p class="text-right">NPWP</p>
                 </div>
                 <div class="col-md-4">
-                  <p>12345678901234567890 </p>
+                  <p>{{ karyawan.NPWP }} </p>
                 </div>
-                <div class="col-md-2">
+                <!-- <div class="col-md-2">
                   <p class="text-right">Level</p>
                 </div>
                 <div class="col-md-4">
                   <p>---</p>
-                </div>
+                </div> -->
 
                 <div class="col-md-2">
                   <p class="text-right">KPJ</p>
                 </div>
                 <div class="col-md-4">
-                  <p>1234567890</p>
+                  <p>{{ karyawan.KPJ }}</p>
                 </div>
                 <div class="col-md-2">
                   <p class="text-right">Jumlah Hari</p>
                 </div>
                 <div class="col-md-4">
-                  <p>5 Hari</p>
+                  <p>{{ karyawan.jumlahhari }} Hari</p>
                 </div>
 
                 <div class="col-md-2">
                   <p class="text-right">Perusahaan</p>
                 </div>
                 <div class="col-md-4">
-                  <p>Nama Perusahaan</p>
+                  <p>{{ karyawan.perusahaan.name }}</p>
                 </div>
-                <div class="col-md-2">
+                <!-- <div class="col-md-2">
                   <p class="text-right">Lokasi</p>
                 </div>
                 <div class="col-md-4">
                   <p>Jalan Sumbawa no 192/123 Kec. Ringring Kel. Baracuda, Karawang, Jawa Barat</p>
-                </div>
+                </div> -->
 
                 <div class="col-md-2">
                   <p class="text-right">Departemen</p>
                 </div>
                 <div class="col-md-4">
-                  <p>Nama Departemen Lengkap</p>
+                  <p>{{ karyawan.departemen.name }}</p>
                 </div>
                 <div class="col-md-2">
-                  <p class="text-right">Unit</p>
+                  <p class="text-right">Jabatan</p>
                 </div>
                 <div class="col-md-4">
-                  <p>Nama unit lengkap</p>
+                  <p>{{ karyawan.jabatan.name }}</p>
                 </div>
 
                 <div class="col-md-2">
                   <p class="text-right">Bagian</p>
                 </div>
                 <div class="col-md-4">
-                  <p>Nama bagian lengkap</p>
+                  <p>{{ karyawan.bagian.name }}</p>
                 </div>
                 <div class="col-md-2">
                   <p class="text-right">Golongan</p>
                 </div>
                 <div class="col-md-4">
-                  <p>Nama golongan lengkap</p>
+                  <p>{{ karyawan.golongan.name }}</p>
                 </div>
 
-                <div class="col-md-2">
+                <!-- <div class="col-md-2">
                   <p class="text-right">Jabatan</p>
                 </div>
                 <div class="col-md-10">
                   <p>Nama jabatan lengkap</p>
-                </div>
-
+                </div> -->
                 <div class="col-md-2">
                   <p class="text-right">Item Gaji</p>
                 </div>
@@ -222,10 +217,10 @@
                   <p>Gaji Pokok</p>
                 </div>
                 <div class="col-md-8">
-                  <p>Rp. 25.000.000</p>
+                  <p>Rp. {{ karyawan.gajipokok.gajipokok }}</p>
                 </div>
 
-                <div class="col-md-2">
+                <!-- <div class="col-md-2">
                   <p class="text-right"></p>
                 </div>
                 <div class="col-md-2">
@@ -283,7 +278,7 @@
                 </div>
                 <div class="col-md-8">
                   <p>Rp. 150.000 / bulan</p>
-                </div>
+                </div> -->
 
 
                 <div class="row">
@@ -308,58 +303,18 @@
                             <th class="">Jam Keluar</th>
                             <th class="">Hari</th>
                           </tr>
+                          {% for data in absen %}
                           <tr>
-                            <td>2 Agustus 2016</td>
-                            <td>06:50.50</td>
-                            <td>17:50.44</td>
-                            <td>Tidak</td>
-                            <td>Full Time</td>
-                            <td>07:00</td>
-                            <td>17:00</td>
-                            <td>Senin</td>
+                            <td>{% hari data.hari %}, {{ data.tanggal|date:"d F Y" }}</td>
+                            <td>{% plainwaktu data.masuk %} {% waktu data.masuk data.karyawanshift.shift.jammasuk True %}</td>
+                            <td>{% plainwaktu data.keluar %} {% waktu data.keluar data.karyawanshift.shift.jamkeluar False %}</td>
+                            <td>{% if data.SPL > 0 %} Ya ( {{ data.SPL_banyak }} Jam ) {% else %} Tidak {% endif %}</td>
+                            <td>{{ data.karyawanshift.shift.name }}</td>
+                            <td>{% plainwaktu data.karyawanshift.shift.jammasuk %}</td>
+                            <td>{% plainwaktu data.karyawanshift.shift.jamkeluar %}</td>
+                            <td>{{ data.karyawanshift.shift.hari }}</td>
                           </tr>
-                          <tr>
-                            <td>2 Agustus 2016</td>
-                            <td>06:50.50</td>
-                            <td>17:50.44</td>
-                            <td>Tidak</td>
-                            <td>Full Time</td>
-                            <td>07:00</td>
-                            <td>17:00</td>
-                            <td>Senin</td>
-                          </tr>
-                          <tr>
-                            <td>2 Agustus 2016</td>
-                            <td>06:50.50</td>
-                            <td>17:50.44</td>
-                            <td>Tidak</td>
-                            <td>Full Time</td>
-                            <td>07:00</td>
-                            <td>17:00</td>
-                            <td>Senin</td>
-                          </tr>
-                          <tr>
-                            <td>2 Agustus 2016</td>
-                            <td>06:50.50</td>
-                            <td>17:50.44</td>
-                            <td>Tidak</td>
-                            <td>Full Time</td>
-                            <td>07:00</td>
-                            <td>17:00</td>
-                            <td>Senin</td>
-                          </tr>
-                          <tr>
-                            <td>2 Agustus 2016</td>
-                            <td>06:50.50</td>
-                            <td>17:50.44</td>
-                            <td>Tidak</td>
-                            <td>Full Time</td>
-                            <td>07:00</td>
-                            <td>17:00</td>
-                            <td>Senin</td>
-                          </tr>
-
-
+                          {% endfor %}
                         </tbody></table>
 
                       </div>

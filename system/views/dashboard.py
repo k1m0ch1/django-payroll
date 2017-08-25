@@ -141,7 +141,8 @@ def karyawan_index(request):
 @login_required()
 def karyawan_detail(request, karyawan_id):
 	karyawan = Karyawan.objects.get(pk=karyawan_id)
-	return render(request, "karyawan/detail.html", {'karyawan':karyawan, 'dsb': modules})
+	absen = Absensi.objects.filter(karyawan_id=karyawan_id)
+	return render(request, "karyawan/detail.html", {'karyawan':karyawan, 'absen': absen, 'dsb': modules})
 
 @login_required()
 def perusahaan_index(request):
