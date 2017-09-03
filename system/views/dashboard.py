@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
-from system.models import Inventory, Konfigurasi, GajiPokok
+from system.models import Inventory, Konfigurasi, GajiPokok, PotonganKaryawan, Pinjaman
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -104,6 +104,18 @@ def karyawan_shift_index(request):
 															 'golongan' : gol, 'jabatan' : jab, 'ks': ks, 'shift' : shift})
 
 @login_required()
+def potongankaryawan_index(request):
+	k = Karyawan.objects.all()
+	dep = Departemen.objects.all()
+	bag = Bagian.objects.all()
+	gol = Golongan.objects.all()
+	jab = Jabatan.objects.all()
+	shift = Shift.objects.all()
+
+	return render(request, "potongan/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+															 'golongan' : gol, 'jabatan' : jab, })
+
+@login_required()
 def postinggaji_index(request):
 	k = Karyawan.objects.all()
 	dep = Departemen.objects.all()
@@ -113,6 +125,12 @@ def postinggaji_index(request):
 
 	return render(request, "postinggaji/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
 															 'golongan' : gol, 'jabatan' : jab,})
+
+@login_required()
+def pinjaman_index(request):
+	i = Pinjaman.objects.all()
+
+	return render(request, "pinjaman/dashboard.html", {'ulang' : i, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def karyawan_index(request):

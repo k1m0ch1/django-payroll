@@ -205,6 +205,17 @@
     "model": "system.modules",
     "fields": 
       {
+        "name": "INVENTORY",
+        "fungsi": "Inventory",
+        "menu": "DATAMASTER1",
+        "url_slug": "inventory-index",
+        "icon": "fa fa-clipboard",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },{
+    "model": "system.modules",
+    "fields": 
+      {
         "name": "DATAMASTER2",
         "fungsi": "Data Master 2",
         "menu": "root",
@@ -247,21 +258,11 @@
     "model": "system.modules",
     "fields": 
       {
-        "name": "INVENTORY",
-        "fungsi": "Inventory",
-        "menu": "DATAMASTER2",
-        "url_slug": "inventory-index",
-        "icon": "fa fa-clipboard",
-        "created_at": "2017-03-01 15:03+07"
-      }    
-  }, {
-    "model": "system.modules",
-    "fields": 
-      {
         "name": "POTONGAN",
         "fungsi": "Potongan Karyawan",
         "menu": "DATAMASTER2",
         "icon": "fa fa-dedent",
+        "url_slug": "potongankaryawan-index",
         "created_at": "2017-03-01 15:03+07"
       }    
   }, {
@@ -279,8 +280,9 @@
     "fields": 
       {
         "name": "PINJAMAN",
-        "fungsi": "List Karyawan yang<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;melakukan pinjaman",
+        "fungsi": "Inventory Pinjaman",
         "menu": "DATAMASTER2",
+        "url_slug": "pinjaman-index",
         "icon": "fa fa-cart-arrow-down",
         "created_at": "2017-03-01 15:03+07"
       }    

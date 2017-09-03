@@ -31,11 +31,11 @@
               <table class="table table-hover" id="myTable">
                 <thead><tr>
                   <th class="col-md-1">#</th>
-                  <th class="col-md-3">Nama Karyawan</th>
-                  <th class="col-md-4">NIP</th>
-                  <th class="col-md-4">Barang Pinjam</th>
-                  <th class="col-md-4">Tanggal Pinjam</th>
-                  <th class="col-md-4">Tanggal Kembali</th>
+                  <th class="col-md-1">Tanggal Pinjam</th>
+                  <th class="col-md-2">Nama Karyawan</th>
+                  <th class="col-md-1">NIP</th>
+                  <th class="col-md-2">Barang Pinjam</th>                  
+                  <th class="col-md-2">Tanggal Kembali</th>
                   <th class="col-md-1">Action</th>
                 </tr>
                 </thead>
@@ -43,11 +43,11 @@
                 {% for data in ulang %}                
                 <tr>
                   <td>{{ data.id }}</td>
+                  <td>{{ data.tglpinjam }}</td>
                   <td>{{ data.karyawan.name }}</td>
                   <td>{{ data.karyawan.NIK }}</td>
-                  <td>{{ data.inventory.name }}</td>
-                  <td>{{ data.inventory.tglpinjam }}</td>
-                  <td>{{ data.inventory.tglkembali }}</td>
+                  <td>{{ data.inventory.name }}</td>                  
+                  <td>{{ data.tglkembali }}</td>
                 </tr>                
                 {% endfor %}
                 </tbody>
