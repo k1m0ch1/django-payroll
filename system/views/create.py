@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konfigurasi
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
-from system.models import GajiPokok, Absensi, Pinjaman
+from system.models import GajiPokok, Absensi, Pinjaman, PotonganKaryawan
 from dateutil.parser import parse
 from sys import getsizeof
 from zk import ZK, const
@@ -149,6 +149,46 @@ def pinjaman_save(request):
 		p.save()
 
 	return redirect("pinjaman-index")
+
+@login_required()
+def potongan_save(request):
+	idkaryawan = request.POST['idkaryawan']
+	listid = [x.strip() for x in idkaryawan.split(',')]
+	bpjs = request.POST['bpjs']
+	pajakbulanan = request.POST['pajakbulanan']
+	pinjaman = request.POST['pinjaman']
+	for y in range(0, len(listid)-1):
+		p = PotonganKaryawan.objects.filter(karyawan_id=listid[y])
+		g = GajiPokok.objects.get(karyawan_id=listid[y])
+		gajipokok = g.gajipokok
+		if bpjs.find("%") != -1 :
+			pisah = [x.strip() for x in bpjs.split('%')]
+			bpjs = int(float(float(pisah[0])/100) * int(gajipokok))
+
+		if pajakbulanan.find("%") != -1 :
+			pisah = [x.strip() for x in pajakbulanan.split('%')]
+			pajakbulanan = int(float(float(pisah[0])/100) * int(gajipokok))
+
+		if pinjaman.find("%") != -1 :
+			pisah = [x.strip() for x in pinjaman.split('%')]
+			pinjaman = int(float(float(pisah[0])/100) * int(gajipokok))
+
+		if bpjs == "":
+			bpjs = p[0].bpjs
+
+		if pajakbulanan == "":
+			pajakbulanan = p[0].pph
+
+		if pinjaman == "":
+			pinjaman = p[0].pinjkaryawan
+
+		if len(p)>0:
+			p.update(bpjs=bpjs, pph=pajakbulanan, pinjkaryawan=pinjaman)
+		else:
+			p = PotonganKaryawan(bpjs=bpjs, pph=pajakbulanan, pinjkaryawan=pinjaman, karyawan_id=listid[y])	
+			p.save()
+
+	return HttpResponse("Berhasil Simpan")
 
 @login_required()
 def perusahaan(request):

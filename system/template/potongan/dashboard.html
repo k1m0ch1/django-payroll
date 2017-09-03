@@ -57,8 +57,8 @@
 
       <div class="row">
           <div class="col-md-12">
-            <div class="col-md-7">
-              <label class="control-label pull-right">Jika dalam bentuk Persentasi gunakan % pada akhir digit, jika dalam bentuk nilai rupiah masukan nilai saja</label>
+            <div class="col-md-9">
+              <label class="control-label pull-right">Jika dalam bentuk Persentasi gunakan % pada akhir digit untuk menggunakan persentasi gaji pokok, jika dalam bentuk nilai rupiah masukan nilai saja</label>
             </div>
           </div>  
           <div class="col-md-12">
@@ -247,8 +247,8 @@
     $("#tambahLembur").on("click", function(){
         $.ajax({
         type: "POST",
-        url: 'http://{{ request.get_host }}/index/api/karyawan/lembur/create/save',
-        data: {idkaryawan: $('#idKaryawan').val(), lamalembur: $('#lembur').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+        url: 'http://{{ request.get_host }}/index/api/potongan/save',
+        data: {idkaryawan: $('#idKaryawan').val(), pinjaman: $('#pinjaman').val(), bpjs: $('#bpjs').val(), pajakbulanan: $('#pajakbulanan').val(),csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Tambah Lembur');
         }});
