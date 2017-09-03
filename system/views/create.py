@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konfigurasi
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
-from system.models import GajiPokok, Absensi
+from system.models import GajiPokok, Absensi, Pinjaman
 from dateutil.parser import parse
 from sys import getsizeof
 from zk import ZK, const
@@ -133,6 +133,22 @@ def karyawan_lembur_save_api(request):
 		a.update(SPL = 1, SPL_banyak=request.POST['lamalembur'])
 
 	return HttpResponse("berhasil-simpan-lembur")
+
+@login_required()
+def pinjaman(request):
+	i = Inventory.objects.all()
+	return render(request, "pinjaman/form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request), 'inventory' : i})
+
+@login_required()
+def pinjaman_save(request):
+	idkaryawan = request.POST['idkaryawan']
+	listid = [x.strip() for x in idkaryawan.split(',')]
+	for y in range(0, len(listid)-1):
+		p = Pinjaman(name="", desc="", karyawan_id=listid[y], inventory_id=request.POST['idbarang'], tglpinjam=parse(request.POST['tanggalpinjam']).strftime("%Y-%m-%d"))	
+		p.save()
+
+	return redirect("pinjaman-index")
 
 @login_required()
 def perusahaan(request):

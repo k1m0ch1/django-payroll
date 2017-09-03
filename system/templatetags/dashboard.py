@@ -100,4 +100,11 @@ def dashboard(module=None, mode=None, idpk=None):
       'ubah'   : reverse('konfigurasi-edit', kwargs={'konfigurasi_id': idpk}),
       'hapus'  : reverse('konfigurasi-delete', kwargs={'konfigurasi_id': idpk})
     }[mode]
+  elif module == 'Inventory Pinjaman':
+    return{
+      'indeks' : reverse('pinjaman-index'),
+      'tambah' : reverse('pinjaman-create'),
+      # 'ubah'   : reverse('pinjaman-edit', kwargs={'pinjaman_id': idpk}),
+      # 'hapus'  : reverse('pinjaman-delete', kwargs={'pinjaman_id': idpk})
+    }[mode]
   return "null"

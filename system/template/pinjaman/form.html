@@ -8,8 +8,8 @@
       <div>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
-            <li><i class="fa fa-flask"></i> Data Master 2</li>
-            <li class="active">Potongan Karyawan</li>
+            <li><i class="fa fa-flask"></i> Data Master</li>
+            <li class="active">Inventory Pinjaman</li>
           </ol>
       </div>
     </section>
@@ -19,15 +19,7 @@
       <div class="row">
           <div class="col-md-12">
               <div class="col-md-2">
-                <p><h3 class="control-label">Potongan Karyawan</h3></p>
-              </div>
-          </div>                
-      </div>
-
-      <div class="row">
-          <div class="col-md-12">
-              <div class="col-md-2">
-                <p><h4 class="control-label">Proses Potongan</h4></p>
+                <p><h3 class="control-label">Inventory Pinjaman</h3></p>
               </div>
           </div>                
       </div>
@@ -42,7 +34,7 @@
               <p class="" id="textKaraywan">  </p>
             
               <button class="btn btn-primary" id="pilihKaryawan" data-toggle="modal" data-target="#pilihKaryawanModal"><i class="fa fa-plus"></i> Pilih Karyawan</button> 
-              <button class="btn btn-primary" id="bersih"><i class="fa fa-plus"></i> Clear</button>    
+              <button class="btn btn-primary" id="bersih"><i class="fa fa-plus"></i> Clear</button>  
               </div>             
           </div>                
       </div>
@@ -50,7 +42,7 @@
       <div class="row">
           <div class="col-md-12">
               <div class="col-md-2">
-                <p><h4 class="control-label">Surat Pernyataan Lembur</h4></p>
+                <p><h4 class="control-label">Barang Pinjaman</h4></p>
               </div>
           </div>                
       </div>
@@ -58,19 +50,29 @@
       <div class="row">
           <div class="col-md-12">
             <div class="col-md-2">
-              <label class="control-label pull-right">Banyak Jam Lembur</label>
+              <label class="control-label pull-right">Nama Barang</label>
             </div>
+            <div class="form-group col-md-3">
+                <select name="idbarang" class="form-control idbarang" >
+                  {% for i in inventory %}
+                      <option value="{{ i.id }}"> {{ i.name }}</option>
+                  {% endfor %}
+                </select><br/>
+            </div>
+            <div class="form-group col-md-8"></div>
+          </div>
+          <div class="col-md-12">
             <div class="col-md-2">
-              <div class="form-group">
-                  <input type="text" class="form-control" id="lembur" value="" />
-                </div>
+              <label class="control-label pull-right">Tanggal Pinjam</label>
             </div>
-            <div class="form-group">
-                <button class="btn btn-primary" id="tambahLembur"><i class="fa fa-plus"></i> Simpan</button> 
+            <div class="form-group col-md-3">
+                <input type="text" value="{{ karyawan.tanggallahir }}" class="form-control tanggalpinjam" id="datepicker" placeholder="Tanggal Pinjam" name="tanggalpinjam">                
+            </div>
+            <div class="form-group col-md-3">
+              <button class="btn btn-primary" id="btnposting"><i class="fa fa-plus"></i> Simpan</button> 
             </div>
           </div>          
       </div>
-    
       <!-- Your Page Content Here -->
 
     </section>
@@ -189,11 +191,6 @@
 
   <script>
   $(function () {    
-
-    //Date range picker
-    $('#reservation').daterangepicker();
-
-    $('#reservationKedua').daterangepicker();
         
     $.ajax({
         type: "GET",
@@ -215,14 +212,23 @@
         });  
     });
 
-    $("#tambahLembur").on("click", function(){
-        $.ajax({
-        type: "POST",
-        url: 'http://{{ request.get_host }}/index/api/karyawan/lembur/create/save',
-        data: {idkaryawan: $('#idKaryawan').val(), lamalembur: $('#lembur').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
-        success: function(result) {
-            alert('Berhasil Tambah Lembur');
-        }});
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+
+    $('#btnposting').on("click", function(){
+      $.ajax({
+            type: "POST",
+            url: 'http://{{ request.get_host }}/index/pinjaman/create/save',
+            data: {idkaryawan: $('#idKaryawan').val(), tanggalpinjam: $('.tanggalpinjam').val(), idbarang: $('.idbarang').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+            success: function(result) {
+                //var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+                //mywindow.document.write(result);
+                //$('#contentKaryawan').html(result);
+                //mywindow.print();
+                //$('#contentKaryawan').printElement();
+          }
+        }); 
     });
 
   });

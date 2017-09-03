@@ -134,6 +134,7 @@ def pinjaman_index(request):
 
 @login_required()
 def karyawan_index(request):
+
    	class Selected(object):
 			kategori = ""
 			nik = ""
@@ -162,7 +163,6 @@ def karyawan_index(request):
    		karyawan = paginator.page(paginator.num_pages)
 
 
-
    	ilihan = Selected("selected" ,"", "", "", "", "")
 
 	return render(request, "karyawan/dashboard.html", { 'karyawan' : karyawan, 'dsb' : modules, 'selected': "Kategori"})
@@ -172,7 +172,8 @@ def karyawan_detail(request, karyawan_id):
 	karyawan = Karyawan.objects.get(pk=karyawan_id)
 	absen = Absensi.objects.filter(karyawan_id=karyawan_id)
 	gajipokok = GajiPokok.objects.get(karyawan_id=karyawan_id)
-	return render(request, "karyawan/detail.html", {'karyawan' : karyawan, 'absen': absen, 'gajipokok': gajipokok , 'dsb': modules})
+	pinjaman = Pinjaman.objects.filter(karyawan_id=karyawan_id)
+	return render(request, "karyawan/detail.html", {'karyawan' : karyawan, 'absen': absen, 'gajipokok': gajipokok , 'pinjaman' : pinjaman, 'dsb': modules})
 
 @login_required()
 def perusahaan_index(request):

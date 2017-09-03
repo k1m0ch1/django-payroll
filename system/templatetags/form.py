@@ -74,4 +74,9 @@ def form(module=None, mode=None, idpk=None):
 			'Tambah' : reverse('konfigurasi-create-save'),
 			'Ubah'   : reverse('konfigurasi-edit-save', kwargs={'konfigurasi_id': idpk})
 		}[mode]
+	elif module == 'Inventory Pinjaman':
+	    return{
+			'Tambah' : reverse('pinjaman-create-save'),
+			'Ubah'   : reverse('pinjaman-edit-save', kwargs={'pinjaman_id': idpk})
+		}[mode]
 	return "null"

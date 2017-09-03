@@ -21,7 +21,9 @@
           <div class="col-md-12">
             <div class="box">
               <div class="box-header">
-                <h3 class="box-title">Detail Karyawan {{ karyawan.name }}</h3>
+                    <h3 class="box-title">Detail Karyawan {{ karyawan.name }} </h3> 
+                    <a style="align-left: 50px;" href="{% url 'karyawan-edit' karyawan_id=karyawan.id %}" class="text-right"><i class="fa fa-pencil"></i>( Ubah Data )</a>
+                
               </div>
               <div class="box-body">
                 <div class="col-md-2">
@@ -235,7 +237,16 @@
                   <p>Transportasi</p>
                 </div>
                 <div class="col-md-8">
-                  <p>Rp. {{ gajipokok.tmakan }} / hari</p>
+                  <p>Rp. {{ gajipokok.transportnonexec }} / hari</p>
+                </div>
+
+                <div class="col-md-2">
+                  <p class="text-right">Barang Pinjaman</p>
+                </div>
+                <div class="col-md-8">
+                {% for p in pinjaman %}                  
+                    <p> {{ p.inventory.name }} </p>
+                {% endfor %}
                 </div>
 
                 <!-- <div class="col-md-2">

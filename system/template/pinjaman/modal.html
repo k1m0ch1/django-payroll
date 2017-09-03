@@ -1,0 +1,115 @@
+                  <table class="table table-hover" id="tabelKaryawan">
+                    <tbody><tr>
+                      <th class="col-md-1">#</th>
+                      <th class="col-md-2">NIK</th>
+                      <th class="col-md-8">Nama</th>
+                    </tr>
+                    {% for k in karyawan %}
+                    <tr>
+                      <td><input type="checkbox" value="{{ k.NIK }} - {{ k.name }}" data-id="{{ k.id }}"></td>
+                      <td>{{ k.NIK }}</td>
+                      <td>{{ k.name }}</td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody></table>
+
+                </div>
+                <!-- /.box-body -->
+                {% if karyawan.has_other_pages %}
+                <div class="box-footer clearfix">
+                  <ul class="pagination pagination-sm no-margin pull-right">
+                    {% if karyawan.has_previous %}
+                      <li class="active"><a href="#" id="mundur" data-id="?page={{ karyawan.previous_page_number }}">PREV</a></li>
+                    {% else %}
+                      <li class="disabled"><a href="#" id="mundur">PREV</a></li>
+                    {% endif %}
+
+                    {% for i in karyawan.paginator.page_range %}
+                      {% if karyawan.number == i %}
+                        <li class="active"><a class="angka" href="#">{{ i }}</a></li>
+                      {% else %}
+                        <li><a href="#" class="angka" data-id="?page={{ i }}">{{ i }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    {% if karyawan.has_next %}
+                      <li class="active"><a href="#" id="maju" data-id="?page={{ karyawan.next_page_number }}">NEXT</a></li>
+                    {% else %}
+                      <li class="disabled"><a id="maju" href="#">NEXT</a></li>
+                    {% endif %}
+                  </ul>
+                </div>
+                {% endif %}
+
+                <script>
+
+                  $('#departemen, #bagian, #jabatan, #golongan').on("change", function(){
+                    halaman = "?departemen=" + $("#departemen").val() + "&bagian=" + $("#bagian").val() 
+                    halaman += "&jabatan=" + $("#jabatan").val() + "&golongan=" + $("#golongan").val()
+
+                    $.ajax({
+                        type: "GET",
+                        url: 'http://{{ request.get_host }}/index/api/karyawan' + halaman,
+                        success: function(result) {
+                            $('#contentKaryawan').html(result);
+                        }
+                      });
+                  });
+
+                  $('#caripaketext').on("click", function(){
+                    halaman = "?departemen=" + $("#departemen").val() + "&bagian=" + $("#bagian").val() 
+                    halaman += "&jabatan=" + $("#jabatan").val() + "&golongan=" + $("#golongan").val()
+                    halaman += "&name=" + $("#name").val() + "&nik=" + $("#nik").val() 
+
+                    $.ajax({
+                        type: "GET",
+                        url: 'http://{{ request.get_host }}/index/api/karyawan' + halaman,
+                        success: function(result) {
+                            $('#contentKaryawan').html(result);
+                        }
+                      });
+                  });
+
+                  $('#maju').on("click", function(){
+                      $.ajax({
+                        type: "GET",
+                        url: 'http://{{ request.get_host }}/index/api/karyawan' + $('#maju').data('id'),
+                        success: function(result) {
+                            $('#contentKaryawan').html(result);
+                        }
+                      });
+                  });
+
+                  $('#mundur').on("click", function(){
+                      $.ajax({        
+                        type: "GET",
+                        url: 'http://{{ request.get_host }}/index/api/karyawan' + $('#mundur').data('id'),
+                        success: function(result) {
+                            $('#contentKaryawan').html(result);
+                        }
+                      });
+                  });
+
+                  $('.angka').on("click", function(){
+                      $.ajax({
+                        type: "GET",
+                        url: 'http://{{ request.get_host }}/index/api/karyawan' + $(this).data('id'),
+                        success: function(result) {
+                            $('#contentKaryawan').html(result);
+                        }
+                      });        
+                  });
+                  var countChecked = function() {
+                        var n = "";
+                        var o = "";
+
+                        $('#tabelKaryawan input:checked').each(function () {
+                            n = $(this).val() + ",";
+                            o = $(this).data("id")+",";
+                        });
+                        $("#textKaraywan").text( $("#textKaraywan").text() + n );
+                        $("#idKaryawan").val( $("#idKaryawan").val() + o );
+                      };
+
+                  $("#tabelKaryawan input[type=checkbox]" ).on( "click", countChecked );
+                </script>
