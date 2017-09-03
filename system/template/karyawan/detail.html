@@ -243,10 +243,41 @@
                 <div class="col-md-2">
                   <p class="text-right">Barang Pinjaman</p>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-9">
                 {% for p in pinjaman %}                  
                     <p> {{ p.inventory.name }} </p>
                 {% endfor %}
+                </div>
+
+                <div class="col-md-2">
+                  <p class="text-right">Potongan</p>
+                </div>
+                <div class="col-md-1">
+                  <p>Pajak</p>
+                </div>
+                <div class="col-md-9">
+                  <p>Rp. {{ potongan.pph }}</p>
+                </div>
+                <div class="col-md-2">
+                  <p class="text-right"></p>
+                </div>
+                <div class="col-md-1">
+                  <p>BPJS</p>
+                </div>
+                <div class="col-md-9">
+                  <p>Rp. {{ potongan.bpjs }}</p>
+                </div>
+                <div class="col-md-2">
+                  <p class="text-right"></p>
+                </div>
+                <div class="col-md-1">
+                  <p>Pinjaman</p>
+                </div>
+                <div class="col-md-9">
+                  <p>Rp. {{ potongan.pinjkaryawan }}</p>
+                </div>
+                <div class="col-md-2">
+                  <p class="text-right"></p>
                 </div>
 
                 <!-- <div class="col-md-2">

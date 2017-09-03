@@ -1,0 +1,222 @@
+[
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 1,
+    "fields": 
+      {
+        "karyawan_id": 1,
+        "bpjs" : 150000,
+        "pinjkaryawan" : 600000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 2,
+    "fields": 
+      {
+        "karyawan_id": 2,
+        "bpjs" : 30000,
+        "pinjkaryawan" : 600000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 3,
+    "fields": 
+      {
+        "karyawan_id": 3,
+        "bpjs" : 50000,
+        "pinjkaryawan" : 600000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+{
+    "model": "system.PotonganKaryawan",
+    "pk": 4,
+    "fields": 
+      {
+        "karyawan_id": 4,
+        "bpjs" : 100000,
+        "pinjkaryawan" : 60000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 5,
+    "fields": 
+      {
+        "karyawan_id": 5,
+        "bpjs" : 15000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 6,
+    "fields": 
+      {
+        "karyawan_id": 6,
+        "bpjs" : 15000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 7,
+    "fields": 
+      {
+        "karyawan_id": 7,
+        "bpjs" : 50000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 8,
+    "fields": 
+      {
+        "karyawan_id": 8,
+        "bpjs" : 10000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 9,
+    "fields": 
+      {
+        "karyawan_id": 9,
+        "bpjs" : 700000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 10,
+    "fields": 
+      {
+        "karyawan_id": 10,
+        "bpjs" : 150000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 11,
+    "fields": 
+      {
+        "karyawan_id": 11,
+        "bpjs" : 500000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 12,
+    "fields": 
+      {
+        "karyawan_id": 12,
+        "bpjs" : 200000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 13,
+    "fields": 
+      {
+        "karyawan_id": 13,
+        "bpjs" : 15000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 14,
+    "fields": 
+      {
+        "karyawan_id": 14,
+        "bpjs" : 150000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 15,
+    "fields": 
+      {
+        "karyawan_id": 15,
+        "bpjs" : 50000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 16,
+    "fields": 
+      {
+        "karyawan_id": 16,
+        "bpjs" : 400000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 17,
+    "fields": 
+      {
+        "karyawan_id": 17,
+        "bpjs" : 45000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 18,
+    "fields": 
+      {
+        "karyawan_id": 18,
+        "bpjs" : 35000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 19,
+    "fields": 
+      {
+        "karyawan_id": 19,
+        "bpjs" : 65000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      } 
+  },
+  {
+    "model": "system.PotonganKaryawan",
+    "pk": 20,
+    "fields": 
+      {
+        "karyawan_id": 20,
+        "bpjs" : 17000,
+        "pinjkaryawan" : 650000,
+        "created_at": "2017-03-01 15:03+07"
+      }
+  }
+]

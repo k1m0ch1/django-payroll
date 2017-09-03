@@ -173,7 +173,8 @@ def karyawan_detail(request, karyawan_id):
 	absen = Absensi.objects.filter(karyawan_id=karyawan_id)
 	gajipokok = GajiPokok.objects.get(karyawan_id=karyawan_id)
 	pinjaman = Pinjaman.objects.filter(karyawan_id=karyawan_id)
-	return render(request, "karyawan/detail.html", {'karyawan' : karyawan, 'absen': absen, 'gajipokok': gajipokok , 'pinjaman' : pinjaman, 'dsb': modules})
+	potongan = PotonganKaryawan.objects.get(karyawan_id=karyawan_id)
+	return render(request, "karyawan/detail.html", {'karyawan' : karyawan, 'absen': absen, 'gajipokok': gajipokok , 'pinjaman' : pinjaman, 'potongan' : potongan, 'dsb': modules})
 
 @login_required()
 def perusahaan_index(request):
