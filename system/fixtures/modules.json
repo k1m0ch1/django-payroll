@@ -412,16 +412,6 @@
     "model": "system.modules",
     "fields": 
       {
-        "name": "USER",
-        "fungsi": "User",
-        "mode": "alone",
-        "menu": "root",
-        "created_at": "2017-03-01 15:03+07"
-      }    
-  }, {
-    "model": "system.modules",
-    "fields": 
-      {
         "name": "PENGATURANSISTEM",
         "fungsi": "Pengaturan Sistem",
         "mode": "alone",

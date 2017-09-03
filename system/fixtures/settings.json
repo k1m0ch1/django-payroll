@@ -13,7 +13,7 @@
 		"pk" : 2,
 		"fields" : {
 			"name" : "isi-informasi",
-			"value" : "Ini adalah isi daripada informasi yang ditampilkan pada halaman login Aplikasi SIAK. Pada umumnya informasi ini mengenai pemberitahuan kepada user sebelum login",
+			"value" : "Ini adalah isi daripada informasi yang ditampilkan pada halaman login Aplikasi Payroll. Pada umumnya informasi ini mengenai pemberitahuan kepada user sebelum login",
 			"created_at" : "2017-03-01 12:01:15"
 		}
 	},

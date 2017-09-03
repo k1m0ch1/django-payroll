@@ -33,56 +33,61 @@ def postinggaji(request):
 	makanlembur = g.makanlembur
 
 	for x in a:
-		mantap =  waktu(x.masuk, x.karyawanshift.shift.jammasuk, True)
+		mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
 
 
 	return render(request,"postinggaji/print.html", { 'data': mantap, 'idkaryawan': listid[y], 'gajipokok' : gajipokok, 
 													'tunjanganmakan': tunjanganmakan, })
 
 def waktu(waktu=None, jadwal=None, masuk=None):
-	hasil = ""
-	akhir = ""
-	wj, wm, wd = waktu.strftime("%H:%M:%S").split(':')
-	waktu = (int(wj)*3600) + (int(wm)*60) + int(wd)
-	jj, jm, jd = jadwal.strftime("%H:%M:%S").split(':')
-	jadwal = (int(jj)*3600) + (int(jm)*60) + int(jd)
-	nilai = waktu-jadwal
-	jamA = int(nilai)/3600
-	menitA = int(nilai)/60
-	detikA = int(nilai) - int(nilai)
-	jam = "" 
-	menit = ""
-	detik = ""
-	jamB= False
-	menitB= False
-	#melakukan lebih awal daripada jam
-	#akhir = "< " if jamA == -1 else ""
+	hasil = 0
 	akhir = 0
 
-	if jamA < -1 :
-		a, jam = str(jamA).split('-')
-		#jam = str(jamA+3) + " jam "
-		jam = int(jamA+3)
-		akhir = akhir + jam
-	elif jamA > 0 :
-		akhir = akhir + int(jamA)
-		jamB = True
+	wj, wm, wd = waktu.strftime("%H:%M:%S").split(':')
+	waktu = (int(wj)*3600) + (int(wm)*60) + int(wd)
 
-	if menitA <= -1 :
-		a, menit = str(int(menitA%-60)).split('-')
-		akhir = akhir + menit
-	elif menitA > 0 :
-		hasil = hasil + str(int(menitA%60))
-		akhir = akhir + ">" + hasil if jamB == False else akhir + hasil
-		menitB = True
+	jj, jm, jd = jadwal.strftime("%H:%M:%S").split(':')
+	jadwal = (int(jj)*3600) + (int(jm)*60) + int(jd)
 
-	if detikA <= -1 :
-		a, detik = str(detikA).split('-')
-		hasil = hasil + detik + " detik "
-		akhir = akhir +  " < " + hasil
-	elif int(nilai) - int(nilai) >0:
-		hasil = hasil + str(detikA) + " detik "
-		akhir = akhir + " > " + hasil
+	nilai = waktu-jadwal
+
+	return nilai
+	# jamA = int(nilai)/3600
+	# menitA = int(nilai)/60
+	# detikA = int(nilai) - int(nilai)
+	# jam = 0
+	# menit = 0
+	# detik = 0
+	# jamB= False
+	# menitB= False
+	# #melakukan lebih awal daripada jam
+	# #akhir = "< " if jamA == -1 else ""
+	# akhir = 0
+
+	# if jamA < -1 :
+	# 	a, jam = str(jamA).split('-')
+	# 	#jam = str(jamA+3) + " jam "
+	# 	jam = int(jamA+3)
+	# 	akhir = akhir + jam
+	# elif jamA > 0 :
+	# 	akhir = akhir + int(jamA)
+	# 	jamB = True
+
+	# if menitA <= -1 :
+	# 	a, menit = str(int(menitA%-60)).split('-')
+	# 	akhir = akhir + int(menit)
+	# elif menitA > 0 :
+	# 	hasil = hasil + int(menitA%60)
+	# 	akhir = akhir + hasil if jamB == False else akhir + hasil
+	# 	menitB = True
+
+	# if detikA <= -1 :
+	# 	a, detik = str(detikA).split('-')
+	# 	hasil = hasil + int(detik)
+	# 	akhir = akhir + hasil
+	# elif int(nilai) - int(nilai) >0:
+	# 	hasil = hasil + detikA 
+	# 	akhir = akhir + hasil
 
 
-	return akhir + ""
+	# return akhir 
