@@ -32,6 +32,11 @@ def api_karyawan(request):
 	
 	k = Karyawan.objects.all()
 	if request.method == "GET":
+
+		if 'perusahaan' in request.GET:
+			perusahaan = "" if request.GET['perusahaan'] == "" else request.GET['perusahaan']
+			k = k.filter(perusahaan_id=perusahaan) if perusahaan != "" else k
+
 		if 'departemen' in request.GET:
 			departemen = "" if request.GET['departemen'] == "" else request.GET['departemen']
 			k = k.filter(departemen_id=departemen) if departemen != "" else k
@@ -44,9 +49,9 @@ def api_karyawan(request):
 			golongan = "" if request.GET['golongan'] == "" else request.GET['golongan']
 			k = k.filter(golongan_id=golongan) if golongan != "" else k
 
-		if 'jabatan' in request.GET:
-			jabatan = "" if request.GET['jabatan'] == "" else request.GET['jabatan']
-			k = k.filter(jabatan_id=jabatan) if jabatan != "" else k
+		# if 'jabatan' in request.GET:
+		# 	jabatan = "" if request.GET['jabatan'] == "" else request.GET['jabatan']
+		# 	k = k.filter(jabatan_id=jabatan) if jabatan != "" else k
 
 		if 'nik' in request.GET:
 			nik = "" if request.GET['nik'] == "" else request.GET['nik']
@@ -54,8 +59,9 @@ def api_karyawan(request):
 
 		if 'name' in request.GET:
 			name = request.GET['name'] if request.GET['name'] != "" else ""
-			k = k.filter(name__contains=name) if name != "" else k			
+			k = k.filter(name__contains=name) if name != "" else k	
 
+	per = Perusahaan.objects.all()
 	dep = Departemen.objects.all()
 	bag = Bagian.objects.all()
 	gol = Golongan.objects.all()
@@ -73,7 +79,7 @@ def api_karyawan(request):
    		k = paginator.page(paginator.num_pages)
 
 	return render(request, "karyawanshift/modal.html", { 'karyawan': k, 'departemen' : dep, 'bagian': bag,
-															 'golongan' : gol, 'jabatan' : jab, 'ks': ks})
+															 'golongan' : gol, 'jabatan' : jab, 'perusahaan' : per, 'ks': ks})
 
    	# return HttpResponse(serializers.serialize("json", [q for q in k.object_list]), content_type='application/json')
    	# return HttpResponse(json.dumps([k.get_queryset()]))
@@ -84,6 +90,7 @@ def api_karyawan(request):
 def karyawan_shift_index(request):
 	k = Karyawan.objects.all()
 	dep = Departemen.objects.all()
+	per = Perusahaan.objects.all()
 	bag = Bagian.objects.all()
 	gol = Golongan.objects.all()
 	jab = Jabatan.objects.all()
@@ -102,7 +109,7 @@ def karyawan_shift_index(request):
 
 	return render(request, "karyawanshift/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
 															 'golongan' : gol, 'jabatan' : jab, 'ks': ks, 'shift' : shift,
-															 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
+															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def potongankaryawan_index(request):
@@ -110,12 +117,13 @@ def potongankaryawan_index(request):
 	dep = Departemen.objects.all()
 	bag = Bagian.objects.all()
 	gol = Golongan.objects.all()
+	per = Perusahaan.objects.all()
 	jab = Jabatan.objects.all()
 	shift = Shift.objects.all()
 
 	return render(request, "potongan/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
 															 'golongan' : gol, 'jabatan' : jab,
-															 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
+															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def postinggaji_index(request):
@@ -123,11 +131,12 @@ def postinggaji_index(request):
 	dep = Departemen.objects.all()
 	bag = Bagian.objects.all()
 	gol = Golongan.objects.all()
+	per = Perusahaan.objects.all()
 	jab = Jabatan.objects.all()
 
 	return render(request, "postinggaji/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
 															 'golongan' : gol, 'jabatan' : jab,
-															 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
+															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def pinjaman_index(request):

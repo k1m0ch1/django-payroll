@@ -43,9 +43,9 @@
 
                 <script>
 
-                  $('#departemen, #bagian, #jabatan, #golongan').on("change", function(){
-                    halaman = "?departemen=" + $("#departemen").val() + "&bagian=" + $("#bagian").val() 
-                    halaman += "&jabatan=" + $("#jabatan").val() + "&golongan=" + $("#golongan").val()
+                  $('#perusahaan, #departemen, #bagian, #jabatan, #golongan').on("change", function(){
+                    halaman = "?perusahaan="+ $("#perusahaan").val() +"&departemen=" + $("#departemen").val() + "&bagian=" + $("#bagian").val() 
+                    halaman += "&jabatan=&golongan=" + $("#golongan").val()
 
                     $.ajax({
                         type: "GET",
@@ -57,8 +57,8 @@
                   });
 
                   $('#caripaketext').on("click", function(){
-                    halaman = "?departemen=" + $("#departemen").val() + "&bagian=" + $("#bagian").val() 
-                    halaman += "&jabatan=" + $("#jabatan").val() + "&golongan=" + $("#golongan").val()
+                    halaman = "?perusahaan="+ $("#perusahaan").val() +"&departemen=" + $("#departemen").val() + "&bagian=" + $("#bagian").val() 
+                    halaman += "&jabatan=&golongan=" + $("#golongan").val()
                     halaman += "&name=" + $("#name").val() + "&nik=" + $("#nik").val() 
 
                     $.ajax({

@@ -107,6 +107,14 @@
                     <label for="pencarian" class="col-sm-2 control-label">Pencarian</label>
                     <div class="col-md-5">
                       <select class="form-control" id="departemen">
+                      <div class="col-md-5">
+                        <select class="form-control" id="perusahaan">
+                        <option value="">Perusahaan</option>
+                        {% for per in perusahaan %}
+                          <option value="{{per.id}}">{{ per.name }}</option>
+                        {% endfor %}
+                      </select>
+                      </div>
                       <option value="">Departemen</option>
                       {% for dp in departemen %}
                         <option value="{{dp.id}}">{{ dp.name }}</option>
@@ -130,13 +138,13 @@
                       {% endfor %}
                     </select>
                     </div>
-                    <div class="col-md-5">
+                    <!-- <div class="col-md-5">
                       <select class="form-control" id="jabatan">
                       <option value="">Jabatan</option>
                       {% for jb in jabatan %}
                         <option value="{{jb.id}}">{{ jb.name }}</option>
                       {% endfor %}
-                    </select>
+                    </select> -->
                     </div>
                     <label for="pencarian" class="col-sm-2 control-label">NIK</label>
                     <div class="input-group col-sm-8">

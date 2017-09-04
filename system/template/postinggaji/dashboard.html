@@ -98,6 +98,14 @@
                   <div class="form-group">
                     <label for="pencarian" class="col-sm-2 control-label">Pencarian</label>
                     <div class="col-md-5">
+                      <select class="form-control" id="perusahaan">
+                      <option value="">Perusahaan</option>
+                      {% for per in perusahaan %}
+                        <option value="{{per.id}}">{{ per.name }}</option>
+                      {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-md-5">
                       <select class="form-control" id="departemen">
                       <option value="">Departemen</option>
                       {% for dp in departemen %}
