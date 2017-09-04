@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": 
       {
-        "karyawan": 1,
+        "karyawan_id": 1,
         "gajipokok" : 1500000,
         "jumlahhari": 5,
         "tmakan" : 600000,
@@ -17,7 +17,7 @@
     "pk": 2,
     "fields": 
       {
-        "karyawan": 2,
+        "karyawan_id": 2,
         "gajipokok" : 300000,
         "jumlahhari": 6,
         "tmakan" : 600000,
@@ -30,7 +30,7 @@
     "pk": 3,
     "fields": 
       {
-        "karyawan": 3,
+        "karyawan_id": 3,
         "gajipokok" : 500000,
         "jumlahhari": 6,
         "tmakan" : 600000,
@@ -43,7 +43,7 @@
     "pk": 4,
     "fields": 
       {
-        "karyawan": 4,
+        "karyawan_id": 4,
         "jumlahhari": 5,
         "gajipokok" : 1000000,
         "tmakan" : 600000,
@@ -56,7 +56,7 @@
     "pk": 5,
     "fields": 
       {
-        "karyawan": 5,
+        "karyawan_id": 5,
         "gajipokok" : 150000,
         "jumlahhari": 5,
         "tmakan" : 650000,
@@ -69,7 +69,7 @@
     "pk": 6,
     "fields": 
       {
-        "karyawan": 6,
+        "karyawan_id": 6,
         "gajipokok" : 150000,
         "jumlahhari": 5,
         "tmakan" : 650000,
@@ -82,7 +82,7 @@
     "pk": 7,
     "fields": 
       {
-        "karyawan": 7,
+        "karyawan_id": 7,
         "gajipokok" : 500000,
         "jumlahhari": 5,
         "tmakan" : 650000,
@@ -95,7 +95,7 @@
     "pk": 8,
     "fields": 
       {
-        "karyawan": 8,
+        "karyawan_id": 8,
         "gajipokok" : 100000,
         "jumlahhari": 5,
         "tmakan" : 650000,
@@ -108,7 +108,7 @@
     "pk": 9,
     "fields": 
       {
-        "karyawan": 9,
+        "karyawan_id": 9,
         "gajipokok" : 7000000,
         "jumlahhari": 5,
         "tmakan" : 650000,
@@ -121,7 +121,7 @@
     "pk": 10,
     "fields": 
       {
-        "karyawan": 10,
+        "karyawan_id": 10,
         "jumlahhari": 5,
         "gajipokok" : 1500000,
         "tmakan" : 650000,
@@ -134,7 +134,7 @@
     "pk": 11,
     "fields": 
       {
-        "karyawan": 11,
+        "karyawan_id": 11,
         "jumlahhari": 5,
         "gajipokok" : 5000000,
         "tmakan" : 650000,
@@ -147,7 +147,7 @@
     "pk": 12,
     "fields": 
       {
-        "karyawan": 12,
+        "karyawan_id": 12,
         "jumlahhari": 5,
         "gajipokok" : 2000000,
         "tmakan" : 650000,
@@ -160,7 +160,7 @@
     "pk": 13,
     "fields": 
       {
-        "karyawan": 13,
+        "karyawan_id": 13,
         "gajipokok" : 150000,
         "jumlahhari": 5,
         "tmakan" : 650000,
@@ -173,7 +173,7 @@
     "pk": 14,
     "fields": 
       {
-        "karyawan": 14,
+        "karyawan_id": 14,
         "gajipokok" : 1500000,
         "jumlahhari": 5,
         "tmakan" : 650000,
@@ -186,7 +186,7 @@
     "pk": 15,
     "fields": 
       {
-        "karyawan": 15,
+        "karyawan_id": 15,
         "gajipokok" : 500000,
         "jumlahhari": 5,
         "tmakan" : 650000,
@@ -199,7 +199,7 @@
     "pk": 16,
     "fields": 
       {
-        "karyawan": 16,
+        "karyawan_id": 16,
         "gajipokok" : 4000000,
         "jumlahhari": 5,
         "tmakan" : 650000,
@@ -212,7 +212,7 @@
     "pk": 17,
     "fields": 
       {
-        "karyawan": 17,
+        "karyawan_id": 17,
         "gajipokok" : 450000,
         "jumlahhari": 5,
         "tmakan" : 650000,
@@ -225,7 +225,7 @@
     "pk": 18,
     "fields": 
       {
-        "karyawan": 18,
+        "karyawan_id": 18,
         "gajipokok" : 350000,
         "jumlahhari": 5,
         "tmakan" : 650000,
@@ -238,7 +238,7 @@
     "pk": 19,
     "fields": 
       {
-        "karyawan": 19,
+        "karyawan_id": 19,
         "gajipokok" : 650000,
         "jumlahhari": 5,
         "tmakan" : 650000,
@@ -251,7 +251,7 @@
     "pk": 20,
     "fields": 
       {
-        "karyawan": 20,
+        "karyawan_id": 20,
         "gajipokok" : 170000,
         "jumlahhari": 5,
         "tmakan" : 650000,

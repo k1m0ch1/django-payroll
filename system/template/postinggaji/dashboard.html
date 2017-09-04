@@ -210,7 +210,7 @@
             url: 'http://{{ request.get_host }}/index/postinggaji/do',
             data: {idkaryawan: $('#idKaryawan').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
             success: function(result) {
-                var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+                var mywindow = window.open('', 'PRINT');
                 mywindow.document.write(result);
                 $('#contentKaryawan').html(result);
                 mywindow.print();
