@@ -6,6 +6,7 @@
       {
         "karyawan_id": 1,
         "bpjs" : 150000,
+        "pph" : 150000,
         "pinjkaryawan" : 600000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -17,6 +18,7 @@
       {
         "karyawan_id": 2,
         "bpjs" : 30000,
+        "pph" : 150000,
         "pinjkaryawan" : 600000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -28,6 +30,7 @@
       {
         "karyawan_id": 3,
         "bpjs" : 50000,
+        "pph" : 150000,
         "pinjkaryawan" : 600000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -39,6 +42,7 @@
       {
         "karyawan_id": 4,
         "bpjs" : 100000,
+        "pph" : 150000,
         "pinjkaryawan" : 60000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -50,6 +54,7 @@
       {
         "karyawan_id": 5,
         "bpjs" : 15000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -61,6 +66,7 @@
       {
         "karyawan_id": 6,
         "bpjs" : 15000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -72,6 +78,7 @@
       {
         "karyawan_id": 7,
         "bpjs" : 50000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -83,6 +90,7 @@
       {
         "karyawan_id": 8,
         "bpjs" : 10000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -94,6 +102,7 @@
       {
         "karyawan_id": 9,
         "bpjs" : 700000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -105,6 +114,7 @@
       {
         "karyawan_id": 10,
         "bpjs" : 150000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -116,6 +126,7 @@
       {
         "karyawan_id": 11,
         "bpjs" : 500000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -127,6 +138,7 @@
       {
         "karyawan_id": 12,
         "bpjs" : 200000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -138,6 +150,7 @@
       {
         "karyawan_id": 13,
         "bpjs" : 15000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -149,6 +162,7 @@
       {
         "karyawan_id": 14,
         "bpjs" : 150000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -160,6 +174,7 @@
       {
         "karyawan_id": 15,
         "bpjs" : 50000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -171,6 +186,7 @@
       {
         "karyawan_id": 16,
         "bpjs" : 400000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -182,6 +198,7 @@
       {
         "karyawan_id": 17,
         "bpjs" : 45000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }
@@ -193,6 +210,7 @@
       {
         "karyawan_id": 18,
         "bpjs" : 35000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -204,6 +222,7 @@
       {
         "karyawan_id": 19,
         "bpjs" : 65000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       } 
@@ -215,6 +234,7 @@
       {
         "karyawan_id": 20,
         "bpjs" : 17000,
+        "pph" : 150000,
         "pinjkaryawan" : 650000,
         "created_at": "2017-03-01 15:03+07"
       }

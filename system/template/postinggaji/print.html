@@ -2,21 +2,28 @@
 <table border=1>
 	<tr>
 		<td>No</td>
+		<td>NIK</td>
+		<td>Nama</td>
+		<td>Departemen</td>
+		<td>Jabatan</td>
+		<td>Bagian</td>
+		<td>Golongan</td>
 		<td>Gaji Pokok</td>
 		<td>Tunjangan Makan</td>
-		<td colspan=3>Potongan Telat</td>
+		<td>Tunjangan Transportasi</td>
 	</tr>
 	<tr>
-		<td>{{ gajipokok }}</td>
-		<td>{{ tunjanganmakan }}</td>
-		<td></td>
-	</tr>
-	<tr>
-	{% foreach  %}
-		<td>{{ data }}</td>
-	{% endforech %}
+		{% for p in posting %}
+			<td>{{ p.no }}</td>
+			<td>{{ p.nik }}</td>
+			<td>{{ p.nama }}</td>
+			<td>{{ p.departemen }}</td>
+			<td>{{ p.jabatan }}</td>
+			<td>{{ p.bagian }}</td>
+			<td>{{ p.golongan }}</td>
+			<td>{{ p.gajipokok }}</td>
+			<td>{{ p.tmakan }}</td>
+			<td>{{ p.trasnportnonexec }}</td>
+		{% endfor %}
 	</tr>
 </table>
-
-
-{{ idkaryawan }}	

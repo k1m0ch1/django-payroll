@@ -20,24 +20,54 @@ allmenu = Modules.objects.only('name')
 
 @login_required()
 def postinggaji(request):
+
+	class postgaji(object):
+			no = ""
+			nik = ""
+			nama = ""
+			departemen = ""
+			bagian = ""
+			golongan = ""
+			gajipokok = ""
+			gajipokok = ""
+			tmakan = ""
+			transportnonexec = ""
+
+			def __init__(self, no, nik, nama, departemen, bagian, golongan, gajipokok, tmakan, transportnonexec):
+				self.no = no
+				self.nik = nik
+				self.nama = nama
+				self.departemen = departemen
+				self.bagian = bagian
+				self.golongan = golongan
+				self.gajipokok = gajipokok
+				self.tmakan = tmakan
+				self.transportnonexec = transportnonexec
+
 	today = datetime.datetime.now()
 	idkaryawan = request.POST['idkaryawan']
 	listid = [x.strip() for x in idkaryawan.split(',')]
+	a = ""
+	mantap = ""
+	objs = [range(0, len(listid)-1)]
+
 	for y in range(0, len(listid)-1):
 		a = Absensi.objects.filter(karyawan=listid[y]).filter(tanggal__year=today.year).filter(tanggal__month=4)
 		k = Karyawan.objects.get(pk=listid[y])
 		g = GajiPokok.objects.get(karyawan_id=listid[y])
 
-	gajipokok = g.gajipokok 
-	tunjanganmakan = g.tmakan
-	makanlembur = g.makanlembur
+		gajipokok = g.gajipokok 
+		tunjanganmakan = g.tmakan
+		makanlembur = g.makanlembur
+		transportnonexec = g.transportnonexec
 
-	for x in a:
-		mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
+		# for x in a:
+		# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
+		
+		objs.append(postinggaji(y, k.NIK, k.name, k.departemen.name, k.bagian.name, k.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec))
 
 
-	return render(request,"postinggaji/print.html", { 'data': mantap, 'idkaryawan': listid[y], 'gajipokok' : gajipokok, 
-													'tunjanganmakan': tunjanganmakan, })
+	return render(request,"postinggaji/print.html", { 'data': mantap, 'idkaryawan': listid[y], 'posting' : objs})
 
 def waktu(waktu=None, jadwal=None, masuk=None):
 	hasil = 0
