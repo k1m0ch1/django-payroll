@@ -139,7 +139,7 @@ def karyawan_izin_save_api(request):
 	idkaryawan = request.POST['idkaryawan']
 	listid = [x.strip() for x in idkaryawan.split(',')]
 	for y in range(0, len(listid)-1):
-		a = SuratIzin(izintgl = parse(request.POST['izin']).strftime("%Y-%m-%d"), izinlama=request.POST['izinlama'])
+		a = SuratIzin(izintgl = parse(request.POST['izin']).strftime("%Y-%m-%d"), izinlama=request.POST['izinlama'], karyawan_id=listid[y])
 		a.save()
 
 	return HttpResponse("berhasil-simpan-lembur")
