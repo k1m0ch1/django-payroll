@@ -141,6 +141,7 @@ urlpatterns = [
     url(r'^hariraya/(?P<hariraya_id>[0-9]+)/delete/$', views.delete.hariraya, name="hariraya-delete"),
     url(r'^inventory/(?P<inventory_id>[0-9]+)/delete/$', views.delete.inventory, name="inventory-delete"),
     # url(r'^gaji/(?P<gajia_id>[0-9]+)/delete/$', views.delete.gaji, name="gaji-delete"),
+    url(r'^karyawan/(?P<karyawan_id>[0-9]+)/delete/$', views.delete.karyawan, name="karyawan-delete"),
 
 
     #===api
