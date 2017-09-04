@@ -185,6 +185,35 @@
       <div class="row">
           <div class="col-md-12">
               <div class="col-md-2">
+                <p><h4 class="control-label">Surat Izin/ Sakit</h4></p>
+              </div>
+          </div>                
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-2">
+              <label class="control-label pull-right">Untuk Tanggal</label>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                  <input type="text" class="form-control pull-right" id="izin">
+                </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                  <input type="text" class="form-control pull-right" maxlength=2 placeholder="Selama Berapa Hari" id="izinlama">
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" id="tambahizin"><i class="fa fa-plus"></i> Simpan</button> 
+            </div>
+          </div>          
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-2">
                 <p><h4 class="control-label">Table Shift</h4></p>
               </div>
           </div>                
@@ -418,6 +447,10 @@
     $('#reservation').daterangepicker();
 
     $('#reservationKedua').daterangepicker();
+
+    $('#izin').datepicker({
+      autoclose: true
+    })
         
     $.ajax({
         type: "GET",
@@ -466,6 +499,16 @@
         type: "POST",
         url: 'http://{{ request.get_host }}/index/api/karyawan/lembur/create/save',
         data: {idkaryawan: $('#idKaryawan').val(), lamalembur: $('#lembur').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+        success: function(result) {
+            alert('Berhasil Tambah Lembur');
+        }});
+    });
+
+    $("#tambahizin").on("click", function(){
+        $.ajax({
+        type: "POST",
+        url: 'http://{{ request.get_host }}/index/api/karyawan/izin/create/save',
+        data: {idkaryawan: $('#idKaryawan').val(), izin: $('#izin').val(), izinlama: $('#izinlama').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Tambah Lembur');
         }});

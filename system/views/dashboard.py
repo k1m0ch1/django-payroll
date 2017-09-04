@@ -101,7 +101,8 @@ def karyawan_shift_index(request):
    		ks = paginator.page(paginator.num_pages)
 
 	return render(request, "karyawanshift/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
-															 'golongan' : gol, 'jabatan' : jab, 'ks': ks, 'shift' : shift})
+															 'golongan' : gol, 'jabatan' : jab, 'ks': ks, 'shift' : shift,
+															 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def potongankaryawan_index(request):
@@ -113,7 +114,8 @@ def potongankaryawan_index(request):
 	shift = Shift.objects.all()
 
 	return render(request, "potongan/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
-															 'golongan' : gol, 'jabatan' : jab, })
+															 'golongan' : gol, 'jabatan' : jab,
+															 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def postinggaji_index(request):
@@ -124,7 +126,8 @@ def postinggaji_index(request):
 	jab = Jabatan.objects.all()
 
 	return render(request, "postinggaji/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
-															 'golongan' : gol, 'jabatan' : jab,})
+															 'golongan' : gol, 'jabatan' : jab,
+															 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def pinjaman_index(request):
@@ -165,7 +168,7 @@ def karyawan_index(request):
 
    	ilihan = Selected("selected" ,"", "", "", "", "")
 
-	return render(request, "karyawan/dashboard.html", { 'karyawan' : karyawan, 'dsb' : modules, 'selected': "Kategori"})
+	return render(request, "karyawan/dashboard.html", { 'karyawan' : karyawan, 'dsb' : modules, 'selected': "Kategori",'parent' : getParent(request)})
 
 @login_required()
 def karyawan_detail(request, karyawan_id):
@@ -174,7 +177,8 @@ def karyawan_detail(request, karyawan_id):
 	gajipokok = GajiPokok.objects.get(karyawan_id=karyawan_id)
 	pinjaman = Pinjaman.objects.filter(karyawan_id=karyawan_id)
 	potongan = PotonganKaryawan.objects.get(karyawan_id=karyawan_id)
-	return render(request, "karyawan/detail.html", {'karyawan' : karyawan, 'absen': absen, 'gajipokok': gajipokok , 'pinjaman' : pinjaman, 'potongan' : potongan, 'dsb': modules})
+	return render(request, "karyawan/detail.html", {'karyawan' : karyawan, 'absen': absen, 'gajipokok': gajipokok , 'pinjaman' : pinjaman, 
+													'parent' : getParent(request), 'potongan' : potongan, 'dsb': modules})
 
 @login_required()
 def perusahaan_index(request):

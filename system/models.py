@@ -225,6 +225,16 @@ class Absensi(models.Model):
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 
+class SuratIzin(models.Model):
+	karyawan = models.ForeignKey(Karyawan)
+	name = models.CharField(max_length=25, null=True)
+	desc = models.TextField(null=True)
+	izintgl = models.DateField()
+	izinlama = models.DecimalField(max_digits=2, decimal_places=0, null=True, default=0)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+	delete_date = models.DateTimeField(auto_now_add=True, null=True)
+
 class Lembur(models.Model):
 	name = models.CharField(max_length=25, null=True)
 	desc = models.TextField(null=True)
