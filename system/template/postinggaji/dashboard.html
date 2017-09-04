@@ -122,14 +122,7 @@
                       {% endfor %}
                     </select>
                     </div>
-                    <div class="col-md-5">
-                      <select class="form-control" id="jabatan">
-                      <option value="">Jabatan</option>
-                      {% for jb in jabatan %}
-                        <option value="{{jb.id}}">{{ jb.name }}</option>
-                      {% endfor %}
-                    </select>
-                    </div>
+
                     <label for="pencarian" class="col-sm-2 control-label">NIK</label>
                     <div class="input-group col-sm-8">
                       <input placeholder="NIK" type="text" class="form-control" id="nik">
