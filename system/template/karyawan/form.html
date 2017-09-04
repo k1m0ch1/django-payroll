@@ -22,7 +22,12 @@
               <div class="box-header">
                 <h3 class="box-title">Tambah Karyawan Baru</h3>
               </div>
-              <form method="POST" action="{% url 'karyawan-create-save' %}" id="tambahkaryawan">
+              {% if mode == "Tambah" %}
+                <form method="POST" action="{% url 'karyawan-create-save' %}" id="tambahkaryawan">
+              {% else %}
+                <form method="POST" action="{% url 'karyawan-edit-save' karyawan.id %}" id="tambahkaryawan">
+              {% endif %}
+
               {% csrf_token %}
               <div class="box-body">
                 <div class="col-md-6 border-right">

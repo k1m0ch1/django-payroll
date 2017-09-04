@@ -39,7 +39,7 @@ def karyawan(request, karyawan_id):
 
 @login_required()
 def karyawan_save(request, karyawan_id):
-	k = Karyawan.objects.get(pk=karyawan_id)
+	k = Karyawan.objects.select_for_update().filter(id=karyawan_id)
 	g = GajiPokok.objects.filter(karyawan_id=karyawan_id)
 
 	k.update(NIK = request.POST['NIK'], name = request.POST['nama1'],
@@ -59,7 +59,7 @@ def karyawan_save(request, karyawan_id):
 			perusahaan_id= request.POST['perusahaan'])
 
 	if len(g)>0:
-		g.update(name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], jumlahhari = request.POST['jumlahhari'],
+		g.update(name="Gaji Pokok ", gajipokok=request.POST['gajipokok'], jumlahhari = request.POST['jumlahhari'],
 					tmakan = request.POST['tmakan'], transportnonexec = request.POST['transportnonexec'])
 	else:
 		g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], jumlahhari = request.POST['jumlahhari'],	
