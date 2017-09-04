@@ -64,7 +64,7 @@ def postinggaji(request):
 		# for x in a:
 		# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
 		
-		objs.append(postinggaji(y, k.NIK, k.name, k.departemen.name, k.bagian.name, k.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec))
+		objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, k.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec))
 
 
 	return render(request,"postinggaji/print.html", { 'data': mantap, 'idkaryawan': listid[y], 'posting' : objs})
