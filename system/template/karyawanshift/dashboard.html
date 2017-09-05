@@ -72,24 +72,39 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-12">
             <div class="col-md-2">
               <label class="control-label pull-right">Shift</label>
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                  <select class="form-control" id="shift1">
-                    {% for y in shift %}
-                    <option value="{{y.id}}">{{ y.name }}</option>
-                    {% endfor %}
-                  </select>
+                  <label class="control-label">Shift Minggu 1</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    <input type="text" class="form-control pull-right" id="sm1">
+                  </div>
                 </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                  <select class="form-control" id="shift2">
-                    {% for z in shift %}
-                    <option value="{{z.id}}">{{ z.name }}</option>
+                  <label class="control-label">Tanggal OFF Minggu 1</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    <input type="text" class="form-control pull-right" id="off1">
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                  <label class="control-label">Jadwal Minggu 1</label>
+                  <select class="form-control" id="shift1">
+                    {% for y in shift %}
+                    <option value="{{y.id}}">{{ y.name }}</option>
                     {% endfor %}
                   </select>
                 </div>
@@ -98,6 +113,66 @@
           <div class="col-md-12">
             <div class="col-md-2 col-md-offset-2">
               <div class="form-group">
+                  <label class="control-label">Shift Minggu 2</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    <input type="text" class="form-control pull-right" id="sm2">
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 ">
+              <div class="form-group">
+                  <label class="control-label">Tanggal OFF Minggu 2</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    <input type="text" class="form-control pull-right" id="off2">
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                  <label class="control-label">Shift Minggu 2</label>
+                  <select class="form-control" id="shift2">
+                    {% for z in shift %}
+                    <option value="{{z.id}}">{{ z.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12">
+            <div class="col-md-2 col-md-offset-2">
+              <div class="form-group">
+                  <label class="control-label">Shift Minggu 3</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    <input type="text" class="form-control pull-right" id="sm3">
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="control-label">Tanggal OFF Minggu 3</label>
+                    <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    <input type="text" class="form-control pull-right" id="off3">
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-2 ">
+              <div class="form-group">
+                  <label class="control-label">Shift Minggu 3</label>
                   <select class="form-control" id="shift3">
                     {% for a in shift %}
                     <option value="{{a.id}}">{{ a.name }}</option>
@@ -105,8 +180,34 @@
                   </select>
                 </div>
             </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="col-md-2 col-md-offset-2">
+              <div class="form-group">
+                  <label class="control-label">Shift Minggu 4</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    <input type="text" class="form-control pull-right" id="sm4">
+                  </div>
+                </div>
+            </div>
             <div class="col-md-2">
               <div class="form-group">
+                  <label class="control-label">Tanggal OFF Minggu 4</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    <input type="text" class="form-control pull-right" id="off4">
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                  <label class="control-label">Shift Minggu 4</label>
                   <select class="form-control" id="shift4">
                     {% for b in shift %}
                     <option value="{{b.id}}">{{ b.name }}</option>
@@ -114,8 +215,8 @@
                   </select>
                 </div>
             </div>
-            <div class="form-group">
-                <button class="btn btn-primary" id="simpanRolling"><i class="fa fa-plus"></i> Simpan</button> 
+            <div class="form-group" style="padding-top:25px;">
+                <button class="btn btn-primary"  id="simpanRolling"><i class="fa fa-plus"></i> Simpan</button> 
             </div>
           </div>          
       </div>
@@ -359,6 +460,17 @@
     $('#reservation').daterangepicker();
 
     $('#reservationKedua').daterangepicker();
+
+    $('#sm1').daterangepicker();
+    $('#sm2').daterangepicker();
+    $('#sm3').daterangepicker();
+    $('#sm4').daterangepicker();
+
+    $('#off1').daterangepicker();
+    $('#off2').daterangepicker();
+    $('#off3').daterangepicker();
+    $('#off4').daterangepicker();
+
 
     $('#izin').datepicker({
       autoclose: true

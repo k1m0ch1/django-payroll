@@ -10,6 +10,8 @@ from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konf
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
 from system.models import GajiPokok, Absensi, Pinjaman, PotonganKaryawan, SuratIzin
 from dateutil.parser import parse
+from datetime import timedelta
+from datetime import datetime
 from sys import getsizeof
 from zk import ZK, const
 import datetime
@@ -114,13 +116,27 @@ def karyawan_shift_save(request):
 	shift = [request.POST['shift1'], request.POST['shift2'], request.POST['shift3'],request.POST['shift4']]
 	idkaryawan = request.POST['idkaryawan']
 	tanggal = request.POST['tanggal']
+	offa = request.POST['off1']
+	offb = request.POST['off2']
+	offc = request.POST['off3']
+	offd = request.POST['off4']
+
 	tglawal = parse([x.strip() for x in tanggal.split(' ')][0]).strftime("%Y-%m-%d")
 	tglakhir = parse([x.strip() for x in tanggal.split(' ')][2]).strftime("%Y-%m-%d")
+
 	listid = [x.strip() for x in idkaryawan.split(',')]
 	for y in range(0, len(listid)-1):
-		for z in range(0, 4):
-			s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[z], tglawal=tglawal, tglakhir=tglakhir)
-			s.save()
+		k = Karyawan.objects.get(pk=listid[y])
+		jumlahhari = int(k.jumlahhari)
+		m1awal = datetime.strptime(tglawal, "%Y-%m-%d")
+		m1offawal = parse([x.strip() for x in offa.split(' ')][0]).strftime("%Y-%m-%d")
+		m1offakhir = parse([x.strip() for x in offa.split(' ')][2]).strftime("%Y-%m-%d")
+		m1offawal = "2017-05-15"
+		m1offakhir = "2017-05-16"
+		m1jarak = datetime.strptime(m1offakhir, "%Y-%m-%d") - datetime.strptime(m1offawal, "%Y-%m-%d")
+		m1jarak = int(m1jarak.days)
+		s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[z], tglawal=tglawal, tglakhir=tglakhir, tgloff=tgloff)
+		s.save()
 
 	return HttpResponse("yay berhasil")
 

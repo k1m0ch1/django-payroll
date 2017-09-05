@@ -200,6 +200,8 @@ class KaryawanShift(models.Model):
 	shift = models.ForeignKey(Shift, related_name="shift")
 	tglawal = models.DateField()
 	tglakhir = models.DateField()
+	tgloffawal = models.DateField(null=True)
+	tgloffakhir = models.DateField(null=True)
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)

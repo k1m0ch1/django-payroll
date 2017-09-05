@@ -9,6 +9,8 @@
         "name" : "a",
         "tglawal": "2017-04-10",
         "tglakhir": "2017-04-14",
+        "tgloffawal": "2017-04-13",
+        "tgloffawal": "2017-04-14",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -22,6 +24,8 @@
         "name" : "a",
         "tglawal": "2017-04-17",
         "tglakhir": "2017-04-21",
+        "tgloffawal": "2017-04-13",
+        "tgloffawal": "2017-04-14",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -35,6 +39,8 @@
         "name" : "a",
         "tglawal": "2017-04-24",
         "tglakhir": "2017-04-28",
+        "tgloffawal": "2017-04-13",
+        "tgloffawal": "2017-04-14",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -48,6 +54,8 @@
         "name" : "a",
         "tglawal": "2017-05-01",
         "tglakhir": "2017-05-05",
+        "tgloffawal": "2017-04-13",
+        "tgloffawal": "2017-04-14",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -61,6 +69,8 @@
         "name" : "a",
         "tglawal": "2017-04-10",
         "tglakhir": "2017-04-14",
+        "tgloffawal": "2017-04-13",
+        "tgloffawal": "2017-04-14",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -74,6 +84,8 @@
         "name" : "a",
         "tglawal": "2017-04-17",
         "tglakhir": "2017-04-21",
+        "tgloffawal": "2017-04-13",
+        "tgloffawal": "2017-04-14",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -87,6 +99,8 @@
         "name" : "a",
         "tglawal": "2017-04-24",
         "tglakhir": "2017-04-28",
+        "tgloffawal": "2017-04-13",
+        "tgloffawal": "2017-04-14",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -100,6 +114,8 @@
         "name" : "a",
         "tglawal": "2017-05-01",
         "tglakhir": "2017-05-05",
+        "tgloffawal": "2017-04-13",
+        "tgloffawal": "2017-04-14",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
         "created_at": "2017-03-01 15:03+07"
       }    
