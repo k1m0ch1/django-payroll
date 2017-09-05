@@ -358,6 +358,8 @@ class PostingGaji(models.Model):
 	masatenggangclosing = models.ForeignKey(MasaTenggangClosing)	
 	gajipokok = models.ForeignKey(GajiPokok)
 	potongankaryawan = models.ForeignKey(PotonganKaryawan)
+	tovertime = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
+	pabsen = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
 	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)

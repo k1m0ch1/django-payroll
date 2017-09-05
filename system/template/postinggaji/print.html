@@ -9,8 +9,10 @@
 		<td>Gaji Pokok</td>
 		<td>Tunjangan Makan</td>
 		<td>Tunjangan Transportasi</td>
+		<td>Tunjangan Overtime</td>
 		<td>Potongan Pinjaman</td>
 		<td>Potongan BPJS</td>
+		<td>Potongan Absensi</td>
 	</tr>
 	{% for p in posting %}
 	<tr>
@@ -24,8 +26,10 @@
 			<td>{{ p.gajipokok }}</td>
 			<td>{{ p.tmakan }}</td>
 			<td>{{ p.transportnonexec }}</td>
+			<td>{{ p.tovertime }}</td>
 			<td>{{ p.ppinjam }}</td>
-			<td>{{ p.pbpjs }}</td>			
+			<td>{{ p.pbpjs }}</td>	
+			<td>{{ p.pabsen}}</td>		
 		
 	</tr>
 	{% endfor %}
