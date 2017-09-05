@@ -9,6 +9,7 @@ from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
 from system.models import Inventory, Konfigurasi, GajiPokok, PotonganKaryawan, Pinjaman
+from system.models import MasaTenggangClosing
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -198,6 +199,12 @@ def perusahaan_index(request):
 def shift_index(request):
 	data = serializers.serialize( "python", Shift.objects.all(),fields=('name','jammasuk', 'jamkeluar', 'desc'))
 	exfield = [{'field': 'Jam Masuk'}, {'field': 'Jam Keluar'}]
+	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request), 'exfield' : exfield})
+
+@login_required()
+def masatenggangclosing_index(request):
+	data = serializers.serialize( "python", MasaTenggangClosing.objects.all(),fields=('name','tanggal', 'sd', 'desc'))
+	exfield = [{'field': 'Tanggal Mulai'}, {'field': 'Tanggal Akhir'}]
 	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request), 'exfield' : exfield})
 
 @login_required()

@@ -269,9 +269,10 @@
     "model": "system.modules",
     "fields": 
       {
-        "name": "MASSATENGGANG",
-        "fungsi": "Massa Tenggang Closing",
+        "name": "MASATENGGANGCLOSING",
+        "fungsi": "Masa Tenggang Closing",
         "menu": "DATAMASTER2",
+        "url_slug": "masatenggangclosing-index",
         "icon": "fa fa-cloud-download",
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -300,7 +301,7 @@
     "model": "system.modules",
     "fields": 
       {
-        "name": "TRANSAKSI",
+        "name": "ABSENSI",
         "fungsi": "Absensi",
         "menu": "TRANSAKSI",
         "icon": "fa fa-pie-chart",

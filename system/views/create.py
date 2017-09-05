@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konfigurasi
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
-from system.models import GajiPokok, Absensi, Pinjaman, PotonganKaryawan, SuratIzin
+from system.models import GajiPokok, Absensi, Pinjaman, PotonganKaryawan, SuratIzin, MasaTenggangClosing
 from dateutil.parser import parse
 from datetime import timedelta
 from datetime import datetime
@@ -236,6 +236,7 @@ def potongan_save(request):
 	bpjs = request.POST['bpjs']
 	#pajakbulanan = request.POST['pajakbulanan']
 	pinjaman = request.POST['pinjaman']
+	cicil_pinjaman = request.POST['cicil_pinjaman']
 	for y in range(0, len(listid)-1):
 		p = PotonganKaryawan.objects.filter(karyawan_id=listid[y])
 		g = GajiPokok.objects.get(karyawan_id=listid[y])
@@ -253,16 +254,19 @@ def potongan_save(request):
 			pinjaman = int(float(float(pisah[0])/100) * int(gajipokok))
 
 		if bpjs == "":
-			bpjs = p[0].bpjs
+			bpjs = 0 if p[0].bpjs == 0 else p[0].bpjs
 
 		# if pajakbulanan == "":
 		# 	pajakbulanan = p[0].pph
 
-		if pinjaman == "":
-			pinjaman = p[0].pinjkaryawan
+		if pinjaman == "" or pinjaman == None:
+			pinjaman = 0 if p[0].pinjkaryawan == 0 else p[0].pinjkaryawan
+
+		if cicil_pinjaman == "":
+			cicil_pinjaman = 0 if p[0].cicil_pinjkaryawan == 0 else p[0].cicil_pinjkaryawan
 
 		if len(p)>0:
-			p.update(bpjs=bpjs, pinjkaryawan=pinjaman,cicil_pinjkaryawan=request.POST['cicil_pinjaman'])
+			p.update(bpjs=bpjs, pinjkaryawan=pinjaman,cicil_pinjkaryawan=cicil_pinjaman)
 		else:
 			p = PotonganKaryawan(bpjs=bpjs, pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=request.POST['cicil_pinjaman'])	
 			p.save()
@@ -463,6 +467,21 @@ def hariraya_save(request):
 	pp = HariRaya(name=name, tanggal=tanggal, sd=sd, desc=desc)
 	pp.save()
 	return redirect("hariraya-index")
+
+@login_required()
+def masatenggangclosing(request):
+	return render(request, "masatenggangclosing/form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def masatenggangclosing_save(request):
+	name = request.POST['name']
+	tanggal = parse(request.POST['tanggal']).strftime("%Y-%m-%d")
+	sd = parse(request.POST['sd']).strftime("%Y-%m-%d")
+	desc = request.POST['desc']
+	pp = MasaTenggangClosing(name=name, tanggal=tanggal, sd=sd, desc=desc)
+	pp.save()
+	return redirect("masatenggangclosing-index")
 
 def getModule(request):
 	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]

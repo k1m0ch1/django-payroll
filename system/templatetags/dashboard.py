@@ -107,4 +107,11 @@ def dashboard(module=None, mode=None, idpk=None):
       # 'ubah'   : reverse('pinjaman-edit', kwargs={'pinjaman_id': idpk}),
       # 'hapus'  : reverse('pinjaman-delete', kwargs={'pinjaman_id': idpk})
     }[mode]
+  elif module == 'Masa Tenggang Closing':
+    return{
+      'indeks' : reverse('masatenggangclosing-index'),
+      'tambah' : reverse('masatenggangclosing-create'),
+      'ubah'   : reverse('masatenggangclosing-edit', kwargs={'masatenggangclosing_id': idpk}),
+      'hapus'  : reverse('masatenggangclosing-delete', kwargs={'masatenggangclosing_id': idpk})
+    }[mode]
   return "null"

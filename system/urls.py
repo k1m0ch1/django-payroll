@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^postinggaji$', views.dashboard.postinggaji_index, name="postinggaji-index"),
     url(r'^potongankaryawan$', views.dashboard.potongankaryawan_index, name="potongankaryawan-index"),
     url(r'^pinjaman$', views.dashboard.pinjaman_index, name="pinjaman-index"),
+    url(r'^masatenggangclosing$', views.dashboard.masatenggangclosing_index, name="masatenggangclosing-index"),
     # url(r'^gaji$', views.dashboard.gaji_index, name="gaji-index"),
   	#url(r'^notif-system$', views.dashboard.notif_system, name="notif-system-index"),
   	#url(r'^notif-login$', views.dashboard.notif_login, name="notif-login-index"),
@@ -80,10 +81,13 @@ urlpatterns = [
     url(r'^konfigurasi/create/save$', views.create.konfigurasi_save, name="konfigurasi-create-save"),
     url(r'^pinjaman/create$', views.create.pinjaman, name="pinjaman-create"),
     url(r'^pinjaman/create/save$', views.create.pinjaman_save, name="pinjaman-create-save"),
+
     url(r'^absen/(?P<absensi_id>[0-9]+)/overtime/create$', views.create.overtime, name="overtime-create"),
     url(r'^absen/(?P<absensi_id>[0-9]+)/overtime/create/save$', views.create.karyawan_lembur_save, name="overtime-create-save"),
     url(r'^absen/(?P<absensi_id>[0-9]+)/koreksi/create$', views.create.koreksi, name="koreksi-create"),
     url(r'^absen/(?P<absensi_id>[0-9]+)/koreksi/create/save$', views.create.koreksi_save, name="koreksi-create-save"),
+    url(r'^masatenggangclosing/create$', views.create.masatenggangclosing, name="masatenggangclosing-create"),
+    url(r'^masatenggangclosing/create/save$', views.create.masatenggangclosing_save, name="masatenggangclosing-create-save"),
     # url(r'^gaji/create$', views.create.gaji, name="gaji-create"),
     # url(r'^gaji/create/save$', views.create.gaji_save, name="gaji-create-save"),
     url(r'^postinggaji/do$', views.posting.postinggaji, name="postinggaji-do"),
@@ -127,6 +131,8 @@ urlpatterns = [
     # url(r'^gaji/(?P<gaji_id>[0-9]+)/edit/save$', views.edit.gaji_save, name="gaji-edit-save"),
     url(r'^karyawan/(?P<karyawan_id>[0-9]+)/edit/$', views.edit.karyawan, name="karyawan-edit"),
     url(r'^karyawan/(?P<karyawan_id>[0-9]+)/edit/save$', views.edit.karyawan_save, name="karyawan-edit-save"),
+    url(r'^masatenggangclosing/(?P<masatenggangclosing_id>[0-9]+)/edit/$', views.edit.masatenggangclosing, name="masatenggangclosing-edit"),
+    url(r'^masatenggangclosing/(?P<masatenggangclosing_id>[0-9]+)/edit/save$', views.edit.masatenggangclosing_save, name="masatenggangclosing-edit-save"),
 
     #==eofedit
 
@@ -146,7 +152,7 @@ urlpatterns = [
     url(r'^inventory/(?P<inventory_id>[0-9]+)/delete/$', views.delete.inventory, name="inventory-delete"),
     # url(r'^gaji/(?P<gajia_id>[0-9]+)/delete/$', views.delete.gaji, name="gaji-delete"),
     url(r'^karyawan/(?P<karyawan_id>[0-9]+)/delete/$', views.delete.karyawan, name="karyawan-delete"),
-
+    url(r'^masatenggangclosing/(?P<masatenggangclosing_id>[0-9]+)/delete/$', views.delete.masatenggangclosing, name="masatenggangclosing-delete"),
 
     #===api
 

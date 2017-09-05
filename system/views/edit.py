@@ -8,6 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan, Konfigurasi
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Inventory, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift, GajiPokok
+from system.models import MasaTenggangClosing
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -85,6 +86,17 @@ def departemen(request, departemen_id):
 	d = Departemen.objects.get(pk=departemen_id)
 	return render(request, "include/base-form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
 													   'idpk' : departemen_id, 'dsb' : modules, 'parent' : getParent(request)})
+@login_required()
+def masatenggangclosing_save(request, masatenggangclosing_id):
+	d = MasaTenggangClosing.objects.select_for_update().filter(id=masatenggangclosing_id)
+	d.update(name=request.POST['name'], tanggal = parse(request.POST['tanggal']).strftime("%Y-%m-%d"), sd = parse(request.POST['sd']).strftime("%Y-%m-%d"), desc=request.POST['desc'])
+	return redirect("masatenggangclosing-index")
+
+@login_required()
+def masatenggangclosing(request, masatenggangclosing_id):
+	d = MasaTenggangClosing.objects.get(pk=masatenggangclosing_id)
+	return render(request, "masatenggangclosing/form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : d.id, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def perusahaan_save(request, departemen_id):
