@@ -164,6 +164,21 @@ def karyawan_shift_save(request):
 	return HttpResponse("yay berhasil")
 
 @login_required()
+def overtime(request, absensi_id):
+	a = Absensi.objects.get(pk=absensi_id)
+	return render(request, "overtime/form.html", { "absen" : a, 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : absensi_id, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def karyawan_lembur_save(request, absensi_id):
+	SPL = request.POST['SPL']
+	banyakjam = request.POST['banyakjam'] if SPL == 1 else 0
+	a = Absensi.objects.select_for_update().filter(id=absensi_id)
+	a.update(SPL = SPL, SPL_banyak=banyakjam)
+
+	return redirect("overtime-index")
+
+@login_required()
 def karyawan_lembur_save_api(request):
 	idkaryawan = request.POST['idkaryawan']
 	listid = [x.strip() for x in idkaryawan.split(',')]

@@ -31,8 +31,9 @@
                 <thead><tr>
                   <th class="col-md-1">#</th>
                   <th class="col-md-2">Tanggal</th>
-                  <th class="col-md-2">Shift</th>
+                  <th class="col-md-1">NIK</th>              
                   <th class="col-md-2">Nama</th>
+                  <th class="col-md-1">Jadwal Shift</th>
                   <th class="col-md-2">Masuk</th>
                   <th class="col-md-2">Keluar</th>                  
                   <th class="col-md-1">Action</th>
@@ -43,14 +44,15 @@
                 <tr>
                   <td>{{ data.id }}</td>
                   <td>{% hari data.hari %}, {{ data.tanggal|date:"d F Y" }}</td>
+                  <td>{{ data.karyawan.NIK }}</td>
+                  <td><a href="{% url 'karyawan-detail' data.karyawan.id %}" >{{ data.karyawan.name }}</a></td>
                   <td>{{ data.karyawanshift.shift.name }}</td>
-                  <td>{{ data.karyawan.name }}</td>
-                  <td>{% plainwaktu data.masuk %} {% waktu data.masuk data.karyawanshift.shift.jammasuk True %}</td>
-                  <td>{% plainwaktu data.keluar %} {% waktu data.keluar data.karyawanshift.shift.jamkeluar False %}</td>
+                  <td>{% plainwaktu data.masuk %} {% waktu data.masuk data.karyawanshift.shift.jammasuk True %}  </td>
+                  <td>{% plainwaktu data.keluar %} {% if data.SPL != 1 %} {% waktu data.keluar data.karyawanshift.shift.jamkeluar False %} {% else %}<label style='color:red;'> OVERTIME </label> {% endif %}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                         <a data-confirm="Yakin mau Hapus data {{ data.name }} ???" href="" class="btn btn-default"><i class="fa fa-trash"></i></a>
-                        <a href="" class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                        <a href="{% url 'overtime-create' data.id %}" class="btn btn-default"><i class="fa fa-pencil"></i></a>
                     </div>                  
                   </td>
                 </tr>                
@@ -61,16 +63,6 @@
             </div>
             
             <!-- /.box-body -->
-            <div class="box-footer clearfix">
-              
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="form-group">
-                      <a href="" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah {{ module }}</a> 
-                  </div>
-                </div>      
-              </div>
-            </div>
           </div>
           <!-- /.box -->
         </div>

@@ -3,7 +3,7 @@
 {% load hari %}
 
 {% block content %} 
-	<div class="content-wrapper">
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div>
@@ -30,9 +30,10 @@
               <table class="table table-hover" id="myTable">
                 <thead><tr>
                   <th class="col-md-1">#</th>
-                  <th class="col-md-2">Tanggal</th>
-                  <th class="col-md-2">Shift</th>
+                  <th class="col-md-1">Tanggal</th>
+                  <th class="col-md-1">NIK</th>              
                   <th class="col-md-2">Nama</th>
+                  <th class="col-md-1">Jadwal Shift</th>
                   <th class="col-md-2">Masuk</th>
                   <th class="col-md-2">Keluar</th>                  
                   <th class="col-md-1">Action</th>
@@ -43,8 +44,9 @@
                 <tr>
                   <td>{{ data.id }}</td>
                   <td>{% hari data.hari %}, {{ data.tanggal|date:"d F Y" }}</td>
+                  <td>{{ data.karyawan.NIK }}</td>
+                  <td><a href="{% url 'karyawan-detail' data.karyawan.id %}" >{{ data.karyawan.name }}</a></td>
                   <td>{{ data.karyawanshift.shift.name }}</td>
-                  <td>{{ data.karyawan.name }}</td>
                   <td>{% plainwaktu data.masuk %} {% waktu data.masuk data.karyawanshift.shift.jammasuk True %}</td>
                   <td>{% plainwaktu data.keluar %} {% waktu data.keluar data.karyawanshift.shift.jamkeluar False %}</td>
                   <td>
@@ -83,26 +85,26 @@
 {% endblock %}
 
 {% block footer %}
-	<footer class="main-footer">
-	    <!-- To the right -->
-	    <div class="pull-right hidden-xs">
-	      Anything you want
-	    </div>
-	    <!-- Default to the left -->
-	    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
-  	</footer>
+  <footer class="main-footer">
+      <!-- To the right -->
+      <div class="pull-right hidden-xs">
+        Anything you want
+      </div>
+      <!-- Default to the left -->
+      <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    </footer>
 {% endblock %}
 
 {% block javascript %} 
-	<script src="{% static 'plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
-	<!-- Bootstrap 3.3.6 -->
-	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-	<!-- AdminLTE App -->
-	<script src="{% static 'dist/js/app.min.js' %}"></script>
-	<!-- SlimScroll 1.3.0 -->
-	<script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+  <script src="{% static 'plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <!-- AdminLTE App -->
+  <script src="{% static 'dist/js/app.min.js' %}"></script>
+  <!-- SlimScroll 1.3.0 -->
+  <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
   <script src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-	<script>
+  <script>
     $(document).ready(function(){
       $('#myTable').DataTable({
             "language": {
