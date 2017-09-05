@@ -1,0 +1,58 @@
+  <div class="modal fade" id="pilihGolonganModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3 class="modal-title">Pilih Perusahaan</h3>
+          <small>Pilih Golongan terlebih dahulu untuk memposting gaji</small>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+              <div class="col-md-12">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="pencarian" class="col-sm-2 control-label">Pilih Golongan</label>
+                    <div class="col-md-5">
+                      <select class="form-control" id="g-perusahaan">
+                      <option value="">Perusahaan</option>
+                      {% for per in perusahaan %}
+                        <option value="{{per.id}}">{{ per.name }}</option>
+                      {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-md-5">
+                      <select class="form-control" id="g-departemen">
+                      <option value="">Departemen</option>
+                      {% for dp in departemen %}
+                        <option value="{{dp.id}}">{{ dp.name }}</option>
+                      {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-md-5">
+                      <select class="form-control" id="g-bagian">
+                      <option value="">Bagian</option>
+                      {% for bg in bagian %}
+                        <option value="{{bg.id}}">{{ bg.name }}</option>
+                      {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-md-5">
+                      <select class="form-control" id="g-golongan">
+                      <option value="">Golongan</option>
+                      {% for gl in golongan %}
+                        <option value="{{gl.id}}">{{ gl.name }}</option>
+                      {% endfor %}
+                    </select>
+                    </div>         
+                  </div>              
+                </form>              
+              </div> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>

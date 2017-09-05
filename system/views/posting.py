@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan, Konfigurasi
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Inventory, Absensi
-from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift, GajiPokok
+from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift, GajiPokok, PotonganKaryawan
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -32,8 +32,10 @@ def postinggaji(request):
 			gajipokok = ""
 			tmakan = ""
 			transportnonexec = ""
+			pbpjs = ""
+			ppinjam = ""
 
-			def __init__(self, no, nik, nama, departemen, bagian, golongan, gajipokok, tmakan, transportnonexec):
+			def __init__(self, no, nik, nama, departemen, bagian, golongan, gajipokok, tmakan, transportnonexec, pbpjs, ppinjam):
 				self.no = no
 				self.nik = nik
 				self.nama = nama
@@ -43,6 +45,8 @@ def postinggaji(request):
 				self.gajipokok = gajipokok
 				self.tmakan = tmakan
 				self.transportnonexec = transportnonexec
+				self.pbpjs = pbpjs
+				self.ppinjam = ppinjam
 
 
 
@@ -76,16 +80,23 @@ def postinggaji(request):
 			y = y + 1
 			#k = Karyawan.objects.get(pk=b.karyawan.id)
 			g = GajiPokok.objects.get(karyawan_id=b.id)
+			p = PotonganKaryawan.objects.get(karyawan_id=b.id)
 
 			gajipokok = g.gajipokok 
 			tunjanganmakan = g.tmakan
 			makanlembur = g.makanlembur
 			transportnonexec = g.transportnonexec
+			cicil = 0
+
+			if p.cicil_pinjkaryawan > 0 :
+				cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
+				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
+				pe.update(cicil_pinjkaryawan=p.cicil_pinjkaryawan-1)
 
 			# for x in a:
 			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
 			
-			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec))
+			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec, p.bpjs, cicil))
 	else:
 		listid = [x.strip() for x in idkaryawan.split(',')]
 		a = ""
@@ -96,16 +107,24 @@ def postinggaji(request):
 			a = Absensi.objects.filter(karyawan=listid[y]).filter(tanggal__year=today.year).filter(tanggal__month=4)
 			k = Karyawan.objects.get(pk=listid[y])
 			g = GajiPokok.objects.get(karyawan_id=listid[y])
+			p = PotonganKaryawan.objects.get(karyawan_id=listid[y])
 
 			gajipokok = g.gajipokok 
 			tunjanganmakan = g.tmakan
 			makanlembur = g.makanlembur
 			transportnonexec = g.transportnonexec
 
+			cicil = 0
+
+			if p.cicil_pinjkaryawan > 0 :
+				cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
+				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
+				pe.update(cicil_pinjkaryawan=p.cicil_pinjkaryawan-1)
+
 			# for x in a:
 			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
 			
-			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, k.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec))
+			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, k.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec, p.bpjs, cicil))
 
 
 	return render(request,"postinggaji/print.html", { 'data': mantap, 'posting' : objs})

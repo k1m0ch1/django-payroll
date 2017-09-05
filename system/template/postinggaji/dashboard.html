@@ -42,6 +42,10 @@
               <p class="" id="textKaraywan">  </p>
             
               <button class="btn btn-primary" id="pilihKaryawan" data-toggle="modal" data-target="#pilihKaryawanModal"><i class="fa fa-plus"></i> Pilih Karyawan</button> 
+              <button class="btn btn-primary" id="pilihPerusahaan" data-toggle="modal" data-target="#pilihPerusahaanModal"><i class="fa fa-plus"></i> Pilih Perusahaan</button>
+              <button class="btn btn-primary" id="pilihDepartemen" data-toggle="modal" data-target="#pilihDepartemenModal"><i class="fa fa-plus"></i> Pilih Departemen</button>              
+              <button class="btn btn-primary" id="pilihBagian" data-toggle="modal" data-target="#pilihBagianModal"><i class="fa fa-plus"></i> Pilih Bagian</button>
+              <button class="btn btn-primary" id="pilihGolongan" data-toggle="modal" data-target="#pilihGolonganModal"><i class="fa fa-plus"></i> Pilih Golongan</button>
               <button class="btn btn-primary" id="bersih"><i class="fa fa-plus"></i> Clear</button>  
               </div>             
           </div>                
@@ -75,6 +79,10 @@
 
 {% block footer %}
 {% include "include/base-modal.html" %}
+{% include "include/base-modal-perusahaan.html" %}
+{% include "include/base-modal-departemen.html" %}
+{% include "include/base-modal-bagian.html" %}
+{% include "include/base-modal-golongan.html" %}
 {% endblock %}
 
 {% block javascript %} 
@@ -142,6 +150,46 @@
       $('#golongan').prop('selectedIndex',0);
       $('#idKaryawan').val("");
       $('#textKaraywan').text('');
+    });
+
+    $("#p-perusahaan").on("change", function(){
+        var perusahaan = $("#p-perusahaan option:selected").text() == "Perusahaan" ? "": $("#p-perusahaan option:selected").text();
+        var pval = $("#p-perusahaan option:selected").val() == "Perusahaan" ? "": $("#p-perusahaan option:selected").val();
+        $("#textKaraywan").text("[ Semua Karyawan " + perusahaan + "]");
+        $("#idKaryawan").val(pval + "&&&&");
+    });    
+
+    $("#d-departemen").on("change", function(){
+        var perusahaan = $("#d-perusahaan option:selected").text() == "Perusahaan" ? "": $("#d-perusahaan option:selected").text();
+        var departemen = $("#d-departemen option:selected").text() == "Departemen" ? "": " Departemen " + $("#d-departemen option:selected").text();
+        var pval = $("#d-perusahaan option:selected").val() == "Perusahaan" ? "": $("#d-perusahaan option:selected").val();
+        var dval = $("#d-departemen option:selected").val() == "Departemen" ? "": $("#d-departemen option:selected").val();
+        $("#textKaraywan").text("[ Semua Karyawan " + perusahaan + " Departemen " + departemen + "]");
+        $("#idKaryawan").val(pval + "&" + dval +"&&&");
+    });
+
+    $("#b-bagian").on("change", function(){
+        var perusahaan = $("#b-perusahaan option:selected").text() == "Perusahaan" ? "": $("#b-perusahaan option:selected").text();
+        var departemen = $("#b-departemen option:selected").text() == "Departemen" ? "": " Departemen " + $("#b-departemen option:selected").text();
+        var bagian = $("#b-bagian option:selected").text() == "Bagian" ? "": "Bagian " + $("#b-bagian option:selected").text();
+        var pval = $("#b-perusahaan option:selected").val() == "Perusahaan" ? "": $("#b-perusahaan option:selected").val();
+        var dval = $("#b-departemen option:selected").val() == "Departemen" ? "": $("#b-departemen option:selected").val();
+        var bval = $("#b-bagian option:selected").val() == "Bagian" ? "":$("#b-bagian option:selected").val();
+        $("#textKaraywan").text("[ Semua Karyawan " + perusahaan + " Departemen " + departemen + " Bagian " + bagian + "]");
+        $("#idKaryawan").val(pval + "&" + dval +"&" + bval + "&&");
+    });
+
+    $("#g-golongan").on("change", function(){
+        var perusahaan = $("#g-perusahaan option:selected").text() == "Perusahaan" ? "": $("#g-perusahaan option:selected").text();
+        var departemen = $("#g-departemen option:selected").text() == "Departemen" ? "": " Departemen " + $("#g-departemen option:selected").text();
+        var bagian = $("#g-bagian option:selected").text() == "Bagian" ? "": "Bagian " + $("#g-bagian option:selected").text();
+        var golongan = $("#g-golongan option:selected").text() == "Golongan" ? "": "Golongan " + $("#g-golongan option:selected").text();
+        var pval = $("#g-perusahaan option:selected").val() == "Perusahaan" ? "": $("#g-perusahaan option:selected").val();
+        var dval = $("#g-departemen option:selected").val() == "Departemen" ? "": $("#g-departemen option:selected").val();
+        var bval = $("#g-bagian option:selected").val() == "Bagian" ? "":$("#g-bagian option:selected").val();
+        var gval = $("#g-golongan option:selected").val() == "Golongan" ? "":$("#g-golongan option:selected").val();
+        $("#textKaraywan").text("[ Semua Karyawan " + perusahaan + " Departemen " + departemen + " Bagian " + bagian + " Golongan " + golongan + "]");
+        $("#idKaryawan").val(pval + "&" + dval + "&" + bval + "&" + gval + "&");
     });
 
   });
