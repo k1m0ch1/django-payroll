@@ -352,6 +352,19 @@ class MasaTenggangClosing(models.Model):
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 
+class PostingGaji(models.Model):
+	name = models.CharField(max_length=200, null=True)
+	karyawan = models.ForeignKey(Karyawan)
+	masatenggangclosing = models.ForeignKey(MasaTenggangClosing)	
+	gajipokok = models.ForeignKey(GajiPokok)
+	potongankaryawan = models.ForeignKey(PotonganKaryawan)
+	desc = models.TextField(null=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
 class Log(models.Model):
 	name = models.CharField(max_length=200) #short 25 char from log
 	tipe = models.CharField(max_length=200)

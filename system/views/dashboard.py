@@ -134,8 +134,9 @@ def postinggaji_index(request):
 	gol = Golongan.objects.all()
 	per = Perusahaan.objects.all()
 	jab = Jabatan.objects.all()
+	mas = MasaTenggangClosing.objects.all()
 
-	return render(request, "postinggaji/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+	return render(request, "postinggaji/dashboard.html", { 'mas' : mas, 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
 															 'golongan' : gol, 'jabatan' : jab,
 															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 

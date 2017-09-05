@@ -8,6 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan, Konfigurasi
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Inventory, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift, GajiPokok, PotonganKaryawan
+from system.models import PostingGaji
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -28,7 +29,6 @@ def postinggaji(request):
 			departemen = ""
 			bagian = ""
 			golongan = ""
-			gajipokok = ""
 			gajipokok = ""
 			tmakan = ""
 			transportnonexec = ""
@@ -52,6 +52,7 @@ def postinggaji(request):
 
 	today = datetime.datetime.now()
 	idkaryawan = request.POST['idkaryawan']
+	masatenggangclosing = request.POST['masatenggangclosing']
 	if idkaryawan.find("&") != -1 :
 		listid = [x.strip() for x in idkaryawan.split('&')]
 		a= ""
@@ -95,6 +96,9 @@ def postinggaji(request):
 
 			# for x in a:
 			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
+
+			po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id)
+			po.save()
 			
 			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec, p.bpjs, cicil))
 	else:
@@ -123,6 +127,9 @@ def postinggaji(request):
 
 			# for x in a:
 			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
+
+			po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id)
+			po.save()
 			
 			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, k.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec, p.bpjs, cicil))
 

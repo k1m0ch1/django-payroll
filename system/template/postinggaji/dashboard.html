@@ -31,6 +31,20 @@
               </div>
           </div>                
       </div>
+
+      <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-2">
+              <label class="control-label">Masa Tenggang Closing</label>               
+            </div>
+            <input type="hidden" id="idmas" name="idmas" />
+            <div class="col-md-10">
+              <p class="" id="textMas">  </p>
+              
+              <button class="btn btn-primary" id="pilihMasaTenggangClosing" data-toggle="modal" data-target="#pilihMasaTenggangClosingModal"><i class="fa fa-plus"></i> Pilih Masa Tenggang Closing</button> 
+              </div>             
+          </div>                
+      </div>
       
       <div class="row">
           <div class="col-md-12">
@@ -39,8 +53,8 @@
             </div>
             <input type="hidden" id="idKaryawan" name="idkaryawan" />
             <div class="col-md-10">
-              <p class="" id="textKaraywan">  </p>
-            
+              <p class="" id="textKaryawan">  </p>
+               
               <button class="btn btn-primary" id="pilihKaryawan" data-toggle="modal" data-target="#pilihKaryawanModal"><i class="fa fa-plus"></i> Pilih Karyawan</button> 
               <button class="btn btn-primary" id="pilihPerusahaan" data-toggle="modal" data-target="#pilihPerusahaanModal"><i class="fa fa-plus"></i> Pilih Perusahaan</button>
               <button class="btn btn-primary" id="pilihDepartemen" data-toggle="modal" data-target="#pilihDepartemenModal"><i class="fa fa-plus"></i> Pilih Departemen</button>              
@@ -83,6 +97,7 @@
 {% include "include/base-modal-departemen.html" %}
 {% include "include/base-modal-bagian.html" %}
 {% include "include/base-modal-golongan.html" %}
+{% include "include/base-modal-masatenggangclosing.html" %}
 {% endblock %}
 
 {% block javascript %} 
@@ -113,7 +128,7 @@
     });
 
     $('#bersih').on("click", function(){
-        $('#textKaraywan').text("");
+        $('#textKaryawan').text("");
         $('#idKaryawan').val("");   
         $.ajax({
             type: "GET",
@@ -128,7 +143,7 @@
       $.ajax({
             type: "POST",
             url: 'http://{{ request.get_host }}/index/postinggaji/do',
-            data: {idkaryawan: $('#idKaryawan').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+            data: {idkaryawan: $('#idKaryawan').val(), masatenggangclosing: $('#idmas').val() ,csrfmiddlewaretoken: '{{ csrf_token }}'},
             success: function(result) {
                 var mywindow = window.open('', 'PRINT');
                 mywindow.document.write(result);
@@ -149,13 +164,13 @@
       $('#bagian').prop('selectedIndex',0);
       $('#golongan').prop('selectedIndex',0);
       $('#idKaryawan').val("");
-      $('#textKaraywan').text('');
+      $('#textKaryawan').text('');
     });
 
     $("#p-perusahaan").on("change", function(){
         var perusahaan = $("#p-perusahaan option:selected").text() == "Perusahaan" ? "": $("#p-perusahaan option:selected").text();
         var pval = $("#p-perusahaan option:selected").val() == "Perusahaan" ? "": $("#p-perusahaan option:selected").val();
-        $("#textKaraywan").text("[ Semua Karyawan " + perusahaan + "]");
+        $("#textKaryawan").text("[ Semua Karyawan " + perusahaan + "]");
         $("#idKaryawan").val(pval + "&&&&");
     });    
 
@@ -164,7 +179,7 @@
         var departemen = $("#d-departemen option:selected").text() == "Departemen" ? "": " Departemen " + $("#d-departemen option:selected").text();
         var pval = $("#d-perusahaan option:selected").val() == "Perusahaan" ? "": $("#d-perusahaan option:selected").val();
         var dval = $("#d-departemen option:selected").val() == "Departemen" ? "": $("#d-departemen option:selected").val();
-        $("#textKaraywan").text("[ Semua Karyawan " + perusahaan + " Departemen " + departemen + "]");
+        $("#textKaryawan").text("[ Semua Karyawan " + perusahaan + " Departemen " + departemen + "]");
         $("#idKaryawan").val(pval + "&" + dval +"&&&");
     });
 
@@ -175,7 +190,7 @@
         var pval = $("#b-perusahaan option:selected").val() == "Perusahaan" ? "": $("#b-perusahaan option:selected").val();
         var dval = $("#b-departemen option:selected").val() == "Departemen" ? "": $("#b-departemen option:selected").val();
         var bval = $("#b-bagian option:selected").val() == "Bagian" ? "":$("#b-bagian option:selected").val();
-        $("#textKaraywan").text("[ Semua Karyawan " + perusahaan + " Departemen " + departemen + " Bagian " + bagian + "]");
+        $("#textKaryawan").text("[ Semua Karyawan " + perusahaan + " Departemen " + departemen + " Bagian " + bagian + "]");
         $("#idKaryawan").val(pval + "&" + dval +"&" + bval + "&&");
     });
 
@@ -188,9 +203,16 @@
         var dval = $("#g-departemen option:selected").val() == "Departemen" ? "": $("#g-departemen option:selected").val();
         var bval = $("#g-bagian option:selected").val() == "Bagian" ? "":$("#g-bagian option:selected").val();
         var gval = $("#g-golongan option:selected").val() == "Golongan" ? "":$("#g-golongan option:selected").val();
-        $("#textKaraywan").text("[ Semua Karyawan " + perusahaan + " Departemen " + departemen + " Bagian " + bagian + " Golongan " + golongan + "]");
+        $("#textKaryawan").text("[ Semua Karyawan " + perusahaan + " Departemen " + departemen + " Bagian " + bagian + " Golongan " + golongan + "]");
         $("#idKaryawan").val(pval + "&" + dval + "&" + bval + "&" + gval + "&");
     });
+
+    $("#m-masatenggangclosing").on("change", function(){
+        var masatenggangclosing = $("#m-masatenggangclosing option:selected").text() == "Masa Tenggang Closing" ? "": $("#m-masatenggangclosing option:selected").text();
+        var mval = $("#m-masatenggangclosing option:selected").val() == "Masa Tenggang Closing" ? "": $("#m-masatenggangclosing option:selected").val();
+        $("#textMas").text(masatenggangclosing);
+        $("#idmas").val(mval);
+    });  
 
   });
 </script>
