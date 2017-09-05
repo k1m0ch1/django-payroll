@@ -234,7 +234,7 @@ def potongan_save(request):
 	idkaryawan = request.POST['idkaryawan']
 	listid = [x.strip() for x in idkaryawan.split(',')]
 	bpjs = request.POST['bpjs']
-	pajakbulanan = request.POST['pajakbulanan']
+	#pajakbulanan = request.POST['pajakbulanan']
 	pinjaman = request.POST['pinjaman']
 	for y in range(0, len(listid)-1):
 		p = PotonganKaryawan.objects.filter(karyawan_id=listid[y])
@@ -244,9 +244,9 @@ def potongan_save(request):
 			pisah = [x.strip() for x in bpjs.split('%')]
 			bpjs = int(float(float(pisah[0])/100) * int(gajipokok))
 
-		if pajakbulanan.find("%") != -1 :
-			pisah = [x.strip() for x in pajakbulanan.split('%')]
-			pajakbulanan = int(float(float(pisah[0])/100) * int(gajipokok))
+		# if pajakbulanan.find("%") != -1 :
+		# 	pisah = [x.strip() for x in pajakbulanan.split('%')]
+		# 	pajakbulanan = int(float(float(pisah[0])/100) * int(gajipokok))
 
 		if pinjaman.find("%") != -1 :
 			pisah = [x.strip() for x in pinjaman.split('%')]
@@ -255,16 +255,16 @@ def potongan_save(request):
 		if bpjs == "":
 			bpjs = p[0].bpjs
 
-		if pajakbulanan == "":
-			pajakbulanan = p[0].pph
+		# if pajakbulanan == "":
+		# 	pajakbulanan = p[0].pph
 
 		if pinjaman == "":
 			pinjaman = p[0].pinjkaryawan
 
 		if len(p)>0:
-			p.update(bpjs=bpjs, pph=pajakbulanan, pinjkaryawan=pinjaman)
+			p.update(bpjs=bpjs, pinjkaryawan=pinjaman,cicil_pinjkaryawan=request.POST['cicil_pinjaman'])
 		else:
-			p = PotonganKaryawan(bpjs=bpjs, pph=pajakbulanan, pinjkaryawan=pinjaman, karyawan_id=listid[y])	
+			p = PotonganKaryawan(bpjs=bpjs, pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=request.POST['cicil_pinjaman'])	
 			p.save()
 
 	return HttpResponse("Berhasil Simpan")

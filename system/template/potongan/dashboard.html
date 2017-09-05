@@ -50,7 +50,7 @@
       <div class="row">
           <div class="col-md-12">
               <div class="col-md-2">
-                <p><h4 class="control-label">Potongan Potongan</h4></p>
+                <p><h4 class="control-label">Potongan Untuk Posting Gaji Sesuai Masa Tenggang Closing</h4></p>
               </div>
           </div>                
       </div>
@@ -63,15 +63,30 @@
           </div>  
           <div class="col-md-12">
             <div class="col-md-2">
+              <label class="control-label pull-right">Pinjaman</label>
+            </div> 
+            <div class="col-md-2">
+              <div class="form-group">
+                  <input type="text" class="form-control" id="pinjaman" placeholder="Nilai Mata Uang /persentasi gapok" value="" />
+                </div>
+            </div>  
+            <div class="col-md-2">
+              <div class="form-group">
+                  <input type="text" class="form-control" id="cicil_pinjaman" placeholder="Cicil Berapa Kali" value="" />
+                </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-2">
               <label class="control-label pull-right">BPJS</label>
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                  <input type="text" class="form-control" id="bpjs" value="" />
+                  <input type="text" class="form-control" id="bpjs" placeholder="Nilai Mata Uang /persentasi gapok" value="" />
                 </div>
             </div> 
           </div>
-          <div class="col-md-12">
+          <!-- <div class="col-md-12">
             <div class="col-md-2">
               <label class="control-label pull-right">Pajak Bulanan</label>
             </div>
@@ -80,17 +95,8 @@
                   <input type="text" class="form-control" id="pajakbulanan" value="" />
                 </div>
             </div> 
-          </div>
-          <div class="col-md-12">
-            <div class="col-md-2">
-              <label class="control-label pull-right">Pinjaman</label>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                  <input type="text" class="form-control" id="pinjaman" value="" />
-                </div>
-            </div>  
-          </div>
+          </div> -->
+          
           <div class="col-md-12">
             <div class="col-md-2">
               <div class="form-group pull-right">
@@ -257,9 +263,9 @@
         $.ajax({
         type: "POST",
         url: 'http://{{ request.get_host }}/index/api/potongan/save',
-        data: {idkaryawan: $('#idKaryawan').val(), pinjaman: $('#pinjaman').val(), bpjs: $('#bpjs').val(), pajakbulanan: $('#pajakbulanan').val(),csrfmiddlewaretoken: '{{ csrf_token }}'},
+        data: {idkaryawan: $('#idKaryawan').val(), pinjaman: $('#pinjaman').val(), bpjs: $('#bpjs').val(), cicil_pinjaman: $('#cicil_pinjaman').val(),csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
-            alert('Berhasil Tambah Lembur');
+            alert('Berhasil Tambah Potongan');
         }});
     });
 
