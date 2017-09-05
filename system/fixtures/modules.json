@@ -347,6 +347,7 @@
         "name": "LAPORANGAJI",
         "fungsi": "Laporan Gaji",
         "menu": "LAPORAN",
+        "url_slug": "laporangaji-index",
         "icon": "fa fa-table",
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -365,8 +366,8 @@
     "model": "system.modules",
     "fields": 
       {
-        "name": "LAPORANLEMBUR",
-        "fungsi": "Laporan Lembur",
+        "name": "LAPORANOVERTIME",
+        "fungsi": "Laporan Overtime",
         "menu": "LAPORAN",
         "icon": "fa fa-table",
         "created_at": "2017-03-01 15:03+07"
