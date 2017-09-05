@@ -218,6 +218,7 @@ class Absensi(models.Model):
 	hari = models.CharField(max_length=10)
 	masuk = models.TimeField()
 	keluar = models.TimeField()
+	koreksi = models.DecimalField(max_digits=1, decimal_places=0, null=True, default=0)
 	alasan_koreksi = models.TextField(null=True)
 	SPL = models.DecimalField(max_digits=1, decimal_places=0, null=True, default=0)
 	SPL_banyak = models.DecimalField(max_digits=2, decimal_places=0, null=True, default=0)

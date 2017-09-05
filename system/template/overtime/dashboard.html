@@ -47,8 +47,8 @@
                   <td>{{ data.karyawan.NIK }}</td>
                   <td><a href="{% url 'karyawan-detail' data.karyawan.id %}" >{{ data.karyawan.name }}</a></td>
                   <td>{{ data.karyawanshift.shift.name }}</td>
-                  <td>{% plainwaktu data.masuk %} {% waktu data.masuk data.karyawanshift.shift.jammasuk True %}  </td>
-                  <td>{% plainwaktu data.keluar %} {% if data.SPL != 1 %} {% waktu data.keluar data.karyawanshift.shift.jamkeluar False %} {% else %}<label style='color:red;'> OVERTIME </label> {% endif %}</td>
+                  <td>{% plainwaktu data.masuk %} {% if data.koreksi != 1 %} {% waktu data.masuk data.karyawanshift.shift.jammasuk True %} {% else %}<label data-toggle="tooltip" title="{{ data.alasan_koreksi }}" style='color:red;'> KOREKSI </label> {% endif %}</td>
+                  <td>{% plainwaktu data.keluar %} {% if data.SPL != 1 %} {% waktu data.keluar data.karyawanshift.shift.jamkeluar False %} {% else %}<label style='color:red;'> OVERTIME {{ data.SPL_banyak }} jam </label> {% endif %}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                         <a data-confirm="Yakin mau Hapus data {{ data.name }} ???" href="" class="btn btn-default"><i class="fa fa-trash"></i></a>
@@ -101,6 +101,8 @@
                 "url": "dataTables.indonesia.lang"
             }
         });
+
+        $('[data-toggle="tooltip"]').tooltip();
     });
 
     $(document).on('click', ':not(form)[data-confirm]', function(e){
