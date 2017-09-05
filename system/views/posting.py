@@ -44,30 +44,71 @@ def postinggaji(request):
 				self.tmakan = tmakan
 				self.transportnonexec = transportnonexec
 
+
+
 	today = datetime.datetime.now()
 	idkaryawan = request.POST['idkaryawan']
-	listid = [x.strip() for x in idkaryawan.split(',')]
-	a = ""
-	mantap = ""
-	objs = [range(0, len(listid)-1)]
+	if idkaryawan.find("&") != -1 :
+		listid = [x.strip() for x in idkaryawan.split('&')]
+		a= ""
+		mantap = ""
+	
+		a = Karyawan.objects
+		if listid[0] != "":
+			a = a.filter(perusahaan=listid[0])
 
-	for y in range(0, len(listid)-1):
-		a = Absensi.objects.filter(karyawan=listid[y]).filter(tanggal__year=today.year).filter(tanggal__month=4)
-		k = Karyawan.objects.get(pk=listid[y])
-		g = GajiPokok.objects.get(karyawan_id=listid[y])
+		if listid[1] != "":
+			a = a.filter(departemen=listid[1])
 
-		gajipokok = g.gajipokok 
-		tunjanganmakan = g.tmakan
-		makanlembur = g.makanlembur
-		transportnonexec = g.transportnonexec
+		if listid[2] != "":
+			a = a.filter(bagian=listid[2])
 
-		# for x in a:
-		# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
-		
-		objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, k.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec))
+		if listid[3] != "":
+			a = a.filter(golongan=listid[3])
+
+		#a = a.filter(tanggal__year=today.year).filter(tanggal__month=4)
+
+		y = 0
+
+		objs = [range(len(a))]
+
+		for b in a:
+			y = y + 1
+			#k = Karyawan.objects.get(pk=b.karyawan.id)
+			g = GajiPokok.objects.get(karyawan_id=b.id)
+
+			gajipokok = g.gajipokok 
+			tunjanganmakan = g.tmakan
+			makanlembur = g.makanlembur
+			transportnonexec = g.transportnonexec
+
+			# for x in a:
+			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
+			
+			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec))
+	else:
+		listid = [x.strip() for x in idkaryawan.split(',')]
+		a = ""
+		mantap = ""
+		objs = [range(0, len(listid)-1)]
+
+		for y in range(0, len(listid)-1):
+			a = Absensi.objects.filter(karyawan=listid[y]).filter(tanggal__year=today.year).filter(tanggal__month=4)
+			k = Karyawan.objects.get(pk=listid[y])
+			g = GajiPokok.objects.get(karyawan_id=listid[y])
+
+			gajipokok = g.gajipokok 
+			tunjanganmakan = g.tmakan
+			makanlembur = g.makanlembur
+			transportnonexec = g.transportnonexec
+
+			# for x in a:
+			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
+			
+			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, k.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec))
 
 
-	return render(request,"postinggaji/print.html", { 'data': mantap, 'idkaryawan': listid[y], 'posting' : objs})
+	return render(request,"postinggaji/print.html", { 'data': mantap, 'posting' : objs})
 
 def waktu(waktu=None, jadwal=None, masuk=None):
 	hasil = 0

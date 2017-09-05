@@ -112,4 +112,17 @@
                       };
 
                   $("#tabelKaryawan input[type=checkbox]" ).on( "click", countChecked );
+
+                  $("#allkaryawan").on("click", function(){
+                    var perusahaan = $("#perusahaan option:selected").text() == "Perusahaan" ? "": $("#perusahaan option:selected").text();
+                    var departemen = $("#departemen option:selected").text() == "Departemen" ? "": " Departemen " + $("#departemen option:selected").text();
+                    var bagian = $("#bagian option:selected").text() == "Bagian" ? "": "Bagian " + $("#bagian option:selected").text();
+                    var golongan = $("#golongan option:selected").text() == "Golongan" ? "": "Golongan " + $("#golongan option:selected").text();
+                    var pval = $("#perusahaan option:selected").val() == "Perusahaan" ? "": $("#perusahaan option:selected").val();
+                    var dval = $("#departemen option:selected").val() == "Departemen" ? "": $("#departemen option:selected").val();
+                    var bval = $("#bagian option:selected").val() == "Bagian" ? "":$("#bagian option:selected").val();
+                    var gval = $("#golongan option:selected").val() == "Golongan" ? "":$("#golongan option:selected").val();
+                    $("#textKaraywan").text("[ Semua Karyawan " + perusahaan + " " + departemen + " " + bagian + " " + golongan + "]");
+                    $("#idKaryawan").val(pval + "&" + dval + "&" + bval + "&" + gval + "&");
+                  });
                 </script>
