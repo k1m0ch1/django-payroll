@@ -115,27 +115,50 @@ def karyawan_save_api(request):
 def karyawan_shift_save(request):
 	shift = [request.POST['shift1'], request.POST['shift2'], request.POST['shift3'],request.POST['shift4']]
 	idkaryawan = request.POST['idkaryawan']
-	tanggal = request.POST['tanggal']
 	offa = request.POST['off1']
 	offb = request.POST['off2']
 	offc = request.POST['off3']
 	offd = request.POST['off4']
+	sma = request.POST['sm1']
+	smb = request.POST['sm2']
+	smc = request.POST['sm3']
+	smd = request.POST['sm4']
 
-	tglawal = parse([x.strip() for x in tanggal.split(' ')][0]).strftime("%Y-%m-%d")
-	tglakhir = parse([x.strip() for x in tanggal.split(' ')][2]).strftime("%Y-%m-%d")
+	# tglawal = parse([x.strip() for x in tanggal.split(' ')][0]).strftime("%Y-%m-%d")
+	# tglakhir = parse([x.strip() for x in tanggal.split(' ')][2]).strftime("%Y-%m-%d")
 
 	listid = [x.strip() for x in idkaryawan.split(',')]
 	for y in range(0, len(listid)-1):
 		k = Karyawan.objects.get(pk=listid[y])
 		jumlahhari = int(k.jumlahhari)
-		m1awal = datetime.strptime(tglawal, "%Y-%m-%d")
+
+		m1awal = parse([x.strip() for x in sma.split(' ')][0]).strftime("%Y-%m-%d")
+		m1akhir = parse([x.strip() for x in smb.split(' ')][2]).strftime("%Y-%m-%d")
 		m1offawal = parse([x.strip() for x in offa.split(' ')][0]).strftime("%Y-%m-%d")
 		m1offakhir = parse([x.strip() for x in offa.split(' ')][2]).strftime("%Y-%m-%d")
-		m1offawal = "2017-05-15"
-		m1offakhir = "2017-05-16"
-		m1jarak = datetime.strptime(m1offakhir, "%Y-%m-%d") - datetime.strptime(m1offawal, "%Y-%m-%d")
-		m1jarak = int(m1jarak.days)
-		s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[z], tglawal=tglawal, tglakhir=tglakhir, tgloff=tgloff)
+
+		m2awal = parse([x.strip() for x in sma.split(' ')][0]).strftime("%Y-%m-%d")
+		m2akhir = parse([x.strip() for x in smb.split(' ')][2]).strftime("%Y-%m-%d")
+		m2offawal = parse([x.strip() for x in offa.split(' ')][0]).strftime("%Y-%m-%d")
+		m2offakhir = parse([x.strip() for x in offa.split(' ')][2]).strftime("%Y-%m-%d")
+
+		m3awal = parse([x.strip() for x in sma.split(' ')][0]).strftime("%Y-%m-%d")
+		m3akhir = parse([x.strip() for x in smb.split(' ')][2]).strftime("%Y-%m-%d")
+		m3offawal = parse([x.strip() for x in offa.split(' ')][0]).strftime("%Y-%m-%d")
+		m3offakhir = parse([x.strip() for x in offa.split(' ')][2]).strftime("%Y-%m-%d")
+
+		m4awal = parse([x.strip() for x in sma.split(' ')][0]).strftime("%Y-%m-%d")
+		m4akhir = parse([x.strip() for x in smb.split(' ')][2]).strftime("%Y-%m-%d")
+		m4offawal = parse([x.strip() for x in offa.split(' ')][0]).strftime("%Y-%m-%d")
+		m4offakhir = parse([x.strip() for x in offa.split(' ')][2]).strftime("%Y-%m-%d")
+
+		s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[0], tglawal=m1awal, tglakhir=m1akhir, tgloffawal=m1offawal, tgloffakhir=m1offakhir)
+		s.save()
+		s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[1], tglawal=m2awal, tglakhir=m2akhir, tgloffawal=m2offawal, tgloffakhir=m2offakhir)
+		s.save()
+		s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[2], tglawal=m3awal, tglakhir=m3akhir, tgloffawal=m3offawal, tgloffakhir=m3offakhir)
+		s.save()
+		s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[3], tglawal=m4awal, tglakhir=m4akhir, tgloffawal=m4offawal, tgloffakhir=m4offakhir)
 		s.save()
 
 	return HttpResponse("yay berhasil")

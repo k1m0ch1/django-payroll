@@ -57,7 +57,7 @@
       </div>
 
       <div class="row">
-          <div class="col-md-12">
+          <!-- <div class="col-md-12">
             <div class="col-md-2">
               <label class="control-label pull-right">Untuk Tanggal</label>
             </div>
@@ -71,7 +71,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div class="col-md-12">
             <div class="col-md-2">
@@ -136,7 +136,7 @@
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                  <label class="control-label">Shift Minggu 2</label>
+                  <label class="control-label">Jadwal Minggu 2</label>
                   <select class="form-control" id="shift2">
                     {% for z in shift %}
                     <option value="{{z.id}}">{{ z.name }}</option>
@@ -172,7 +172,7 @@
             </div>
             <div class="col-md-2 ">
               <div class="form-group">
-                  <label class="control-label">Shift Minggu 3</label>
+                  <label class="control-label">Jadwal Minggu 3</label>
                   <select class="form-control" id="shift3">
                     {% for a in shift %}
                     <option value="{{a.id}}">{{ a.name }}</option>
@@ -207,7 +207,7 @@
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                  <label class="control-label">Shift Minggu 4</label>
+                  <label class="control-label">Jadwal Minggu 4</label>
                   <select class="form-control" id="shift4">
                     {% for b in shift %}
                     <option value="{{b.id}}">{{ b.name }}</option>
@@ -500,7 +500,11 @@
         $.ajax({
         type: "POST",
         url: 'http://{{ request.get_host }}/index/karyawan-shift/save',
-        data: {idkaryawan: $('#idKaryawan').val(), shift1: $('#shift1').val(), shift2: $('#shift2').val(), shift3: $('#shift3').val(), shift4: $('#shift4').val(), tanggal: $('#reservation').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+        data: {idkaryawan: $('#idKaryawan').val(), 
+                shift1: $('#shift1').val(), shift2: $('#shift2').val(), shift3: $('#shift3').val(), shift4: $('#shift4').val(), 
+                sm1: $('#sm1').val(), sm2: $('#sm2').val(), sm3: $('#sm3').val(), sm4: $('#sm4').val(), 
+                off1: $('#off1').val(), off2: $('#off2').val(), off3: $('#off3').val(), off4: $('#off4').val(), 
+                csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Simpan Rolling Shift');
         }
