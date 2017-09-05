@@ -107,13 +107,13 @@ def departemen_save(request, departemen_id):
 @login_required()
 def shift(request, shift_id):
 	d = Shift.objects.get(pk=shift_id)
-	return render(request, "include/base-form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
+	return render(request, "shift/form.html", { 'data' : d, 'mode' : 'Ubah', 'module' : getModule(request), 
 													   'idpk' : shift_id, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
 def shift_save(request, shift_id):
 	d = Shift.objects.select_for_update().filter(id=shift_id)
-	d.update(name=request.POST['name'], desc=request.POST['desc'])
+	d.update(name=request.POST['name'], jammasuk=request.POST['masuk'], jamkeluar=request.POST['keluar'], desc=request.POST['desc'])
 	return redirect("shift-index")
 
 @login_required()

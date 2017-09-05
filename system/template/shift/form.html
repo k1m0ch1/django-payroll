@@ -24,7 +24,11 @@
               <div class="box-header">
                 <h3 class="box-title">{{ mode }} {{ module }} Baru</h3>
               </div>
+              {% if mode == "Tambah" %}
                 <form method="post" action="{% url 'shift-create-save' %}" >
+              {% else %}
+                 <form method="post" action="{% url 'shift-edit-save' idpk %}" >
+              {% endif %}
             {% csrf_token %}
               <div class="box-body">
                 <div class="row"> 
@@ -44,7 +48,7 @@
                   <div class="col-md-10">
                     <div class="form-group col-md-5">
                       <div class='input-group bootstrap-timepicker timepicker' >
-                          <input type='text' name="masuk" class="form-control" id='masuk' />
+                          <input type='text' name="masuk" class="form-control" id='masuk' value="{{ data.jammasuk }}" />
                           <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div>
                     </div>
@@ -57,7 +61,7 @@
                   <div class="col-md-10">
                     <div class="form-group col-md-5">
                       <div class='input-group bootstrap-timepicker timepicker' >
-                          <input type='text' name="keluar" class="form-control" id='keluar' />
+                          <input type='text' name="keluar" class="form-control" id='keluar' value="{{ data.jamkeluar }}"/>
                           <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div>
                     </div>
