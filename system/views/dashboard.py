@@ -196,8 +196,9 @@ def perusahaan_index(request):
 
 @login_required()
 def shift_index(request):
-	shift = Shift.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : shift, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
+	data = serializers.serialize( "python", Shift.objects.all(),fields=('name','jammasuk', 'jamkeluar', 'desc'))
+	exfield = [{'field': 'Jam Masuk'}, {'field': 'Jam Keluar'}]
+	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request), 'exfield' : exfield})
 
 @login_required()
 def hariraya_index(request):

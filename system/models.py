@@ -185,9 +185,9 @@ class Karyawan(models.Model):
 
 class Shift(models.Model):
 	name = models.CharField(max_length=25)
-	desc = models.TextField()
 	jammasuk = models.TimeField()
 	jamkeluar = models.TimeField()
+	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load dashboard %}
+{% load hari %}
 
 {% block content %} 
 	<div class="content-wrapper">
@@ -44,7 +45,7 @@
                 <tr>
                   <td>{{data.pk}}</td>
                   {% for field, value in data.fields.items %}
-                    <td>{{ value }}</td>                
+                    <td>{% plainwaktu value %}</td>                
                   {% endfor %} 
                    <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">

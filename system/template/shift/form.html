@@ -24,7 +24,7 @@
               <div class="box-header">
                 <h3 class="box-title">{{ mode }} {{ module }} Baru</h3>
               </div>
-                <form method="post" action="{% form module mode idpk %}" >
+                <form method="post" action="{% url 'shift-create-save' %}" >
             {% csrf_token %}
               <div class="box-body">
                 <div class="row"> 
@@ -34,6 +34,32 @@
                   <div class="col-md-10">
                     <div class="form-group col-md-5">
                       <input type="text" class="form-control" placeholder="Nama {{ module }}" name="name" value="{{ data.name }}">
+                    </div>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="col-md-2 ">
+                    <p class="text-right">Jam Masuk</p>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="form-group col-md-5">
+                      <div class='input-group bootstrap-timepicker timepicker' >
+                          <input type='text' name="masuk" class="form-control" id='masuk' />
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="col-md-2 ">
+                    <p class="text-right">Jam Keluar</p>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="form-group col-md-5">
+                      <div class='input-group bootstrap-timepicker timepicker' >
+                          <input type='text' name="keluar" class="form-control" id='keluar' />
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -92,7 +118,20 @@
   <script src="{% static 'dist/js/app.min.js' %}"></script>
   <!-- SlimScroll 1.3.0 -->
   <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
-  <script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+  <script src="{% static 'plugins/timepicker/bootstrap-timepicker.min.js' %}"></script>
+  <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
 
+  <script>
+      $('#masuk').timepicker({
+        showSeconds: true,
+        showMeridian: false,
+        defaultTime: false
+      });
+      $('#keluar').timepicker({
+        showSeconds: true,
+        showMeridian: false,
+        defaultTime: false
+      });
   </script>
 {% endblock %}

@@ -236,9 +236,11 @@ def shift(request):
 def shift_save(request):
 	nama = request.POST['name']
 	desc = request.POST['desc']
-	d = Shift(name=nama, desc=desc)
+	masuk = request.POST['masuk']
+	keluar = request.POST['keluar']
+	d = Shift(name=nama, desc=desc, jammasuk=masuk, jamkeluar=keluar)
 	d.save()
-	return redirect("departemen-index")
+	return redirect("shift-index")
 
 @login_required()
 def inventory(request):
