@@ -202,7 +202,7 @@ def laporangaji(request):
 		ws.write(ob[x].no, 11, ob[x].pbpjs)
 		ws.write(ob[x].no, 12, ob[x].pabsen)
 
-	wb.save("laporan/gaji/LAPORAN GAJI " + mas.name + ' ' + mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'.xls')
+	wb.save("laporan/gaji/LAPORAN GAJI " + mas.name + ' ' + mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'-' + datetime.now().strftime("%d%m%Y-%H%M%S") + '.xls')
 
 	return redirect("laporangaji-index")
 
