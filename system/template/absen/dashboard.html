@@ -51,7 +51,7 @@
                   <td>{% plainwaktu data.keluar %} {% if data.SPL != 1 %} {% waktu data.keluar data.karyawanshift.shift.jamkeluar False %} {% else %}<label style='color:red;'> OVERTIME {{ data.SPL_banyak }} jam </label> {% endif %}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                        <a data-confirm="Yakin mau Hapus data {{ data.name }} ???" href="" class="btn btn-default"><i class="fa fa-trash"></i></a>
+                        <!-- <a data-confirm="Yakin mau Hapus data {{ data.name }} ???" href="" class="btn btn-default"><i class="fa fa-trash"></i></a> -->
                         <a href="{% url 'koreksi-create' data.id %}" class="btn btn-default"><i class="fa fa-pencil"></i></a>
                     </div>                  
                   </td>

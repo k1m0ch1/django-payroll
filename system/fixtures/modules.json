@@ -376,16 +376,6 @@
     "model": "system.modules",
     "fields": 
       {
-        "name": "LAPORANBPJS",
-        "fungsi": "Laporan BPJS",
-        "menu": "LAPORAN",
-        "icon": "fa fa-table",
-        "created_at": "2017-03-01 15:03+07"
-      }    
-  }, {
-    "model": "system.modules",
-    "fields": 
-      {
         "name": "LAPORANPOTONGAN",
         "fungsi": "Laporan Potongan",
         "menu": "LAPORAN",
