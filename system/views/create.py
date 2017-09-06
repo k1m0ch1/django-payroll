@@ -187,7 +187,7 @@ def overtime(request, absensi_id):
 @login_required()
 def karyawan_lembur_save(request, absensi_id):
 	SPL = request.POST['SPL']
-	banyakjam = request.POST['banyakjam'] if SPL == 1 else 0
+	banyakjam = request.POST['banyakjam'] if SPL == "1" else 0
 	a = Absensi.objects.select_for_update().filter(id=absensi_id)
 	a.update(SPL = SPL, SPL_banyak=banyakjam)
 
