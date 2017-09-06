@@ -204,7 +204,7 @@ def laporangaji(request):
 
 	wb.save("laporan/gaji/LAPORAN GAJI " + mas.name + ' ' + mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'.xls')
 
-	return HttpResponse("mantap")
+	return redirect("laporangaji-index")
 
 def waktu(waktu=None, jadwal=None, masuk=None):
 	hasil = 0
