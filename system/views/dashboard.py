@@ -14,6 +14,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
 import json
+import os
+from pathlib import * 
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
@@ -141,6 +143,16 @@ def postinggaji_index(request):
 															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
+def download(request, path):
+    file_path = os.path.join(settings.MEDIA_ROOT, 'laporan/gaji/' + path)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
+
+@login_required()
 def laporangaji_index(request):
 	k = Karyawan.objects.all()
 	dep = Departemen.objects.all()
@@ -150,7 +162,11 @@ def laporangaji_index(request):
 	jab = Jabatan.objects.all()
 	mas = MasaTenggangClosing.objects.all()
 
-	return render(request, "laporan-gaji/dashboard.html", { 'mas' : mas, 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+	filePath = Path("./laporan/gaji/")
+	if filePath.is_dir():
+	    files = list(x for x in filePath.iterdir() if x.is_file())
+
+	return render(request, "laporan-gaji/dashboard.html", { 'files': files, 'mas' : mas, 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
 															 'golongan' : gol, 'jabatan' : jab,
 															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 
