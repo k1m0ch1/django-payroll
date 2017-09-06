@@ -163,6 +163,7 @@ def laporangaji_index(request):
 	mas = MasaTenggangClosing.objects.all()
 
 	filePath = Path("./laporan/gaji/")
+	files = []
 	if filePath.is_dir():
 	    files = list(x for x in filePath.iterdir() if x.is_file())
 
