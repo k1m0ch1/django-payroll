@@ -185,25 +185,24 @@ def laporangaji(request):
 
 	x=1 
 
-	for x in range(0, len(objs)):
-		print objs[x].no
+	ob = objs
 
-	# for ob in objs:		
-	# 	ws.write(ob.no, 0, ob.no)
-	# 	ws.write(ob.no, 1, ob.nik)
-	# 	ws.write(ob.no, 2, ob.nama)
-	# 	ws.write(ob.no, 3, ob.departemen)
-	# 	ws.write(ob.no, 4, ob.bagian)
-	# 	ws.write(ob.no, 5, ob.golongan)
-	# 	ws.write(ob.no, 6, ob.gajipokok)
-	# 	ws.write(ob.no, 7, ob.tmakan)
-	# 	ws.write(ob.no, 8, ob.transportnonexec)
-	# 	ws.write(ob.no, 9, ob.tovertime)
-	# 	ws.write(ob.no, 10, ob.ppinjam)
-	# 	ws.write(ob.no, 11, ob.pbpjs)
-	# 	ws.write(ob.no, 12, ob.pabsen)
+	for x in range(1, len(objs)):
+		ws.write(ob[x].no, 0, ob[x].no)
+		ws.write(ob[x].no, 1, ob[x].nik)
+		ws.write(ob[x].no, 2, ob[x].nama)
+		ws.write(ob[x].no, 3, ob[x].departemen)
+		ws.write(ob[x].no, 4, ob[x].bagian)
+		ws.write(ob[x].no, 5, ob[x].golongan)
+		ws.write(ob[x].no, 6, ob[x].gajipokok)
+		ws.write(ob[x].no, 7, ob[x].tmakan)
+		ws.write(ob[x].no, 8, ob[x].transportnonexec)
+		ws.write(ob[x].no, 9, ob[x].tovertime)
+		ws.write(ob[x].no, 10, ob[x].ppinjam)
+		ws.write(ob[x].no, 11, ob[x].pbpjs)
+		ws.write(ob[x].no, 12, ob[x].pabsen)
 
-	wb.save('E:\cacad.xls')
+	wb.save("laporan/gaji/LAPORAN GAJI " + mas.name + ' ' + mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'.xls')
 
 	return HttpResponse("mantap")
 
