@@ -9,7 +9,7 @@ from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
 from system.models import Inventory, Konfigurasi, GajiPokok, PotonganKaryawan, Pinjaman
-from system.models import MasaTenggangClosing, SuratIzin
+from system.models import MasaTenggangClosing, IzinCuti
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -22,12 +22,12 @@ allmenu = Modules.objects.only('name')
 
 @login_required
 def absensi_index(request):
-	a = Absensi.objects.all()
+	a = Absensi.objects.all().order_by("-created_at")
 	return render(request, "absen/dashboard.html", { 'absen': a, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required
 def overtime_index(request):
-	a = Absensi.objects.all()
+	a = Absensi.objects.all().order_by("-created_at")
 	return render(request, "overtime/dashboard.html", { 'absen': a, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required
@@ -98,7 +98,7 @@ def karyawan_shift_index(request):
 	gol = Golongan.objects.all()
 	jab = Jabatan.objects.all()
 	shift = Shift.objects.all()
-	ks = KaryawanShift.objects.all()
+	ks = KaryawanShift.objects.all().order_by("-created_at")
 	
 	page = request.GET.get('page', 1)
 	paginator = Paginator(ks, 20)
@@ -112,6 +112,31 @@ def karyawan_shift_index(request):
 
 	return render(request, "karyawanshift/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
 															 'golongan' : gol, 'jabatan' : jab, 'ks': ks, 'shift' : shift,
+															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def izincuti_index(request):
+	k = Karyawan.objects.all()
+	dep = Departemen.objects.all()
+	per = Perusahaan.objects.all()
+	bag = Bagian.objects.all()
+	gol = Golongan.objects.all()
+	jab = Jabatan.objects.all()
+	shift = Shift.objects.all()
+	ic = IzinCuti.objects.all().order_by("-created_at")
+	
+	page = request.GET.get('page', 1)
+	paginator = Paginator(ic, 20)
+    
+	try:
+ 		ic = paginator.page(page)
+	except PageNotAnInteger:
+		ic = paginator.page(1)
+	except EmptyPage:
+   		ic = paginator.page(paginator.num_pages)
+
+	return render(request, "izincuti/dashboard.html", { 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+															 'golongan' : gol, 'jabatan' : jab, 'ic': ic, 'shift' : shift,
 															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
@@ -243,12 +268,12 @@ def karyawan_detail(request, karyawan_id):
 
 @login_required()
 def perusahaan_index(request):
-	perusahaan = Perusahaan.objects.all()
+	perusahaan = Perusahaan.objects.all().order_by("-created_at")
 	return render(request, "include/base-dashboard.html", { 'ulang' : perusahaan, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request) })
 
 @login_required()
 def shift_index(request):
-	data = serializers.serialize( "python", Shift.objects.all(),fields=('name','jammasuk', 'jamkeluar', 'desc'))
+	data = serializers.serialize( "python", Shift.objects.all().order_by("-created_at"),fields=('name','jammasuk', 'jamkeluar', 'desc'))
 	exfield = [{'field': 'Jam Masuk'}, {'field': 'Jam Keluar'}]
 	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request), 'exfield' : exfield})
 

@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^potongankaryawan$', views.dashboard.potongankaryawan_index, name="potongankaryawan-index"),
     url(r'^pinjaman$', views.dashboard.pinjaman_index, name="pinjaman-index"),
     url(r'^masatenggangclosing$', views.dashboard.masatenggangclosing_index, name="masatenggangclosing-index"),
+    url(r'^izincuti$', views.dashboard.izincuti_index, name="izincuti-index"),
     url(r'^laporan/gaji$', views.dashboard.laporangaji_index, name="laporangaji-index"),    
     url(r'^laporan/absensi$', views.dashboard.laporanabsensi_index, name="laporanabsensi-index"),
     # url(r'^gaji$', views.dashboard.gaji_index, name="gaji-index"),

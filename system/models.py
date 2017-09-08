@@ -229,14 +229,15 @@ class Absensi(models.Model):
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 
-class SuratIzin(models.Model):
+class IzinCuti(models.Model):
 	karyawan = models.ForeignKey(Karyawan)
 	name = models.CharField(max_length=25, null=True)
 	desc = models.TextField(null=True)
+	alasan = models.TextField(null=True)
 	tglmulai = models.DateField()
 	tglakhir = models.DateField(null=True)
 	lama = models.DecimalField(max_digits=2, decimal_places=0, null=True, default=0)
-	cuti = models.DecimalField(max_digits=1, decimal_places=0, null=True, default=0)
+	jenis = models.CharField(max_length=6, null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 	delete_date = models.DateTimeField(auto_now_add=True, null=True)

@@ -252,6 +252,7 @@
         "fungsi": "Izin & Cuti",
         "menu": "DATAMASTER2",
         "icon": "fa fa-user-times",
+        "url_slug": "izincuti-index",
         "created_at": "2017-03-01 15:03+07"
       }    
   }, {

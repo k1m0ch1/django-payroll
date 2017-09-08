@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konfigurasi
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
-from system.models import GajiPokok, Absensi, Pinjaman, PotonganKaryawan, SuratIzin, MasaTenggangClosing
+from system.models import GajiPokok, Absensi, Pinjaman, PotonganKaryawan, IzinCuti, MasaTenggangClosing
 from dateutil.parser import parse
 from datetime import timedelta
 from datetime import datetime
@@ -207,8 +207,11 @@ def karyawan_lembur_save_api(request):
 def karyawan_izin_save_api(request):
 	idkaryawan = request.POST['idkaryawan']
 	listid = [x.strip() for x in idkaryawan.split(',')]
+	tanggal = request.POST['tanggal']
+	tglmulai = parse([x.strip() for x in tanggal.split(' ')][0]).strftime("%Y-%m-%d")
+	tglakhir = parse([x.strip() for x in tanggal.split(' ')][2]).strftime("%Y-%m-%d")
 	for y in range(0, len(listid)-1):
-		a = SuratIzin(izintgl = parse(request.POST['izin']).strftime("%Y-%m-%d"), izinlama=request.POST['izinlama'], karyawan_id=listid[y])
+		a = IzinCuti(tglmulai = tglmulai, tglakhir=tglakhir, karyawan_id=listid[y], alasan=request.POST['alasan'], jenis=request.POST["jenis"])
 		a.save()
 
 	return HttpResponse("berhasil-simpan-lembur")

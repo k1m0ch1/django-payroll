@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load hari %}
 
 {% block content %}
 <div class="content-wrapper">
@@ -84,29 +85,36 @@
                     <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                       </div>
-                    <input type="text" class="form-control pull-right" id="sm1">
+                    <input type="text" class="form-control pull-right" id="tanggal">
                   </div>
                 </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                  <label class="control-label">Lama Hari</label>
+                  <label class="control-label">Jenis Surat</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                       </div>
-                    <input type="text" class="form-control pull-right" id="off1">
+                    <select class="form-control " name="jenis" id="jenis">
+                        <option>Jenis Izin</option>
+                        <option value="CUTI">Cuti</option>
+                        <option value="SAKIT">Sakit</option>
+                        <option value="DINAS">Dinas</option>
+                        <option value="IZIN">Izin</option>
+                    </select>
                   </div>
                 </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
                   <label class="control-label">Alasan</label>
-                  <select class="form-control" id="shift1">
-                    {% for y in shift %}
-                    <option value="{{y.id}}">{{ y.name }}</option>
-                    {% endfor %}
-                  </select>
+                  <textarea rows="4" cols="40" class="input-group" id="alasan"></textarea>
+                </div>
+            </div>
+            <div class="col-md-2">
+                  <div class="form-group" style="padding-top:25px;">
+                      <button class="btn btn-primary"  id="izin"><i class="fa fa-plus"></i> Simpan</button> 
                 </div>
             </div>
           </div>       
@@ -150,24 +158,25 @@
               <table class="table table-hover">
                 <tbody><tr>
                   <th class="col-md-1">#</th>
-                  <th class="col-md-2">Tanggal</th>
                   <th class="col-md-2">NIK</th>
-                  <th class="col-md-3">Nama</th>
-                  <th class="col-md-3">Shift</th>
-                  <th class="col-md-1">Action</th>
+                  <th class="col-md-2">Nama</th>
+                  <th class="col-md-1">Izin/ Cuti</th>
+                  <th class="col-md-2">Periode</th>
+                  <th class="col-md-2">Alasan</th>
+                  <th class="col-md-3">Action</th>
                 </tr>
-                {% for d in ks %}
+                {% for d in ic %}
                 <tr>
                   <td><input type="checkbox" value=""></td>
-                  <td>{{ d.tglawal|date:"d M Y" }} sd {{ d.tglakhir|date:"d M Y" }}</td>
                   <td>{{ d.karyawan.NIK }}</td>
                   <td>{{ d.karyawan.name }}</td>
-                  <td>{{ d.shift.name }}</td>
+                  <td>{% if d.cuti == 1 %} Cuti {% else %} Izin {% endif %}</td>
+                  <td>{{ d.tglmulai|date:"d M Y" }} s.d. {{ d.tglakhir|date:"d M Y" }}</td>
+                  <td>{{ d.alasan }}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                       <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
                       <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
                     </div>                  
                   </td>
                 </tr>
@@ -184,11 +193,11 @@
                 <div class="col-md-4">
                   <div class="form-group">
                       <select class="form-control ">
-                        <option>Shift 1</option>
-                        <option>option 2</option>
-                        <option>option 3</option>
-                        <option>option 4</option>
-                        <option>option 5</option>
+                        <option>Jenis Izin</option>
+                        <option value="CUTI">Cuti</option>
+                        <option value="SAKIT">Sakit</option>
+                        <option value="DINAS">Dinas</option>
+                        <option value="IZIN">Izin</option>
                       </select>
                     </div>
                 </div>
@@ -256,25 +265,7 @@
   <script>
   $(function () {    
 
-    //Date range picker
-    $('#reservation').daterangepicker();
-
-    $('#reservationKedua').daterangepicker();
-
-    $('#sm1').daterangepicker();
-    $('#sm2').daterangepicker();
-    $('#sm3').daterangepicker();
-    $('#sm4').daterangepicker();
-
-    $('#off1').daterangepicker();
-    $('#off2').daterangepicker();
-    $('#off3').daterangepicker();
-    $('#off4').daterangepicker();
-
-
-    $('#izin').datepicker({
-      autoclose: true
-    })
+    $('#tanggal').daterangepicker()
         
     $.ajax({
         type: "GET",
@@ -296,49 +287,13 @@
         });  
     });
 
-    $("#simpanRolling").on("click", function(){
-        $.ajax({
-        type: "POST",
-        url: 'http://{{ request.get_host }}/index/karyawan-shift/save',
-        data: {idkaryawan: $('#idKaryawan').val(), 
-                shift1: $('#shift1').val(), shift2: $('#shift2').val(), shift3: $('#shift3').val(), shift4: $('#shift4').val(), 
-                sm1: $('#sm1').val(), sm2: $('#sm2').val(), sm3: $('#sm3').val(), sm4: $('#sm4').val(), 
-                off1: $('#off1').val(), off2: $('#off2').val(), off3: $('#off3').val(), off4: $('#off4').val(), 
-                csrfmiddlewaretoken: '{{ csrf_token }}'},
-        success: function(result) {
-            alert('Berhasil Simpan Rolling Shift');
-        }
-      });
-    });
-
-    $("#ubahShift").on("click", function(){
-        $.ajax({
-        type: "POST",
-        url: 'http://{{ request.get_host }}/index/karyawan-shift/edit/save',
-        data: {idkaryawan: $('#idKaryawan').val(), shift: $('#shift5').val(), tanggal: $('#reservationKedua').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
-        success: function(result) {
-            alert('Berhasil Ubah Shift');
-        }
-      });
-    });
-
-    $("#tambahLembur").on("click", function(){
-        $.ajax({
-        type: "POST",
-        url: 'http://{{ request.get_host }}/index/api/karyawan/lembur/create/save',
-        data: {idkaryawan: $('#idKaryawan').val(), lamalembur: $('#lembur').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
-        success: function(result) {
-            alert('Berhasil Tambah Lembur');
-        }});
-    });
-
-    $("#tambahizin").on("click", function(){
+    $("#izin").on("click", function(){
         $.ajax({
         type: "POST",
         url: 'http://{{ request.get_host }}/index/api/karyawan/izin/create/save',
-        data: {idkaryawan: $('#idKaryawan').val(), izin: $('#izin').val(), izinlama: $('#izinlama').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+        data: {idkaryawan: $('#idKaryawan').val(), tanggal: $('#tanggal').val(), alasan: $('#alasan').val(),jenis: $('#jenis').find(":selected").val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
-            alert('Berhasil Tambah Lembur');
+            location.reload();
         }});
     });
 
