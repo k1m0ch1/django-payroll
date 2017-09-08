@@ -1,6 +1,6 @@
 [
   {
-    "model": "system.cuti",
+    "model": "system.suratizin",
     "pk": 1,
     "fields": 
       {
@@ -9,12 +9,14 @@
         "alasan": "sakit",
         "tglmulai": "2012-12-12",
         "tglakhir": "2012-12-15",
+        "lama": 5,
+        "cuti": 0,
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
-    "model": "system.cuti",
+    "model": "system.suratizin",
     "pk": 2,
     "fields": 
       {
@@ -23,12 +25,14 @@
         "alasan": "sakit",
         "tglmulai": "2012-12-6",
         "tglakhir": "2012-12-8",
+        "lama": 5,
+        "cuti": 0,
         "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
-    "model": "system.cuti",
+    "model": "system.suratizin",
     "pk": 3,
     "fields": 
       {
@@ -37,12 +41,14 @@
         "alasan": "sakit",
         "tglmulai": "2012-12-28",
         "tglakhir": "2012-12-02",
+        "lama": 3,
+        "cuti": 1,
         "desc": "Malignant neoplasm of unspecified part of unspecified adrenal gland",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
-    "model": "system.cuti",
+    "model": "system.suratizin",
     "pk": 4,
     "fields": 
       {
@@ -51,12 +57,14 @@
         "alasan": "sakit",
         "tglmulai": "2012-12-12",
         "tglakhir": "2012-12-15",
+        "lama": 5,
+        "cuti": 1,
         "desc": "Nondisplaced articular fracture of head of right femur, subsequent encounter for open fracture type IIIA, IIIB, or IIIC with nonunion",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
-    "model": "system.cuti",
+    "model": "system.suratizin",
     "pk": 5,
     "fields": 
       {
@@ -65,6 +73,8 @@
         "alasan": "sakit",
         "tglmulai": "2012-12-12",
         "tglakhir": "2012-12-15",
+        "lama": 3,
+        "cuti": 0,
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }

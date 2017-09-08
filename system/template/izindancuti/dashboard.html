@@ -1,0 +1,352 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
+            <li><i class="fa fa-flask"></i> Data Master</li>
+            <li class="active">Izin Dan Cuti</li>
+          </ol>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-2">
+                <p><h3 class="control-label">Izin dan Cuti</h3></p>
+              </div>
+          </div>                
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-2">
+                <p><h4 class="control-label">Tambah baru Izin dan Cuti</h4></p>
+              </div>
+          </div>                
+      </div>
+      
+      <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-2">
+              <label class="control-label">List Karyawan</label>               
+            </div>
+            <input type="hidden" id="idKaryawan" name="idkaryawan" />
+            <div class="col-md-10">
+              <p class="" id="textKaraywan">  </p>
+            
+              <button class="btn btn-primary" id="pilihKaryawan" data-toggle="modal" data-target="#pilihKaryawanModal"><i class="fa fa-plus"></i> Pilih Karyawan</button> 
+              <button class="btn btn-primary" id="bersih"><i class="fa fa-plus"></i> Clear</button>   
+              <a class="btn btn-primary" href="{% url 'shift-index' %}" ><i class="fa fa-plus"></i> Shift</a>   
+              </div>             
+          </div>                
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-2">
+                <p><h4 class="control-label">Tanggal Izin dan Cuti</h4></p>
+              </div>
+          </div>                
+      </div>
+
+      <div class="row">
+          <!-- <div class="col-md-12">
+            <div class="col-md-2">
+              <label class="control-label pull-right">Untuk Tanggal</label>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right" id="reservation">
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="col-md-12">
+            <div class="col-md-2">
+              <label class="control-label pull-right">Surat</label>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                  <label class="control-label">Untuk Tanggal</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    <input type="text" class="form-control pull-right" id="sm1">
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                  <label class="control-label">Lama Hari</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    <input type="text" class="form-control pull-right" id="off1">
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                  <label class="control-label">Alasan</label>
+                  <select class="form-control" id="shift1">
+                    {% for y in shift %}
+                    <option value="{{y.id}}">{{ y.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+            </div>
+          </div>       
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-2">
+                <p><h4 class="control-label">Table Shift</h4></p>
+              </div>
+          </div>                
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label for="pencarian" class="col-sm-2 control-label">Pencarian</label>
+                <div class="col-sm-2">
+                  <select class="form-control">
+                  <option>Kategori</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+                </div>
+                <div class="input-group col-sm-4">
+                  <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-primary btn-flat">Search</button>
+                    </span>
+                </div>
+              </div>              
+            </form>              
+          </div>                
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th class="col-md-1">#</th>
+                  <th class="col-md-2">Tanggal</th>
+                  <th class="col-md-2">NIK</th>
+                  <th class="col-md-3">Nama</th>
+                  <th class="col-md-3">Shift</th>
+                  <th class="col-md-1">Action</th>
+                </tr>
+                {% for d in ks %}
+                <tr>
+                  <td><input type="checkbox" value=""></td>
+                  <td>{{ d.tglawal|date:"d M Y" }} sd {{ d.tglakhir|date:"d M Y" }}</td>
+                  <td>{{ d.karyawan.NIK }}</td>
+                  <td>{{ d.karyawan.name }}</td>
+                  <td>{{ d.shift.name }}</td>
+                  <td>
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
+                    </div>                  
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody></table>
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              <div class="col-md-8 ">
+                <div class="col-md-3">
+                  <label class="control-label">Ubah yang dipilih</label>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                      <select class="form-control ">
+                        <option>Shift 1</option>
+                        <option>option 2</option>
+                        <option>option 3</option>
+                        <option>option 4</option>
+                        <option>option 5</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary"><i class="fa fa-plus"></i> Simpan</button> 
+                </div>
+              </div>
+              {% if ks.has_other_pages %}
+                <div class="col-md-4">
+                  <ul class="pagination pagination-sm no-margin pull-right">
+                    {% if ks.has_previous %}
+                      <li class="active"><a href="?page={{ ks.previous_page_number }}">PREV</a></li>
+                    {% else %}
+                      <li class="disabled"><a href="#">PREV</a></li>
+                    {% endif %}
+
+                    {% for i in ks.paginator.page_range %}
+                      {% if ks.number == i %}
+                        <li class="active"><a href="#">{{ i }}</a></li>
+                      {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    {% if ks.has_next %}
+                      <li class="active"><a href="?page={{ ks.next_page_number }}">NEXT</a></li>
+                    {% else %}
+                      <li class="disabled"><a href="#">NEXT</a></li>
+                    {% endif %}
+                  </ul>
+                </div>  
+                {% endif %}  
+            </div>
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+      <!-- Your Page Content Here -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "include/base-modal.html" %}
+{% endblock %}
+
+{% block javascript %} 
+  <script src="{% static 'plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <!-- AdminLTE App -->
+  <script src="{% static 'dist/js/app.min.js' %}"></script>
+  <!-- SlimScroll 1.3.0 -->
+  <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+  <script src="{% static 'plugins/daterangepicker/daterangepicker.js' %}"></script>
+  <script src="{% static 'plugins/datepicker/bootstrap-datepicker.js' %}"></script>
+  <script src="{% static 'plugins/colorpicker/bootstrap-colorpicker.min.js' %}"></script>
+  <script src="{% static 'plugins/timepicker/bootstrap-timepicker.min.js' %}"></script>
+  <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+
+  <script>
+  $(function () {    
+
+    //Date range picker
+    $('#reservation').daterangepicker();
+
+    $('#reservationKedua').daterangepicker();
+
+    $('#sm1').daterangepicker();
+    $('#sm2').daterangepicker();
+    $('#sm3').daterangepicker();
+    $('#sm4').daterangepicker();
+
+    $('#off1').daterangepicker();
+    $('#off2').daterangepicker();
+    $('#off3').daterangepicker();
+    $('#off4').daterangepicker();
+
+
+    $('#izin').datepicker({
+      autoclose: true
+    })
+        
+    $.ajax({
+        type: "GET",
+        url: 'http://{{ request.get_host }}/index/api/karyawan',
+        success: function(result) {
+            $('#contentKaryawan').html(result);
+      }
+    });
+
+    $('#bersih').on("click", function(){
+        $('#textKaraywan').text("");
+        $('#idKaryawan').val("");   
+        $.ajax({
+            type: "GET",
+            url: 'http://{{ request.get_host }}/index/api/karyawan',
+            success: function(result) {
+                $('#contentKaryawan').html(result);
+          }
+        });  
+    });
+
+    $("#simpanRolling").on("click", function(){
+        $.ajax({
+        type: "POST",
+        url: 'http://{{ request.get_host }}/index/karyawan-shift/save',
+        data: {idkaryawan: $('#idKaryawan').val(), 
+                shift1: $('#shift1').val(), shift2: $('#shift2').val(), shift3: $('#shift3').val(), shift4: $('#shift4').val(), 
+                sm1: $('#sm1').val(), sm2: $('#sm2').val(), sm3: $('#sm3').val(), sm4: $('#sm4').val(), 
+                off1: $('#off1').val(), off2: $('#off2').val(), off3: $('#off3').val(), off4: $('#off4').val(), 
+                csrfmiddlewaretoken: '{{ csrf_token }}'},
+        success: function(result) {
+            alert('Berhasil Simpan Rolling Shift');
+        }
+      });
+    });
+
+    $("#ubahShift").on("click", function(){
+        $.ajax({
+        type: "POST",
+        url: 'http://{{ request.get_host }}/index/karyawan-shift/edit/save',
+        data: {idkaryawan: $('#idKaryawan').val(), shift: $('#shift5').val(), tanggal: $('#reservationKedua').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+        success: function(result) {
+            alert('Berhasil Ubah Shift');
+        }
+      });
+    });
+
+    $("#tambahLembur").on("click", function(){
+        $.ajax({
+        type: "POST",
+        url: 'http://{{ request.get_host }}/index/api/karyawan/lembur/create/save',
+        data: {idkaryawan: $('#idKaryawan').val(), lamalembur: $('#lembur').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+        success: function(result) {
+            alert('Berhasil Tambah Lembur');
+        }});
+    });
+
+    $("#tambahizin").on("click", function(){
+        $.ajax({
+        type: "POST",
+        url: 'http://{{ request.get_host }}/index/api/karyawan/izin/create/save',
+        data: {idkaryawan: $('#idKaryawan').val(), izin: $('#izin').val(), izinlama: $('#izinlama').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+        success: function(result) {
+            alert('Berhasil Tambah Lembur');
+        }});
+    });
+
+    $('#pilihKaryawan').on("click", function(){
+      $("#allkaryawan").attr('checked', false);
+    });
+
+
+  });
+</script>
+{% endblock %}

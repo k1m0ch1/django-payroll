@@ -9,7 +9,7 @@ from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
 from system.models import Inventory, Konfigurasi, GajiPokok, PotonganKaryawan, Pinjaman
-from system.models import MasaTenggangClosing
+from system.models import MasaTenggangClosing, SuratIzin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
