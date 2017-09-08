@@ -359,7 +359,6 @@
         "fungsi": "Laporan Absensi",
         "menu": "LAPORAN",
         "icon": "fa fa-table",
-        "url_slug" : "absensi-index",
         "created_at": "2017-03-01 15:03+07"
       }    
   }, {

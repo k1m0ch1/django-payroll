@@ -172,6 +172,25 @@ def laporangaji_index(request):
 															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
+def laporanabsensi_index(request):
+	k = Karyawan.objects.all()
+	dep = Departemen.objects.all()
+	bag = Bagian.objects.all()
+	gol = Golongan.objects.all()
+	per = Perusahaan.objects.all()
+	jab = Jabatan.objects.all()
+	mas = MasaTenggangClosing.objects.all()
+
+	filePath = Path("./laporan/absensi/")
+	files = []
+	if filePath.is_dir():
+	    files = list(x for x in filePath.iterdir() if x.is_file())
+
+	return render(request, "laporan-absensi/dashboard.html", { 'files': files, 'mas' : mas, 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+															 'golongan' : gol, 'jabatan' : jab,
+															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
 def pinjaman_index(request):
 	i = Pinjaman.objects.all()
 
@@ -241,8 +260,9 @@ def masatenggangclosing_index(request):
 
 @login_required()
 def hariraya_index(request):
-	hariraya = HariRaya.objects.all()
-	return render(request, "include/base-dashboard.html", { 'ulang' : hariraya, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
+	data = serializers.serialize( "python", HariRaya.objects.all(),fields=('name','tanggal', 'sd', 'desc'))
+	exfield = [{'field': 'Tanggal Mulai'}, {'field': 'Tanggal Akhir'}]
+	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request), 'exfield' : exfield})
 
 @login_required()
 def inventory_index(request):

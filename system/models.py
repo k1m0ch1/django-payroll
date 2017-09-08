@@ -369,7 +369,7 @@ class PostingGaji(models.Model):
 
 class Log(models.Model):
 	name = models.CharField(max_length=200) #short 25 char from log
-	tipe = models.CharField(max_length=200)
+	tipe = models.CharField(max_length=200) # auth, app, sys
 	log = models.TextField()
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)

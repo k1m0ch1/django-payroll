@@ -454,21 +454,6 @@ def profile_perusahaan_save(request):
 	return redirect("profile-perusahaan-index")
 
 @login_required()
-def hariraya(request):
-	return render(request, "hariraya/form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
-													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
-
-@login_required()
-def hariraya_save(request):
-	name = request.POST['name']
-	tanggal = request.POST['desc']
-	sd = request.POST['desc']
-	desc = request.POST['desc']
-	pp = HariRaya(name=name, tanggal=tanggal, sd=sd, desc=desc)
-	pp.save()
-	return redirect("hariraya-index")
-
-@login_required()
 def masatenggangclosing(request):
 	return render(request, "masatenggangclosing/form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
 													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
@@ -482,6 +467,21 @@ def masatenggangclosing_save(request):
 	pp = MasaTenggangClosing(name=name, tanggal=tanggal, sd=sd, desc=desc)
 	pp.save()
 	return redirect("masatenggangclosing-index")
+
+@login_required()
+def hariraya(request):
+	return render(request, "hariraya/form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def hariraya_save(request):
+	name = request.POST['name']
+	tanggal = parse(request.POST['tanggal']).strftime("%Y-%m-%d")
+	sd = parse(request.POST['sd']).strftime("%Y-%m-%d")
+	desc = request.POST['desc']
+	pp = HariRaya(name=name, tanggal=tanggal, sd=sd, desc=desc)
+	pp.save()
+	return redirect("hariraya-index")
 
 def getModule(request):
 	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]

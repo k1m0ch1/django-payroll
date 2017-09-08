@@ -32,7 +32,8 @@ urlpatterns = [
     url(r'^potongankaryawan$', views.dashboard.potongankaryawan_index, name="potongankaryawan-index"),
     url(r'^pinjaman$', views.dashboard.pinjaman_index, name="pinjaman-index"),
     url(r'^masatenggangclosing$', views.dashboard.masatenggangclosing_index, name="masatenggangclosing-index"),
-    url(r'^laporan/gaji$', views.dashboard.laporangaji_index, name="laporangaji-index"),
+    url(r'^laporan/gaji$', views.dashboard.laporangaji_index, name="laporangaji-index"),    
+    url(r'^laporan/absensi$', views.dashboard.laporanabsensi_index, name="laporanabsensi-index"),
     # url(r'^gaji$', views.dashboard.gaji_index, name="gaji-index"),
   	#url(r'^notif-system$', views.dashboard.notif_system, name="notif-system-index"),
   	#url(r'^notif-login$', views.dashboard.notif_login, name="notif-login-index"),
@@ -94,6 +95,7 @@ urlpatterns = [
     # url(r'^gaji/create/save$', views.create.gaji_save, name="gaji-create-save"),
     url(r'^postinggaji/do$', views.posting.postinggaji, name="postinggaji-do"),
     url(r'^laporan/gaji/do$', views.laporan.laporangaji, name="laporangaji-do"),
+    url(r'^laporan/absensi/do$', views.laporan.laporanabsensi, name="laporanabsensi-do"),
 
     #==eof-create
     #==edit
@@ -136,6 +138,8 @@ urlpatterns = [
     url(r'^karyawan/(?P<karyawan_id>[0-9]+)/edit/save$', views.edit.karyawan_save, name="karyawan-edit-save"),
     url(r'^masatenggangclosing/(?P<masatenggangclosing_id>[0-9]+)/edit/$', views.edit.masatenggangclosing, name="masatenggangclosing-edit"),
     url(r'^masatenggangclosing/(?P<masatenggangclosing_id>[0-9]+)/edit/save$', views.edit.masatenggangclosing_save, name="masatenggangclosing-edit-save"),
+    url(r'^hariraya/(?P<hariraya_id>[0-9]+)/edit/$', views.edit.hariraya, name="hariraya-edit"),
+    url(r'^hariraya/(?P<hariraya_id>[0-9]+)/edit/save$', views.edit.masatenggangclosing_save, name="hariraya-edit-save"),
 
     #==eofedit
 

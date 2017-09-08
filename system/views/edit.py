@@ -86,6 +86,13 @@ def departemen(request, departemen_id):
 	d = Departemen.objects.get(pk=departemen_id)
 	return render(request, "include/base-form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
 													   'idpk' : departemen_id, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def masatenggangclosing(request, masatenggangclosing_id):
+	d = MasaTenggangClosing.objects.get(pk=masatenggangclosing_id)
+	return render(request, "masatenggangclosing/form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : d.id, 'dsb' : modules, 'parent' : getParent(request)})
+
 @login_required()
 def masatenggangclosing_save(request, masatenggangclosing_id):
 	d = MasaTenggangClosing.objects.select_for_update().filter(id=masatenggangclosing_id)
@@ -93,10 +100,16 @@ def masatenggangclosing_save(request, masatenggangclosing_id):
 	return redirect("masatenggangclosing-index")
 
 @login_required()
-def masatenggangclosing(request, masatenggangclosing_id):
-	d = MasaTenggangClosing.objects.get(pk=masatenggangclosing_id)
-	return render(request, "masatenggangclosing/form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
+def hariraya(request, hariraya_id):
+	d = HariRaya.objects.get(pk=hariraya_id)
+	return render(request, "hariraya/form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
 													   'idpk' : d.id, 'dsb' : modules, 'parent' : getParent(request)})
+	
+@login_required()
+def hariraya_save(request, hariraya_id):
+	d = HariRaya.objects.select_for_update().filter(id=hariraya_id)
+	d.update(name=request.POST['name'], tanggal = parse(request.POST['tanggal']).strftime("%Y-%m-%d"), sd = parse(request.POST['sd']).strftime("%Y-%m-%d"), desc=request.POST['desc'])
+	return redirect("hariraya-index")
 
 @login_required()
 def perusahaan_save(request, departemen_id):
@@ -235,23 +248,6 @@ def profile_edit_save(request):
 	s = Perusahaan.objects.select_for_update().filter(id=1)
 	s.update(name=request.POST['name'], desc=request.POST['desc'])
 	return redirect("profile-perusahaan-index")
-
-@login_required()
-def hariraya(request, hariraya_id):
-	s = HariRaya.objects.get(pk=hariraya_id)
-	return render(request, "include/base-form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : getModule(request), 
-													   		 'idpk' : hariraya_id, 'dsb' : modules, 'parent' : getParent(request)})
-
-@login_required()
-def hariraya_save(request, hariraya_id):
-	name = request.POST['name']
-	tanggal = request.POST['desc']
-	sd = request.POST['desc']
-	desc = request.POST['desc']
-	s = HariRaya.objects.select_for_update().filter(id=hariraya_id)
-	s.update(name=name, tanggal=tanggal, sd=sd, desc=desc)
-	return redirect("hariraya-index")
-
 
 @login_required()
 def inventory(request, inventory_id):
