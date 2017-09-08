@@ -86,7 +86,7 @@ urlpatterns = [
     url(r'^pinjaman/create/save$', views.create.pinjaman_save, name="pinjaman-create-save"),
 
     url(r'^absen/(?P<absensi_id>[0-9]+)/overtime/create$', views.create.overtime, name="overtime-create"),
-    url(r'^download/(?P<path>.*)$', views.dashboard.download, name="download"),
+    url(r'^download/(?P<dire>.*):(?P<path>.*)$', views.dashboard.download, name="download"),
     url(r'^absen/(?P<absensi_id>[0-9]+)/overtime/create/save$', views.create.karyawan_lembur_save, name="overtime-create-save"),
     url(r'^absen/(?P<absensi_id>[0-9]+)/koreksi/create$', views.create.koreksi, name="koreksi-create"),
     url(r'^absen/(?P<absensi_id>[0-9]+)/koreksi/create/save$', views.create.koreksi_save, name="koreksi-create-save"),

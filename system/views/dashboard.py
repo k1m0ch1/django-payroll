@@ -168,8 +168,8 @@ def postinggaji_index(request):
 															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
-def download(request, path):
-    file_path = os.path.join(settings.MEDIA_ROOT, 'laporan/gaji/' + path)
+def download(request, dire, path):
+    file_path = os.path.join(settings.MEDIA_ROOT, dire + path)
     if os.path.exists(file_path):
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")

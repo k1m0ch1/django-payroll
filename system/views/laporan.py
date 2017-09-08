@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan, Konfigurasi
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Inventory, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift, GajiPokok, PotonganKaryawan
-from system.models import PostingGaji, MasaTenggangClosing
+from system.models import PostingGaji, MasaTenggangClosing, IzinCuti
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -216,35 +216,35 @@ def laporanabsensi(request):
 
 	objs = [0]
 
-	class postgaji(object):
+	class postabsensi(object):
 			no = ""
 			nik = ""
 			nama = ""
 			departemen = ""
 			bagian = ""
 			golongan = ""
-			gajipokok = ""
-			tmakan = ""
-			transportnonexec = ""
-			tovertime = ""
-			pbpjs = ""
-			ppinjam = ""
-			pabsen = ""
+			masuk = ""
+			telat = ""
+			overtime = ""
+			izin = ""
+			cuti = ""
+			dinas = ""
+			sakit = ""
 
-			def __init__(self, no, nik, nama, departemen, bagian, golongan, gajipokok, tmakan, transportnonexec, tovertime, pbpjs, ppinjam, pabsen):
+			def __init__(self, no, nik, nama, departemen, bagian, golongan, masuk, telat, overtime, izin, cuti, dinas, sakit):
 				self.no = no
 				self.nik = nik
 				self.nama = nama
 				self.departemen = departemen
 				self.bagian = bagian
 				self.golongan = golongan
-				self.gajipokok = gajipokok
-				self.tmakan = tmakan
-				self.transportnonexec = transportnonexec
-				self.tovertime = tovertime
-				self.pbpjs = pbpjs
-				self.ppinjam = ppinjam
-				self.pabsen = pabsen
+				self.masuk = masuk
+				self.telat = telat
+				self.overtime = overtime
+				self.izin = izin
+				self.cuti = cuti
+				self.dinas = dinas
+				self.sakit = sakit
 
 	today = datetime.datetime.now()
 	idkaryawan = request.POST['idkaryawan']
@@ -276,22 +276,13 @@ def laporanabsensi(request):
 
 		for b in a:
 			y = y + 1
+			telat = 0
+			overtime = 0
+			izin = 0
+			cuti = 0
+			dinas = 0
+			sakit = 0 
 			#k = Karyawan.objects.get(pk=b.karyawan.id)
-			g = GajiPokok.objects.get(karyawan_id=b.id)
-			p = PotonganKaryawan.objects.get(karyawan_id=b.id)
-
-			gajipokok = g.gajipokok 
-			tunjanganmakan = g.tmakan
-			makanlembur = g.makanlembur
-			transportnonexec = g.transportnonexec
-			cicil = 0
-			tovertime = 0
-			pabsen = 0
-
-			if p.cicil_pinjkaryawan > 0 :
-				cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
-				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
-				pe.update(cicil_pinjkaryawan=p.cicil_pinjkaryawan-1)
 
 			# for x in a:
 			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
@@ -299,15 +290,20 @@ def laporanabsensi(request):
 			ab = Absensi.objects.filter(karyawan_id=b.id).filter(tanggal__range = [mas.tanggal, mas.sd])
 
 			for abi in ab:
+				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1 and abi.koreksi == 0:
+					telat = telat + 1
+
 				if abi.SPL == 1:
-					tovertime = tovertime + (abi.SPL_banyak * 20000)
+					overtime = overtime + 1
 
-				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
-					pabsen = pabsen + 1
+			ic = IzinCuti.objects.filter(karyawan_id=b.id).filter(tglmulai__range = [mas.tanggal, mas.sd])
+			for ici in ic:
+				izin = izin + 1 if ici.jenis == "IZIN" else izin
+				cuti = cuti + 1 if ici.jenis == "CUTI" else cuti
+				dinas = dinas + 1 if ici.jenis == "DINAS" else dinas
+				sakit = sakit + 1 if ici.jenis == "SAKIT" else sakit
 
-			pabsen = pabsen * 10000
-
-			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec, tovertime, p.bpjs, cicil, pabsen))
+			objs.append(postabsensi(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, len(ab), telat, overtime, izin, cuti, dinas, sakit))
 
 
 	else:
@@ -317,40 +313,30 @@ def laporanabsensi(request):
 		objs = [range(0, len(listid)-1)]
 
 		for y in range(0, len(listid)-1):
+			izin = 0
+			cuti = 0
+			dinas = 0
+			sakit = 0 
 			a = Absensi.objects.filter(karyawan=listid[y]).filter(tanggal__year=today.year).filter(tanggal__month=4)
 			k = Karyawan.objects.get(pk=listid[y])
-			g = GajiPokok.objects.get(karyawan_id=listid[y])
-			p = PotonganKaryawan.objects.get(karyawan_id=listid[y])
 
-			gajipokok = g.gajipokok 
-			tunjanganmakan = g.tmakan
-			makanlembur = g.makanlembur
-			transportnonexec = g.transportnonexec
+			ab = Absensi.objects.filter(karyawan_id=b.id).filter(tanggal__range = [mas.tanggal, mas.sd])
 
-			cicil = 0
-			tovertime = 0
-			pabsen = 0
-
-			if p.cicil_pinjkaryawan > 0 :
-				cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
-				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
-				pe.update(cicil_pinjkaryawan=p.cicil_pinjkaryawan-1)
-
-			# for x in a:
-			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
-
-			ab = Absensi.objects.filter(karyawan_id=b.id).filter(tanggal__range[mas.tanggal, mas.sd])
-			
 			for abi in ab:
+				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1 and abi.koreksi == 0:
+					telat = telat + 1
+
 				if abi.SPL == 1:
-					tovertime = tovertime + (abi.SPL_banyak * 20000)
+					overtime = overtime + 1
 
-				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
-					pabsen = pabsen + 1
+			ic = IzinCuti.objects.filter(karyawan_id=b.id).filter(tglmulai__range = [mas.tanggal, mas.sd])
+			for ici in ic:
+				izin = izin + 1 if ici.jenis == "IZIN" else izin
+				cuti = cuti + 1 if ici.jenis == "CUTI" else cuti
+				dinas = dinas + 1 if ici.jenis == "DINAS" else dinas
+				sakit = sakit + 1 if ici.jenis == "SAKIT" else sakit
 
-			pabsen = pabsen * 10000
-			
-			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, k.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec,tovertime, p.bpjs, cicil, pabsen))
+			objs.append(postabsensi(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, len(ab), telat, overtime, izin, cuti, dinas, sakit))
 	
 	wb = xlwt.Workbook()
 	ws = wb.add_sheet('A Test Sheet')
@@ -361,13 +347,13 @@ def laporanabsensi(request):
 	ws.write(0, 3, "Departemen")
 	ws.write(0, 4, "Bagian")
 	ws.write(0, 5, "Golongan")
-	ws.write(0, 6, "Gaji Pokok")
-	ws.write(0, 7, "Tunjangan Makan")
-	ws.write(0, 8, "Tunjangan Transportasi")
-	ws.write(0, 9, "Tunjangan Overtime")
-	ws.write(0, 10, "Potongan Pinjaman")
-	ws.write(0, 11, "Potongan BPJS")
-	ws.write(0, 12, "Potongan Absensi")
+	ws.write(0, 6, "Jumlah Masuk")
+	ws.write(0, 7, "Jumlah Telat")
+	ws.write(0, 8, "Jumlah Overtime")
+	ws.write(0, 9, "Jumlah Izin")
+	ws.write(0, 10, "Jumlah Cuti")
+	ws.write(0, 11, "Jumlah Dinas")
+	ws.write(0, 12, "Jumlah Sakit")
 
 	x=1 
 
@@ -380,17 +366,17 @@ def laporanabsensi(request):
 		ws.write(ob[x].no, 3, ob[x].departemen)
 		ws.write(ob[x].no, 4, ob[x].bagian)
 		ws.write(ob[x].no, 5, ob[x].golongan)
-		ws.write(ob[x].no, 6, ob[x].gajipokok)
-		ws.write(ob[x].no, 7, ob[x].tmakan)
-		ws.write(ob[x].no, 8, ob[x].transportnonexec)
-		ws.write(ob[x].no, 9, ob[x].tovertime)
-		ws.write(ob[x].no, 10, ob[x].ppinjam)
-		ws.write(ob[x].no, 11, ob[x].pbpjs)
-		ws.write(ob[x].no, 12, ob[x].pabsen)
+		ws.write(ob[x].no, 6, ob[x].masuk)
+		ws.write(ob[x].no, 7, ob[x].telat)
+		ws.write(ob[x].no, 8, ob[x].overtime)
+		ws.write(ob[x].no, 9, ob[x].izin)
+		ws.write(ob[x].no, 10, ob[x].cuti)
+		ws.write(ob[x].no, 11, ob[x].dinas)
+		ws.write(ob[x].no, 12, ob[x].sakit)
 
-	wb.save("laporan/gaji/LAPORAN GAJI " + mas.name + ' ' + mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'-' + datetime.datetime.now().strftime("%d%m%Y-%H%M%S") + '.xls')
+	wb.save("laporan/absensi/LAPORAN ABSENSI " + mas.name + ' ' + mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'-' + datetime.datetime.now().strftime("%d%m%Y-%H%M%S") + '.xls')
 
-	return redirect("laporangaji-index")
+	return HttpResponse("Success")
 
 def waktu(waktu=None, jadwal=None, masuk=None):
 	hasil = 0
