@@ -29,6 +29,7 @@ def postinggaji(request):
 			departemen = ""
 			bagian = ""
 			golongan = ""
+			norek = ""
 			gajipokok = ""
 			tmakan = ""
 			transportnonexec = ""
@@ -37,13 +38,14 @@ def postinggaji(request):
 			ppinjam = ""
 			pabsen = ""
 
-			def __init__(self, no, nik, nama, departemen, bagian, golongan, gajipokok, tmakan, transportnonexec, tovertime, pbpjs, ppinjam, pabsen):
+			def __init__(self, no, nik, nama, departemen, bagian, golongan, norek, gajipokok, tmakan, transportnonexec, tovertime, pbpjs, ppinjam, pabsen):
 				self.no = no
 				self.nik = nik
 				self.nama = nama
 				self.departemen = departemen
 				self.bagian = bagian
 				self.golongan = golongan
+				self.norek = norek
 				self.gajipokok = gajipokok
 				self.tmakan = tmakan
 				self.transportnonexec = transportnonexec
@@ -116,7 +118,7 @@ def postinggaji(request):
 			po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id, tovertime=tovertime, pabsen=pabsen)
 			po.save()
 			
-			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec, tovertime, p.bpjs, cicil, pabsen))
+			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, b.norek + " a.n." + b.atasnama + " " + b.bank.name , g.gajipokok, tunjanganmakan, transportnonexec, tovertime, p.bpjs, cicil, pabsen))
 	else:
 		listid = [x.strip() for x in idkaryawan.split(',')]
 		a = ""
@@ -160,7 +162,7 @@ def postinggaji(request):
 			po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id,tovertime=tovertime, pabsen=pabsen)
 			po.save()
 			
-			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, k.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec,tovertime, p.bpjs, cicil, pabsen))
+			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, k.golongan.name, k.norek + " a.n." + k.atasnama + " " + k.bank.name , g.gajipokok, tunjanganmakan, transportnonexec,tovertime, p.bpjs, cicil, pabsen))
 
 
 	return render(request,"postinggaji/print.html", { 'data': mantap, 'posting' : objs})
