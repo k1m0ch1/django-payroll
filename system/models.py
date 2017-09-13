@@ -334,7 +334,7 @@ class PotonganKaryawan(models.Model):
 	serikat = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
 	pinjlain = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
 	cicil_pinjlain = models.DecimalField(max_digits=2, decimal_places=0,null=True, default=0)
-	pinjkaryawan = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
+	pinjkaryawan = models.DecimalField(max_digits=8, decimal_places=0,null=True, default=0)
 	cicil_pinjkaryawan = models.DecimalField(max_digits=2, decimal_places=0,null=True, default=0)
 	masatenggangclosing = models.ForeignKey(MasaTenggangClosing)
 	karyawan = models.ForeignKey(Karyawan)

@@ -115,6 +115,89 @@
             </div>
           </div>         
       </div>
+
+      <div class="row">
+          <div class="col-md-12">
+            <form class="form-horizontal" method="GET" action="{% url 'tunjangankaryawan-index' %}">
+              <div class="form-group">
+                <label for="pencarian" class="col-sm-2 control-label">Pencarian</label>
+                <div class="col-sm-2">
+                  <select class="form-control" name="search">
+                  <option>Kategori</option>
+                  <option value="nik">NIK</option>
+                  <option value="name">Nama</option>
+                </select>
+                </div>
+                <div class="input-group col-sm-4">
+                  <input type="text" class="form-control" name="value">
+                    <span class="input-group-btn">
+                      <button type="submit" class="btn btn-primary btn-flat">Search</button>
+                    </span>
+                </div>
+              </div>              
+            </form>              
+          </div>                
+      </div>
+    
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th class="col-md-2">NIK</th>
+                  <th class="col-md-2">Nama</th>
+                  <th class="col-md-3">MasaTenggang</th>
+                  <th class="col-md-2">Pinjaman</th>
+                  <th class="col-md-2">Cicilan</th>
+                  <th class="col-md-2">Action</th>
+                </tr>
+                {% for d in pk %}
+                <tr>
+                  <td>{{ d.karyawan.NIK }}</td>
+                  <td>{{ d.karyawan.name }}</td>
+                  <td>{{ d.masatenggangclosing.tanggal|date:"d M Y" }} sd {{ d.masatenggangclosing.sd|date:"d M Y" }}</td>
+                  <td>{{ d.pinjkaryawan }}</td>
+                  <td>{{ d.cicil_pinjkaryawan }}</td>
+                  <td>
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                      <a href="{% url 'potongan-edit' potongan_id=d.id %}" type="button" class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                      <a data-confirm="Yakin mau Hapus data ???" href="{% url 'potongan-delete' potongan_id=d.id %}" type="button" class="btn btn-default"><i class="fa fa-trash"></i></a>
+                    </div>                  
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody></table>
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              {% if pk.has_other_pages %}
+                <div class="col-md-12">
+                  <ul class="pagination pagination-sm no-margin pull-right">
+                    {% if pk.has_previous %}
+                      <li class="active"><a href="?page={{ pk.previous_page_number }}">PREV</a></li>
+                    {% else %}
+                      <li class="disabled"><a href="#">PREV</a></li>
+                    {% endif %}
+
+                    {% for i in pk.paginator.page_range %}
+                      {% if pk.number == i %}
+                        <li class="active"><a href="#">{{ i }}</a></li>
+                      {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    {% if pk.has_next %}
+                      <li class="active"><a href="?page={{ pk.next_page_number }}">NEXT</a></li>
+                    {% else %}
+                      <li class="disabled"><a href="#">NEXT</a></li>
+                    {% endif %}
+                  </ul>
+                </div>  
+                {% endif %}  
+            </div>
+          </div>
     
       <!-- Your Page Content Here -->
 
@@ -182,6 +265,7 @@
         data: {idmas : $("#idmas").val(), idkaryawan: $('#idKaryawan').val(), pinjaman: $('#pinjaman').val(), cicil_pinjaman: $('#cicil_pinjaman').val(),csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Tambah Potongan');
+            reload.location();
         }});
     });
 
@@ -191,6 +275,13 @@
         $("#textMas").text(masatenggangclosing);
         $("#idmas").val(mval);
     }); 
+
+    $(document).on('click', ':not(form)[data-confirm]', function(e){
+      if(!confirm($(this).data('confirm'))){
+          e.stopImmediatePropagation();
+          e.preventDefault();
+      }
+    });
 
   });
 </script>

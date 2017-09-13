@@ -238,7 +238,7 @@ def potongan_save(request):
 	idkaryawan = request.POST['idkaryawan']
 	idmas = request.POST['idmas']
 	listid = [x.strip() for x in idkaryawan.split(',')]
-	bpjs = request.POST['bpjs']
+	#bpjs = request.POST['bpjs']
 	#pajakbulanan = request.POST['pajakbulanan']
 	pinjaman = request.POST['pinjaman']
 	cicil_pinjaman = request.POST['cicil_pinjaman']

@@ -125,6 +125,19 @@ def tunjangan_save(request, tunjangan_id):
 	return redirect("tunjangankaryawan-index")
 
 @login_required()
+def potongan(request, potongan_id):
+	d = PotonganKaryawan.objects.get(pk=potongan_id)
+	ms = MasaTenggangClosing.objects.all()
+	return render(request, "potongan/form.html", { 'ms': ms, 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : d.id, 'dsb' : modules, 'parent' : getParent(request)})
+	
+@login_required()
+def potongan_save(request, potongan_id):
+	d = PotonganKaryawan.objects.select_for_update().filter(id=potongan_id)
+	d.update(masatenggangclosing_id = request.POST['masatenggang'], pinjkaryawan=request.POST['pinjaman'], cicil_pinjkaryawan = request.POST['cicil'])
+	return redirect("potongankaryawan-index")
+
+@login_required()
 def perusahaan_save(request, departemen_id):
 	d = Perusahaan.objects.select_for_update().filter(id=perusahaan_id)
 	d.update(name=request.POST['name'], desc=request.POST['desc'])

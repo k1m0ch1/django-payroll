@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load form %}
+{% load hari %}
+
+{% block content %} 
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div>
+          <ol class="breadcrumb">
+            <li><a href="/index"><i class="fa fa-home"></i> Dashboard</a></li>
+            <li><i class="fa fa-flask"></i> Data Master 2</li>
+            <li><i class="fa fa-flask"></i> <a href="#" onclick="history.back()">{{ module }}</a></li>
+            <li class="active">{{ mode }} {{ module }}</li>
+          </ol>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+          <div class="col-md-12">
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title">{{ mode }} {{ module }}</h3>
+              </div>
+              <form method="post" action="{% url 'potongan-edit-save' idpk %}" >
+            {% csrf_token %}
+              <div class="box-body">
+                <div class="row"> 
+                  <div class="col-md-2 ">
+                    <p class="text-right">Masa Tenggang</p>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="form-group col-md-5">
+                      <select name="masatenggang">
+                        {% for msi in ms %}
+                          <option value="{{msi.id}}" {% if msi.id == data.masatenggangclosing.id %} selected {% endif %}>{{ msi.name }} ( {{ msi.tanggal }} .s.d {{ msi.sd }} )</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="col-md-2 ">
+                    <p class="text-right">Pinjaman</p>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="form-group col-md-5">
+                      <div class='input-group bootstrap-timepicker timepicker' >
+                          <input type='text' name="pinjaman" class="form-control" value="{{ data.pinjkaryawan }}" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="col-md-2 ">
+                    <p class="text-right">Cicil Berapa Kali</p>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="form-group col-md-5">
+                      <div class='input-group bootstrap-timepicker timepicker' >
+                          <input type='text' name="cicil" class="form-control" value="{{ data.cicil_pinjkaryawan }}"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="box-footer clearfix">                
+                <div class="row">
+                  <div class="col-md-4 col-md-offset-8">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Simpan </button> 
+                    </div>
+                  </div>               
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+
+      </div>
+      <!-- Your Page Content Here -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  <footer class="main-footer">
+      <!-- To the right -->
+      <div class="pull-right hidden-xs">
+        Anything you want
+      </div>
+      <!-- Default to the left -->
+      <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    </footer>
+{% endblock %}
+
+{% block javascript %} 
+  <script src="{% static 'plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <!-- AdminLTE App -->
+  <script src="{% static 'dist/js/app.min.js' %}"></script>
+  <!-- SlimScroll 1.3.0 -->
+  <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+  <script src="{% static 'plugins/timepicker/bootstrap-timepicker.min.js' %}"></script>
+  <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+  <script src="{% static 'plugins/datepicker/bootstrap-datepicker.js' %}"></script>
+
+  <script>
+      $('#tanggal').datepicker();
+      $('#sd').datepicker();
+  </script>
+{% endblock %}

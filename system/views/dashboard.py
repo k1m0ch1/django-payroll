@@ -142,6 +142,15 @@ def izincuti_index(request):
 
 @login_required()
 def potongankaryawan_index(request):
+
+	pk = PotonganKaryawan.objects.all()
+
+	if request.method == "GET":
+
+		if 'search' in request.GET:
+			pk = pk.filter(karyawan__NIK__contains=request.GET['value']) if request.GET['search'] == "nik" else pk
+			pk = pk.filter(karyawan__name__contains=request.GET['value']) if request.GET['search'] == "name" else pk
+
 	k = Karyawan.objects.all()
 	dep = Departemen.objects.all()
 	bag = Bagian.objects.all()
@@ -149,9 +158,21 @@ def potongankaryawan_index(request):
 	per = Perusahaan.objects.all()
 	jab = Jabatan.objects.all()
 	shift = Shift.objects.all()
-	mas = MasaTenggangClosing.objects.all()
+	mas = MasaTenggangClosing.objects.all()	
 
-	return render(request, "potongan/dashboard.html", { 'mas' : mas,'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+	pk = pk.order_by("-updated_at")
+	
+	page = request.GET.get('page', 1)
+	paginator = Paginator(pk, 15)
+    
+	try:
+ 		pk = paginator.page(page)
+	except PageNotAnInteger:
+		pk = paginator.page(1)
+	except EmptyPage:
+   		pk = paginator.page(paginator.num_pages)
+
+	return render(request, "potongan/dashboard.html", { 'pk': pk,'mas' : mas,'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
 															 'golongan' : gol, 'jabatan' : jab,
 															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 @login_required()
