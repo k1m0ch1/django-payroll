@@ -186,7 +186,7 @@ def laporangaji(request):
 	ws.write(4, 12, "Potongan BPJS")
 	ws.write(4, 13, "Potongan Absensi")
 
-	y=5
+	y=4
 
 	ob = objs
 
@@ -341,40 +341,42 @@ def laporanabsensi(request):
 			objs.append(postabsensi(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, len(ab), telat, overtime, izin, cuti, dinas, sakit))
 	
 	wb = xlwt.Workbook()
-	ws = wb.add_sheet('A Test Sheet')
+	ws = wb.add_sheet('Laporan Absensi' ,cell_overwrite_ok=True )
 
-	ws.write(0, 0, "No")
-	ws.write(0, 1, "NIK")
-	ws.write(0, 2, "Nama")
-	ws.write(0, 3, "Departemen")
-	ws.write(0, 4, "Bagian")
-	ws.write(0, 5, "Golongan")
-	ws.write(0, 6, "Jumlah Masuk")
-	ws.write(0, 7, "Jumlah Telat")
-	ws.write(0, 8, "Jumlah Overtime")
-	ws.write(0, 9, "Jumlah Izin")
-	ws.write(0, 10, "Jumlah Cuti")
-	ws.write(0, 11, "Jumlah Dinas")
-	ws.write(0, 12, "Jumlah Sakit")
+	ws.write(1, 6, "Laporan Absensi")
+	ws.write(2, 6, "Masa Tenggang Closing " + mas.name)
+	ws.write(4, 1, "No")
+	ws.write(4, 2, "NIK")
+	ws.write(4, 3, "Nama")
+	ws.write(4, 4, "Departemen")
+	ws.write(4, 5, "Bagian")
+	ws.write(4, 6, "Golongan")
+	ws.write(4, 7, "Jumlah Masuk")
+	ws.write(4, 8, "Jumlah Telat")
+	ws.write(4, 9, "Jumlah Overtime")
+	ws.write(4, 10, "Jumlah Izin")
+	ws.write(4, 11, "Jumlah Cuti")
+	ws.write(4, 12, "Jumlah Dinas")
+	ws.write(4, 13, "Jumlah Sakit")
 
-	x=1 
+	y=4
 
 	ob = objs
 
 	for x in range(1, len(objs)):
-		ws.write(ob[x].no, 0, ob[x].no)
-		ws.write(ob[x].no, 1, ob[x].nik)
-		ws.write(ob[x].no, 2, ob[x].nama)
-		ws.write(ob[x].no, 3, ob[x].departemen)
-		ws.write(ob[x].no, 4, ob[x].bagian)
-		ws.write(ob[x].no, 5, ob[x].golongan)
-		ws.write(ob[x].no, 6, ob[x].masuk)
-		ws.write(ob[x].no, 7, ob[x].telat)
-		ws.write(ob[x].no, 8, ob[x].overtime)
-		ws.write(ob[x].no, 9, ob[x].izin)
-		ws.write(ob[x].no, 10, ob[x].cuti)
-		ws.write(ob[x].no, 11, ob[x].dinas)
-		ws.write(ob[x].no, 12, ob[x].sakit)
+		ws.write(ob[x].no+y, 1, ob[x].no)
+		ws.write(ob[x].no+y, 2, ob[x].nik)
+		ws.write(ob[x].no+y, 3, ob[x].nama)
+		ws.write(ob[x].no+y, 4, ob[x].departemen)
+		ws.write(ob[x].no+y, 5, ob[x].bagian)
+		ws.write(ob[x].no+y, 6, ob[x].golongan)
+		ws.write(ob[x].no+y, 7, ob[x].masuk)
+		ws.write(ob[x].no+y, 8, ob[x].telat)
+		ws.write(ob[x].no+y, 9, ob[x].overtime)
+		ws.write(ob[x].no+y, 10, ob[x].izin)
+		ws.write(ob[x].no+y, 11, ob[x].cuti)
+		ws.write(ob[x].no+y, 12, ob[x].dinas)
+		ws.write(ob[x].no+y, 13, ob[x].sakit)
 
 	wb.save("laporan/absensi/LAPORAN ABSENSI " + mas.name + ' ' + mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'-' + datetime.datetime.now().strftime("%d%m%Y-%H%M%S") + '.xls')
 
