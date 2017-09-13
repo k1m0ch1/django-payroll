@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah
-from system.models import LokasiPerusahaan, Shift, Inventory, Konfigurasi, Karyawan, MasaTenggangClosing
+from system.models import LokasiPerusahaan, Shift, Inventory, Konfigurasi, Karyawan, MasaTenggangClosing, TunjanganKaryawan, PotonganKaryawan
 
 @login_required()
 def departemen(request, departemen_id):
@@ -98,3 +98,15 @@ def masatenggangclosing(request, masatenggangclosing_id):
 	s = MasaTenggangClosing.objects.filter(id=masatenggangclosing_id)
 	s.delete()
 	return redirect("masatenggangclosing-index")
+
+@login_required()
+def tunjangan(request, tunjangan_id):
+	s = TunjanganKaryawan.objects.filter(id=tunjangan_id)
+	s.delete()
+	return redirect("tunjangankaryawan-index")
+
+@login_required()
+def potongan(request, potongan_id):
+	s = PotonganKaryawan.objects.filter(id=potongan_id)
+	s.delete()
+	return redirect("potongankaryawan-index")

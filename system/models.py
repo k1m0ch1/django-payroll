@@ -315,6 +315,17 @@ class Cuti(models.Model):
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name    
 
+class MasaTenggangClosing(models.Model):
+	name = models.CharField(max_length=200, null=True)
+	tanggal = models.DateField()
+	sd = models.DateField()
+	desc = models.TextField(null=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
 class PotonganKaryawan(models.Model):
 	name = models.CharField(max_length=200, null=True)
 	bpjs = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
@@ -325,6 +336,20 @@ class PotonganKaryawan(models.Model):
 	cicil_pinjlain = models.DecimalField(max_digits=2, decimal_places=0,null=True, default=0)
 	pinjkaryawan = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
 	cicil_pinjkaryawan = models.DecimalField(max_digits=2, decimal_places=0,null=True, default=0)
+	masatenggangclosing = models.ForeignKey(MasaTenggangClosing)
+	karyawan = models.ForeignKey(Karyawan)
+	desc = models.TextField(null=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
+
+class TunjanganKaryawan(models.Model):
+	name = models.CharField(max_length=200, null=True)
+	kemahalan = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
+	jabatan = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
+	masatenggangclosing = models.ForeignKey(MasaTenggangClosing)
 	karyawan = models.ForeignKey(Karyawan)
 	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)
@@ -338,17 +363,6 @@ class HariRaya(models.Model):
 	tanggal = models.DateField()
 	sd = models.DateField(null=True)
 	desc = models.TextField()
-	created_at = models.DateTimeField(auto_now=True)
-	updated_at = models.DateTimeField(auto_now_add=True, null=True)
-
-	def __str__(self):              # __unicode__ on Python 2
-		return self.name
-
-class MasaTenggangClosing(models.Model):
-	name = models.CharField(max_length=200, null=True)
-	tanggal = models.DateField()
-	sd = models.DateField()
-	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 

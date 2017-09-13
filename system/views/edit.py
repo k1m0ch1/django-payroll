@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan, Konfigurasi
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Inventory, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift, GajiPokok
-from system.models import MasaTenggangClosing
+from system.models import MasaTenggangClosing, TunjanganKaryawan, PotonganKaryawan
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -110,6 +110,19 @@ def hariraya_save(request, hariraya_id):
 	d = HariRaya.objects.select_for_update().filter(id=hariraya_id)
 	d.update(name=request.POST['name'], tanggal = parse(request.POST['tanggal']).strftime("%Y-%m-%d"), sd = parse(request.POST['sd']).strftime("%Y-%m-%d"), desc=request.POST['desc'])
 	return redirect("hariraya-index")
+
+@login_required()
+def tunjangan(request, tunjangan_id):
+	d = TunjanganKaryawan.objects.get(pk=tunjangan_id)
+	ms = MasaTenggangClosing.objects.all()
+	return render(request, "tunjangan/form.html", { 'ms': ms, 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : d.id, 'dsb' : modules, 'parent' : getParent(request)})
+	
+@login_required()
+def tunjangan_save(request, tunjangan_id):
+	d = TunjanganKaryawan.objects.select_for_update().filter(id=tunjangan_id)
+	d.update(masatenggangclosing_id = request.POST['masatenggang'], jabatan=request.POST['jabatan'], kemahalan = request.POST['kemahalan'])
+	return redirect("tunjangankaryawan-index")
 
 @login_required()
 def perusahaan_save(request, departemen_id):

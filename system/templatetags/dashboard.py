@@ -114,4 +114,12 @@ def dashboard(module=None, mode=None, idpk=None):
       'ubah'   : reverse('masatenggangclosing-edit', kwargs={'masatenggangclosing_id': idpk}),
       'hapus'  : reverse('masatenggangclosing-delete', kwargs={'masatenggangclosing_id': idpk})
     }[mode]
+  elif module == 'Tunjangan Karyawan':
+    return{
+      'indeks' : reverse('masatenggangclosing-index')
+    }[mode]
+  elif module == 'Potongan Karyawan':
+    return{
+      'indeks' : reverse('masatenggangclosing-index')
+    }[mode]
   return "null"

@@ -9,6 +9,7 @@ from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konfigurasi
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
 from system.models import GajiPokok, Absensi, Pinjaman, PotonganKaryawan, IzinCuti, MasaTenggangClosing
+from system.models import TunjanganKaryawan
 from dateutil.parser import parse
 from datetime import timedelta
 from datetime import datetime
@@ -235,44 +236,57 @@ def pinjaman_save(request):
 @login_required()
 def potongan_save(request):
 	idkaryawan = request.POST['idkaryawan']
+	idmas = request.POST['idmas']
 	listid = [x.strip() for x in idkaryawan.split(',')]
 	bpjs = request.POST['bpjs']
 	#pajakbulanan = request.POST['pajakbulanan']
 	pinjaman = request.POST['pinjaman']
 	cicil_pinjaman = request.POST['cicil_pinjaman']
 	for y in range(0, len(listid)-1):
-		p = PotonganKaryawan.objects.filter(karyawan_id=listid[y])
-		g = GajiPokok.objects.get(karyawan_id=listid[y])
-		gajipokok = g.gajipokok
-		if bpjs.find("%") != -1 :
-			pisah = [x.strip() for x in bpjs.split('%')]
-			bpjs = int(float(float(pisah[0])/100) * int(gajipokok))
+		# p = PotonganKaryawan.objects.filter(karyawan_id=listid[y])
+		# g = GajiPokok.objects.get(karyawan_id=listid[y])
+		# gajipokok = g.gajipokok
+		# # if bpjs.find("%") != -1 :
+		# # 	pisah = [x.strip() for x in bpjs.split('%')]
+		# # 	bpjs = int(float(float(pisah[0])/100) * int(gajipokok))
 
-		# if pajakbulanan.find("%") != -1 :
-		# 	pisah = [x.strip() for x in pajakbulanan.split('%')]
-		# 	pajakbulanan = int(float(float(pisah[0])/100) * int(gajipokok))
+		# # if pajakbulanan.find("%") != -1 :
+		# # 	pisah = [x.strip() for x in pajakbulanan.split('%')]
+		# # 	pajakbulanan = int(float(float(pisah[0])/100) * int(gajipokok))
 
-		if pinjaman.find("%") != -1 :
-			pisah = [x.strip() for x in pinjaman.split('%')]
-			pinjaman = int(float(float(pisah[0])/100) * int(gajipokok))
+		# if pinjaman.find("%") != -1 :
+		# 	pisah = [x.strip() for x in pinjaman.split('%')]
+		# 	pinjaman = int(float(float(pisah[0])/100) * int(gajipokok))
 
-		if bpjs == "":
-			bpjs = 0 if p[0].bpjs == 0 else p[0].bpjs
+		# # if bpjs == "":
+		# # 	bpjs = 0 if p[0].bpjs == 0 else p[0].bpjs
 
-		# if pajakbulanan == "":
-		# 	pajakbulanan = p[0].pph
+		# # if pajakbulanan == "":
+		# # 	pajakbulanan = p[0].pph
 
-		if pinjaman == "" or pinjaman == None:
-			pinjaman = 0 if p[0].pinjkaryawan == 0 else p[0].pinjkaryawan
+		# if pinjaman == "" or pinjaman == None:
+		# 	pinjaman = 0 if p[0].pinjkaryawan == 0 else p[0].pinjkaryawan
 
-		if cicil_pinjaman == "":
-			cicil_pinjaman = 0 if p[0].cicil_pinjkaryawan == 0 else p[0].cicil_pinjkaryawan
+		# if cicil_pinjaman == "":
+		# 	cicil_pinjaman = 0 if p[0].cicil_pinjkaryawan == 0 else p[0].cicil_pinjkaryawan
 
-		if len(p)>0:
-			p.update(bpjs=bpjs, pinjkaryawan=pinjaman,cicil_pinjkaryawan=cicil_pinjaman)
-		else:
-			p = PotonganKaryawan(bpjs=bpjs, pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=request.POST['cicil_pinjaman'])	
-			p.save()
+		p = PotonganKaryawan(masatenggangclosing_id=idmas, pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=cicil_pinjaman)	
+		p.save()
+
+	return HttpResponse("Berhasil Simpan")
+
+@login_required()
+def tunjangan_save(request):
+	idkaryawan = request.POST['idkaryawan']
+	idmas = request.POST['idmas']
+	listid = [x.strip() for x in idkaryawan.split(',')]
+	#pajakbulanan = request.POST['pajakbulanan']
+	kemahalan = request.POST['kemahalan']
+	jabatan = request.POST['jabatan']
+	for y in range(0, len(listid)-1):
+		p = TunjanganKaryawan(masatenggangclosing_id=idmas, kemahalan=kemahalan, karyawan_id=listid[y], jabatan=jabatan)	
+		p.save()
+			
 
 	return HttpResponse("Berhasil Simpan")
 

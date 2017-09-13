@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^izincuti$', views.dashboard.izincuti_index, name="izincuti-index"),
     url(r'^laporan/gaji$', views.dashboard.laporangaji_index, name="laporangaji-index"),    
     url(r'^laporan/absensi$', views.dashboard.laporanabsensi_index, name="laporanabsensi-index"),
+    url(r'^tunjangankaryawan$', views.dashboard.tunjangankaryawan_index, name="tunjangankaryawan-index"),
     # url(r'^gaji$', views.dashboard.gaji_index, name="gaji-index"),
   	#url(r'^notif-system$', views.dashboard.notif_system, name="notif-system-index"),
   	#url(r'^notif-login$', views.dashboard.notif_login, name="notif-login-index"),
@@ -140,7 +141,9 @@ urlpatterns = [
     url(r'^masatenggangclosing/(?P<masatenggangclosing_id>[0-9]+)/edit/$', views.edit.masatenggangclosing, name="masatenggangclosing-edit"),
     url(r'^masatenggangclosing/(?P<masatenggangclosing_id>[0-9]+)/edit/save$', views.edit.masatenggangclosing_save, name="masatenggangclosing-edit-save"),
     url(r'^hariraya/(?P<hariraya_id>[0-9]+)/edit/$', views.edit.hariraya, name="hariraya-edit"),
-    url(r'^hariraya/(?P<hariraya_id>[0-9]+)/edit/save$', views.edit.masatenggangclosing_save, name="hariraya-edit-save"),
+    url(r'^hariraya/(?P<hariraya_id>[0-9]+)/edit/save$', views.edit.hariraya_save, name="hariraya-edit-save"),
+    url(r'^tunjangan/(?P<tunjangan_id>[0-9]+)/edit/$', views.edit.tunjangan, name="tunjangan-edit"),
+    url(r'^tunjangan/(?P<tunjangan_id>[0-9]+)/edit/save$', views.edit.tunjangan_save, name="tunjangan-edit-save"),
 
     #==eofedit
 
@@ -161,6 +164,7 @@ urlpatterns = [
     # url(r'^gaji/(?P<gajia_id>[0-9]+)/delete/$', views.delete.gaji, name="gaji-delete"),
     url(r'^karyawan/(?P<karyawan_id>[0-9]+)/delete/$', views.delete.karyawan, name="karyawan-delete"),
     url(r'^masatenggangclosing/(?P<masatenggangclosing_id>[0-9]+)/delete/$', views.delete.masatenggangclosing, name="masatenggangclosing-delete"),
+    url(r'^tunjangan/(?P<tunjangan_id>[0-9]+)/delete/$', views.delete.tunjangan, name="tunjangan-delete"),
 
     #===api
 
@@ -170,5 +174,6 @@ urlpatterns = [
     url(r'^api/karyawan/lembur/create/save$', views.create.karyawan_lembur_save_api, name="karyawan-lembur-create-save-api"),
     url(r'^api/karyawan/izin/create/save$', views.create.karyawan_izin_save_api, name="karyawan-izin-create-save-api"),
     url(r'^api/potongan/save$', views.create.potongan_save, name="potongan-save"),
+    url(r'^api/tunjangan/save$', views.create.tunjangan_save, name="tunjangan-save"),
 
 ]
