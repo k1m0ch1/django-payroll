@@ -236,7 +236,7 @@ def pinjaman_save(request):
 @login_required()
 def potongan_save(request):
 	idkaryawan = request.POST['idkaryawan']
-	idmas = request.POST['idmas']
+	#idmas = request.POST['idmas']
 	listid = [x.strip() for x in idkaryawan.split(',')]
 	#bpjs = request.POST['bpjs']
 	#pajakbulanan = request.POST['pajakbulanan']
@@ -270,7 +270,7 @@ def potongan_save(request):
 		# if cicil_pinjaman == "":
 		# 	cicil_pinjaman = 0 if p[0].cicil_pinjkaryawan == 0 else p[0].cicil_pinjkaryawan
 
-		p = PotonganKaryawan(masatenggangclosing_id=idmas, pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=cicil_pinjaman)	
+		p = PotonganKaryawan(pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=cicil_pinjaman)	
 		p.save()
 
 	return HttpResponse("Berhasil Simpan")

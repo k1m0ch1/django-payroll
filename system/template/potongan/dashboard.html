@@ -24,7 +24,7 @@
           </div>                
       </div>
 
-      <div class="row">
+      <!-- <div class="row">
           <div class="col-md-12">
             <div class="col-md-2">
               <label class="control-label">Masa Tenggang Closing</label>               
@@ -36,7 +36,7 @@
               <button class="btn btn-primary" id="pilihMasaTenggangClosing" data-toggle="modal" data-target="#pilihMasaTenggangClosingModal"><i class="fa fa-plus"></i> Pilih Masa Tenggang Closing</button> 
               </div>             
           </div>                
-      </div>
+      </div> -->
 
       <div class="row">
           <div class="col-md-12">
@@ -262,10 +262,10 @@
         $.ajax({
         type: "POST",
         url: 'http://{{ request.get_host }}/index/api/potongan/save',
-        data: {idmas : $("#idmas").val(), idkaryawan: $('#idKaryawan').val(), pinjaman: $('#pinjaman').val(), cicil_pinjaman: $('#cicil_pinjaman').val(),csrfmiddlewaretoken: '{{ csrf_token }}'},
+        data: { idkaryawan: $('#idKaryawan').val(), pinjaman: $('#pinjaman').val(), cicil_pinjaman: $('#cicil_pinjaman').val(),csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Tambah Potongan');
-            reload.location();
+            location.reload();
         }});
     });
 
