@@ -378,26 +378,6 @@
     "model": "system.modules",
     "fields": 
       {
-        "name": "LAPORANOVERTIME",
-        "fungsi": "Laporan Overtime",
-        "menu": "LAPORAN",
-        "icon": "fa fa-table",
-        "created_at": "2017-03-01 15:03+07"
-      }    
-  }, {
-    "model": "system.modules",
-    "fields": 
-      {
-        "name": "LAPORANPOTONGAN",
-        "fungsi": "Laporan Potongan",
-        "menu": "LAPORAN",
-        "icon": "fa fa-table",
-        "created_at": "2017-03-01 15:03+07"
-      }    
-  }, {
-    "model": "system.modules",
-    "fields": 
-      {
         "name": "DIVIDER",
         "fungsi": "DIVIDER",
         "menu": "root",
@@ -412,7 +392,7 @@
         "fungsi": "Pengaturan Aplikasi",
         "mode": "alone",
         "menu": "root",
-        "url_slug" : "konfigurasi",
+        "url_slug" : "konfigurasi-index",
         "created_at": "2017-03-01 15:03+07"
       }    
   }, {

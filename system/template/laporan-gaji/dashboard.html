@@ -173,11 +173,12 @@
             url: 'http://{{ request.get_host }}/index/laporan/gaji/do',
             data: {idkaryawan: $('#idKaryawan').val(), masatenggangclosing: $('#idmas').val() ,csrfmiddlewaretoken: '{{ csrf_token }}'},
             success: function(result) {
-                var mywindow = window.open('', 'PRINT');
-                mywindow.document.write(result);
-                $('#contentKaryawan').html(result);
+                // var mywindow = window.open('', 'PRINT');
+                // mywindow.document.write(result);
+                // $('#contentKaryawan').html(result);
                 // mywindow.print();
                 // $('#contentKaryawan').printElement();
+                location.reload();
           }
         }); 
     });
