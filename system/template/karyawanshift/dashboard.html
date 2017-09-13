@@ -283,7 +283,7 @@
           </div>          
       </div> -->
 
-      <div class="row">
+      <!-- <div class="row">
           <div class="col-md-12">
               <div class="col-md-2">
                 <p><h4 class="control-label">Surat Izin/ Sakit</h4></p>
@@ -310,7 +310,7 @@
                 <button class="btn btn-primary" id="tambahizin"><i class="fa fa-plus"></i> Simpan</button> 
             </div>
           </div>          
-      </div>
+      </div> -->
 
       <div class="row">
           <div class="col-md-12">
@@ -328,7 +328,7 @@
                   <select class="form-control" name="search">
                   <option>Kategori</option>
                   <option value="nik">NIK</option>
-                  <option value="nama">Nama</option>
+                  <option value="name">Nama</option>
                 </select>
                 </div>
                 <div class="input-group col-sm-4">
@@ -347,7 +347,7 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody><tr>
-                  <th class="col-md-1">#</th>
+                  <!-- <th class="col-md-1">#</th> -->
                   <th class="col-md-2">Tanggal</th>
                   <th class="col-md-2">NIK</th>
                   <th class="col-md-3">Nama</th>
@@ -356,16 +356,16 @@
                 </tr>
                 {% for d in ks %}
                 <tr>
-                  <td><input type="checkbox" value=""></td>
+                  <!-- <td><input type="checkbox" value=""></td> -->
                   <td>{{ d.tglawal|date:"d M Y" }} sd {{ d.tglakhir|date:"d M Y" }}</td>
                   <td>{{ d.karyawan.NIK }}</td>
                   <td>{{ d.karyawan.name }}</td>
                   <td>{{ d.shift.name }}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
-                      <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button>
+                      <a href="{% url 'karyawanshift-edit' karyawanshift_id=d.id %}" type="button" class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                      <a data-confirm="Yakin mau Hapus data ???" href="{% url 'karyawanshift-delete' karyawanshift_id=d.id %}" type="button" class="btn btn-default"><i class="fa fa-trash"></i></a>
+                      <!-- <button type="button" class="btn btn-default"><i class="fa fa-user"></i></button> -->
                     </div>                  
                   </td>
                 </tr>
@@ -375,7 +375,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-              <div class="col-md-8 ">
+              <!-- <div class="col-md-8 ">
                 <div class="col-md-3">
                   <label class="control-label">Ubah yang dipilih</label>
                 </div>
@@ -393,9 +393,9 @@
                 <div class="form-group">
                     <button class="btn btn-primary"><i class="fa fa-plus"></i> Simpan</button> 
                 </div>
-              </div>
+              </div> -->
               {% if ks.has_other_pages %}
-                <div class="col-md-4">
+                <div class="col-md-12">
                   <ul class="pagination pagination-sm no-margin pull-right">
                     {% if ks.has_previous %}
                       <li class="active"><a href="?page={{ ks.previous_page_number }}">PREV</a></li>
@@ -455,21 +455,27 @@
   $(function () {    
 
     //Date range picker
-    $('#reservation').daterangepicker();
+    $('#reservation').daterangepicker({ autoUpdateInput: false });
 
-    $('#reservationKedua').daterangepicker();
+    $('#reservationKedua').daterangepicker({ autoUpdateInput: false });
 
-    $('#sm1').daterangepicker();
-    $('#sm2').daterangepicker();
-    $('#sm3').daterangepicker();
-    $('#sm4').daterangepicker();
+    $('#sm1').daterangepicker({ autoUpdateInput: false });
+    $('#sm2').daterangepicker({ autoUpdateInput: false });
+    $('#sm3').daterangepicker({ autoUpdateInput: false });
+    $('#sm4').daterangepicker({ autoUpdateInput: false });
 
-    $('#off1').daterangepicker();
-    $('#off2').daterangepicker();
-    $('#off3').daterangepicker();
-    $('#off4').daterangepicker();
+    $('#off1').daterangepicker({ autoUpdateInput: false });
+    $('#off2').daterangepicker({ autoUpdateInput: false });
+    $('#off3').daterangepicker({ autoUpdateInput: false });
+    $('#off4').daterangepicker({ autoUpdateInput: false });
 
-
+    $(document).on('click', ':not(form)[data-confirm]', function(e){
+      if(!confirm($(this).data('confirm'))){
+          e.stopImmediatePropagation();
+          e.preventDefault();
+      }
+    });
+    
     $('#izin').datepicker({
       autoclose: true
     })
@@ -543,7 +549,6 @@
     $('#pilihKaryawan').on("click", function(){
       $("#allkaryawan").attr('checked', false);
     });
-
 
   });
 </script>

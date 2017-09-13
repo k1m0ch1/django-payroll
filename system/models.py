@@ -202,7 +202,7 @@ class KaryawanShift(models.Model):
 	tglakhir = models.DateField()
 	tgloffawal = models.DateField(null=True)
 	tgloffakhir = models.DateField(null=True)
-	desc = models.TextField()
+	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 

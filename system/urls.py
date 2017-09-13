@@ -142,10 +142,13 @@ urlpatterns = [
     url(r'^masatenggangclosing/(?P<masatenggangclosing_id>[0-9]+)/edit/save$', views.edit.masatenggangclosing_save, name="masatenggangclosing-edit-save"),
     url(r'^hariraya/(?P<hariraya_id>[0-9]+)/edit/$', views.edit.hariraya, name="hariraya-edit"),
     url(r'^hariraya/(?P<hariraya_id>[0-9]+)/edit/save$', views.edit.hariraya_save, name="hariraya-edit-save"),
+
     url(r'^tunjangan/(?P<tunjangan_id>[0-9]+)/edit/$', views.edit.tunjangan, name="tunjangan-edit"),
     url(r'^tunjangan/(?P<tunjangan_id>[0-9]+)/edit/save$', views.edit.tunjangan_save, name="tunjangan-edit-save"),
     url(r'^potongan/(?P<potongan_id>[0-9]+)/edit/$', views.edit.potongan, name="potongan-edit"),
     url(r'^potongan/(?P<potongan_id>[0-9]+)/edit/save$', views.edit.potongan_save, name="potongan-edit-save"),
+    url(r'^karyawanshift/(?P<karyawanshift_id>[0-9]+)/edit/$', views.edit.karyawanshift, name="karyawanshift-edit"),
+    url(r'^karyawanshift/(?P<karyawanshift_id>[0-9]+)/edit/save$', views.edit.karyawanshift_save, name="karyawanshift-edit-save"),
 
     #==eofedit
 
@@ -168,6 +171,7 @@ urlpatterns = [
     url(r'^masatenggangclosing/(?P<masatenggangclosing_id>[0-9]+)/delete/$', views.delete.masatenggangclosing, name="masatenggangclosing-delete"),
     url(r'^tunjangan/(?P<tunjangan_id>[0-9]+)/delete/$', views.delete.tunjangan, name="tunjangan-delete"),
     url(r'^potongan/(?P<potongan_id>[0-9]+)/delete/$', views.delete.potongan, name="potongan-delete"),
+    url(r'^karyawanshift/(?P<karyawanshift_id>[0-9]+)/delete/$', views.delete.karyawanshift, name="karyawanshift-delete"),
 
     #===api
 

@@ -8,6 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah
 from system.models import LokasiPerusahaan, Shift, Inventory, Konfigurasi, Karyawan, MasaTenggangClosing, TunjanganKaryawan, PotonganKaryawan
+from system.models import KaryawanShift
 
 @login_required()
 def departemen(request, departemen_id):
@@ -110,3 +111,9 @@ def potongan(request, potongan_id):
 	s = PotonganKaryawan.objects.filter(id=potongan_id)
 	s.delete()
 	return redirect("potongankaryawan-index")
+
+@login_required()
+def karyawanshift(request, karyawanshift_id):
+	s = KaryawanShift.objects.filter(id=karyawanshift_id)
+	s.delete()
+	return redirect("karyawan-shift-index")

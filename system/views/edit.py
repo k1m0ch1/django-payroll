@@ -138,6 +138,22 @@ def potongan_save(request, potongan_id):
 	return redirect("potongankaryawan-index")
 
 @login_required()
+def karyawanshift(request, karyawanshift_id):
+	d = KaryawanShift.objects.get(pk=karyawanshift_id)
+	shift = Shift.objects.all()
+	return render(request, "karyawanshift/form.html", { 'shift': shift, 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : d.id, 'dsb' : modules, 'parent' : getParent(request)})
+	
+@login_required()
+def karyawanshift_save(request, karyawanshift_id):
+	d = KaryawanShift.objects.select_for_update().filter(id=karyawanshift_id)
+	tanggal = request.POST['tanggal']
+	tglawal = parse([x.strip() for x in tanggal.split(' ')][0]).strftime("%Y-%m-%d")
+	tglakhir = parse([x.strip() for x in tanggal.split(' ')][2]).strftime("%Y-%m-%d")
+	d.update(tglawal = tglawal, shift_id=request.POST['shift'], tglakhir = tglakhir)
+	return redirect("karyawan-shift-index")
+
+@login_required()
 def perusahaan_save(request, departemen_id):
 	d = Perusahaan.objects.select_for_update().filter(id=perusahaan_id)
 	d.update(name=request.POST['name'], desc=request.POST['desc'])

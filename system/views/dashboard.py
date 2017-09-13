@@ -93,13 +93,22 @@ def api_karyawan(request):
 @login_required()
 def karyawan_shift_index(request):
 	k = Karyawan.objects.all()
+	ks = KaryawanShift.objects.all()
+
+	if request.method == "GET":
+
+		if 'search' in request.GET:
+			ks = ks.filter(karyawan__NIK__contains=request.GET['value']) if request.GET['search'] == "nik" else ks
+			ks = ks.filter(karyawan__name__contains=request.GET['value']) if request.GET['search'] == "name" else ks
+
 	dep = Departemen.objects.all()
 	per = Perusahaan.objects.all()
 	bag = Bagian.objects.all()
 	gol = Golongan.objects.all()
 	jab = Jabatan.objects.all()
 	shift = Shift.objects.all()
-	ks = KaryawanShift.objects.all().order_by("-created_at")
+	
+	ks = ks.order_by("-created_at")
 	
 	page = request.GET.get('page', 1)
 	paginator = Paginator(ks, 20)
