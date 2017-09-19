@@ -76,6 +76,12 @@
                   <p>Handphone {{ karyawan.handphone }}</p>
                 </div>
                 <div class="col-md-2">
+                  <p class="text-right">Tanggal Masuk Karyawan</p>
+                </div>
+                <div class="col-md-10">
+                  <p>{{ karyawan.created_at|date:"d-M-Y"}}</p>
+                </div>
+                <div class="col-md-2">
                   <p class="text-right">Status Karyawan</p>
                 </div>
                 <div class="col-md-10">
