@@ -385,6 +385,17 @@
         "url_slug": "laporanabsensi-index",
         "created_at": "2017-03-01 15:03+07"
       }    
+  },{
+    "model": "system.modules",
+    "fields": 
+      {
+        "name": "LAPORANPINJAMAN",
+        "fungsi": "Laporan Pinjaman Karyawan",
+        "menu": "LAPORAN",
+        "icon": "fa fa-table",
+        "url_slug": "laporanpinjamankaryawan-index",
+        "created_at": "2017-03-01 15:03+07"
+      }    
   }, {
     "model": "system.modules",
     "fields": 
