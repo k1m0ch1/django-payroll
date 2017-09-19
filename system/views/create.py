@@ -241,6 +241,7 @@ def potongan_save(request):
 	#bpjs = request.POST['bpjs']
 	#pajakbulanan = request.POST['pajakbulanan']
 	pinjaman = request.POST['pinjaman']
+	koperasi = request.POST['koperasi']
 	cicil_pinjaman = request.POST['cicil_pinjaman']
 	for y in range(0, len(listid)-1):
 		# p = PotonganKaryawan.objects.filter(karyawan_id=listid[y])
@@ -270,7 +271,7 @@ def potongan_save(request):
 		# if cicil_pinjaman == "":
 		# 	cicil_pinjaman = 0 if p[0].cicil_pinjkaryawan == 0 else p[0].cicil_pinjkaryawan
 
-		p = PotonganKaryawan(pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=cicil_pinjaman)	
+		p = PotonganKaryawan(koperasi=koperasi, pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=cicil_pinjaman)	
 		p.save()
 
 	return HttpResponse("Berhasil Simpan")

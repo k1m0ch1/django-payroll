@@ -134,7 +134,7 @@ def potongan(request, potongan_id):
 @login_required()
 def potongan_save(request, potongan_id):
 	d = PotonganKaryawan.objects.select_for_update().filter(id=potongan_id)
-	d.update(pinjkaryawan=request.POST['pinjaman'], cicil_pinjkaryawan = request.POST['cicil'])
+	d.update(koperasi=request.POST['koperasi'], pinjkaryawan=request.POST['pinjaman'], cicil_pinjkaryawan = request.POST['cicil'])
 	return redirect("potongankaryawan-index")
 
 @login_required()

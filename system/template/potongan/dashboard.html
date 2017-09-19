@@ -85,6 +85,16 @@
                 </div>
             </div>
           </div>
+          <<div class="col-md-12">
+            <div class="col-md-2">
+              <label class="control-label pull-right">Koperasi</label>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                  <input type="text" class="form-control" id="koperasi" placeholder="Nilai Mata Uang /persentasi gapok" value="" />
+                </div>
+            </div> 
+          </div>
           <!-- <div class="col-md-12">
             <div class="col-md-2">
               <label class="control-label pull-right">BPJS</label>
@@ -150,6 +160,7 @@
                   <th class="col-md-3">MasaTenggang</th>
                   <th class="col-md-2">Pinjaman</th>
                   <th class="col-md-2">Cicilan</th>
+                  <th class="col-md-2">Koperasi</th>
                   <th class="col-md-2">Action</th>
                 </tr>
                 {% for d in pk %}
@@ -159,6 +170,7 @@
                   <td>{{ d.masatenggangclosing.tanggal|date:"d M Y" }} sd {{ d.masatenggangclosing.sd|date:"d M Y" }}</td>
                   <td>{{ d.pinjkaryawan }}</td>
                   <td>{{ d.cicil_pinjkaryawan }}</td>
+                  <td>{{ d.koperasi }}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                       <a href="{% url 'potongan-edit' potongan_id=d.id %}" type="button" class="btn btn-default"><i class="fa fa-pencil"></i></a>
@@ -262,7 +274,7 @@
         $.ajax({
         type: "POST",
         url: 'http://{{ request.get_host }}/index/api/potongan/save',
-        data: { idkaryawan: $('#idKaryawan').val(), pinjaman: $('#pinjaman').val(), cicil_pinjaman: $('#cicil_pinjaman').val(),csrfmiddlewaretoken: '{{ csrf_token }}'},
+        data: { idkaryawan: $('#idKaryawan').val(), koperasi: $('#koperasi').val(), pinjaman: $('#pinjaman').val(), cicil_pinjaman: $('#cicil_pinjaman').val(),csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Tambah Potongan');
             location.reload();
