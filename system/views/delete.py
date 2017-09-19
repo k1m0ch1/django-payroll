@@ -120,6 +120,6 @@ def karyawanshift(request, karyawanshift_id):
 
 @login_required()
 def bpjs(request, bpjs_id):
-	s = BPJS.objects.filter(id=bpjs_id)
-	s.delete()
+	s = PotonganKaryawan.objects.filter(id=bpjs_id)
+	s.update(bpjs=0)
 	return redirect("bpjs-index")

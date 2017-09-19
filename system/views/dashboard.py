@@ -188,7 +188,7 @@ def potongankaryawan_index(request):
 @login_required()
 def bpjs_index(request):
 
-	bpjs = BPJS.objects.all()
+	bpjs = PotonganKaryawan.objects.all()
 
 	if request.method == "GET":
 

@@ -296,12 +296,12 @@ def bpjs_save(request):
 	listid = [x.strip() for x in idkaryawan.split(',')]
 	nilai = request.POST['nilai']
 	for y in range(0, len(listid)-1):
-		x = BPJS.objects.filter(karyawan_id=listid[y])
+		x = PotonganKaryawan.objects.filter(karyawan_id=listid[y])
 		if len(x) > 0 :
-			x = BPJS.objects.select_for_update().filter(karyawan_id=listid[y])
-			x.update(biaya = nilai )
+			x = PotonganKaryawan.objects.select_for_update().filter(karyawan_id=listid[y])
+			x.update(bpjs = nilai )
 		else:
-			p = BPJS(biaya=nilai, karyawan_id=listid[y])	
+			p = BPJS(bpjs=nilai, karyawan_id=listid[y])	
 			p.save()			
 
 	return HttpResponse("Berhasil Simpan")
