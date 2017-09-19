@@ -38,7 +38,10 @@ def postinggaji(request):
 			ppinjam = ""
 			pabsen = ""
 
-			def __init__(self, no, nik, nama, departemen, bagian, golongan, norek, gajipokok, tmakan, transportnonexec, tovertime, pbpjs, ppinjam, pabsen):
+			def __init__(self, no, nik, nama, departemen, bagian, 
+								golongan, norek, gajipokok, tmakan, 
+								transportnonexec, tovertime, pbpjs, 
+								ppinjam, pabsen):
 				self.no = no
 				self.nik = nik
 				self.nama = nama
@@ -117,6 +120,15 @@ def postinggaji(request):
 
 			po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id, tovertime=tovertime, pabsen=pabsen)
 			po.save()
+
+			# bpjs_kes_kar = int(float(float(1)/100)) * p.bpjs # BPJS Kesehatan Karyawan 1%
+			# bpjs_kes_per = int(float(float(4)/100)) * p.bpjs # BPJS Kesehatan Perusahaan 4%
+			# bpjs_ktg_kar_jpn = int(float(float(1)/100)) * p.bpjs # BPJS Ketenagakerjaan Karyawan Jaminan Pensiunan 1%
+			# bpjs_ktg_kar_jht = int(float(float(2)/100)) * p.bpjs # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+			# bpjs_ktg_per_jpn = int(float(float(2)/100)) * p.bpjs # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+			# bpjs_ktg_per_jkk = int(float(float(0.54)/100)) * p.bpjs # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+			# bpjs_ktg_per_jht = int(float(float(3.7)/100)) * p.bpjs # BPJS Ketenagakerjaan Perusahaan Jaminan Hari Tua 3.7%
+			# bpjs_ktg_per_jkn = int(float(float(0.3)/100)) * p.bpjs # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
 			
 			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, b.norek + " a.n." + b.atasnama + " " + b.bank.name , g.gajipokok, tunjanganmakan, transportnonexec, tovertime, p.bpjs, cicil, pabsen))
 	else:

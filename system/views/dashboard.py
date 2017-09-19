@@ -15,7 +15,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
 import json
-import os
+import os, time
 from pathlib import * 
 
 modules = Modules.objects.all()
@@ -293,6 +293,8 @@ def laporangaji_index(request):
 	filePath = Path("./laporan/gaji/")
 	files = []
 	if filePath.is_dir():
+		#mtime = lambda f: os.stat(os.path.join("./laporan/gaji/", f)).st_mtime
+		#file = list(sorted(os.listdir("./laporan/gaji/"), key=mtime))
 	    files = list(x for x in filePath.iterdir() if x.is_file())
 
 	return render(request, "laporan-gaji/dashboard.html", { 'files': files, 'mas' : mas, 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,

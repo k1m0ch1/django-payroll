@@ -183,8 +183,11 @@ def laporangaji(request):
 	ws.write(4, 9, "Tunjangan Transportasi")
 	ws.write(4, 10, "Tunjangan Overtime")
 	ws.write(4, 11, "Potongan Pinjaman")
-	ws.write(4, 12, "Potongan BPJS")
-	ws.write(4, 13, "Potongan Absensi")
+	ws.write(4, 12, "BPJS")
+	ws.write(4, 13, "Potongan BPJS Kesehatan")
+	ws.write(4, 14, "Potongan BPJS Kesehatan")
+	ws.write(4, 15, "Total Potongan BPJS")
+	ws.write(4, 16, "Potongan Absensi")
 
 	y=4
 
@@ -202,8 +205,24 @@ def laporangaji(request):
 		ws.write(ob[x].no+y, 9, ob[x].transportnonexec)
 		ws.write(ob[x].no+y, 10, ob[x].tovertime)
 		ws.write(ob[x].no+y, 11, ob[x].ppinjam)
+
+		bpjs_kes_kar = int(float(float(1)/100) * int(ob[x].pbpjs)) # BPJS Kesehatan Karyawan 1%
+		bpjs_kes_per = int(float(float(4)/100) * int(ob[x].pbpjs)) # BPJS Kesehatan Perusahaan 4%
+		bpjs_ktg_kar_jpn = int(float(float(1)/100) * int(ob[x].pbpjs)) # BPJS Ketenagakerjaan Karyawan Jaminan Pensiunan 1%
+		bpjs_ktg_kar_jht = int(float(float(2)/100) * int(ob[x].pbpjs)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+		bpjs_ktg_per_jpn = int(float(float(2)/100) * int(ob[x].pbpjs)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+		bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int(ob[x].pbpjs)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+		bpjs_ktg_per_jht = int(float(float(3.7)/100) * int(ob[x].pbpjs)) # BPJS Ketenagakerjaan Perusahaan Jaminan Hari Tua 3.7%
+		bpjs_ktg_per_jkn = int(float(float(0.3)/100) * int(ob[x].pbpjs)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+		bpjs_kes = bpjs_kes_kar + bpjs_kes_per
+		bpjs_ktg = bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn + bpjs_ktg_per_jkk + bpjs_ktg_per_jht
+		bpjs_total = bpjs_kes + bpjs_ktg
+
 		ws.write(ob[x].no+y, 12, ob[x].pbpjs)
-		ws.write(ob[x].no+y, 13, ob[x].pabsen)
+		ws.write(ob[x].no+y, 13, bpjs_kes)
+		ws.write(ob[x].no+y, 14, bpjs_ktg)
+		ws.write(ob[x].no+y, 15, bpjs_total)
+		ws.write(ob[x].no+y, 16, ob[x].pabsen)
 
 	wb.save("laporan/gaji/LAPORAN GAJI " + mas.name + ' ' + mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'-' + datetime.datetime.now().strftime("%d%m%Y-%H%M%S") + '.xls')
 

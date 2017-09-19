@@ -123,3 +123,36 @@ def dashboard(module=None, mode=None, idpk=None):
       'indeks' : reverse('masatenggangclosing-index')
     }[mode]
   return "null"
+
+@register.assignment_tag
+def bpjs(val=None, per=None):
+  return int(float(float(per)/100)) * val
+
+@register.assignment_tag
+def bpjs_kes(val=None):
+  bpjs_kes_kar = int(float(float(1)/100) * int('0' + val)) # BPJS Kesehatan Karyawan 1%
+  bpjs_kes_per = int(float(float(4)/100) * int('0' + val)) # BPJS Kesehatan Perusahaan 4%
+  return bpjs_kes_kar + bpjs_kes_per
+
+
+@register.assignment_tag
+def bpjs_ket(val=None):
+  bpjs_ktg_kar_jpn = int(float(float(1)/100) * int('0' + val)) # BPJS Ketenagakerjaan Karyawan Jaminan Pensiunan 1%
+  bpjs_ktg_kar_jht = int(float(float(2)/100) * int('0' + val)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+  bpjs_ktg_per_jpn = int(float(float(2)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+  bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+  bpjs_ktg_per_jht = int(float(float(3.7)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusahaan Jaminan Hari Tua 3.7%
+  bpjs_ktg_per_jkn = int(float(float(0.3)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+  return bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn + bpjs_ktg_per_jkk + bpjs_ktg_per_jht
+
+@register.assignment_tag
+def bpjs_bayar(val=None):
+  bpjs_kes_kar = int(float(float(1)/100) * int('0' + val)) # BPJS Kesehatan Karyawan 1%
+  bpjs_kes_per = int(float(float(4)/100) * int('0' + val)) # BPJS Kesehatan Perusahaan 4%
+  bpjs_ktg_kar_jpn = int(float(float(1)/100) * int('0' + val)) # BPJS Ketenagakerjaan Karyawan Jaminan Pensiunan 1%
+  bpjs_ktg_kar_jht = int(float(float(2)/100) * int('0' + val)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+  bpjs_ktg_per_jpn = int(float(float(2)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+  bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+  bpjs_ktg_per_jht = int(float(float(3.7)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusahaan Jaminan Hari Tua 3.7%
+  bpjs_ktg_per_jkn = int(float(float(0.3)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+  return bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn + bpjs_ktg_per_jkk + bpjs_ktg_per_jht + bpjs_kes_kar + bpjs_kes_per

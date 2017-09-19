@@ -1,3 +1,5 @@
+{% load dashboard %}
+
 <table border=1>
 	<tr>
 		<td>No</td>
@@ -12,7 +14,10 @@
 		<td>Tunjangan Transportasi</td>
 		<td>Tunjangan Overtime</td>
 		<td>Potongan Pinjaman</td>
-		<td>Potongan BPJS</td>
+		<td>BPJS</td>
+		<td>BPJS Kesehatan</td>
+		<td>BPJS Ketenagakerjaan</td>
+		<td>BPJS Bayar</td>
 		<td>Potongan Absensi</td>
 	</tr>
 	{% for p in posting %}
@@ -30,7 +35,10 @@
 			<td>{{ p.transportnonexec }}</td>
 			<td>{{ p.tovertime }}</td>
 			<td>{{ p.ppinjam }}</td>
-			<td>{{ p.pbpjs }}</td>	
+			<td>{{ p.pbpjs }}</td>
+			<td>{% bpjs_kes p.pbpjs|slugify  %}</td>	
+			<td>{% bpjs_ket p.pbpjs|slugify  %}</td>
+			<td>{% bpjs_bayar p.pbpjs|slugify %}</td>
 			<td>{{ p.pabsen}}</td>		
 		
 	</tr>
