@@ -270,6 +270,17 @@
     "model": "system.modules",
     "fields": 
       {
+        "name": "BPJS",
+        "fungsi": "BPJS",
+        "menu": "DATAMASTER2",
+        "icon": "fa fa-dedent",
+        "url_slug": "bpjs-index",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },{
+    "model": "system.modules",
+    "fields": 
+      {
         "name": "TUNJANGANKARYAWAN",
         "fungsi": "Tunjangan Karyawan",
         "menu": "DATAMASTER2",

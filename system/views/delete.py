@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah
 from system.models import LokasiPerusahaan, Shift, Inventory, Konfigurasi, Karyawan, MasaTenggangClosing, TunjanganKaryawan, PotonganKaryawan
-from system.models import KaryawanShift
+from system.models import KaryawanShift, bpjs as BPJS
 
 @login_required()
 def departemen(request, departemen_id):
@@ -117,3 +117,9 @@ def karyawanshift(request, karyawanshift_id):
 	s = KaryawanShift.objects.filter(id=karyawanshift_id)
 	s.delete()
 	return redirect("karyawan-shift-index")
+
+@login_required()
+def bpjs(request, bpjs_id):
+	s = BPJS.objects.filter(id=bpjs_id)
+	s.delete()
+	return redirect("bpjs-index")

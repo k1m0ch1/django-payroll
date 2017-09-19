@@ -408,3 +408,14 @@ class Modules(models.Model):
 
 	def __str__(self):
 		return self.name
+
+class bpjs(models.Model):
+	name = models.CharField(max_length=200, null=True)
+	karyawan = models.ForeignKey(Karyawan)
+	biaya = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
+	desc = models.TextField(null=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name

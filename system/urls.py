@@ -35,7 +35,8 @@ urlpatterns = [
     url(r'^izincuti$', views.dashboard.izincuti_index, name="izincuti-index"),
     url(r'^laporan/gaji$', views.dashboard.laporangaji_index, name="laporangaji-index"),    
     url(r'^laporan/absensi$', views.dashboard.laporanabsensi_index, name="laporanabsensi-index"),
-    url(r'^tunjangankaryawan$', views.dashboard.tunjangankaryawan_index, name="tunjangankaryawan-index"),
+    url(r'^tunjangankaryawan$', views.dashboard.tunjangankaryawan_index, name="tunjangankaryawan-index"),    
+    url(r'^bpjs$', views.dashboard.bpjs_index, name="bpjs-index"),
     # url(r'^gaji$', views.dashboard.gaji_index, name="gaji-index"),
   	#url(r'^notif-system$', views.dashboard.notif_system, name="notif-system-index"),
   	#url(r'^notif-login$', views.dashboard.notif_login, name="notif-login-index"),
@@ -93,6 +94,7 @@ urlpatterns = [
     url(r'^absen/(?P<absensi_id>[0-9]+)/koreksi/create/save$', views.create.koreksi_save, name="koreksi-create-save"),
     url(r'^masatenggangclosing/create$', views.create.masatenggangclosing, name="masatenggangclosing-create"),
     url(r'^masatenggangclosing/create/save$', views.create.masatenggangclosing_save, name="masatenggangclosing-create-save"),
+
     # url(r'^gaji/create$', views.create.gaji, name="gaji-create"),
     # url(r'^gaji/create/save$', views.create.gaji_save, name="gaji-create-save"),
     url(r'^postinggaji/do$', views.posting.postinggaji, name="postinggaji-do"),
@@ -172,6 +174,7 @@ urlpatterns = [
     url(r'^tunjangan/(?P<tunjangan_id>[0-9]+)/delete/$', views.delete.tunjangan, name="tunjangan-delete"),
     url(r'^potongan/(?P<potongan_id>[0-9]+)/delete/$', views.delete.potongan, name="potongan-delete"),
     url(r'^karyawanshift/(?P<karyawanshift_id>[0-9]+)/delete/$', views.delete.karyawanshift, name="karyawanshift-delete"),
+    url(r'^bpjs/(?P<bpjs_id>[0-9]+)/delete/$', views.delete.bpjs, name="bpjs-delete"),
 
     #===api
 
@@ -182,5 +185,5 @@ urlpatterns = [
     url(r'^api/karyawan/izin/create/save$', views.create.karyawan_izin_save_api, name="karyawan-izin-create-save-api"),
     url(r'^api/potongan/save$', views.create.potongan_save, name="potongan-save"),
     url(r'^api/tunjangan/save$', views.create.tunjangan_save, name="tunjangan-save"),
-
+    url(r'^api/bpjs/save$', views.create.bpjs_save, name="bpjs-save"),
 ]

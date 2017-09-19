@@ -1,0 +1,402 @@
+[
+  {
+    "model": "system.BPJS",
+    "pk": 1,
+    "fields": 
+      {
+        "karyawan_id": 1,
+        "biaya" : 150000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 2,
+    "fields": 
+      {
+        "karyawan_id": 2,
+        "biaya" : 30000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 3,
+    "fields": 
+      {
+        "karyawan_id": 3,
+        "biaya" : 50000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+{
+    "model": "system.BPJS",
+    "pk": 4,
+    "fields": 
+      {
+        "karyawan_id": 4,
+        "biaya" : 100000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 5,
+    "fields": 
+      {
+        "karyawan_id": 5,
+        "biaya" : 15000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 6,
+    "fields": 
+      {
+        "karyawan_id": 6,
+        "biaya" : 15000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 7,
+    "fields": 
+      {
+        "karyawan_id": 7,
+        "biaya" : 50000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 8,
+    "fields": 
+      {
+        "karyawan_id": 8,
+        "biaya" : 10000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 9,
+    "fields": 
+      {
+        "karyawan_id": 9,
+        "biaya" : 700000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 10,
+    "fields": 
+      {
+        "karyawan_id": 10,
+        "biaya" : 150000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 11,
+    "fields": 
+      {
+        "karyawan_id": 11,
+        "biaya" : 500000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 12,
+    "fields": 
+      {
+        "karyawan_id": 12,
+        "biaya" : 200000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 13,
+    "fields": 
+      {
+        "karyawan_id": 13,
+        "biaya" : 15000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 14,
+    "fields": 
+      {
+        "karyawan_id": 14,
+        "biaya" : 150000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 15,
+    "fields": 
+      {
+        "karyawan_id": 15,
+        "biaya" : 50000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 16,
+    "fields": 
+      {
+        "karyawan_id": 16,
+        "biaya" : 400000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 17,
+    "fields": 
+      {
+        "karyawan_id": 17,
+        "biaya" : 45000,
+        "created_at": "2017-03-01 15:03+07"
+      }
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 18,
+    "fields": 
+      {
+        "karyawan_id": 18,
+        "biaya" : 35000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 19,
+    "fields": 
+      {
+        "karyawan_id": 19,
+        "biaya" : 65000,
+        "created_at": "2017-03-01 15:03+07"
+      } 
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 20,
+    "fields": 
+      {
+        "karyawan_id": 20,
+        "biaya" : 17000,
+        "created_at": "2017-03-01 15:03+07"
+      }
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 1,
+    "fields": 
+      {
+        "karyawan_id": 1,
+        "biaya" : 150000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 2,
+    "fields": 
+      {
+        "karyawan_id": 2,
+        "biaya" : 30000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 3,
+    "fields": 
+      {
+        "karyawan_id": 3,
+        "biaya" : 50000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+{
+    "model": "system.BPJS",
+    "pk": 4,
+    "fields": 
+      {
+        "karyawan_id": 4,
+        "biaya" : 100000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 5,
+    "fields": 
+      {
+        "karyawan_id": 5,
+        "biaya" : 15000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 6,
+    "fields": 
+      {
+        "karyawan_id": 6,
+        "biaya" : 15000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 7,
+    "fields": 
+      {
+        "karyawan_id": 7,
+        "biaya" : 50000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 8,
+    "fields": 
+      {
+        "karyawan_id": 8,
+        "biaya" : 10000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 9,
+    "fields": 
+      {
+        "karyawan_id": 9,
+        "biaya" : 700000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 10,
+    "fields": 
+      {
+        "karyawan_id": 10,
+        "biaya" : 150000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 11,
+    "fields": 
+      {
+        "karyawan_id": 11,
+        "biaya" : 500000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 12,
+    "fields": 
+      {
+        "karyawan_id": 12,
+        "biaya" : 200000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 13,
+    "fields": 
+      {
+        "karyawan_id": 13,
+        "biaya" : 15000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 14,
+    "fields": 
+      {
+        "karyawan_id": 14,
+        "biaya" : 150000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 15,
+    "fields": 
+      {
+        "karyawan_id": 15,
+        "biaya" : 50000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 16,
+    "fields": 
+      {
+        "karyawan_id": 16,
+        "biaya" : 400000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 17,
+    "fields": 
+      {
+        "karyawan_id": 17,
+        "biaya" : 45000,
+        "created_at": "2017-03-01 15:03+07"
+      }
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 18,
+    "fields": 
+      {
+        "karyawan_id": 18,
+        "biaya" : 35000,
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 19,
+    "fields": 
+      {
+        "karyawan_id": 19,
+        "biaya" : 65000,
+        "created_at": "2017-03-01 15:03+07"
+      } 
+  },
+  {
+    "model": "system.BPJS",
+    "pk": 20,
+    "fields": 
+      {
+        "karyawan_id": 20,
+        "biaya" : 17000,
+        "created_at": "2017-03-01 15:03+07"
+      }
+  }
+]

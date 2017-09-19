@@ -9,7 +9,7 @@ from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konfigurasi
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
 from system.models import GajiPokok, Absensi, Pinjaman, PotonganKaryawan, IzinCuti, MasaTenggangClosing
-from system.models import TunjanganKaryawan
+from system.models import TunjanganKaryawan, bpjs as BPJS
 from dateutil.parser import parse
 from datetime import timedelta
 from datetime import datetime
@@ -287,6 +287,22 @@ def tunjangan_save(request):
 		p = TunjanganKaryawan(masatenggangclosing_id=idmas, kemahalan=kemahalan, karyawan_id=listid[y], jabatan=jabatan)	
 		p.save()
 			
+
+	return HttpResponse("Berhasil Simpan")
+
+@login_required()
+def bpjs_save(request):
+	idkaryawan = request.POST['idkaryawan']
+	listid = [x.strip() for x in idkaryawan.split(',')]
+	nilai = request.POST['nilai']
+	for y in range(0, len(listid)-1):
+		x = BPJS.objects.filter(karyawan_id=listid[y])
+		if len(x) > 0 :
+			x = BPJS.objects.select_for_update().filter(karyawan_id=listid[y])
+			x.update(biaya = nilai )
+		else:
+			p = BPJS(biaya=nilai, karyawan_id=listid[y])	
+			p.save()			
 
 	return HttpResponse("Berhasil Simpan")
 

@@ -10,7 +10,7 @@ from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Abse
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
 from system.models import Inventory, Konfigurasi, GajiPokok, PotonganKaryawan, Pinjaman
 from system.models import MasaTenggangClosing, IzinCuti
-from system.models import TunjanganKaryawan
+from system.models import TunjanganKaryawan, bpjs as BPJS
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -184,6 +184,42 @@ def potongankaryawan_index(request):
 	return render(request, "potongan/dashboard.html", { 'pk': pk,'mas' : mas,'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
 															 'golongan' : gol, 'jabatan' : jab,
 															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def bpjs_index(request):
+
+	bpjs = BPJS.objects.all()
+
+	if request.method == "GET":
+
+		if 'search' in request.GET:
+			bpjs = bpjs.filter(karyawan__NIK__contains=request.GET['value']) if request.GET['search'] == "nik" else bpjs
+			bpjs = bpjs.filter(karyawan__name__contains=request.GET['value']) if request.GET['search'] == "name" else bpjs
+
+	k = Karyawan.objects.all()
+	dep = Departemen.objects.all()
+	bag = Bagian.objects.all()
+	gol = Golongan.objects.all()
+	per = Perusahaan.objects.all()
+	jab = Jabatan.objects.all()
+	shift = Shift.objects.all()
+
+	bpjs = bpjs.order_by("-updated_at")
+	
+	page = request.GET.get('page', 1)
+	paginator = Paginator(bpjs, 15)
+    
+	try:
+ 		bpjs = paginator.page(page)
+	except PageNotAnInteger:
+		bpjs = paginator.page(1)
+	except EmptyPage:
+   		bpjs = paginator.page(paginator.num_pages)
+
+	return render(request, "bpjs/dashboard.html", { 'bpjs': bpjs, 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+															 'golongan' : gol, 'jabatan' : jab,
+															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
+
 @login_required()
 def tunjangankaryawan_index(request):
 
