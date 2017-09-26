@@ -7,6 +7,16 @@ register = template.Library()
 def define(val=None):
   return val
 
+@register.filter()
+def berubah(val=None):
+  return val  
+
+@register.filter()
+def ubah(val=None):
+  if val == "" :
+    val = 0
+  return int(val)
+
 @register.simple_tag
 def dashboard(module=None, mode=None, idpk=None):
   if module == "Bagian/ Division":
@@ -142,8 +152,8 @@ def bpjs_ket(val=None):
   bpjs_ktg_per_jpn = int(float(float(2)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
   bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
   bpjs_ktg_per_jht = int(float(float(3.7)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusahaan Jaminan Hari Tua 3.7%
-  bpjs_ktg_per_jkn = int(float(float(0.3)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
-  return bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn + bpjs_ktg_per_jkk + bpjs_ktg_per_jht
+  bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+  return bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn + bpjs_ktg_per_jkk + bpjs_ktg_per_jht + bpjs_ktg_per_jkm
 
 @register.assignment_tag
 def bpjs_bayar(val=None):
@@ -154,5 +164,157 @@ def bpjs_bayar(val=None):
   bpjs_ktg_per_jpn = int(float(float(2)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
   bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
   bpjs_ktg_per_jht = int(float(float(3.7)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusahaan Jaminan Hari Tua 3.7%
-  bpjs_ktg_per_jkn = int(float(float(0.3)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
-  return bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn + bpjs_ktg_per_jkk + bpjs_ktg_per_jht + bpjs_kes_kar + bpjs_kes_per
+  bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int('0' + val)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+  return bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn + bpjs_ktg_per_jkk + bpjs_ktg_per_jht + bpjs_kes_kar + bpjs_kes_per + bpjs_ktg_per_jkm
+
+@register.assignment_tag
+def penghasilan_bruto(gapok=None, tunjangan=None):
+  bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+  bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+  bpjs_kes_per = int(float(float(4)/100) * int('0' + gapok)) # BPJS Kesehatan Perusahaan 4%
+  return gapok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+
+@register.assignment_tag
+def ph_netto_sebulan(gapok=None, tunjangan=None):
+  bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+  bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+  bpjs_kes_per = int(float(float(4)/100) * int('0' + gapok)) # BPJS Kesehatan Perusahaan 4%
+  bruto = gapok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+
+  bpjs_ktg_kar_jht = int(float(float(2)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+  bpjs_ktg_per_jpn = int(float(float(2)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+
+  return bruto - ( (int(float(float(5)/100) * bruto)) + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn )
+
+@register.assignment_tag
+def ph_netto_setahun(gapok=None, tunjangan=None):
+  bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+  bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+  bpjs_kes_per = int(float(float(4)/100) * int('0' + gapok)) # BPJS Kesehatan Perusahaan 4%
+  bruto = gapok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+
+  bpjs_ktg_kar_jht = int(float(float(2)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+  bpjs_ktg_per_jpn = int(float(float(2)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+
+  ph_netto_sebulan = bruto - ( (int(float(float(5)/100) * bruto)) + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn )
+
+  return ph_netto_sebulan * 12
+
+@register.assignment_tag
+def ph_kena_pajak(gapok=None, tunjangan=None, status=None):
+  ptkp = 0
+  if status == "Lajang Tanpa Tanggungan" :
+    ptkp = 54000000
+  elif status == "Lajang 1 Tanggungan" or status == "Menikah Tanpa Tanggungan" :
+    ptkp = 58500000
+  elif status ==  "Lajang 2 Tanggungan" or status == "Menikah 1 Tanggungan" :
+    ptkp = 63000000
+  elif status == "Menikah 2 Tanggungan" :
+    ptkp = 67500000
+  elif status == "Menikah 3 Tanggungan" :
+    ptkp = 72000000
+
+  bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+  bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+  bpjs_kes_per = int(float(float(4)/100) * int('0' + gapok)) # BPJS Kesehatan Perusahaan 4%
+  bruto = gapok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+
+  bpjs_ktg_kar_jht = int(float(float(2)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+  bpjs_ktg_per_jpn = int(float(float(2)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+
+  ph_netto_sebulan = bruto - ( (int(float(float(5)/100) * bruto)) + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn )
+
+  ph_netto_setahun = ph_netto_sebulan * 12
+
+  return ph_netto_setahun - ptkp
+
+@register.assignment_tag
+def pph_terhutang(gapok=None, tunjangan=None, status=None):
+  wp = 0
+
+  if gapok <= 50000000 :
+    wp = float(float(5)/100) 
+  elif gapok > 50000000 or gapok <= 250000000 :
+    wp = float(float(15)/100) 
+  elif gapok > 250000000 or gapok <= 500000000 :
+    wp = float(float(25)/100)
+  elif gapok > 500000000 :
+    wp = float(float(30)/100)
+
+  ptkp = 0
+
+  if status == "Lajang Tanpa Tanggungan" :
+    ptkp = 54000000
+  elif status == "Lajang 1 Tanggungan" or status == "Menikah Tanpa Tanggungan" :
+    ptkp = 58500000
+  elif status ==  "Lajang 2 Tanggungan" or status == "Menikah 1 Tanggungan" :
+    ptkp = 63000000
+  elif status == "Menikah 2 Tanggungan" :
+    ptkp = 67500000
+  elif status == "Menikah 3 Tanggungan" :
+    ptkp = 72000000
+
+  bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+  bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+  bpjs_kes_per = int(float(float(4)/100) * int('0' + gapok)) # BPJS Kesehatan Perusahaan 4%
+  bruto = gapok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+
+  bpjs_ktg_kar_jht = int(float(float(2)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+  bpjs_ktg_per_jpn = int(float(float(2)/100) * int('0' + gapok)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+
+  ph_netto_sebulan = bruto - ( (int(float(float(5)/100) * bruto)) + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn )
+
+  ph_netto_setahun = ph_netto_sebulan * 12
+
+  ph_kena_pajak = ph_netto_setahun - ptkp
+
+  return int(wp * int(ph_kena_pajak))
+
+@register.assignment_tag
+def pph_bayar(gapok=None, tunjangan=None, status=None, bpjs=None):
+
+  if gapok == "" and  tunjangan == "" and status == "" and  bpjs == "" :
+    return 0
+  else:
+    wp = 0
+
+    if gapok <= 50000000 :
+      wp = float(float(5)/100) 
+    elif gapok > 50000000 or gapok <= 250000000 :
+      wp = float(float(15)/100) 
+    elif gapok > 250000000 or gapok <= 500000000 :
+      wp = float(float(25)/100)
+    elif gapok > 500000000 :
+      wp = float(float(30)/100)
+
+    ptkp = 0
+
+    if status == "Lajang Tanpa Tanggungan" :
+      ptkp = 54000000
+    elif status == "Lajang 1 Tanggungan" or status == "Menikah Tanpa Tanggungan" :
+      ptkp = 58500000
+    elif status ==  "Lajang 2 Tanggungan" or status == "Menikah 1 Tanggungan" :
+      ptkp = 63000000
+    elif status == "Menikah 2 Tanggungan" :
+      ptkp = 67500000
+    elif status == "Menikah 3 Tanggungan" :
+      ptkp = 72000000
+
+    bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int('0' + bpjs)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+    bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int('0' + bpjs)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+    bpjs_kes_per = int(float(float(4)/100) * int('0' + bpjs)) # BPJS Kesehatan Perusahaan 4%
+    bruto = gapok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+
+    bpjs_ktg_kar_jht = int(float(float(2)/100) * int('0' + bpjs)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+    bpjs_ktg_per_jpn = int(float(float(2)/100) * int('0' + bpjs)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+
+    ph_netto_sebulan = bruto - ( (int(float(float(5)/100) * int('0' +bruto))) + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn )
+
+    ph_netto_setahun = ph_netto_sebulan * 12
+
+    ph_kena_pajak = ph_netto_setahun - ptkp
+
+    pph_terhutang = int(wp * int(ph_kena_pajak))
+
+    return pph_terhutang / 12
+
