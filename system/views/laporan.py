@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan, Konfigurasi
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Inventory, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift, GajiPokok, PotonganKaryawan
-from system.models import PostingGaji, MasaTenggangClosing, IzinCuti
+from system.models import PostingGaji, MasaTenggangClosing, IzinCuti, TunjanganKaryawan
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -32,36 +32,48 @@ def laporangaji(request):
 	objs = [0]
 
 	class postgaji(object):
-			no = ""
-			nik = ""
+			no = 0
+			nik = 0
 			nama = ""
-			departemen = ""
-			bagian = ""
+			departemen = 0
+			bagian = 0
 			golongan = ""
-			gajipokok = ""
-			tmakan = ""
-			transportnonexec = ""
-			tovertime = ""
-			pbpjs = ""
-			ppinjam = ""
-			pkoperasi = ""
-			pabsen = ""
+			norek = 0
+			gajipokok = 0
+			statusmenikah = ""
+			tmakan = 0
+			transportnonexec = 0
+			tovertime = 0
+			tunjangan = 0
+			pbpjs = 0
+			ppinjam = 0
+			pkoperasi = 0
+			pcicil = 0
+			pabsen = 0
+			pph = 0
 
-			def __init__(self, no, nik, nama, departemen, bagian, golongan, gajipokok, tmakan, transportnonexec, tovertime, pbpjs, ppinjam, pkoperasi, pabsen):
+			def __init__(self, no, nik, nama, departemen, bagian, 
+								golongan, norek, gajipokok, statusmenikah, tmakan, 
+								transportnonexec, tovertime, tunjangan, pbpjs, 
+								ppinjam, pkoperasi, pabsen, pph):
 				self.no = no
 				self.nik = nik
 				self.nama = nama
 				self.departemen = departemen
 				self.bagian = bagian
 				self.golongan = golongan
+				self.norek = norek
 				self.gajipokok = gajipokok
+				self.statusmenikah = statusmenikah
 				self.tmakan = tmakan
 				self.transportnonexec = transportnonexec
 				self.tovertime = tovertime
+				self.tunjangan = tunjangan
 				self.pbpjs = pbpjs
 				self.ppinjam = ppinjam
 				self.pkoperasi = pkoperasi
 				self.pabsen = pabsen
+				self.pph = pph
 
 	today = datetime.datetime.now()
 	idkaryawan = request.POST['idkaryawan']
@@ -96,6 +108,7 @@ def laporangaji(request):
 			#k = Karyawan.objects.get(pk=b.karyawan.id)
 			g = GajiPokok.objects.get(karyawan_id=b.id)
 			p = PotonganKaryawan.objects.get(karyawan_id=b.id)
+			tt = TunjanganKaryawan.objects.get(karyawan_id=b.id)
 
 			gajipokok = g.gajipokok 
 			tunjanganmakan = g.tmakan
@@ -124,8 +137,62 @@ def laporangaji(request):
 
 			pabsen = pabsen * 10000
 
-			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec, tovertime, p.bpjs, cicil, p.koperasi, pabsen))
+			wp = 0
 
+			gapok = g.gajipokok
+			status = b.statusmenikah.name
+			tunjangan = tt.jabatan
+			pph = 0
+			bpjs = p.bpjs
+
+			if gapok <= 50000000 :
+			  wp = float(float(5)/100) 
+			elif gapok > 50000000 or gapok <= 250000000 :
+			  wp = float(float(15)/100) 
+			elif gapok > 250000000 or gapok <= 500000000 :
+			  wp = float(float(25)/100)
+			elif gapok > 500000000 :
+			  wp = float(float(30)/100)
+
+			ptkp = 0
+
+			if status == "Lajang Tanpa Tanggungan" :
+			  ptkp = 54000000
+			elif status == "Lajang 1 Tanggungan" or status == "Menikah Tanpa Tanggungan" :
+			  ptkp = 58500000
+			elif status ==  "Lajang 2 Tanggungan" or status == "Menikah 1 Tanggungan" :
+			  ptkp = 63000000
+			elif status == "Menikah 2 Tanggungan" :
+			  ptkp = 67500000
+			elif status == "Menikah 3 Tanggungan" :
+			  ptkp = 72000000
+
+			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int( bpjs)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int( bpjs)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+			bpjs_kes_per = int(float(float(4)/100) * int(bpjs)) # BPJS Kesehatan Perusahaan 4%
+			bruto = gapok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+
+			bpjs_ktg_kar_jht = int(float(float(2)/100) * int( bpjs)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+			bpjs_ktg_per_jpn = int(float(float(2)/100) * int( bpjs)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+
+			ph_netto_sebulan = bruto - ( (int(float(float(5)/100) * int(bruto))) + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn )
+
+			ph_netto_setahun = ph_netto_sebulan * 12
+
+			ph_kena_pajak = ph_netto_setahun - ptkp
+
+			pph_terhutang = int(wp * int(ph_kena_pajak))
+
+			pph = pph_terhutang / 12
+			pph = 0 if pph < 0 else pph
+
+			if b.NPWP == 0 or b.NPWP == None :
+				pph = int(float(float(120)/100) * int(pph))
+			
+			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, 
+									b.golongan.name, b.norek + " a.n." + b.atasnama + " " + b.bank.name , 
+									g.gajipokok, b.statusmenikah.name, tunjanganmakan, transportnonexec, tovertime, 
+									tt.jabatan, p.bpjs, cicil, p.koperasi, pabsen, pph))
 
 	else:
 		listid = [x.strip() for x in idkaryawan.split(',')]
@@ -138,6 +205,7 @@ def laporangaji(request):
 			k = Karyawan.objects.get(pk=listid[y])
 			g = GajiPokok.objects.get(karyawan_id=listid[y])
 			p = PotonganKaryawan.objects.get(karyawan_id=listid[y])
+			tt = TunjanganKaryawan.objects.get(karyawan_id=listid[y])
 
 			gajipokok = g.gajipokok 
 			tunjanganmakan = g.tmakan
@@ -167,8 +235,61 @@ def laporangaji(request):
 
 			pabsen = pabsen * 10000
 			
-			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, k.golongan.name, g.gajipokok, tunjanganmakan, transportnonexec,tovertime, p.bpjs, p.koperasi, cicil, pabsen))
-	
+			gapok = g.gajipokok
+			status = k.statusmenikah.name
+			tunjangan = tt.jabatan
+			pph = 0
+			bpjs = p.bpjs
+
+			if gapok <= 50000000 :
+			  wp = float(float(5)/100) 
+			elif gapok > 50000000 or gapok <= 250000000 :
+			  wp = float(float(15)/100) 
+			elif gapok > 250000000 or gapok <= 500000000 :
+			  wp = float(float(25)/100)
+			elif gapok > 500000000 :
+			  wp = float(float(30)/100)
+
+			ptkp = 0
+
+			if status == "Lajang Tanpa Tanggungan" :
+			  ptkp = 54000000
+			elif status == "Lajang 1 Tanggungan" or status == "Menikah Tanpa Tanggungan" :
+			  ptkp = 58500000
+			elif status ==  "Lajang 2 Tanggungan" or status == "Menikah 1 Tanggungan" :
+			  ptkp = 63000000
+			elif status == "Menikah 2 Tanggungan" :
+			  ptkp = 67500000
+			elif status == "Menikah 3 Tanggungan" :
+			  ptkp = 72000000
+
+			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int(bpjs)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int(bpjs)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+			bpjs_kes_per = int(float(float(4)/100) * int(bpjs)) # BPJS Kesehatan Perusahaan 4%
+
+			bruto = gapok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+
+			bpjs_ktg_kar_jht = int(float(float(2)/100) * int(bpjs)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+			bpjs_ktg_per_jpn = int(float(float(2)/100) * int(bpjs)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+
+			ph_netto_sebulan = bruto - ( (int(float(float(5)/100) * int(bruto))) + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn )
+
+			ph_netto_setahun = ph_netto_sebulan * 12
+
+			ph_kena_pajak = ph_netto_setahun - ptkp
+
+			pph_terhutang = int(wp * int(ph_kena_pajak))
+
+			pph = pph_terhutang / 12
+			pph = 0 if pph < 0 else pph
+
+			if k.NPWP == 0 or k.NPWP == None :
+				pph = int(float(float(120)/100) * int(pph))
+			
+			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, 
+									k.golongan.name, k.norek + " a.n." + k.atasnama + " " + k.bank.name ,
+									g.gajipokok, k.statusmenikah.name, tunjanganmakan, transportnonexec,tovertime, 
+									tt.jabatan, p.bpjs, cicil, p.koperasi, pabsen, pph))
 	wb = xlwt.Workbook()
 	ws = wb.add_sheet('Laporan Gaji',cell_overwrite_ok=True)
 
@@ -187,10 +308,11 @@ def laporangaji(request):
 	ws.write(4, 11, "Potongan Pinjaman")
 	ws.write(4, 12, "Potongan Koperasi")
 	ws.write(4, 13, "BPJS")
-	ws.write(4, 14, "Potongan BPJS Kesehatan")
+	ws.write(4, 14, "PPh 21")
 	ws.write(4, 15, "Potongan BPJS Kesehatan")
-	ws.write(4, 16, "Total Potongan BPJS")
-	ws.write(4, 17, "Potongan Absensi")
+	ws.write(4, 16, "Potongan BPJS Kesehatan")
+	ws.write(4, 17, "Total Potongan BPJS")
+	ws.write(4, 18, "Potongan Absensi")
 
 	y=4
 
@@ -223,10 +345,11 @@ def laporangaji(request):
 		bpjs_total = bpjs_kes + bpjs_ktg
 
 		ws.write(ob[x].no+y, 13, ob[x].pbpjs)
-		ws.write(ob[x].no+y, 14, bpjs_kes)
-		ws.write(ob[x].no+y, 15, bpjs_ktg)
-		ws.write(ob[x].no+y, 16, bpjs_total)
-		ws.write(ob[x].no+y, 17, ob[x].pabsen)
+		ws.write(ob[x].no+y, 14, ob[x].pph)
+		ws.write(ob[x].no+y, 15, bpjs_kes)
+		ws.write(ob[x].no+y, 16, bpjs_ktg)
+		ws.write(ob[x].no+y, 17, bpjs_total)
+		ws.write(ob[x].no+y, 18, ob[x].pabsen)
 
 	wb.save("laporan/gaji/LAPORAN GAJI " + mas.name + ' ' + mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'-' + datetime.datetime.now().strftime("%d%m%Y-%H%M%S") + '.xls')
 

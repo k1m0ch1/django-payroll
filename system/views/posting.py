@@ -179,6 +179,9 @@ def postinggaji(request):
 
 			pph = pph_terhutang / 12
 			pph = 0 if pph < 0 else pph
+
+			if b.NPWP == 0 or b.NPWP == None :
+				pph = int(float(float(120)/100) * int(pph))
 			
 			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, 
 									b.golongan.name, b.norek + " a.n." + b.atasnama + " " + b.bank.name , 
@@ -275,6 +278,9 @@ def postinggaji(request):
 
 			pph = pph_terhutang / 12
 			pph = 0 if pph < 0 else pph
+
+			if k.NPWP == 0 or k.NPWP == None :
+				pph = int(float(float(120)/100) * int(pph))
 			
 			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, 
 									k.golongan.name, k.norek + " a.n." + k.atasnama + " " + k.bank.name ,
