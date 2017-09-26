@@ -140,7 +140,7 @@ def laporangaji(request):
 			wp = 0
 
 			gapok = g.gajipokok
-			status = b.statusmenikah.name
+			status = b.statusmenikah.desc
 			tunjangan = tt.jabatan
 			pph = 0
 			bpjs = p.bpjs
@@ -236,7 +236,7 @@ def laporangaji(request):
 			pabsen = pabsen * 10000
 			
 			gapok = g.gajipokok
-			status = k.statusmenikah.name
+			status = k.statusmenikah.desc
 			tunjangan = tt.jabatan
 			pph = 0
 			bpjs = p.bpjs

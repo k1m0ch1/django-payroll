@@ -277,6 +277,17 @@
         "url_slug": "bpjs-index",
         "created_at": "2017-03-01 15:03+07"
       }    
+  }, {
+    "model": "system.modules",
+    "fields": 
+      {
+        "name": "PTKP",
+        "fungsi": "PTKP",
+        "menu": "DATAMASTER2",
+        "icon": "fa fa-dedent",
+        "url_slug": "ptkp-index",
+        "created_at": "2017-03-01 15:03+07"
+      }    
   },{
     "model": "system.modules",
     "fields": 

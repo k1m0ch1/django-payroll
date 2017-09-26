@@ -318,3 +318,19 @@ def pph_bayar(gapok=None, tunjangan=None, status=None, bpjs=None):
 
     return pph_terhutang / 12
 
+@register.filter()
+def sptkp(val=None):
+  ptkp = 0
+  status = val
+  if status == "Lajang Tanpa Tanggungan" :
+    ptkp = 54000000
+  elif status == "Lajang 1 Tanggungan" or status == "Menikah Tanpa Tanggungan" :
+    ptkp = 58500000
+  elif status ==  "Lajang 2 Tanggungan" or status == "Menikah 1 Tanggungan" :
+    ptkp = 63000000
+  elif status == "Menikah 2 Tanggungan" :
+    ptkp = 67500000
+  elif status == "Menikah 3 Tanggungan" :
+    ptkp = 72000000
+
+  return ptkp

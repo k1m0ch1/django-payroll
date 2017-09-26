@@ -134,7 +134,7 @@ def postinggaji(request):
 			wp = 0
 
 			gapok = g.gajipokok
-			status = b.statusmenikah.name
+			status = b.statusmenikah.desc
 			tunjangan = tt.jabatan
 			pph = 0
 			bpjs = p.bpjs
@@ -232,7 +232,7 @@ def postinggaji(request):
 			po.save()
 
 			gapok = g.gajipokok
-			status = k.statusmenikah.name
+			status = k.statusmenikah.desc
 			tunjangan = tt.jabatan
 			pph = 0
 			bpjs = p.bpjs

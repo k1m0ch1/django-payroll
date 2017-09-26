@@ -221,6 +221,41 @@ def bpjs_index(request):
 															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
+def ptkp_index(request):
+
+	ptkp = Karyawan.objects.all()
+
+	if request.method == "GET":
+
+		if 'search' in request.GET:
+			ptkp = ptkp.filter(NIK__contains=request.GET['value']) if request.GET['search'] == "nik" else ptkp
+			ptkp = ptkp.filter(name__contains=request.GET['value']) if request.GET['search'] == "name" else ptkp
+
+	k = Karyawan.objects.all()
+	dep = Departemen.objects.all()
+	bag = Bagian.objects.all()
+	gol = Golongan.objects.all()
+	per = Perusahaan.objects.all()
+	jab = Jabatan.objects.all()
+	shift = Shift.objects.all()
+
+	ptkp = ptkp.order_by("-updated_at")
+	
+	page = request.GET.get('page', 1)
+	paginator = Paginator(ptkp, 15)
+    
+	try:
+ 		ptkp = paginator.page(page)
+	except PageNotAnInteger:
+		ptkp = paginator.page(1)
+	except EmptyPage:
+   		ptkp = paginator.page(paginator.num_pages)
+
+	return render(request, "ptkp/dashboard.html", { 'ptkp': ptkp, 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+															 'golongan' : gol, 'jabatan' : jab,
+															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
 def tunjangankaryawan_index(request):
 
 	tk = TunjanganKaryawan.objects.all()

@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^laporan/pinjaman/karyawan$', views.dashboard.laporanpinjamankaryawan_index, name="laporanpinjamankaryawan-index"),
     url(r'^tunjangankaryawan$', views.dashboard.tunjangankaryawan_index, name="tunjangankaryawan-index"),    
     url(r'^bpjs$', views.dashboard.bpjs_index, name="bpjs-index"),
+    url(r'^ptkp$', views.dashboard.ptkp_index, name="ptkp-index"),
     # url(r'^gaji$', views.dashboard.gaji_index, name="gaji-index"),
   	#url(r'^notif-system$', views.dashboard.notif_system, name="notif-system-index"),
   	#url(r'^notif-login$', views.dashboard.notif_login, name="notif-login-index"),

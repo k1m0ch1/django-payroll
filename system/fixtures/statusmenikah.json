@@ -3,8 +3,8 @@
     "model": "system.StatusMenikah",
     "fields": 
       {
-        "name": "Lajang Tanpa Tanggungan",
-        "desc": "Other fracture of unspecified thoracic vertebra, sequela",
+        "desc": "Lajang Tanpa Tanggungan",
+        "name": "TK0",
         "created_at": "2017-03-01 15:03+07"
       }
     
@@ -12,8 +12,8 @@
     "model": "system.StatusMenikah",
     "fields": 
       {
-        "name": "Lajang 1 Tanggungan",
-        "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
+        "desc": "Lajang 1 Tanggungan",
+        "name": "TK1",
         "created_at": "2017-03-01 15:03+07"
       }
     
@@ -21,8 +21,8 @@
     "model": "system.StatusMenikah",
     "fields": 
       {
-        "name": "Lajang 2 Tanggungan",
-        "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
+        "desc": "Lajang 2 Tanggungan",
+        "name": "TK2",
         "created_at": "2017-03-01 15:03+07"
       }
     
@@ -30,8 +30,17 @@
     "model": "system.StatusMenikah",
     "fields": 
       {
-        "name": "Menikah Tanpa Tanggungan",
-        "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
+        "desc": "Menikah Tanpa Tanggungan",
+        "name": "K0",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  },{
+    "model": "system.StatusMenikah",
+    "fields": 
+      {
+        "desc": "Menikah 1 Tanggungan",
+        "name": "K1",
         "created_at": "2017-03-01 15:03+07"
       }
     
@@ -39,8 +48,8 @@
     "model": "system.StatusMenikah",
     "fields": 
       {
-        "name": "Menikah Tanpa Tanggungan",
-        "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
+        "desc": "Menikah 2 Tanggungan",
+        "name": "K2",
         "created_at": "2017-03-01 15:03+07"
       }
     
@@ -48,26 +57,8 @@
     "model": "system.StatusMenikah",
     "fields": 
       {
-        "name": "Menikah 1 Tanggungan",
-        "desc": "Malignant neoplasm of unspecified part of unspecified adrenal gland",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
-  }, {
-    "model": "system.StatusMenikah",
-    "fields": 
-      {
-        "name": "Menikah 2 Tanggungan",
-        "desc": "Nondisplaced articular fracture of head of right femur, subsequent encounter for open fracture type IIIA, IIIB, or IIIC with nonunion",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
-  }, {
-    "model": "system.StatusMenikah",
-    "fields": 
-      {
-        "name": "Menikah 3 Tanggungan",
-        "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
+        "desc": "Menikah 3 Tanggungan",
+        "name": "K3",
         "created_at": "2017-03-01 15:03+07"
       }
     
