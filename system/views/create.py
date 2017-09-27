@@ -302,7 +302,7 @@ def bpjs_save(request):
 			x = PotonganKaryawan.objects.select_for_update().filter(karyawan_id=listid[y])
 			x.update(bpjs = nilai )
 		else:
-			p = BPJS(bpjs=nilai, karyawan_id=listid[y])	
+			p = PotonganKaryawan(bpjs = nilai, karyawan_id=listid[y])	
 			p.save()			
 
 	return HttpResponse("Berhasil Simpan")
