@@ -36,7 +36,8 @@ def postinggaji(request):
 			transportnonexec = 0
 			tovertime = 0
 			tunjangan = 0
-			pbpjs = 0
+			pbpjs_ks = 0
+			pbpjs_kt = 0
 			ppinjam = 0
 			pkoperasi = 0
 			pcicil = 0
@@ -45,7 +46,7 @@ def postinggaji(request):
 
 			def __init__(self, no, nik, nama, departemen, bagian, 
 								golongan, norek, gajipokok, statusmenikah, tmakan, 
-								transportnonexec, tovertime, tunjangan, pbpjs, 
+								transportnonexec, tovertime, tunjangan, pbpjs_ks, pbpjs_kt, 
 								ppinjam, pkoperasi, pabsen, pph):
 				self.no = no
 				self.nik = nik
@@ -60,7 +61,8 @@ def postinggaji(request):
 				self.transportnonexec = transportnonexec
 				self.tovertime = tovertime
 				self.tunjangan = tunjangan
-				self.pbpjs = pbpjs
+				self.pbpjs_ks = pbpjs_ks
+				self.pbpjs_kt = pbpjs_kt
 				self.ppinjam = ppinjam
 				self.pkoperasi = pkoperasi
 				self.pabsen = pabsen
@@ -72,7 +74,6 @@ def postinggaji(request):
 	mas = MasaTenggangClosing.objects.get(pk=masatenggangclosing)
 	if idkaryawan.find("&") != -1 :
 		listid = [x.strip() for x in idkaryawan.split('&')]
-		a= ""
 		mantap = ""
 	
 		a = Karyawan.objects
@@ -162,9 +163,10 @@ def postinggaji(request):
 
 			gapok = g.gajipokok
 			status = b.statusmenikah.desc
-			tunjangan = tt.jabatan
+			tunjangan = tt.jabatan + tt.kemahalan + g.tmakan + g.transportnonexec
 			pph = 0
-			bpjs = p.bpjs
+			bpjs_ks = p.bpjs_ks
+			bpjs_kt = p.bpjs_kt
 
 			if gapok <= 50000000 :
 			  wp = float(float(5)/100) 
@@ -188,13 +190,13 @@ def postinggaji(request):
 			elif status == "Menikah 3 Tanggungan" :
 			  ptkp = 72000000
 
-			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int( bpjs)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
-			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int( bpjs)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
-			bpjs_kes_per = int(float(float(4)/100) * int(bpjs)) # BPJS Kesehatan Perusahaan 4%
+			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+			bpjs_kes_per = int(float(float(4)/100) * int(bpjs_ks)) # BPJS Kesehatan Perusahaan 4%
 			bruto = gapok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
 
-			bpjs_ktg_kar_jht = int(float(float(2)/100) * int( bpjs)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
-			bpjs_ktg_per_jpn = int(float(float(2)/100) * int( bpjs)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+			bpjs_ktg_kar_jht = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+			bpjs_ktg_per_jpn = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
 
 			ph_netto_sebulan = bruto - ( (int(float(float(5)/100) * int(bruto))) + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn )
 
@@ -213,7 +215,7 @@ def postinggaji(request):
 			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, 
 									b.golongan.name, b.norek + " a.n." + b.atasnama + " " + b.bank.name , 
 									g.gajipokok, b.statusmenikah.name, tunjanganmakan, transportnonexec, tovertime, 
-									tt.jabatan, p.bpjs, cicil, p.koperasi, pabsen, pph))
+									tt.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
 	else:
 		listid = [x.strip() for x in idkaryawan.split(',')]
 		a = ""
@@ -287,9 +289,10 @@ def postinggaji(request):
 
 			gapok = g.gajipokok
 			status = k.statusmenikah.desc
-			tunjangan = tt.jabatan
+			tunjangan = tt.jabatan + tt.kemahalan + g.tmakan + g.transportnonexec
 			pph = 0
-			bpjs = p.bpjs
+			bpjs_ks = p.bpjs_ks
+			bpjs_kt = p.bpjs_kt
 
 			if gapok <= 50000000 :
 			  wp = float(float(5)/100) 
@@ -313,14 +316,13 @@ def postinggaji(request):
 			elif status == "Menikah 3 Tanggungan" :
 			  ptkp = 72000000
 
-			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int(bpjs)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
-			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int(bpjs)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
-			bpjs_kes_per = int(float(float(4)/100) * int(bpjs)) # BPJS Kesehatan Perusahaan 4%
+			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+			bpjs_kes_per = int(float(float(4)/100) * int(bpjs_ks)) # BPJS Kesehatan Perusahaan 4%
+			bruto = ( gapok + tunjangan + tovertime + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per ) 
 
-			bruto = gapok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
-
-			bpjs_ktg_kar_jht = int(float(float(2)/100) * int(bpjs)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
-			bpjs_ktg_per_jpn = int(float(float(2)/100) * int(bpjs)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+			bpjs_ktg_kar_jht = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+			bpjs_ktg_per_jpn = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
 
 			ph_netto_sebulan = bruto - ( (int(float(float(5)/100) * int(bruto))) + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn )
 
@@ -339,7 +341,7 @@ def postinggaji(request):
 			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, 
 									k.golongan.name, k.norek + " a.n." + k.atasnama + " " + k.bank.name ,
 									g.gajipokok, k.statusmenikah.name, tunjanganmakan, transportnonexec,tovertime, 
-									tt.jabatan, p.bpjs, cicil, p.koperasi, pabsen, pph))
+									tt.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
 
 	return render(request,"postinggaji/print.html", { 'data': mantap, 'posting' : objs , "bruto" : bruto})
 

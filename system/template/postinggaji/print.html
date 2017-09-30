@@ -16,10 +16,13 @@
 		<td>Potongan Pinjaman</td>
 		<td>Potongan Koperasi</td>
 		<td>PPH</td>
-		<td>BPJS</td>
 		<td>BPJS Kesehatan</td>
 		<td>BPJS Ketenagakerjaan</td>
+		<td>Bayar BPJS Kesehatan Karyawan</td>
+		<td>Bayar BPJS Ketenagakerjaan Karyawan</td>
 		<td>BPJS Bayar</td>
+		<td>BPJS Kesehatan yang ditanggung perusahaan</td>
+		<td>BPJS Ketenagakerjaan yang ditanggung perusahaan</td>	
 		<td>Potongan Absensi</td>
 	</tr>
 	{% for p in posting %}
@@ -39,11 +42,13 @@
 			<td>{{ p.ppinjam }}</td>
 			<td>{{ p.pkoperasi }}</td>
 			<td>{{ p.pph }}</td>
-			<td>{{ p.pbpjs }}</td>
-			<td>{% bpjs_kes p.pbpjs|slugify  %}</td>	
-			<td>{% bpjs_ket p.pbpjs|slugify  %}</td>
-			<td>{% bpjs_bayar p.pbpjs|slugify %}</td>
-			
+			<td>{{ p.pbpjs_ks }}</td>
+			<td>{{ p.pbpjs_kt }}</td>
+			<td>{% bpjs_kes p.pbpjs_ks|slugify  %}</td>	
+			<td>{% bpjs_ket p.pbpjs_kt|slugify  %}</td>
+			<td>{% bpjs_bayar p.pbpjs_ks|slugify p.pbpjs_kt|slugify %}</td>	
+			<td>{% bpjs_kes_per p.pbpjs_ks|slugify %}</td>
+			<td>{% bpjs_ket_per p.pbpjs_ks|slugify %}</td>					
 			<td>{{ p.pabsen}}</td>		
 		
 	</tr>
