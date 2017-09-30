@@ -58,13 +58,25 @@
       <div class="row">
           <div class="col-md-12"> 
             <div class="col-md-2">
-              <label class="control-label pull-right">Nilai</label>
+              <label class="control-label pull-right">BPJS Kesehatan</label>
             </div> 
             <div class="col-md-2">
               <div class="form-group">
-                  <input type="text" class="form-control" id="nilai" placeholder="Nilai Mata Uang " value="" />
+                  <input type="text" class="form-control" id="bpjsks" placeholder="Nilai Mata Uang " value="" />
                 </div>
-            </div>  
+            </div> 
+          </div> 
+
+          <div class="col-md-12"> 
+            <div class="col-md-2">
+              <label class="control-label pull-right">BPJS Ketenagakerjaan</label>
+            </div> 
+            <div class="col-md-2">
+              <div class="form-group">
+                  <input type="text" class="form-control" id="bpjskt" placeholder="Nilai Mata Uang " value="" />
+                </div>
+            </div> 
+          </div> 
           
           <div class="col-md-12">
             <div class="col-md-2">
@@ -72,8 +84,9 @@
                   <button class="btn btn-primary" id="simpan"><i class="fa fa-plus"></i> Simpan</button> 
               </div> 
             </div>
-          </div>         
-      </div>
+          </div>  
+      </div> 
+               
 
       <div class="row">
           <div class="col-md-12">
@@ -106,14 +119,16 @@
                 <tbody><tr>
                   <th class="col-md-2">NIK</th>
                   <th class="col-md-2">Nama</th>
-                  <th class="col-md-2">Nilai</th>
+                  <th class="col-md-2">BPJS Kesehatan</th>
+                  <th class="col-md-2">BPJS Ketenagakerjaan</th>
                   <th class="col-md-2">Action</th>
                 </tr>
                 {% for d in bpjs %}
                 <tr>
                   <td>{{ d.karyawan.NIK }}</td>
                   <td>{{ d.karyawan.name }}</td>
-                  <td>{{ d.bpjs }}</td>
+                  <td>{{ d.bpjs_ks }}</td>
+                  <td>{{ d.bpjs_kt }}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                       <a data-confirm="Yakin mau Hapus data ???" href="{% url 'bpjs-delete' bpjs_id=d.id %}" type="button" class="btn btn-default"><i class="fa fa-trash"></i></a>
@@ -215,7 +230,8 @@
         $.ajax({
         type: "POST",
         url: 'http://{{ request.get_host }}/index/api/bpjs/save',
-        data: { idkaryawan: $('#idKaryawan').val(), nilai: $('#nilai').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+        data: { idkaryawan: $('#idKaryawan').val(), bpjsks: $('#bpjsks').val(), 
+                bpjskt: $('#bpjskt').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Tambah Potongan');
             location.reload();

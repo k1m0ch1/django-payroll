@@ -328,7 +328,8 @@ class MasaTenggangClosing(models.Model):
 
 class PotonganKaryawan(models.Model):
 	name = models.CharField(max_length=200, null=True)
-	bpjs = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
+	bpjs_ks = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
+	bpjs_kt = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
 	pph = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
 	koperasi = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
 	potabsensi = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)

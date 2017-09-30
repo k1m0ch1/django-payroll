@@ -295,14 +295,15 @@ def tunjangan_save(request):
 def bpjs_save(request):
 	idkaryawan = request.POST['idkaryawan']
 	listid = [x.strip() for x in idkaryawan.split(',')]
-	nilai = request.POST['nilai']
+	bpjsks = request.POST['bpjsks']
+	bpjskt = request.POST['bpjskt']
 	for y in range(0, len(listid)-1):
 		x = PotonganKaryawan.objects.filter(karyawan_id=listid[y])
 		if len(x) > 0 :
 			x = PotonganKaryawan.objects.select_for_update().filter(karyawan_id=listid[y])
-			x.update(bpjs = nilai )
+			x.update(bpjs_ks = bpjsks , bpjs_kt = bpjskt)
 		else:
-			p = PotonganKaryawan(bpjs = nilai, karyawan_id=listid[y])	
+			p = PotonganKaryawan(bpjs_ks = bpjsks, bpjs_kt = bpjskt, karyawan_id=listid[y])	
 			p.save()			
 
 	return HttpResponse("Berhasil Simpan")
