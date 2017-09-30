@@ -120,6 +120,8 @@ def postinggaji(request):
 
 			ab = Absensi.objects.filter(karyawan_id=b.id).filter(tanggal__range = [mas.tanggal, mas.sd])
 
+			banyak = len(ab)
+
 			for abi in ab:
 				if abi.SPL == 1:
 					hari = abi.created_at.strftime("%A")
@@ -253,6 +255,8 @@ def postinggaji(request):
 
 			ab = Absensi.objects.filter(karyawan_id=b.id).filter(tanggal__range[mas.tanggal, mas.sd])
 			
+			banyak = len(ab)
+
 			for abi in ab:
 				if abi.SPL == 1:
 					hari = abi.created_at.strftime("%A")
