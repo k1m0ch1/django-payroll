@@ -133,7 +133,7 @@ def laporangaji(request):
 					hari = abi.created_at.strftime("%A")
 					if hari == "Minggu" or hari == "Sunday" :
 						hitungot = abi.SPL_banyak
-						if abi.karyawan.golongan.id < 7 :
+						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
 							if abi.SPL_banyak <= 7 :
 								tovertime = tovertime + int(float((hitungot * 2) * 10000))
 							elif abi.SPL_banyak > 7 :
@@ -146,7 +146,7 @@ def laporangaji(request):
 								tovertime = tovertime + int(float((7 * 2) * 10000))
 								tovertime = tovertime + ( ( ( abi.SPL_banyak - 7 ) * 3 ) * 20000 )
 					else:
-						if abi.karyawan.golongan.id < 7 :
+						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
 							if abi.SPL_banyak <= 1 :
 								tovertime = tovertime + int(float(1.5 * 10000))
 							elif abi.SPL_banyak > 1 :
@@ -258,7 +258,7 @@ def laporangaji(request):
 					hari = abi.created_at.strftime("%A")
 					if hari == "Minggu" or hari == "Sunday" :
 						hitungot = abi.SPL_banyak
-						if abi.karyawan.golongan.id < 7 :
+						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
 							if abi.SPL_banyak <= 7 :
 								tovertime = tovertime + int(float((hitungot * 2) * 10000))
 							elif abi.SPL_banyak > 7 :
@@ -271,7 +271,7 @@ def laporangaji(request):
 								tovertime = tovertime + int(float((7 * 2) * 10000))
 								tovertime = tovertime + ( ( ( abi.SPL_banyak - 7 ) * 3 ) * 20000 )
 					else:
-						if abi.karyawan.golongan.id < 7 :
+						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
 							if abi.SPL_banyak <= 1 :
 								tovertime = tovertime + int(float(1.5 * 10000))
 							elif abi.SPL_banyak > 1 :
