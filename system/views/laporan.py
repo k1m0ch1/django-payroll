@@ -130,7 +130,16 @@ def laporangaji(request):
 
 			for abi in ab:
 				if abi.SPL == 1:
-					tovertime = tovertime + (abi.SPL_banyak * 20000)
+					if abi.karyawan.golongan.id < 7 :
+						if abi.SPL_banyak == 1 :
+							tovertime = tovertime + int(float(1.5 * 10000))
+						if abi.SPL_banyak > 1 :
+							tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 20000 )
+					elif abi.karyawan.golongan.id > 7 :
+						if abi.SPL_banyak == 1 :
+							tovertime = tovertime + int(float(1.5 * 10000))
+						if abi.SPL_banyak > 1 :
+							tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 10000 )
 
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
 					pabsen = pabsen + 1
@@ -228,7 +237,16 @@ def laporangaji(request):
 			
 			for abi in ab:
 				if abi.SPL == 1:
-					tovertime = tovertime + (abi.SPL_banyak * 20000)
+					if abi.karyawan.golongan.id < 7 :
+						if abi.SPL_banyak == 1 :
+							tovertime = tovertime + int(float(1.5 * 10000))
+						if abi.SPL_banyak > 1 :
+							tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 20000 )
+					elif abi.karyawan.golongan.id > 7 :
+						if abi.SPL_banyak == 1 :
+							tovertime = tovertime + int(float(1.5 * 10000))
+						if abi.SPL_banyak > 1 :
+							tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 10000 )
 
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
 					pabsen = pabsen + 1
