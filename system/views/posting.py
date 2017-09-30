@@ -131,7 +131,7 @@ def postinggaji(request):
 							elif abi.SPL_banyak > 7 :
 								tovertime = tovertime + int(float((7 * 2) * 10000))
 								tovertime = tovertime + ( ( ( abi.SPL_banyak - 7 ) * 3 ) * 10000 )
-						elif abi.karyawan.golongan.id > 7 :
+						elif abi.karyawan.golongan.id < 7 :
 							if abi.SPL_banyak <= 7 :
 								tovertime = tovertime + int(float((hitungot * 2) * 20000))
 							elif abi.SPL_banyak > 7 :
@@ -144,7 +144,7 @@ def postinggaji(request):
 							elif abi.SPL_banyak > 1 :
 								tovertime = tovertime + int(float(1.5 * 10000))
 								tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 10000 )
-						elif abi.karyawan.golongan.id > 7 :
+						elif abi.karyawan.golongan.id < 7 :
 							if abi.SPL_banyak >= 1 :
 								tovertime = tovertime + int(float(1.5 * 20000))
 							elif abi.SPL_banyak > 1 :
@@ -154,7 +154,12 @@ def postinggaji(request):
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
 					pabsen = pabsen + 1
 
-			pabsen = pabsen * 10000
+			if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
+				pabsen = pabsen * 10000
+			elif abi.karyawan.golongan.id == 6 or abi.karyawan.golongan.id == 5 :
+				pabsen = pabsen * 20000
+			elif abi.karyawan.golongan_id < 5:
+				pabsen = pabsen * 40000
 
 			po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id, tovertime=tovertime, pabsen=pabsen)
 			po.save()
@@ -259,7 +264,7 @@ def postinggaji(request):
 							elif abi.SPL_banyak > 7 :
 								tovertime = tovertime + int(float((7 * 2) * 10000))
 								tovertime = tovertime + ( ( ( abi.SPL_banyak - 7 ) * 3 ) * 10000 )
-						elif abi.karyawan.golongan.id > 7 :
+						elif abi.karyawan.golongan.id < 7 :
 							if abi.SPL_banyak <= 7 :
 								tovertime = tovertime + int(float((hitungot * 2) * 20000))
 							elif abi.SPL_banyak > 7 :
@@ -272,7 +277,7 @@ def postinggaji(request):
 							elif abi.SPL_banyak > 1 :
 								tovertime = tovertime + int(float(1.5 * 10000))
 								tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 10000 )
-						elif abi.karyawan.golongan.id > 7 :
+						elif abi.karyawan.golongan.id < 7 :
 							if abi.SPL_banyak >= 1 :
 								tovertime = tovertime + int(float(1.5 * 20000))
 							elif abi.SPL_banyak > 1 :
@@ -282,7 +287,12 @@ def postinggaji(request):
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
 					pabsen = pabsen + 1
 
-			pabsen = pabsen * 10000
+			if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
+				pabsen = pabsen * 10000
+			elif abi.karyawan.golongan.id == 6 or abi.karyawan.golongan.id == 5 :
+				pabsen = pabsen * 20000
+			elif abi.karyawan.golongan_id < 5:
+				pabsen = pabsen * 40000
 
 			po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id,tovertime=tovertime, pabsen=pabsen)
 			po.save()
