@@ -162,6 +162,7 @@ class Karyawan(models.Model):
 	fingerid = models.CharField(max_length=30)
 	NPWP = models.CharField(max_length=30)
 	KPJ = models.CharField(max_length=30)
+	tanggalmasuk = models.DateField(null=True)
 	statuskaryawan = models.CharField(max_length=30)
 	masakaryawan = models.DateField(null=True)
 	jumlahhari = models.DecimalField(max_digits=1, decimal_places=0)

@@ -49,6 +49,7 @@ def karyawan_save(request, karyawan_id):
 			alamat = request.POST['alamat'], kota = request.POST['kota'],
 			provinsi = request.POST['provinsi'], telepon = request.POST['telepon'],
 			handphone = request.POST['handphone'], statuskaryawan = request.POST['statuskaryawan'],
+			tanggalmasuk = parse(request.POST['tanggalmasuk']).strftime("%Y-%m-%d"),
 			masakaryawan = parse(request.POST['masakaryawan']).strftime("%Y-%m-%d"), ktpid = request.POST['ktp'],
 			warganegara_id = request.POST['warganegara'], agama_id = request.POST['agama'],
 			statusmenikah_id = request.POST['statusmenikah'], bank_id = request.POST['bank'],

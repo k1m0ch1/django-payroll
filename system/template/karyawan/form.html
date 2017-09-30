@@ -127,6 +127,18 @@
 
                   <div class="row">
                     <div class="col-md-2">
+                      <p class="text-right">Tanggal Masuk</p>
+                    </div>
+                    <div class="col-md-10">
+                      
+                      <div class="form-group col-md-6 date">
+                        <input type="text" class="form-control tanggalmasuk" id="datepicker5" placeholder="Tanggal Masuk" name="tanggalmasuk" value="{{ karyawan.tanggalmasuk }}">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2">
                       <p class="text-right">Status Karyawan</p>
                     </div>
                     <div class="col-md-10">
@@ -440,6 +452,7 @@ $(function () {
               ,nama2: $('.nama2').val(), tempatlahir: $('.tempatlahir').val(), tanggallahir: $('.tanggallahir').val(), gender: $('.gender').find(":selected").val(), bagian: $('.bagian').val(),
               alamat: $('.alamat').val(), kota: $('.kota').val(), provinsi: $('.provinsi').val(),
               telepon: $('.telepon').val(), handphone: $('.handphone').val(), statuskaryawan: $('.statuskaryawan').find(":selected").val(),
+              tanggalmasuk: $('.tanggalmasuk').val(),
               masakaryawan: $('.masakaryawan').val(), ktp: $('.ktp').val(), warganegara: $('.warganegara').find(":selected").val(),
               agama: $('.agama').find(":selected").val(),statusmenikah: $('.statusmenikah').find(":selected").val(),bank: $('.bank').find(":selected").val(),
               norekening: $('.norekening').val(),atasnama: $('.atasnama').val(),fingerid: $('.fingerid').val(),
@@ -466,6 +479,10 @@ $(function () {
     autoclose: true
   });
   $('#datepicker2').datepicker({
+    autoclose: true
+  });
+
+  $('#datepicker5').datepicker({
     autoclose: true
   });
 
