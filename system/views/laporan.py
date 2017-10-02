@@ -357,6 +357,7 @@ def laporangaji(request):
 									k.golongan.name, k.norek + " a.n." + k.atasnama + " " + k.bank.name ,
 									g.gajipokok, k.statusmenikah.name, tunjanganmakan, transportnonexec,tovertime, 
 									tt.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
+	objs.pop(0)
 	wb = xlwt.Workbook()
 	ws = wb.add_sheet('Laporan Gaji',cell_overwrite_ok=True)
 

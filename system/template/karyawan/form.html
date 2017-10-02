@@ -218,7 +218,22 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control fingerid" value="{{ karyawan.fingerid }}" placeholder="Finger ID" name="fingerid">
+                        <input type="text" class="form-control fingerid" value="{{ karyawan.fingerid }} {{ idfinger }}" placeholder="Finger ID" name="fingerid">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 ">
+                      <p class="text-right">Mesin Finger</p>
+                    </div>
+                    <div class="col-md-10">
+                      <div class="form-group col-md-10">
+                        <select class="form-control lokasimesin" name="lokasimesin">
+                          <option>Lokasi Mesin</option>
+                          {% for m in mesin %}
+                            <option value="{{ m.ipmesin }}" {% if karyawan.lokasimesin == m.ipmesin %} selected {% endif %}>{{ m.namamesin }}, {{ m.ipmesin }}</option>
+                          {% endfor %}
+                        </select>
                       </div>
                     </div>
                   </div>

@@ -357,6 +357,7 @@ def postinggaji(request):
 									g.gajipokok, k.statusmenikah.name, tunjanganmakan, transportnonexec,tovertime, 
 									tt.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
 
+	objs.pop(0)
 	return render(request,"postinggaji/print.html", { 'data': mantap, 'posting' : objs , "bruto" : bruto})
 
 def waktu(waktu=None, jadwal=None, masuk=None):

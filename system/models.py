@@ -160,6 +160,7 @@ class Karyawan(models.Model):
 	atasnama = models.CharField(max_length=200)
 	norek = models.CharField(max_length=70)
 	fingerid = models.CharField(max_length=30)
+	lokasimesin = models.CharField(max_length=15)
 	NPWP = models.CharField(max_length=30)
 	KPJ = models.CharField(max_length=30)
 	tanggalmasuk = models.DateField(null=True)
