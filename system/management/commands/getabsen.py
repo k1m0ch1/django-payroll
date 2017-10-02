@@ -43,10 +43,26 @@ class Command(BaseCommand):
 			# Get all users (will return list of User object)
 			#users = conn.get_users()
 
-			pprint(vars(attendances[0]))
+			#pprint(vars(attendances[12632]))
+			MASUK = 0
+			KELUAR = 1
+
+			users = conn.get_users()
+			for at in attendances:
+
+				print "Absen tanggal = " + at.timestamp.strftime("%d-%m-%Y %H:%M:%S")
+				print "Status = " + ( "MASUK" if at.status == 0 else "KELUAR" )
+
+				for usersi in users:
+					if usersi.user_id == at.user_id:
+						print " ID : " + usersi.user_id + " Name : " + usersi.name
+
 			# for a in attendances:
 			# 	pprint(vars(a))
-
+			print "==================================================="
+			print "Total Data Absen yang ditarik : " + str(len(attendances))
+			print "User pada Mesin Absensi : " + str(len(users))
+			print "==================================================="
 			print "Pengambilan Data Absensi pada mesin "+ dataip[1] + " dengan alamat IP " + ipmesin + " berhasil"
 			conn.test_voice()
 			print 'Mengaktifkan kembali Mesin'
