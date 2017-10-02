@@ -8,7 +8,6 @@ class Command(BaseCommand):
   help = 'Django admin custom command poc.'
  
   def handle(self, *args, **options):
-    self.stdout.write("Hello World")
     file = open("listip.txt", "r")
     for line in file:
 		# p = Perusahaan.objects.filter(pk=1)

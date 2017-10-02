@@ -127,6 +127,8 @@ def karyawan_save(request):
 		conn.disable_device()
 		conn.set_user(uid=int(str(k.fingerid).strip()), name="" + str(k.name), privilege=const.USER_DEFAULT, password='12345678', group_id='', user_id="" + str(k.fingerid).strip() )
 		conn.test_voice()
+		conn.test_voice()
+		conn.test_voice()
 		conn.enable_device()
 	except Exception, e:
 	    print "Process terminate : {}".format(e)
@@ -170,6 +172,8 @@ def karyawan_save_api(request):
 		conn = zk.connect()
 		conn.disable_device()
 		conn.set_user(uid=int(str(k.fingerid).strip()), name="" + str(k.name), privilege=const.USER_DEFAULT, password='12345678', group_id='', user_id="" + str(k.fingerid).strip())
+		conn.test_voice()
+		conn.test_voice()
 		conn.test_voice()
 		conn.enable_device()
 	except Exception, e:
