@@ -37,7 +37,7 @@ class Command(BaseCommand):
 		dataip = line.strip()
 		dataip = dataip.split(";")
 		ipmesin = dataip[0]
-		zk = ZK(ipmesin, port=dataip[2], timeout=5)
+		zk = ZK(ipmesin, port=int(dataip[2]), timeout=5)
 		try:
 			y = y +1
 			print '[*]  Koneksi ke Mesin ' + dataip[1] + ' dengan alamat IP ' + ipmesin
