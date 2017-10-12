@@ -22,7 +22,7 @@ class Command(BaseCommand):
 		dataip = line.strip()
 		dataip = dataip.split(";")
 		ipmesin = dataip[0]
-		zk = ZK(ipmesin, port=4370, timeout=5)
+		zk = ZK(ipmesin, port=dataip[2], timeout=5)
 		try:
 			print 'Koneksi ke Mesin ' + dataip[1] + ' dengan alamat IP ' + ipmesin
 			conn = zk.connect()

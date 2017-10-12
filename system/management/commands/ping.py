@@ -14,13 +14,15 @@ class Command(BaseCommand):
   		ipmesin = ""
   		namamesin = ""
   		status = ""
+  		portmesin = 0
 
-  		def __init__(self, no, ipmesin, namamesin, status):
+  		def __init__(self, no, ipmesin, namamesin, status, portmesin):
 
   			self.no = no
   			self.ipmesin = ipmesin
   			self.namamesin = namamesin
   			self.status = status
+  			self.portmesin = portmesin
 
 	files = open("listip.txt", "r")
 	objs = [range(sum(1 for xx in open("listip.txt")))]
@@ -35,7 +37,7 @@ class Command(BaseCommand):
 		dataip = line.strip()
 		dataip = dataip.split(";")
 		ipmesin = dataip[0]
-		zk = ZK(ipmesin, port=4370, timeout=5)
+		zk = ZK(ipmesin, port=dataip[2], timeout=5)
 		try:
 			y = y +1
 			print '[*]  Koneksi ke Mesin ' + dataip[1] + ' dengan alamat IP ' + ipmesin
@@ -43,13 +45,13 @@ class Command(BaseCommand):
 			conn = zk.connect()
 			print '[*]  Koneksi ke Mesin ' + dataip[1] + ' dengan alamat IP ' + ipmesin + ' BERHASIL'
 			conn.test_voice()
-			objs.append(mesin(y, ipmesin, dataip[1], "UP"))
+			objs.append(mesin(y, ipmesin, dataip[1], "UP", dataip[2]))
 		except Exception, e:
 			print "===ERROR LOG==="
 			print "[!!] " + dataip[1] + " dengan alamat IP " + ipmesin + " dengan error = " + format(e)
 			print "==============="
 			print '[*]  Koneksi ke Mesin ' + dataip[1] + ' dengan alamat IP ' + ipmesin + ' GAGAL'
-			objs.append(mesin(y, ipmesin, dataip[1], "DOWN"))
+			objs.append(mesin(y, ipmesin, dataip[1], "DOWN", dataip[2]))
 		finally:
 		    if conn:
 		        conn.disconnect()
@@ -60,6 +62,6 @@ class Command(BaseCommand):
 	print "=== LISTING MESIN ==="
 
 	for ob in objs:
-		print " [+] " + ob.namamesin + " dengan IP " + ob.ipmesin + " " + ob.status
+		print " [+] " + ob.namamesin + " dengan IP " + ob.ipmesin + ":" +  ob.portmesin + " " + ob.status
 
 	print "====================="
