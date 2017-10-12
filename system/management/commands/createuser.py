@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from zk import ZK, const
 from pprint import pprint
-from system.models import Perusahaan, Karyawan
+from system.models import Perusahaan, Karyawan, KaryawanShift
  
 class Command(BaseCommand):
 

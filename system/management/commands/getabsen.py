@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from zk import ZK, const
 from pprint import pprint
-from system.models import Perusahaan, Karyawan
+from system.models import Perusahaan, Karyawan, KaryawanShift
  
 class Command(BaseCommand):
   args = 'Arguments is not needed'
@@ -50,12 +50,33 @@ class Command(BaseCommand):
 			users = conn.get_users()
 			for at in attendances:
 
+				tanggal = at.timestamp.strftime("%Y-%m-%d")
+				waktu = at.timestamp.strftime("%H:%M:%S")
+				hari = at.timestamp.strftime("%A")
 				print "Absen tanggal = " + at.timestamp.strftime("%d-%m-%Y %H:%M:%S")
 				print "Status = " + ( "MASUK" if at.status == 0 else "KELUAR" )
 
 				for usersi in users:
 					if usersi.user_id == at.user_id:
 						print " ID : " + usersi.user_id + " Name : " + usersi.name
+						k = Karyawan.objects.filter(fingerid=at.user_id)
+						if at.status == MASUK :
+							if len(k) > 0:
+								kw = KaryawanShift.objects.filter(karyawan_id=k.id).filter(tgl_awal__gte=tanggal).filter(tgl_akhir__lte=tanggal)
+								if len(kw) > 0:
+									kw = kw.id
+								else:
+									kw = 0
+						
+							masuk = waktu
+							a = Absensi(karyawan_id=k.id, karyawanshift=kw, tanggal=tanggal, hari=hari, masuk = masuk)
+							a.save()
+						else:
+							keluar = waktu
+							a = Absensi.objects.select_for_update().filter(tanggal = tanggal)
+							a.update(keluar=keluar)
+
+						
 
 			# for a in attendances:
 			# 	pprint(vars(a))
