@@ -6,7 +6,8 @@
       {
         "karyawan_id": 1,
         "kemahalan" : 150000,
-        "jabatan" : 150000,
+        "tmakan" : 600000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 1,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -17,7 +18,9 @@
     "fields": 
       {
         "karyawan_id": 2,
-        "jabatan" : 150000,
+        "kemahalan" : 150000,
+        "tmakan" : 600000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 2,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -28,7 +31,9 @@
     "fields": 
       {
         "karyawan_id": 3,
-        "jabatan" : 150000,
+        "kemahalan" : 150000,
+        "tmakan" : 600000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 1,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -39,7 +44,9 @@
     "fields": 
       {
         "karyawan_id": 4,
-        "jabatan" : 150000,
+        "kemahalan" : 150000,
+        "tmakan" : 600000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 2,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -51,6 +58,8 @@
       {
         "karyawan_id": 5,
         "kemahalan" : 15000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 1,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -62,7 +71,8 @@
       {
         "karyawan_id": 6,
         "kemahalan" : 15000,
-        "jabatan" : 150000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 2,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -73,7 +83,9 @@
     "fields": 
       {
         "karyawan_id": 7,
-        "kemahalan" : 50000,
+        "kemahalan" : 15000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 1,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -84,7 +96,9 @@
     "fields": 
       {
         "karyawan_id": 8,
-        "kemahalan" : 10000,
+        "kemahalan" : 15000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 2,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -95,8 +109,9 @@
     "fields": 
       {
         "karyawan_id": 9,
-        "kemahalan" : 700000,
-        "jabatan" : 150000,
+        "kemahalan" : 15000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 1,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -107,7 +122,9 @@
     "fields": 
       {
         "karyawan_id": 10,
-        "jabatan" : 150000,
+        "kemahalan" : 15000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 2,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -117,8 +134,10 @@
     "pk": 11,
     "fields": 
       {
-        "karyawan_id": 11,
-        "jabatan" : 150000,
+        "karyawan_id": 11,"kemahalan" : 15000,
+        "tmakan" : 650000,
+        "kemahalan" : 15000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 1,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -129,8 +148,9 @@
     "fields": 
       {
         "karyawan_id": 12,
-        "kemahalan" : 200000,
-        "jabatan" : 150000,
+        "kemahalan" : 15000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 2,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -142,7 +162,8 @@
       {
         "karyawan_id": 13,
         "kemahalan" : 15000,
-        "jabatan" : 150000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 1,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -153,7 +174,9 @@
     "fields": 
       {
         "karyawan_id": 14,
-        "kemahalan" : 150000,
+        "kemahalan" : 15000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 2,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -164,8 +187,9 @@
     "fields": 
       {
         "karyawan_id": 15,
-        "kemahalan" : 50000,
-        "jabatan" : 150000,
+        "kemahalan" : 15000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 1,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -176,8 +200,9 @@
     "fields": 
       {
         "karyawan_id": 16,
-        "kemahalan" : 400000,
-        "jabatan" : 150000,
+        "kemahalan" : 15000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 2,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -188,8 +213,9 @@
     "fields": 
       {
         "karyawan_id": 17,
-        "kemahalan" : 45000,
-        "jabatan" : 150000,
+        "kemahalan" : 15000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 1,
         "created_at": "2017-03-01 15:03+07"
       }
@@ -200,7 +226,9 @@
     "fields": 
       {
         "karyawan_id": 18,
-        "kemahalan" : 35000,
+        "kemahalan" : 15000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 2,
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -211,7 +239,9 @@
     "fields": 
       {
         "karyawan_id": 19,
-        "kemahalan" : 65000,
+        "kemahalan" : 15000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 1,
         "created_at": "2017-03-01 15:03+07"
       } 
@@ -222,8 +252,9 @@
     "fields": 
       {
         "karyawan_id": 20,
-        "kemahalan" : 17000,
-        "jabatan" : 150000,
+        "kemahalan" : 15000,
+        "tmakan" : 650000,
+        "transportnonexec" : 600000,
         "masatenggangclosing" : 2,
         "created_at": "2017-03-01 15:03+07"
       }

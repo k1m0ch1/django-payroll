@@ -161,7 +161,7 @@ def tunjangan(request, tunjangan_id):
 @login_required()
 def tunjangan_save(request, tunjangan_id):
 	d = TunjanganKaryawan.objects.select_for_update().filter(id=tunjangan_id)
-	d.update(masatenggangclosing_id = request.POST['masatenggang'], jabatan=request.POST['jabatan'], kemahalan = request.POST['kemahalan'])
+	d.update(masatenggangclosing_id = request.POST['masatenggang'], tmakan=request.POST['tmakan'],transportnonexec=request.POST['transportnonexec'] ,kemahalan = request.POST['kemahalan'])
 	return redirect("tunjangankaryawan-index")
 
 @login_required()

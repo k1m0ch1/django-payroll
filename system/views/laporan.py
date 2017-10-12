@@ -107,15 +107,15 @@ def laporangaji(request):
 
 		for b in a:
 			y = y + 1
-			#k = Karyawan.objects.get(pk=b.karyawan.id)
+			k = Karyawan.objects.get(pk=b.id)
 			g = GajiPokok.objects.get(karyawan_id=b.id)
 			p = PotonganKaryawan.objects.get(karyawan_id=b.id)
 			tt = TunjanganKaryawan.objects.get(karyawan_id=b.id)
 
 			gajipokok = g.gajipokok 
-			tunjanganmakan = g.tmakan
+			tunjanganmakan = tt.tmakan
 			makanlembur = g.makanlembur
-			transportnonexec = g.transportnonexec
+			transportnonexec = tt.transportnonexec
 			cicil = 0
 			tovertime = 0
 			pabsen = 0
@@ -129,6 +129,15 @@ def laporangaji(request):
 			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
 
 			ab = Absensi.objects.filter(karyawan_id=b.id).filter(tanggal__range = [mas.tanggal, mas.sd])
+
+			date_format = "%Y-%m-%d"
+			hari = mas.sd - mas.tanggal
+			hari = hari.days
+
+			banyak = len(ab)
+
+			tunjanganmakan = int( tunjanganmakan / hari ) * banyak
+			transportnonexec = int( transportnonexec / hari ) * banyak
 
 			for abi in ab:
 				if abi.SPL == 1:
@@ -164,18 +173,18 @@ def laporangaji(request):
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
 					pabsen = pabsen + 1
 
-			if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
+			if k.golongan.id == 7 or k.golongan.id == 8 :
 				pabsen = pabsen * 10000
-			elif abi.karyawan.golongan.id == 6 or abi.karyawan.golongan.id == 5 :
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
 				pabsen = pabsen * 20000
-			elif abi.karyawan.golongan_id < 5:
+			elif k.golongan_id < 5:
 				pabsen = pabsen * 40000
 
 			wp = 0
 
 			gapok = g.gajipokok
 			status = b.statusmenikah.desc
-			tunjangan = tt.jabatan + tt.kemahalan + g.tmakan + g.transportnonexec
+			tunjangan = g.jabatan + tt.kemahalan + tt.tmakan+ tt.transportnonexec
 			pph = 0
 			bpjs_ks = p.bpjs_ks
 			bpjs_kt = p.bpjs_kt
@@ -227,7 +236,7 @@ def laporangaji(request):
 			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, 
 									b.golongan.name, b.norek + " a.n." + b.atasnama + " " + b.bank.name , 
 									g.gajipokok, b.statusmenikah.name, tunjanganmakan, transportnonexec, tovertime, 
-									tt.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
+									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
 
 	else:
 		listid = [x.strip() for x in idkaryawan.split(',')]
@@ -243,9 +252,9 @@ def laporangaji(request):
 			tt = TunjanganKaryawan.objects.get(karyawan_id=listid[y])
 
 			gajipokok = g.gajipokok 
-			tunjanganmakan = g.tmakan
+			tunjanganmakan = tt.tmakan
 			makanlembur = g.makanlembur
-			transportnonexec = g.transportnonexec
+			transportnonexec = tt.transportnonexec
 
 			cicil = 0
 			tovertime = 0
@@ -260,6 +269,15 @@ def laporangaji(request):
 			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
 
 			ab = Absensi.objects.filter(karyawan_id=b.id).filter(tanggal__range = [mas.tanggal, mas.sd])
+
+			date_format = "%Y-%m-%d"
+			hari = mas.sd - mas.tanggal
+			hari = hari.days
+
+			banyak = len(ab)
+
+			tunjanganmakan = int( tunjanganmakan / hari ) * banyak
+			transportnonexec = int( transportnonexec / hari ) * banyak
 			
 			for abi in ab:
 				if abi.SPL == 1:
@@ -295,16 +313,16 @@ def laporangaji(request):
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
 					pabsen = pabsen + 1
 
-			if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
+			if k.golongan.id == 7 or k.golongan.id == 8 :
 				pabsen = pabsen * 10000
-			elif abi.karyawan.golongan.id == 6 or abi.karyawan.golongan.id == 5 :
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
 				pabsen = pabsen * 20000
-			elif abi.karyawan.golongan_id < 5:
+			elif k.golongan_id < 5:
 				pabsen = pabsen * 40000
 			
 			gapok = g.gajipokok
 			status = k.statusmenikah.desc
-			tunjangan = tt.jabatan + tt.kemahalan + g.tmakan + g.transportnonexec
+			tunjangan = g.jabatan + tt.kemahalan + tt.tmakan+ tt.transportnonexec
 			pph = 0
 			bpjs_ks = p.bpjs_ks
 			bpjs_kt = p.bpjs_kt
@@ -356,7 +374,7 @@ def laporangaji(request):
 			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, 
 									k.golongan.name, k.norek + " a.n." + k.atasnama + " " + k.bank.name ,
 									g.gajipokok, k.statusmenikah.name, tunjanganmakan, transportnonexec,tovertime, 
-									tt.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
+									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
 	objs.pop(0)
 	wb = xlwt.Workbook()
 	ws = wb.add_sheet('Laporan Gaji',cell_overwrite_ok=True)
@@ -400,19 +418,18 @@ def laporangaji(request):
 		ws.write(ob[x].no+y, 11, ob[x].ppinjam)
 		ws.write(ob[x].no+y, 12, ob[x].pkoperasi)
 
-		bpjs_kes_kar = int(float(float(1)/100) * int(ob[x].pbpjs)) # BPJS Kesehatan Karyawan 1%
-		bpjs_kes_per = int(float(float(4)/100) * int(ob[x].pbpjs)) # BPJS Kesehatan Perusahaan 4%
-		bpjs_ktg_kar_jpn = int(float(float(1)/100) * int(ob[x].pbpjs)) # BPJS Ketenagakerjaan Karyawan Jaminan Pensiunan 1%
-		bpjs_ktg_kar_jht = int(float(float(2)/100) * int(ob[x].pbpjs)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
-		bpjs_ktg_per_jpn = int(float(float(2)/100) * int(ob[x].pbpjs)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
-		bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int(ob[x].pbpjs)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
-		bpjs_ktg_per_jht = int(float(float(3.7)/100) * int(ob[x].pbpjs)) # BPJS Ketenagakerjaan Perusahaan Jaminan Hari Tua 3.7%
-		bpjs_ktg_per_jkn = int(float(float(0.3)/100) * int(ob[x].pbpjs)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+		bpjs_kes_kar = int(float(float(1)/100) * int(ob[x].pbpjs_ks)) # BPJS Kesehatan Karyawan 1%
+		bpjs_kes_per = int(float(float(4)/100) * int(ob[x].pbpjs_ks)) # BPJS Kesehatan Perusahaan 4%
+		bpjs_ktg_kar_jpn = int(float(float(1)/100) * int(ob[x].pbpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Pensiunan 1%
+		bpjs_ktg_kar_jht = int(float(float(2)/100) * int(ob[x].pbpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+		bpjs_ktg_per_jpn = int(float(float(2)/100) * int(ob[x].pbpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+		bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int(ob[x].pbpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+		bpjs_ktg_per_jht = int(float(float(3.7)/100) * int(ob[x].pbpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Hari Tua 3.7%
+		bpjs_ktg_per_jkn = int(float(float(0.3)/100) * int(ob[x].pbpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
 		bpjs_kes = bpjs_kes_kar #+ bpjs_kes_per
 		bpjs_ktg = bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht #+ bpjs_ktg_per_jpn + bpjs_ktg_per_jkk + bpjs_ktg_per_jht
 		bpjs_total = bpjs_kes + bpjs_ktg
 
-		ws.write(ob[x].no+y, 13, ob[x].pbpjs)
 		ws.write(ob[x].no+y, 14, ob[x].pph)
 		ws.write(ob[x].no+y, 15, bpjs_kes)
 		ws.write(ob[x].no+y, 16, bpjs_ktg)

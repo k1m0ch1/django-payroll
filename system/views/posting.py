@@ -97,15 +97,15 @@ def postinggaji(request):
 
 		for b in a:
 			y = y + 1
-			#k = Karyawan.objects.get(pk=b.karyawan.id)
+			k = Karyawan.objects.get(pk=b.id)
 			g = GajiPokok.objects.get(karyawan_id=b.id)
 			p = PotonganKaryawan.objects.get(karyawan_id=b.id)
 			tt = TunjanganKaryawan.objects.get(karyawan_id=b.id)
 
 			gajipokok = g.gajipokok 
-			tunjanganmakan = g.tmakan
+			tunjanganmakan = tt.tmakan
 			makanlembur = g.makanlembur
-			transportnonexec = g.transportnonexec
+			transportnonexec = tt.transportnonexec
 			cicil = 0
 			tovertime = 0
 			pabsen = 0
@@ -120,7 +120,14 @@ def postinggaji(request):
 
 			ab = Absensi.objects.filter(karyawan_id=b.id).filter(tanggal__range = [mas.tanggal, mas.sd])
 
+			date_format = "%Y-%m-%d"
+			hari = mas.sd - mas.tanggal
+			hari = hari.days
+
 			banyak = len(ab)
+
+			tunjanganmakan = int( tunjanganmakan / hari ) * banyak
+			transportnonexec = int( transportnonexec / hari ) * banyak
 
 			for abi in ab:
 				if abi.SPL == 1:
@@ -156,21 +163,21 @@ def postinggaji(request):
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
 					pabsen = pabsen + 1
 
-			if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
+			if k.golongan.id == 7 or k.golongan.id == 8 :
 				pabsen = pabsen * 10000
-			elif abi.karyawan.golongan.id == 6 or abi.karyawan.golongan.id == 5 :
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
 				pabsen = pabsen * 20000
-			elif abi.karyawan.golongan_id < 5:
+			elif k.golongan_id < 5:
 				pabsen = pabsen * 40000
 
-			po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id, tovertime=tovertime, pabsen=pabsen)
-			po.save()
+			# po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id, tovertime=tovertime, pabsen=pabsen)
+			# po.save()
 
 			wp = 0
 
 			gapok = g.gajipokok
 			status = b.statusmenikah.desc
-			tunjangan = tt.jabatan + tt.kemahalan + g.tmakan + g.transportnonexec
+			tunjangan = g.jabatan + tt.kemahalan + tt.tmakan+ tt.transportnonexec
 			pph = 0
 			bpjs_ks = p.bpjs_ks
 			bpjs_kt = p.bpjs_kt
@@ -222,7 +229,7 @@ def postinggaji(request):
 			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, 
 									b.golongan.name, b.norek + " a.n." + b.atasnama + " " + b.bank.name , 
 									g.gajipokok, b.statusmenikah.name, tunjanganmakan, transportnonexec, tovertime, 
-									tt.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
+									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
 	else:
 		listid = [x.strip() for x in idkaryawan.split(',')]
 		a = ""
@@ -237,9 +244,9 @@ def postinggaji(request):
 			tt = TunjanganKaryawan.objects.get(karyawan_id=listid[y])
 
 			gajipokok = g.gajipokok 
-			tunjanganmakan = g.tmakan
+			tunjanganmakan = tt.tmakan
 			makanlembur = g.makanlembur
-			transportnonexec = g.transportnonexec
+			transportnonexec = tt.transportnonexec
 
 			cicil = 0
 			tovertime = 0
@@ -255,7 +262,14 @@ def postinggaji(request):
 
 			ab = Absensi.objects.filter(karyawan_id=b.id).filter(tanggal__range = [mas.tanggal, mas.sd])
 			
+			date_format = "%Y-%m-%d"
+			hari = mas.sd - mas.tanggal
+			hari = hari.days
+
 			banyak = len(ab)
+
+			tunjanganmakan = int( tunjanganmakan / hari ) * banyak
+			transportnonexec = int( transportnonexec / hari ) * banyak
 
 			for abi in ab:
 				if abi.SPL == 1:
@@ -291,19 +305,19 @@ def postinggaji(request):
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
 					pabsen = pabsen + 1
 
-			if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
+			if k.golongan.id == 7 or k.golongan.id == 8 :
 				pabsen = pabsen * 10000
-			elif abi.karyawan.golongan.id == 6 or abi.karyawan.golongan.id == 5 :
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
 				pabsen = pabsen * 20000
-			elif abi.karyawan.golongan_id < 5:
+			elif k.golongan_id < 5:
 				pabsen = pabsen * 40000
 
-			po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id,tovertime=tovertime, pabsen=pabsen)
-			po.save()
+			# po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id,tovertime=tovertime, pabsen=pabsen)
+			# po.save()
 
 			gapok = g.gajipokok
 			status = k.statusmenikah.desc
-			tunjangan = tt.jabatan + tt.kemahalan + g.tmakan + g.transportnonexec
+			tunjangan = g.jabatan + tt.kemahalan + tt.tmakan+ tt.transportnonexec
 			pph = 0
 			bpjs_ks = p.bpjs_ks
 			bpjs_kt = p.bpjs_kt
@@ -355,7 +369,7 @@ def postinggaji(request):
 			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, 
 									k.golongan.name, k.norek + " a.n." + k.atasnama + " " + k.bank.name ,
 									g.gajipokok, k.statusmenikah.name, tunjanganmakan, transportnonexec,tovertime, 
-									tt.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
+									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
 
 	objs.pop(0)
 	return render(request,"postinggaji/print.html", { 'data': mantap, 'posting' : objs , "bruto" : bruto})

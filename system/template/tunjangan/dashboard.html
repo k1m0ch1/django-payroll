@@ -72,11 +72,25 @@
       <div class="row">
           <div class="col-md-12"> 
             <div class="col-md-2">
-              <label class="control-label pull-right">Jabatan</label>
+              <label class="control-label pull-right">Makan</label>
             </div> 
             <div class="col-md-2">
               <div class="form-group">
-                  <input type="text" class="form-control" id="jabatan" placeholder="Nilai Mata Uang" value="" />
+                  <input type="text" class="form-control" id="tmakan" placeholder="Nilai Mata Uang" value="" />
+                </div>
+            </div>  
+          </div>
+              
+      </div>
+
+      <div class="row">
+          <div class="col-md-12"> 
+            <div class="col-md-2">
+              <label class="control-label pull-right">Transportasi</label>
+            </div> 
+            <div class="col-md-2">
+              <div class="form-group">
+                  <input type="text" class="form-control" id="transportnonexec" placeholder="Nilai Mata Uang" value="" />
                 </div>
             </div>  
           </div>
@@ -150,7 +164,8 @@
                   <th class="col-md-2">NIK</th>
                   <th class="col-md-2">Nama</th>
                   <th class="col-md-3">MasaTenggang</th>
-                  <th class="col-md-2">Jabatan</th>
+                  <th class="col-md-2">Makan</th>
+                  <th class="col-md-2">Transportasi</th>
                   <th class="col-md-2">Kemahalan</th>
                   <th class="col-md-2">Action</th>
                 </tr>
@@ -159,7 +174,8 @@
                   <td>{{ d.karyawan.NIK }}</td>
                   <td>{{ d.karyawan.name }}</td>
                   <td>{{ d.masatenggangclosing.tanggal|date:"d M Y" }} sd {{ d.masatenggangclosing.sd|date:"d M Y" }}</td>
-                  <td>{{ d.jabatan }}</td>
+                  <td>{{ d.tmakan }}</td>
+                  <td>{{ d.transportnonexec }}</td>
                   <td>{{ d.kemahalan }}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
@@ -266,7 +282,7 @@
         $.ajax({
         type: "POST",
         url: 'http://{{ request.get_host }}/index/api/tunjangan/save',
-        data: {idmas: $("#idmas").val(), idkaryawan: $('#idKaryawan').val(), kemahalan: $('#kemahalan').val(),jabatan: $('#jabatan').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
+        data: {idmas: $("#idmas").val(), idkaryawan: $('#idKaryawan').val(), kemahalan: $('#kemahalan').val(),transportnonexec: $('#transportnonexec').val(),tmakan: $('#tmakan').val() csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Tambah Potongan');
             location.reload();
