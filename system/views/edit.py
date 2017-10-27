@@ -101,10 +101,11 @@ def karyawan_save(request, karyawan_id):
 
 	if len(g)>0:
 		g.update(name="Gaji Pokok ", gajipokok=request.POST['gajipokok'], jumlahhari = request.POST['jumlahhari'],
-					tmakan = request.POST['tmakan'], transportnonexec = request.POST['transportnonexec'])
+					jabatan = request.POST['jabatan'])
 	else:
-		g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], jumlahhari = request.POST['jumlahhari'],	
-					tmakan = request.POST['tmakan'], transportnonexec = request.POST['transportnonexec'])
+		g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], 
+					jumlahhari = request.POST['jumlahhari'], jabatan = request.POST['jabatan'])
+
 		g.save()
 
 	return redirect("karyawan-index")
