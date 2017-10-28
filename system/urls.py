@@ -6,7 +6,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^login$', views.loginpage,  name="loginpage"),
     url(r'^loginrequest$', views.loginrequest, name='loginrequest'),
-    url(r'^logout$', views.logout_view,  name="logout"),
+    url(r'^logout$', views.logout_view,  name="hal-logout"),
 
     url(r'^perusahaan$', views.dashboard.perusahaan_index,  name="perusahaan-index"),
     url(r'^departemen$', views.dashboard.departemen_index,  name="departemen-index"),

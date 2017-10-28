@@ -186,7 +186,7 @@ class Karyawan(models.Model):
 #== around 12 AM, the database will generate this table and then convert it
 
 class Shift(models.Model):
-	name = models.CharField(max_length=25)
+	name = models.CharField(max_length=225)
 	jammasuk = models.TimeField()
 	jamkeluar = models.TimeField()
 	desc = models.TextField()

@@ -435,7 +435,7 @@
         "name": "LOGOUT",
         "fungsi": "Logout",
         "mode": "alone",
-        "url_slug": "logout",
+        "url_slug": "hal-logout",
         "menu": "root",
         "created_at": "2017-03-01 15:03+07"
       }    
