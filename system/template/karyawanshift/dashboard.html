@@ -455,19 +455,19 @@
   $(function () {    
 
     //Date range picker
-    $('#reservation').daterangepicker({ autoUpdateInput: false });
+    $('#reservation').daterangepicker();
 
-    $('#reservationKedua').daterangepicker({ autoUpdateInput: false });
+    $('#reservationKedua').daterangepicker();
 
-    $('#sm1').daterangepicker({ autoUpdateInput: false });
-    $('#sm2').daterangepicker({ autoUpdateInput: false });
-    $('#sm3').daterangepicker({ autoUpdateInput: false });
-    $('#sm4').daterangepicker({ autoUpdateInput: false });
+    $('#sm1').daterangepicker();
+    $('#sm2').daterangepicker();
+    $('#sm3').daterangepicker();
+    $('#sm4').daterangepicker();
 
-    $('#off1').daterangepicker({ autoUpdateInput: false });
-    $('#off2').daterangepicker({ autoUpdateInput: false });
-    $('#off3').daterangepicker({ autoUpdateInput: false });
-    $('#off4').daterangepicker({ autoUpdateInput: false });
+    $('#off1').daterangepicker();
+    $('#off2').daterangepicker();
+    $('#off3').daterangepicker();
+    $('#off4').daterangepicker();
 
     $(document).on('click', ':not(form)[data-confirm]', function(e){
       if(!confirm($(this).data('confirm'))){
