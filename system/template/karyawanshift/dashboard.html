@@ -455,19 +455,59 @@
   $(function () {    
 
     //Date range picker
-    $('#reservation').daterangepicker();
+    $('#reservation').daterangepicker({
+      autoUpdateInput: false
+    }, function(start, end) {
+      $('#reservation').val(start.format('DD-MM-YYYY') + ' s/d ' + end.format('DD-MM-YYYY'));
+    });
 
-    $('#reservationKedua').daterangepicker();
+        $('#reservationKedua').daterangepicker({
+      autoUpdateInput: false
+    }, function(start, end) {
+      $('#reservationKedua').val(start.format('DD-MM-YYYY') + ' s/d ' + end.format('DD-MM-YYYY'));
+    });
 
-    $('#sm1').daterangepicker();
-    $('#sm2').daterangepicker();
-    $('#sm3').daterangepicker();
-    $('#sm4').daterangepicker();
+        $('#sm1').daterangepicker({
+      autoUpdateInput: false
+    }, function(start, end) {
+      $('#sm1').val(start.format('DD-MM-YYYY') + ' s/d ' + end.format('DD-MM-YYYY'));
+    });
+        $('#sm2').daterangepicker({
+      autoUpdateInput: false
+    }, function(start, end) {
+      $('#sm2').val(start.format('DD-MM-YYYY') + ' s/d ' + end.format('DD-MM-YYYY'));
+    });
+        $('#sm3').daterangepicker({
+      autoUpdateInput: false
+    }, function(start, end) {
+      $('#sm3').val(start.format('DD-MM-YYYY') + ' s/d ' + end.format('DD-MM-YYYY'));
+    });
+        $('#sm4').daterangepicker({
+      autoUpdateInput: false
+    }, function(start, end) {
+      $('#sm4').val(start.format('DD-MM-YYYY') + ' s/d ' + end.format('DD-MM-YYYY'));
+    });
 
-    $('#off1').daterangepicker();
-    $('#off2').daterangepicker();
-    $('#off3').daterangepicker();
-    $('#off4').daterangepicker();
+        $('#off1').daterangepicker({
+      autoUpdateInput: false
+    }, function(start, end) {
+      $('#sm1').val(start.format('DD-MM-YYYY') + ' s/d ' + end.format('DD-MM-YYYY'));
+    });
+        $('#off2').daterangepicker({
+      autoUpdateInput: false
+    }, function(start, end) {
+      $('#off2').val(start.format('DD-MM-YYYY') + ' s/d ' + end.format('DD-MM-YYYY'));
+    });
+        $('#off3').daterangepicker({
+      autoUpdateInput: false
+    }, function(start, end) {
+      $('#off3').val(start.format('DD-MM-YYYY') + ' s/d ' + end.format('DD-MM-YYYY'));
+    });
+        $('#off4').daterangepicker({
+      autoUpdateInput: false
+    }, function(start, end) {
+      $('#off4').val(start.format('DD-MM-YYYY') + ' s/d ' + end.format('DD-MM-YYYY'));
+    });
 
     $(document).on('click', ':not(form)[data-confirm]', function(e){
       if(!confirm($(this).data('confirm'))){
