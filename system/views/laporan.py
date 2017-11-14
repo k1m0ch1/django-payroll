@@ -167,30 +167,33 @@ def laporangaji(request):
 								tovertime = tovertime + int(float(1.5 * 20000))
 								tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 20000 )
 
-				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
+				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
 					pabsen = pabsen + 1
 
 			hari = mas.sd - mas.tanggal
 			hari = hari.days
-			
+
 			if k.golongan.id == 7 or k.golongan.id == 8 :
-				tunjanganmakan = int( 20000 / hari ) * banyak
-			    transportnonexec = int( 20000 / hari ) * banyak
-				pabsen = pabsen * 10000
-			elif k.golongan.id == 6 or k.golongan.id == 5 :
-				tunjanganmakan = int( 40000 / hari ) * banyak
-			    transportnonexec = int( 40000 / hari ) * banyak
 				pabsen = pabsen * 20000
-			elif k.golongan_id < 5:
-				tunjanganmakan = int( 60000 / hari ) * banyak
-			    transportnonexec = int( 60000 / hari ) * banyak
+				tunjanganmakan = int( 20000 * hari )
+				transportnonexec = int( 20000 * hari )			
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
 				pabsen = pabsen * 40000
+				tunjanganmakan = int( 40000 * hari ) * banyak
+				transportnonexec = int( 40000 * hari )			
+			elif k.golongan_id < 5:
+				pabsen = pabsen * 60000
+				tunjanganmakan = int( 60000 * hari )
+				transportnonexec = int( 60000 * hari )
+
+			UMUT = 	(tunjanganmakan + transportnonexec)	
+			pabsen = UMUT - pabsen
 
 			wp = 0
 
 			gapok = g.gajipokok
 			status = b.statusmenikah.desc
-			tunjangan = g.jabatan + tt.kemahalan + tunjanganmakan + transportnonexec
+			tunjangan = g.jabatan + tt.kemahalan + UMUT
 			pph = 0
 			bpjs_ks = p.bpjs_ks
 			bpjs_kt = p.bpjs_kt
@@ -313,28 +316,29 @@ def laporangaji(request):
 								tovertime = tovertime + int(float(1.5 * 20000))
 								tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 20000 )
 
-				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
+				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
 					pabsen = pabsen + 1
 
-			hari = mas.sd - mas.tanggal
-			hari = hari.days
-			
 			if k.golongan.id == 7 or k.golongan.id == 8 :
-				tunjanganmakan = int( 20000 / hari ) * banyak
-			    transportnonexec = int( 20000 / hari ) * banyak
-				pabsen = pabsen * 10000
-			elif k.golongan.id == 6 or k.golongan.id == 5 :
-				tunjanganmakan = int( 40000 / hari ) * banyak
-			    transportnonexec = int( 40000 / hari ) * banyak
 				pabsen = pabsen * 20000
-			elif k.golongan_id < 5:
-				tunjanganmakan = int( 60000 / hari ) * banyak
-			    transportnonexec = int( 60000 / hari ) * banyak
+				tunjanganmakan = int( 20000 * hari )
+				transportnonexec = int( 20000 * hari )			
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
 				pabsen = pabsen * 40000
+				tunjanganmakan = int( 40000 * hari ) * banyak
+				transportnonexec = int( 40000 * hari )			
+			elif k.golongan_id < 5:
+				pabsen = pabsen * 60000
+				tunjanganmakan = int( 60000 * hari )
+				transportnonexec = int( 60000 * hari )
+
+			UMUT = 	(tunjanganmakan + transportnonexec)	
+			pabsen = UMUT - pabsen
+
 			
 			gapok = g.gajipokok
 			status = k.statusmenikah.desc
-			tunjangan = g.jabatan + tt.kemahalan + tunjanganmakan + transportnonexec
+			tunjangan = g.jabatan + tt.kemahalan + UMUT
 			pph = 0
 			bpjs_ks = p.bpjs_ks
 			bpjs_kt = p.bpjs_kt

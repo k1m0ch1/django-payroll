@@ -160,24 +160,27 @@ def postinggaji(request):
 								tovertime = tovertime + int(float(1.5 * 20000))
 								tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 20000 )
 
-				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
+				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
 					pabsen = pabsen + 1
 
 			hari = mas.sd - mas.tanggal
 			hari = hari.days
 
 			if k.golongan.id == 7 or k.golongan.id == 8 :
-				tunjanganmakan = int( 20000 / hari ) * banyak
-			    transportnonexec = int( 20000 / hari ) * banyak
-				pabsen = pabsen * 10000
-			elif k.golongan.id == 6 or k.golongan.id == 5 :
-				tunjanganmakan = int( 40000 / hari ) * banyak
-			    transportnonexec = int( 40000 / hari ) * banyak
 				pabsen = pabsen * 20000
-			elif k.golongan_id < 5:
-				tunjanganmakan = int( 60000 / hari ) * banyak
-			    transportnonexec = int( 60000 / hari ) * banyak
+				tunjanganmakan = int( 20000 * hari )
+				transportnonexec = int( 20000 * hari )			
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
 				pabsen = pabsen * 40000
+				tunjanganmakan = int( 40000 * hari ) * banyak
+				transportnonexec = int( 40000 * hari )			
+			elif k.golongan_id < 5:
+				pabsen = pabsen * 60000
+				tunjanganmakan = int( 60000 * hari )
+				transportnonexec = int( 60000 * hari )
+
+			UMUT = 	(tunjanganmakan + transportnonexec)	
+			pabsen = UMUT - pabsen
 
 			# po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id, tovertime=tovertime, pabsen=pabsen)
 			# po.save()
@@ -185,8 +188,10 @@ def postinggaji(request):
 			wp = 0
 
 			gapok = g.gajipokok
+			ga_pok = gapok + UMUT + g.jabatan
+			gatu = ga_pok - pabsen
 			status = b.statusmenikah.desc
-			tunjangan = g.jabatan + tt.kemahalan + tunjanganmakan + transportnonexec
+			tunjangan = g.jabatan + tt.kemahalan + UMUT
 			pph = 0
 			bpjs_ks = p.bpjs_ks
 			bpjs_kt = p.bpjs_kt
@@ -308,31 +313,32 @@ def postinggaji(request):
 								tovertime = tovertime + int(float(1.5 * 20000))
 								tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 20000 )
 
-				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
+				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
 					pabsen = pabsen + 1
 
-			hari = mas.sd - mas.tanggal
-			hari = hari.days
-			
 			if k.golongan.id == 7 or k.golongan.id == 8 :
-				tunjanganmakan = int( 20000 / hari ) * banyak
-			    transportnonexec = int( 20000 / hari ) * banyak
-				pabsen = pabsen * 10000
-			elif k.golongan.id == 6 or k.golongan.id == 5 :
-				tunjanganmakan = int( 40000 / hari ) * banyak
-			    transportnonexec = int( 40000 / hari ) * banyak
 				pabsen = pabsen * 20000
-			elif k.golongan_id < 5:
-				tunjanganmakan = int( 60000 / hari ) * banyak
-			    transportnonexec = int( 60000 / hari ) * banyak
+				tunjanganmakan = int( 20000 * hari )
+				transportnonexec = int( 20000 * hari )			
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
 				pabsen = pabsen * 40000
+				tunjanganmakan = int( 40000 * hari ) * banyak
+				transportnonexec = int( 40000 * hari )			
+			elif k.golongan_id < 5:
+				pabsen = pabsen * 60000
+				tunjanganmakan = int( 60000 * hari )
+				transportnonexec = int( 60000 * hari )
+
+			UMUT = 	(tunjanganmakan + transportnonexec)	
+			pabsen = UMUT - pabsen
+
 
 			# po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id,tovertime=tovertime, pabsen=pabsen)
 			# po.save()
 
 			gapok = g.gajipokok
 			status = k.statusmenikah.desc
-			tunjangan = g.jabatan + tt.kemahalan + tunjanganmakan+ transportnonexec
+			tunjangan = g.jabatan + tt.kemahalan + UMUT
 			pph = 0
 			bpjs_ks = p.bpjs_ks
 			bpjs_kt = p.bpjs_kt
