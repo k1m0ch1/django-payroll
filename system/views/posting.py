@@ -128,44 +128,63 @@ def postinggaji(request):
 			hari = hari.days
 			hl = mas.sd
 
-			banyak = len(ab)			
+			banyak = len(ab)
+
+			if k.jumlahhari == 5 :
+				hari = 21
+				bjam = 8
+			elif k.jumlahhari == 6 :
+				hari = 25
+				bjam = 7			
 
 			for abi in ab:
 				if abi.SPL == 1:
 					hari = abi.created_at.strftime("%A")
+					FMT = '%H:%M:%S'
+					penjumlahan = datetime.datetime.strptime(abi.keluar.strftime("%H:%M:%S"), FMT) - datetime.datetime.strptime(abi.masuk.strftime("%H:%M:%S"), FMT)
+					penjumlahan = (penjumlahan.seconds / 3600)
+					istirahat = ( penjumlahan / 5 )
+					banyakwaktu = penjumlahan - bjam - istirahat
 					if hari == "Minggu" or hari == "Sunday" :
 						hitungot = abi.SPL_banyak
 						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
-							if abi.SPL_banyak <= 7 :
-								tovertime = tovertime + int(float((hitungot * 2) * 10000))
-							elif abi.SPL_banyak > 7 :
+							if banyakwaktu <= 7 :
+								tovertime = tovertime + int(float((banyakwaktu * 2) * 10000))
+							elif banyakwaktu > 7 :
 								tovertime = tovertime + int(float((7 * 2) * 10000))
-								tovertime = tovertime + ( ( ( abi.SPL_banyak - 7 ) * 3 ) * 10000 )
+								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 10000 )
 						elif abi.karyawan.golongan.id < 7 :
-							if abi.SPL_banyak <= 7 :
-								tovertime = tovertime + int(float((hitungot * 2) * 20000))
-							elif abi.SPL_banyak > 7 :
+							if banyakwaktu <= 7 :
+								tovertime = tovertime + int(float((banyakwaktu * 2) * 20000))
+							elif banyakwaktu > 7 :
 								tovertime = tovertime + int(float((7 * 2) * 10000))
-								tovertime = tovertime + ( ( ( abi.SPL_banyak - 7 ) * 3 ) * 20000 )
+								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 20000 )
 					else:
 						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
-							if abi.SPL_banyak <= 1 :
+							if banyakwaktu <= 1 :
 								tovertime = tovertime + int(float(1.5 * 10000))
-							elif abi.SPL_banyak > 1 :
+							elif banyakwaktu > 1 :
 								tovertime = tovertime + int(float(1.5 * 10000))
-								tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 10000 )
+								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 10000 )
 						elif abi.karyawan.golongan.id < 7 :
-							if abi.SPL_banyak >= 1 :
+							if banyakwaktu >= 1 :
 								tovertime = tovertime + int(float(1.5 * 20000))
-							elif abi.SPL_banyak > 1 :
+							elif banyakwaktu > 1 :
 								tovertime = tovertime + int(float(1.5 * 20000))
-								tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 20000 )
+								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 20000 )
 
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
 					pabsen = pabsen + 1
 
-			hari = mas.sd - mas.tanggal
-			hari = hari.days
+			if k.jumlahhari == 5 :
+				hari = 21
+				bjam = 8
+			elif k.jumlahhari == 6 :
+				hari = 25
+				bjam = 7
+				
+			# hari = mas.sd - mas.tanggal
+			# hari = hari.days
 
 			if k.golongan.id == 7 or k.golongan.id == 8 :
 				pabsen = pabsen * 20000
@@ -190,9 +209,21 @@ def postinggaji(request):
 
 			gapok = g.gajipokok
 			ga_pok = gapok + UMUT + g.jabatan
-			gatu = ga_pok - pabsen
+			gatu = ga_pok - UMUT
 			ga_pokii = gatu * (75/100)
 			tunjangan_ii = gatu * (25/100)
+
+			if k.golongan.id == 7 or k.golongan.id == 8 :
+				mangkir = (gatu / hari) + 20000	
+				mangkir = (hari - banyak) * mangkir
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
+				mangkir = (gatu / hari) + 40000		
+				mangkir = (hari - banyak) * mangkir
+			elif k.golongan_id < 5:
+				mangkir = (gatu / hari) + 60000
+				mangkir = (hari - banyak) * mangkir
+
+			ga_pok = ga_pok - mangkir
 
 			status = b.statusmenikah.desc
 			tunjangan = g.jabatan + tt.kemahalan + UMUT
@@ -286,39 +317,56 @@ def postinggaji(request):
 
 			banyak = len(ab)
 
+			if k.jumlahhari == 5 :
+				hari = 21
+				bjam = 8
+			elif k.jumlahhari == 6 :
+				hari = 25
+				bjam = 7
+
 			for abi in ab:
 				if abi.SPL == 1:
 					hari = abi.created_at.strftime("%A")
+					FMT = '%H:%M:%S'
+					penjumlahan = datetime.datetime.strptime(abi.keluar.strftime("%H:%M:%S"), FMT) - datetime.datetime.strptime(abi.masuk.strftime("%H:%M:%S"), FMT)
+					penjumlahan = (penjumlahan.seconds / 3600)
+					istirahat = ( penjumlahan / 5 )
+					banyakwaktu = penjumlahan - bjam - istirahat
 					if hari == "Minggu" or hari == "Sunday" :
 						hitungot = abi.SPL_banyak
 						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
-							if abi.SPL_banyak <= 7 :
-								tovertime = tovertime + int(float((hitungot * 2) * 10000))
-							elif abi.SPL_banyak > 7 :
+							if banyakwaktu <= 7 :
+								tovertime = tovertime + int(float((banyakwaktu * 2) * 10000))
+							elif banyakwaktu > 7 :
 								tovertime = tovertime + int(float((7 * 2) * 10000))
-								tovertime = tovertime + ( ( ( abi.SPL_banyak - 7 ) * 3 ) * 10000 )
+								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 10000 )
 						elif abi.karyawan.golongan.id < 7 :
-							if abi.SPL_banyak <= 7 :
-								tovertime = tovertime + int(float((hitungot * 2) * 20000))
-							elif abi.SPL_banyak > 7 :
+							if banyakwaktu <= 7 :
+								tovertime = tovertime + int(float((banyakwaktu * 2) * 20000))
+							elif banyakwaktu > 7 :
 								tovertime = tovertime + int(float((7 * 2) * 10000))
-								tovertime = tovertime + ( ( ( abi.SPL_banyak - 7 ) * 3 ) * 20000 )
+								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 20000 )
 					else:
 						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
-							if abi.SPL_banyak <= 1 :
+							if banyakwaktu <= 1 :
 								tovertime = tovertime + int(float(1.5 * 10000))
-							elif abi.SPL_banyak > 1 :
+							elif banyakwaktu > 1 :
 								tovertime = tovertime + int(float(1.5 * 10000))
-								tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 10000 )
+								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 10000 )
 						elif abi.karyawan.golongan.id < 7 :
-							if abi.SPL_banyak >= 1 :
+							if banyakwaktu >= 1 :
 								tovertime = tovertime + int(float(1.5 * 20000))
-							elif abi.SPL_banyak > 1 :
+							elif banyakwaktu > 1 :
 								tovertime = tovertime + int(float(1.5 * 20000))
-								tovertime = tovertime + ( ( ( abi.SPL_banyak - 1 ) * 2 ) * 20000 )
+								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 20000 )
 
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
 					pabsen = pabsen + 1
+
+			if k.jumlahhari == 5 :
+				hari = 21
+			elif k.jumlahhari == 6 :
+				hari = 25
 
 			if k.golongan.id == 7 or k.golongan.id == 8 :
 				pabsen = pabsen * 20000
@@ -342,9 +390,21 @@ def postinggaji(request):
 
 			gapok = g.gajipokok
 			ga_pok = gapok + UMUT + g.jabatan
-			gatu = ga_pok - pabsen
+			gatu = ga_pok - UMUT
 			ga_pokii = gatu * (75/100)
 			tunjangan_ii = gatu * (25/100)
+
+			if k.golongan.id == 7 or k.golongan.id == 8 :
+				mangkir = (gatu / hari) + 20000	
+				mangkir = (hari - banyak) * mangkir
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
+				mangkir = (gatu / hari) + 40000		
+				mangkir = (hari - banyak) * mangkir
+			elif k.golongan_id < 5:
+				mangkir = (gatu / hari) + 60000
+				mangkir = (hari - banyak) * mangkir
+
+			ga_pok = ga_pok - mangkir
 
 			status = k.statusmenikah.desc
 			tunjangan = g.jabatan + tt.kemahalan + UMUT
