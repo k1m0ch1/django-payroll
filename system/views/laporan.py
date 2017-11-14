@@ -192,19 +192,24 @@ def laporangaji(request):
 			wp = 0
 
 			gapok = g.gajipokok
+			ga_pok = gapok + UMUT + g.jabatan
+			gatu = ga_pok - pabsen
+			ga_pokii = gatu * (75/100)
+			tunjangan_ii = gatu * (25/100)
+			
 			status = b.statusmenikah.desc
 			tunjangan = g.jabatan + tt.kemahalan + UMUT
 			pph = 0
 			bpjs_ks = p.bpjs_ks
 			bpjs_kt = p.bpjs_kt
 
-			if gapok <= 50000000 :
+			if ga_pok <= 50000000 :
 			  wp = float(float(5)/100) 
-			elif gapok > 50000000 or gapok <= 250000000 :
+			elif ga_pok > 50000000 or ga_pok <= 250000000 :
 			  wp = float(float(15)/100) 
-			elif gapok > 250000000 or gapok <= 500000000 :
+			elif ga_pok > 250000000 or ga_pok <= 500000000 :
 			  wp = float(float(25)/100)
-			elif gapok > 500000000 :
+			elif ga_pok > 500000000 :
 			  wp = float(float(30)/100)
 
 			ptkp = 0
@@ -223,7 +228,7 @@ def laporangaji(request):
 			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
 			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
 			bpjs_kes_per = int(float(float(4)/100) * int(bpjs_ks)) # BPJS Kesehatan Perusahaan 4%
-			bruto = gapok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+			bruto = ga_pok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
 
 			bpjs_ktg_kar_jht = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
 			bpjs_ktg_per_jpn = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
@@ -337,19 +342,24 @@ def laporangaji(request):
 
 			
 			gapok = g.gajipokok
+			ga_pok = gapok + UMUT + g.jabatan
+			gatu = ga_pok - pabsen
+			ga_pokii = gatu * (75/100)
+			tunjangan_ii = gatu * (25/100)
+
 			status = k.statusmenikah.desc
 			tunjangan = g.jabatan + tt.kemahalan + UMUT
 			pph = 0
 			bpjs_ks = p.bpjs_ks
 			bpjs_kt = p.bpjs_kt
 
-			if gapok <= 50000000 :
+			if ga_pok <= 50000000 :
 			  wp = float(float(5)/100) 
-			elif gapok > 50000000 or gapok <= 250000000 :
+			elif ga_pok > 50000000 or ga_pok <= 250000000 :
 			  wp = float(float(15)/100) 
-			elif gapok > 250000000 or gapok <= 500000000 :
+			elif ga_pok > 250000000 or ga_pok <= 500000000 :
 			  wp = float(float(25)/100)
-			elif gapok > 500000000 :
+			elif ga_pok > 500000000 :
 			  wp = float(float(30)/100)
 
 			ptkp = 0
@@ -368,7 +378,7 @@ def laporangaji(request):
 			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
 			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
 			bpjs_kes_per = int(float(float(4)/100) * int(bpjs_ks)) # BPJS Kesehatan Perusahaan 4%
-			bruto = gapok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+			bruto = ga_pok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
 
 			bpjs_ktg_kar_jht = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
 			bpjs_ktg_per_jpn = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
