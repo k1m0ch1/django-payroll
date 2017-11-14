@@ -186,7 +186,7 @@ def postinggaji(request):
 
 			gapok = g.gajipokok
 			status = b.statusmenikah.desc
-			tunjangan = g.jabatan + tt.kemahalan + tt.tmakan+ tt.transportnonexec
+			tunjangan = g.jabatan + tt.kemahalan + tunjanganmakan + transportnonexec
 			pph = 0
 			bpjs_ks = p.bpjs_ks
 			bpjs_kt = p.bpjs_kt
@@ -332,7 +332,7 @@ def postinggaji(request):
 
 			gapok = g.gajipokok
 			status = k.statusmenikah.desc
-			tunjangan = g.jabatan + tt.kemahalan + tt.tmakan+ tt.transportnonexec
+			tunjangan = g.jabatan + tt.kemahalan + tunjanganmakan+ transportnonexec
 			pph = 0
 			bpjs_ks = p.bpjs_ks
 			bpjs_kt = p.bpjs_kt
