@@ -136,9 +136,6 @@ def laporangaji(request):
 
 			banyak = len(ab)
 
-			tunjanganmakan = int( tunjanganmakan / hari ) * banyak
-			transportnonexec = int( transportnonexec / hari ) * banyak
-
 			for abi in ab:
 				if abi.SPL == 1:
 					hari = abi.created_at.strftime("%A")
@@ -173,11 +170,20 @@ def laporangaji(request):
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
 					pabsen = pabsen + 1
 
+			hari = mas.sd - mas.tanggal
+			hari = hari.days
+			
 			if k.golongan.id == 7 or k.golongan.id == 8 :
+				tunjanganmakan = int( 20000 / hari ) * banyak
+			    transportnonexec = int( 20000 / hari ) * banyak
 				pabsen = pabsen * 10000
 			elif k.golongan.id == 6 or k.golongan.id == 5 :
+				tunjanganmakan = int( 40000 / hari ) * banyak
+			    transportnonexec = int( 40000 / hari ) * banyak
 				pabsen = pabsen * 20000
 			elif k.golongan_id < 5:
+				tunjanganmakan = int( 60000 / hari ) * banyak
+			    transportnonexec = int( 60000 / hari ) * banyak
 				pabsen = pabsen * 40000
 
 			wp = 0
@@ -275,9 +281,6 @@ def laporangaji(request):
 			hari = hari.days
 
 			banyak = len(ab)
-
-			tunjanganmakan = int( tunjanganmakan / hari ) * banyak
-			transportnonexec = int( transportnonexec / hari ) * banyak
 			
 			for abi in ab:
 				if abi.SPL == 1:
@@ -313,11 +316,20 @@ def laporangaji(request):
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
 					pabsen = pabsen + 1
 
+			hari = mas.sd - mas.tanggal
+			hari = hari.days
+			
 			if k.golongan.id == 7 or k.golongan.id == 8 :
+				tunjanganmakan = int( 20000 / hari ) * banyak
+			    transportnonexec = int( 20000 / hari ) * banyak
 				pabsen = pabsen * 10000
 			elif k.golongan.id == 6 or k.golongan.id == 5 :
+				tunjanganmakan = int( 40000 / hari ) * banyak
+			    transportnonexec = int( 40000 / hari ) * banyak
 				pabsen = pabsen * 20000
 			elif k.golongan_id < 5:
+				tunjanganmakan = int( 60000 / hari ) * banyak
+			    transportnonexec = int( 60000 / hari ) * banyak
 				pabsen = pabsen * 40000
 			
 			gapok = g.gajipokok

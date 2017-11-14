@@ -103,9 +103,12 @@ def postinggaji(request):
 			tt = TunjanganKaryawan.objects.get(karyawan_id=b.id)
 
 			gajipokok = g.gajipokok 
+
 			tunjanganmakan = tt.tmakan
-			makanlembur = g.makanlembur
 			transportnonexec = tt.transportnonexec
+
+			makanlembur = g.makanlembur
+			
 			cicil = 0
 			tovertime = 0
 			pabsen = 0
@@ -124,10 +127,7 @@ def postinggaji(request):
 			hari = mas.sd - mas.tanggal
 			hari = hari.days
 
-			banyak = len(ab)
-
-			tunjanganmakan = int( tunjanganmakan / hari ) * banyak
-			transportnonexec = int( transportnonexec / hari ) * banyak
+			banyak = len(ab)			
 
 			for abi in ab:
 				if abi.SPL == 1:
@@ -163,11 +163,20 @@ def postinggaji(request):
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
 					pabsen = pabsen + 1
 
+			hari = mas.sd - mas.tanggal
+			hari = hari.days
+
 			if k.golongan.id == 7 or k.golongan.id == 8 :
+				tunjanganmakan = int( 20000 / hari ) * banyak
+			    transportnonexec = int( 20000 / hari ) * banyak
 				pabsen = pabsen * 10000
 			elif k.golongan.id == 6 or k.golongan.id == 5 :
+				tunjanganmakan = int( 40000 / hari ) * banyak
+			    transportnonexec = int( 40000 / hari ) * banyak
 				pabsen = pabsen * 20000
 			elif k.golongan_id < 5:
+				tunjanganmakan = int( 60000 / hari ) * banyak
+			    transportnonexec = int( 60000 / hari ) * banyak
 				pabsen = pabsen * 40000
 
 			# po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id, tovertime=tovertime, pabsen=pabsen)
@@ -268,9 +277,6 @@ def postinggaji(request):
 
 			banyak = len(ab)
 
-			tunjanganmakan = int( tunjanganmakan / hari ) * banyak
-			transportnonexec = int( transportnonexec / hari ) * banyak
-
 			for abi in ab:
 				if abi.SPL == 1:
 					hari = abi.created_at.strftime("%A")
@@ -305,11 +311,20 @@ def postinggaji(request):
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 1:
 					pabsen = pabsen + 1
 
+			hari = mas.sd - mas.tanggal
+			hari = hari.days
+			
 			if k.golongan.id == 7 or k.golongan.id == 8 :
+				tunjanganmakan = int( 20000 / hari ) * banyak
+			    transportnonexec = int( 20000 / hari ) * banyak
 				pabsen = pabsen * 10000
 			elif k.golongan.id == 6 or k.golongan.id == 5 :
+				tunjanganmakan = int( 40000 / hari ) * banyak
+			    transportnonexec = int( 40000 / hari ) * banyak
 				pabsen = pabsen * 20000
 			elif k.golongan_id < 5:
+				tunjanganmakan = int( 60000 / hari ) * banyak
+			    transportnonexec = int( 60000 / hari ) * banyak
 				pabsen = pabsen * 40000
 
 			# po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id,tovertime=tovertime, pabsen=pabsen)
