@@ -60,7 +60,7 @@
     "fields": 
       {
         
-        "name": "Accounting 2",
+        "name": "Legal dan Sekretariat",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }    
@@ -70,7 +70,7 @@
     "fields": 
       {
         
-        "name": "Salah Satu Bagian",
+        "name": "Finance",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }
@@ -81,7 +81,7 @@
     "fields": 
       {
         
-        "name": "Bagian 3",
+        "name": "Humas & Perijinan",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }
@@ -92,7 +92,7 @@
     "fields": 
       {
         
-        "name": "Bagian 2",
+        "name": "HRD & GA",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }
@@ -102,10 +102,38 @@
     "pk": 10,
     "fields": 
       {
-        "name" : "bagian 4",
+        "name" : "Teknik",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }
     
+  }, {
+    "model": "system.bagian",
+    "pk": 11,
+    "fields": 
+      {
+        "name" : "Quality Control",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.bagian",
+    "pk": 12,
+    "fields": 
+      {
+        "name" : "Promotion",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.bagian",
+    "pk": 13,
+    "fields": 
+      {
+        "name" : "Sales & Marketing",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
   }
 ]

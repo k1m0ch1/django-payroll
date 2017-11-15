@@ -73,6 +73,16 @@
     "pk": 8,
     "fields": 
       {
+        "name": "Bank MANDIRI",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }, {
+    "model": "system.bank",
+    "pk": 15,
+    "fields": 
+      {
         "name": "Bank Mandiri",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
@@ -98,5 +108,41 @@
         "created_at": "2017-03-01 15:03+07"
       }
     
+  }, {
+    "model": "system.bank",
+    "pk": 11,
+    "fields": 
+      {
+        "name": "Bank NISP",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.bank",
+    "pk": 12,
+    "fields": 
+      {
+        "name": "Bank Hanna",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.bank",
+    "pk": 13,
+    "fields": 
+      {
+        "name": "Bank BTN",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.bank",
+    "pk": 14,
+    "fields": 
+      {
+        "name": "Bank NIAGA",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
   }
 ]

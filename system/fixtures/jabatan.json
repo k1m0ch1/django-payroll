@@ -1,102 +1,540 @@
 [
   {
     "model": "system.jabatan",
-    "pk": 1,
     "fields": 
       {
-        "name": "Staff",
+        "name": "Assisten Surveyor",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
     "model": "system.jabatan",
-    "pk": 2,
     "fields": 
       {
-        "name": "Supervisor",
+        "name": "Junior Arsitek",
         "desc": "Displaced comminuted supracondylar fracture without intercondylar fracture of right humerus, initial encounter for open fracture",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
     "model": "system.jabatan",
-    "pk": 3,
     "fields": 
       {
-        "name": "Golongan I",
-        "desc": "Malignant neoplasm of unspecified part of unspecified adrenal gland",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
-  }, {
-    "model": "system.jabatan",
-    "pk": 4,
-    "fields": 
-      {
-        "name": "Golongan II",
+        "name": "Senior Admin",
         "desc": "Nondisplaced articular fracture of head of right femur, subsequent encounter for open fracture type IIIA, IIIB, or IIIC with nonunion",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
     "model": "system.jabatan",
-    "pk": 5,
     "fields": 
       {
-        "name": "Golongan I",
+        "name": "Senior Drafter",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
     "model": "system.jabatan",
-    "pk": 6,
     "fields": 
       {
-        "name": "Golongan I-A",
+        "name": "SPV CM",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }    
   }, {
     "model": "system.jabatan",
-    "pk": 7,
     "fields": 
       {
-        "name": "Golongan I-3",
+        "name": "SPV ME",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
     "model": "system.jabatan",
-    "pk": 8,
     "fields": 
       {
-        "name": "Golongan II",
+        "name": "SPV QS",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
     "model": "system.jabatan",
-    "pk": 9,
     "fields": 
       {
-        "name": "Golongan II",
+        "name": "SPV Teknik",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
       }
     
   }, {
     "model": "system.jabatan",
-    "pk": 10,
+
     "fields": 
       {
-        "name": "Golongan I-B",
+        "name": "Adm. Operasional",
         "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
         "created_at": "2017-03-01 15:03+07"
-      }
-    
+      }    
+  }, {
+    "model": "system.jabatan",
+
+    "fields": 
+      {
+        "name": "Admin KPR",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Admin Promosi",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Admin QC",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Admin Teknik",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Administrasi Keamanan",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Arsitek MK",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Ass Surveyor",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Assistant Promotion Manager",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Bid Humas, perijinan & permsl",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Collection",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Customer Service",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Drafter",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Finance Teknik",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Kasir",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "ME",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Messanger",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "OB Site Office",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Office Boy",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Operator BHL",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Operator Dump Truck",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "pengawas Lapangan",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Pengawas Teknik",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Pengawas/Inspector",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Promosi",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Receptionist (Kantor Agent)",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Sales",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Resepsionis",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Sales Administrasi",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Sales Executive",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Sales Marketing",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Sales Transmart",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Senior Admin Finance",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Senior Eksternal",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Senior Staff Admin Legal",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Senior Staff Admin Sales",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "SPV Finance",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "SPV HRD Site",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "SPV KPR",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "SPV Promosi",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "SPV QC",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "SPV Sales Admin",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Staff Admin",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Staff Admin Legal",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Staff Admin Legal & Data",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Staff Admin Legal & Sekertariat",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Staff Design Grafis",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Staff Finance",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Staff Legal",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Staff ME",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Staff Retensi",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Supervisor Agent Galuh M",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Supervisor Coorp Sales",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Supervisor Sales",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Supir",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Supir (Sales Inhouse)",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Supir Site Office",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  }, {
+    "model": "system.jabatan",
+    "fields": 
+      {
+        "name": "Surveyor",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }    
   }
 ]
