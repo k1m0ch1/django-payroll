@@ -13,7 +13,7 @@ class Command(BaseCommand):
  	# parser.add_argument("pile", type=argparse.FileType(), required=True)
 
   def handle(self, *args, **options):
-  	wb = load_workbook(filename ="E:\mantap.xlsx")
+  	wb = load_workbook(filename ="payroll-template.xlsx")
   	ax = wb['Sheet1']
 
   	y = 3
