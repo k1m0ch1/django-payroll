@@ -3,6 +3,14 @@
 		"model" : "system.Perusahaan",
 		"pk" : 1,
 		"fields" : {
+			"name" : "Perusahaan Dummy",
+			"desc" : "Perusahaan Galuh Mas Citarum",
+			"created_at" : "2017-03-01 12:01:15"
+		}
+	},{
+		"model" : "system.Perusahaan",
+		"pk" : 2,
+		"fields" : {
 			"name" : "PT. Galuh Mas Citarum",
 			"desc" : "Perusahaan Galuh Mas Citarum",
 			"created_at" : "2017-03-01 12:01:15"
