@@ -23,6 +23,497 @@ modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
 
 @login_required()
+def laporanbpjs(request):
+
+	style0 = xlwt.easyxf('font: name Times New Roman, color-index red, bold on',
+    					 num_format_str='#,##0.00')
+	style1 = xlwt.easyxf(num_format_str='D-MMM-YY')
+
+	objs = [0]
+
+	class bpjs(object):
+			no = 0
+			kpj = 0
+			nik = ""
+			nama = ""
+			sex = ""
+			kpjkk = 0
+			kpjht = 0
+			kpjkm = 0
+			kpjp = 0
+			totala = 0
+			kpkes = 0
+			totalb = 0
+			kkjht = 0
+			kkjp = 0
+			totalc = 0	
+			kkkes = 0 
+			totald = 0		
+
+			def __init__(self, no, kpj, nik, nama, sex, kpjkk, kpjht, kpjkm, kpjp, totala,
+						 kpkes, totalb, kkjht, kkjp, totalc, kkkes, totald):
+				self.no = no
+				self.kpj = kpj
+				self.nik = nik
+				self.nama = nama
+				self.sex = sex
+				self.kpjkk = kpjkk
+				self.kpjht = kpjht
+				self.kpjkm = kpjkm
+				self.kpjp = kpjp
+				self.totala = totala
+				self.kpkes = kpkes
+				self.totalb = totalb
+				self.kkjht = kkjht
+				self.kkjp = kkjp
+				self.totalc = totalc
+				self.kkkes = kkkes
+				self.totald = totald
+				
+
+	today = datetime.datetime.now()
+	idkaryawan = request.POST['idkaryawan']
+	masatenggangclosing = request.POST['masatenggangclosing']
+	mas = MasaTenggangClosing.objects.get(pk=masatenggangclosing)
+	if idkaryawan.find("&") != -1 :
+		listid = [x.strip() for x in idkaryawan.split('&')]
+		a= ""
+		mantap = ""
+	
+		a = Karyawan.objects
+		if listid[0] != "":
+			a = a.filter(perusahaan=listid[0])
+
+		if listid[1] != "":
+			a = a.filter(departemen=listid[1])
+
+		if listid[2] != "":
+			a = a.filter(bagian=listid[2])
+
+		if listid[3] != "":
+			a = a.filter(golongan=listid[3])
+
+		#a = a.filter(tanggal__year=today.year).filter(tanggal__month=4)
+
+		y = 0
+
+		objs = [range(len(a))]
+
+		for b in a:
+			y = y + 1
+			k = Karyawan.objects.get(pk=b.id)
+			g = GajiPokok.objects.get(karyawan_id=b.id)
+			p = PotonganKaryawan.objects.get(karyawan_id=b.id)
+			tt = TunjanganKaryawan.objects.get(karyawan_id=b.id)
+
+			gajipokok = g.gajipokok 
+			tunjanganmakan = tt.tmakan
+			makanlembur = g.makanlembur
+			transportnonexec = tt.transportnonexec
+			cicil = 0
+			tovertime = 0
+			pabsen = 0
+
+			if p.cicil_pinjkaryawan > 0 :
+				cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
+				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
+				pe.update(cicil_pinjkaryawan=p.cicil_pinjkaryawan-1)
+
+			# for x in a:
+			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
+
+			ab = Absensi.objects.filter(karyawan_id=b.id).filter(tanggal__range = [mas.tanggal, mas.sd])
+
+			date_format = "%Y-%m-%d"
+			hari = mas.sd - mas.tanggal
+			hari = hari.days
+
+			banyak = len(ab)
+
+			for abi in ab:
+				if abi.SPL == 1:
+					hari = abi.created_at.strftime("%A")
+					FMT = '%H:%M:%S'
+					penjumlahan = datetime.datetime.strptime(abi.keluar.strftime("%H:%M:%S"), FMT) - datetime.datetime.strptime(abi.masuk.strftime("%H:%M:%S"), FMT)
+					penjumlahan = (penjumlahan.seconds / 3600)
+					istirahat = ( penjumlahan / 5 )
+					banyakwaktu = penjumlahan - bjam - istirahat
+					if hari == "Minggu" or hari == "Sunday" :
+						hitungot = abi.SPL_banyak
+						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
+							if banyakwaktu <= 7 :
+								tovertime = tovertime + int(float((banyakwaktu * 2) * 10000))
+							elif banyakwaktu > 7 :
+								tovertime = tovertime + int(float((7 * 2) * 10000))
+								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 10000 )
+						elif abi.karyawan.golongan.id < 7 :
+							if banyakwaktu <= 7 :
+								tovertime = tovertime + int(float((banyakwaktu * 2) * 20000))
+							elif banyakwaktu > 7 :
+								tovertime = tovertime + int(float((7 * 2) * 10000))
+								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 20000 )
+					else:
+						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
+							if banyakwaktu <= 1 :
+								tovertime = tovertime + int(float(1.5 * 10000))
+							elif banyakwaktu > 1 :
+								tovertime = tovertime + int(float(1.5 * 10000))
+								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 10000 )
+						elif abi.karyawan.golongan.id < 7 :
+							if banyakwaktu >= 1 :
+								tovertime = tovertime + int(float(1.5 * 20000))
+							elif banyakwaktu > 1 :
+								tovertime = tovertime + int(float(1.5 * 20000))
+								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 20000 )
+
+				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
+					pabsen = pabsen + 1
+
+			if k.jumlahhari == 5 :
+				hari = 21
+			elif k.jumlahhari == 6 :
+				hari = 25
+
+			# hari = mas.sd - mas.tanggal
+			# hari = hari.days
+
+			if k.golongan.id == 7 or k.golongan.id == 8 :
+				pabsen = pabsen * 20000
+				tunjanganmakan = int( 20000 * hari )
+				transportnonexec = int( 20000 * hari )			
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
+				pabsen = pabsen * 40000
+				tunjanganmakan = int( 40000 * hari ) * banyak
+				transportnonexec = int( 40000 * hari )			
+			elif k.golongan_id < 5:
+				pabsen = pabsen * 60000
+				tunjanganmakan = int( 60000 * hari )
+				transportnonexec = int( 60000 * hari )
+
+			UMUT = 	(tunjanganmakan + transportnonexec)	
+			pabsen = UMUT - pabsen
+
+			wp = 0
+
+			gapok = g.gajipokok
+			ga_pok = gapok + UMUT + g.jabatan
+			gatu = ga_pok - UMUT
+			ga_pokii = gatu * (75/100)
+			tunjangan_ii = gatu * (25/100)
+
+			if k.golongan.id == 7 or k.golongan.id == 8 :
+				mangkir = (gatu / hari) + 20000	
+				mangkir = (hari - banyak) * mangkir
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
+				mangkir = (gatu / hari) + 40000		
+				mangkir = (hari - banyak) * mangkir
+			elif k.golongan_id < 5:
+				mangkir = (gatu / hari) + 60000
+				mangkir = (hari - banyak) * mangkir
+
+			ga_pok = ga_pok - mangkir
+
+			status = b.statusmenikah.desc
+			tunjangan = g.jabatan + tt.kemahalan + UMUT
+			pph = 0
+			bpjs_ks = p.bpjs_ks
+			bpjs_kt = p.bpjs_kt
+
+			if ga_pok <= 50000000 :
+			  wp = float(float(5)/100) 
+			elif ga_pok > 50000000 or ga_pok <= 250000000 :
+			  wp = float(float(15)/100) 
+			elif ga_pok > 250000000 or ga_pok <= 500000000 :
+			  wp = float(float(25)/100)
+			elif ga_pok > 500000000 :
+			  wp = float(float(30)/100)
+
+			ptkp = 0
+
+			if status == "Lajang Tanpa Tanggungan" :
+			  ptkp = 54000000
+			elif status == "Lajang 1 Tanggungan" or status == "Menikah Tanpa Tanggungan" :
+			  ptkp = 58500000
+			elif status ==  "Lajang 2 Tanggungan" or status == "Menikah 1 Tanggungan" :
+			  ptkp = 63000000
+			elif status == "Menikah 2 Tanggungan" :
+			  ptkp = 67500000
+			elif status == "Menikah 3 Tanggungan" :
+			  ptkp = 72000000
+
+			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+			bpjs_kes_per = int(float(float(4)/100) * int(bpjs_ks)) # BPJS Kesehatan Perusahaan 4%
+			bruto = ga_pok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+
+			bpjs_ktg_kar_jht = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%	
+			bpjs_ktg_per_jpn = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+
+			kpjkk = bpjs_ktg_per_jkk
+			kpjht = int(float(float(3.70)/100) * int( bpjs_kt))
+			kpjkm = bpjs_ktg_per_jkm
+			kpjp = int(float(float(2)/100) * int( bpjs_kt))
+			totala = kpjkk + kpjht + kpjkm + kpjp
+			kpkes = bpjs_kes_per
+			totalb = totala + kpkes
+			kkjht = int(float(float(2)/100) * int( bpjs_kt))
+			kkjp = int(float(float(1)/100) * int( bpjs_kt))
+			totalc = kkjht + kkjp
+			kkkes = int(float(float(1)/100) * int( bpjs_ks))
+			totald = totalc + kkkes
+
+			ph_netto_sebulan = bruto - ( (int(float(float(5)/100) * int(bruto))) + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn )
+
+			ph_netto_setahun = ph_netto_sebulan * 12
+
+			ph_kena_pajak = ph_netto_setahun - ptkp
+
+			pph_terhutang = int(wp * int(ph_kena_pajak))
+
+			pph = pph_terhutang / 12
+			pph = 0 if pph < 0 else pph
+
+			if b.NPWP == 0 or b.NPWP == None :
+				pph = int(float(float(120)/100) * int(pph))
+			
+			objs.append(bpjs(y, b.NIK, b.NIK, b.kpj, b.name, 
+									b.gender, kpjkk, kpjht, kpjkm, kpjp, 
+									totala, kpkes, totalb, kkjht, kkjp, totalc, kkkes, totald))
+
+	else:
+		listid = [x.strip() for x in idkaryawan.split(',')]
+		a = ""
+		mantap = ""
+		objs = [range(0, len(listid)-1)]
+
+		for y in range(0, len(listid)-1):
+			a = Absensi.objects.filter(karyawan=listid[y]).filter(tanggal__year=today.year).filter(tanggal__month=4)
+			k = Karyawan.objects.get(pk=listid[y])
+			g = GajiPokok.objects.get(karyawan_id=listid[y])
+			p = PotonganKaryawan.objects.get(karyawan_id=listid[y])
+			tt = TunjanganKaryawan.objects.get(karyawan_id=listid[y])
+
+			gajipokok = g.gajipokok 
+			tunjanganmakan = tt.tmakan
+			makanlembur = g.makanlembur
+			transportnonexec = tt.transportnonexec
+
+			cicil = 0
+			tovertime = 0
+			pabsen = 0
+
+			if p.cicil_pinjkaryawan > 0 :
+				cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
+				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
+				pe.update(cicil_pinjkaryawan=p.cicil_pinjkaryawan-1)
+
+			# for x in a:
+			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
+
+			ab = Absensi.objects.filter(karyawan_id=b.id).filter(tanggal__range = [mas.tanggal, mas.sd])
+
+			date_format = "%Y-%m-%d"
+			hari = mas.sd - mas.tanggal
+			hari = hari.days
+
+			banyak = len(ab)
+			
+			for abi in ab:
+				if abi.SPL == 1:
+					hari = abi.created_at.strftime("%A")
+					FMT = '%H:%M:%S'
+					penjumlahan = datetime.datetime.strptime(abi.keluar.strftime("%H:%M:%S"), FMT) - datetime.datetime.strptime(abi.masuk.strftime("%H:%M:%S"), FMT)
+					penjumlahan = (penjumlahan.seconds / 3600)
+					istirahat = ( penjumlahan / 5 )
+					banyakwaktu = penjumlahan - bjam - istirahat
+					if hari == "Minggu" or hari == "Sunday" :
+						hitungot = abi.SPL_banyak
+						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
+							if banyakwaktu <= 7 :
+								tovertime = tovertime + int(float((banyakwaktu * 2) * 10000))
+							elif banyakwaktu > 7 :
+								tovertime = tovertime + int(float((7 * 2) * 10000))
+								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 10000 )
+						elif abi.karyawan.golongan.id < 7 :
+							if banyakwaktu <= 7 :
+								tovertime = tovertime + int(float((banyakwaktu * 2) * 20000))
+							elif banyakwaktu > 7 :
+								tovertime = tovertime + int(float((7 * 2) * 10000))
+								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 20000 )
+					else:
+						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
+							if banyakwaktu <= 1 :
+								tovertime = tovertime + int(float(1.5 * 10000))
+							elif banyakwaktu > 1 :
+								tovertime = tovertime + int(float(1.5 * 10000))
+								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 10000 )
+						elif abi.karyawan.golongan.id < 7 :
+							if banyakwaktu >= 1 :
+								tovertime = tovertime + int(float(1.5 * 20000))
+							elif banyakwaktu > 1 :
+								tovertime = tovertime + int(float(1.5 * 20000))
+								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 20000 )
+
+				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
+					pabsen = pabsen + 1
+
+			if k.jumlahhari == 5 :
+				hari = 21
+			elif k.jumlahhari == 6 :
+				hari = 25
+
+			if k.golongan.id == 7 or k.golongan.id == 8 :
+				pabsen = pabsen * 20000
+				tunjanganmakan = int( 20000 * hari )
+				transportnonexec = int( 20000 * hari )			
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
+				pabsen = pabsen * 40000
+				tunjanganmakan = int( 40000 * hari ) * banyak
+				transportnonexec = int( 40000 * hari )			
+			elif k.golongan_id < 5:
+				pabsen = pabsen * 60000
+				tunjanganmakan = int( 60000 * hari )
+				transportnonexec = int( 60000 * hari )
+
+			UMUT = 	(tunjanganmakan + transportnonexec)	
+			pabsen = UMUT - pabsen
+
+			if k.golongan.id == 7 or k.golongan.id == 8 :
+				mangkir = (gatu / hari) + 20000	
+				mangkir = (hari - banyak) * mangkir
+			elif k.golongan.id == 6 or k.golongan.id == 5 :
+				mangkir = (gatu / hari) + 40000		
+				mangkir = (hari - banyak) * mangkir
+			elif k.golongan_id < 5:
+				mangkir = (gatu / hari) + 60000
+				mangkir = (hari - banyak) * mangkir
+
+			ga_pok = ga_pok - mangkir
+			
+			gapok = g.gajipokok
+			ga_pok = gapok + UMUT + g.jabatan
+			gatu = ga_pok - UMUT
+			ga_pokii = gatu * (75/100)
+			tunjangan_ii = gatu * (25/100)
+
+			status = k.statusmenikah.desc
+			tunjangan = g.jabatan + tt.kemahalan + UMUT
+			pph = 0
+			bpjs_ks = p.bpjs_ks
+			bpjs_kt = p.bpjs_kt
+
+			if ga_pok <= 50000000 :
+			  wp = float(float(5)/100) 
+			elif ga_pok > 50000000 or ga_pok <= 250000000 :
+			  wp = float(float(15)/100) 
+			elif ga_pok > 250000000 or ga_pok <= 500000000 :
+			  wp = float(float(25)/100)
+			elif ga_pok > 500000000 :
+			  wp = float(float(30)/100)
+
+			ptkp = 0
+
+			if status == "Lajang Tanpa Tanggungan" :
+			  ptkp = 54000000
+			elif status == "Lajang 1 Tanggungan" or status == "Menikah Tanpa Tanggungan" :
+			  ptkp = 58500000
+			elif status ==  "Lajang 2 Tanggungan" or status == "Menikah 1 Tanggungan" :
+			  ptkp = 63000000
+			elif status == "Menikah 2 Tanggungan" :
+			  ptkp = 67500000
+			elif status == "Menikah 3 Tanggungan" :
+			  ptkp = 72000000
+
+			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+			bpjs_kes_per = int(float(float(4)/100) * int(bpjs_ks)) # BPJS Kesehatan Perusahaan 4%
+			bruto = ga_pok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+
+			bpjs_ktg_kar_jht = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
+			bpjs_ktg_per_jpn = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+
+			kpjkk = bpjs_ktg_per_jkk
+			kpjht = int(float(float(3.70)/100) * int( bpjs_kt))
+			kpjkm = bpjs_ktg_per_jkm
+			kpjp = int(float(float(2)/100) * int( bpjs_kt))
+			totala = kpjkk + kpjht + kpjkm + kpjp
+			kpkes = bpjs_kes_per
+			totalb = totala + kpkes
+			kkjht = int(float(float(2)/100) * int( bpjs_kt))
+			kkjp = int(float(float(1)/100) * int( bpjs_kt))
+			totalc = kkjht + kkjp
+			kkkes = int(float(float(1)/100) * int( bpjs_ks))
+			totald = totalc + kkkes
+
+			ph_netto_sebulan = bruto - ( (int(float(float(5)/100) * int(bruto))) + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn )
+
+			ph_netto_setahun = ph_netto_sebulan * 12
+
+			ph_kena_pajak = ph_netto_setahun - ptkp
+
+			pph_terhutang = int(wp * int(ph_kena_pajak))
+
+			pph = pph_terhutang / 12
+			pph = 0 if pph < 0 else pph
+
+			if k.NPWP == 0 or k.NPWP == None :
+				pph = int(float(float(120)/100) * int(pph))
+			
+			objs.append(bpjs(y, k.NIK, k.NIK, k.kpj, k.name, 
+									k.gender, kpjkk, kpjht, kpjkm, kpjp, 
+									totala, kpkes, totalb, kkjht, kkjp, totalc, kkkes, totald))
+	objs.pop(0)
+	wb = xlwt.Workbook()
+	ws = wb.add_sheet('Laporan Gaji',cell_overwrite_ok=True)
+
+	ws.write(1, 6, "Laporan BPJS")
+	ws.write(2, 6, "Periode " + mas.name)
+	ws.write(4, 1, "No")
+	ws.write(4, 2, "KPJ")
+	ws.write(4, 3, "NIK")
+	ws.write(4, 4, "Nama")
+	ws.write(4, 5, "Sex")
+	ws.write(4, 6, "KP JKK")
+	ws.write(4, 7, "KP JHT")
+	ws.write(4, 8, "KP JKM")
+	ws.write(4, 9, "KP JP")
+	ws.write(4, 10, "Total")
+	ws.write(4, 11, "KP Kesehatan")
+	ws.write(4, 12, "Total KP")
+	ws.write(4, 13, "KK JHT")
+	ws.write(4, 14, "KK JP")
+	ws.write(4, 15, "Total")
+	ws.write(4, 16, "KK Kesehatan")
+	ws.write(4, 17, "Total KK")
+
+	y=4
+
+	ob = objs
+
+	for x in range(1, len(objs)):
+		ws.write(ob[x].no+y, 1, ob[x].no)
+		ws.write(ob[x].no+y, 2, ob[x].kpj)
+		ws.write(ob[x].no+y, 3, ob[x].nik)
+		ws.write(ob[x].no+y, 4, ob[x].nama)
+		ws.write(ob[x].no+y, 5, ob[x].sex)
+		ws.write(ob[x].no+y, 6, ob[x].kpjkk)
+		ws.write(ob[x].no+y, 7, ob[x].kpjht)
+		ws.write(ob[x].no+y, 8, ob[x].kpjkm)
+		ws.write(ob[x].no+y, 9, ob[x].kpjp)
+		ws.write(ob[x].no+y, 10, ob[x].totala)
+		ws.write(ob[x].no+y, 11, ob[x].kpkes)
+		ws.write(ob[x].no+y, 12, ob[x].totalb)
+		ws.write(ob[x].no+y, 13, ob[x].kkjht)
+		ws.write(ob[x].no+y, 14, ob[x].kkjp)
+		ws.write(ob[x].no+y, 15, ob[x].totalc)
+		ws.write(ob[x].no+y, 16, ob[x].kkkes)
+		ws.write(ob[x].no+y, 17, ob[x].totald)
+
+	wb.save("laporan/bpjs/LAPORAN GAJI " + mas.name + ' ' + mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'-' + datetime.datetime.now().strftime("%d%m%Y-%H%M%S") + '.xls')
+
+	return redirect("laporanbpjs-index")
+
+@login_required()
 def laporangaji(request):
 
 	style0 = xlwt.easyxf('font: name Times New Roman, color-index red, bold on',

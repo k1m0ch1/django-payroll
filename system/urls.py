@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^laporan/absensi$', views.dashboard.laporanabsensi_index, name="laporanabsensi-index"),
     url(r'^laporan/pinjaman/karyawan$', views.dashboard.laporanpinjamankaryawan_index, name="laporanpinjamankaryawan-index"),
     url(r'^laporan/datakaryawan$', views.dashboard.datakaryawan_index, name="datakaryawan-index"),
+    url(r'^laporan/bpjs$', views.dashboard.laporanbpjs_index, name="laporanbpjs-index"),
     url(r'^tunjangankaryawan$', views.dashboard.tunjangankaryawan_index, name="tunjangankaryawan-index"),    
     url(r'^bpjs$', views.dashboard.bpjs_index, name="bpjs-index"),
     url(r'^ptkp$', views.dashboard.ptkp_index, name="ptkp-index"),
@@ -104,6 +105,7 @@ urlpatterns = [
     url(r'^laporan/gaji/do$', views.laporan.laporangaji, name="laporangaji-do"),
     url(r'^laporan/datakaryawan/do$', views.datakaryawan.awal, name="datakaryawan-do"),
     url(r'^laporan/absensi/do$', views.laporan.laporanabsensi, name="laporanabsensi-do"),
+    url(r'^laporan/bpjs/do$', views.laporan.laporanbpjs, name="laporanbpjs-do"),
 
     #==eof-create
     #==edit

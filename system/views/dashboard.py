@@ -337,6 +337,27 @@ def laporangaji_index(request):
 															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
+def laporanbpjs_index(request):
+	k = Karyawan.objects.all()
+	dep = Departemen.objects.all()
+	bag = Bagian.objects.all()
+	gol = Golongan.objects.all()
+	per = Perusahaan.objects.all()
+	jab = Jabatan.objects.all()
+	mas = MasaTenggangClosing.objects.all()
+
+	filePath = Path("./laporan/bpjs/")
+	files = []
+	if filePath.is_dir():
+		#mtime = lambda f: os.stat(os.path.join("./laporan/gaji/", f)).st_mtime
+		#file = list(sorted(os.listdir("./laporan/gaji/"), key=mtime))
+	    files = list(x for x in filePath.iterdir() if x.is_file())
+
+	return render(request, "laporan-bpjs/dashboard.html", { 'files': files, 'mas' : mas, 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+															 'golongan' : gol, 'jabatan' : jab,
+															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
 def datakaryawan_index(request):
 	k = Karyawan.objects.all()
 	dep = Departemen.objects.all()
