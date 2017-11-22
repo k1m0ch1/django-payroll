@@ -6,3 +6,4 @@ from delete import *
 from search import *
 from posting import *
 from laporan import *
+from datakaryawan import *
