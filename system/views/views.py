@@ -6,14 +6,31 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from system.models import Perusahaan, Departemen, Modules, Karyawan, Konfigurasi
+from system.models import Perusahaan, Departemen, Modules, Karyawan, Konfigurasi, IzinCuti, Absensi
+from datetime import datetime, timedelta
 
 modules = Modules.objects.all()
 
 @login_required()
 def index(request):
 	banyak = Karyawan.objects.all().count()
-	dataPayroll = { 'dsb' : modules, 'banyakKaryawan' :  banyak }
+	banyakcuti = IzinCuti.objects.filter(tglmulai__month = datetime.now().month ).count()
+	banyakabsenkemaren = Absensi.objects.filter(tanggal__day = datetime.now().day - 1).count()
+	hariiniabsen = Absensi.objects.filter(tanggal__day = datetime.now().day).count()
+	bulanabsen = ""
+	for x in range(0,12):
+		bulanabsen = str(Absensi.objects.filter(tanggal__month = x).count()) + ", " + str(bulanabsen)
+
+	bulancuti = ""
+	for x in range(0, 12):
+		bulancuti = "["+ str(int(x+2)) + ", " + str(IzinCuti.objects.filter(tglmulai__month = x+1 ).count()) + "], " + str(bulancuti)
+
+	mauabis = Karyawan.objects.filter(masakaryawan__range = [ datetime.now(), ( datetime.now() + timedelta(days=7))])
+
+	dataPayroll = { 'dsb' : modules, 'banyakKaryawan' :  banyak , 'banyakCuti' : banyakcuti, 
+					'banyakabsenkemaren' : banyakabsenkemaren, 'hariiniabsen' : hariiniabsen,
+					'bulanabsen' : bulanabsen, 'bulancuti': bulancuti,
+					'mauabis' : mauabis}
 	return render(request, "dashboard.html", dataPayroll)
 
 def loginpage(request):
