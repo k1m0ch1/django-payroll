@@ -436,7 +436,7 @@
         "fungsi": "Pengaturan Aplikasi",
         "mode": "alone",
         "menu": "root",
-        "url_slug" : "konfigurasi-index",
+        "url_slug" : "konfigurasi",
         "created_at": "2017-03-01 15:03+07"
       }    
   }, {

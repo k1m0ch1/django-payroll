@@ -100,7 +100,18 @@ def karyawan_save(request):
 	# 	if conn:
 	# 		conn.disconnect()
 
-	k = Karyawan(NIK = request.POST['NIK'], name = nama,
+	banyakpegawai = Karyawan.objects.filter(tanggalmasuk__year=ax['K' + str(y)].value.strftime("%Y"), tanggalmasuk__month=ax['K' + str(y)].value.strftime("%m"))
+	banyakpegawai = len(banyakpegawai)+1
+	jarak = "000"
+	if banyakpegawai > 9 :
+		jarak = "00"
+	elif banyakpegawai > 99 :
+		jarak = "0"
+	elif banyakpegawai > 999 :
+		jarak = "" 
+
+	NIK = "GC" + str(request.POST['golongan']) + parse(request.POST['tanggalmasuk']).strftime("%Y")[2:] + parse(request.POST['tanggalmasuk']).strftime("%m") + jarak + str(banyakpegawai)
+	k = Karyawan(NIK = NIK, name = nama,
 					shortname = request.POST['nama1'], tempatlahir = request.POST['tempatlahir'],
 					tanggallahir = parse(request.POST['tanggallahir']).strftime("%Y-%m-%d"), gender = request.POST['gender'],
 					alamat = request.POST['alamat'], kota = request.POST['kota'],

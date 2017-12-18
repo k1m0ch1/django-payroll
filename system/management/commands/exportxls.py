@@ -18,7 +18,7 @@ class Command(BaseCommand):
 
   	y = 3
   	for x in range(3,128):
-  		banyakpegawai = Karyawan.objects.filter(tanggalmasuk__year=ax['K' + str(y)].value.strftime("%Y"))
+  		banyakpegawai = Karyawan.objects.filter(tanggalmasuk__year=ax['K' + str(y)].value.strftime("%Y"), tanggalmasuk__month=ax['K' + str(y)].value.strftime("%m"))
 	  	banyakpegawai = len(banyakpegawai)+1
 	  	jarak = "000"
 	  	if banyakpegawai > 9 :
