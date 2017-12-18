@@ -17,7 +17,7 @@ class Command(BaseCommand):
   	ax = wb['Sheet1']
 
   	y = 3
-  	for x in range(3,128):
+  	for x in range(3,417):
   		banyakpegawai = Karyawan.objects.filter(tanggalmasuk__year=ax['K' + str(y)].value.strftime("%Y"), tanggalmasuk__month=ax['K' + str(y)].value.strftime("%m"))
 	  	banyakpegawai = len(banyakpegawai)+1
 	  	jarak = "000"
@@ -34,14 +34,31 @@ class Command(BaseCommand):
 	  	norek = str(ax['T' + str(y)].value)
 	  	bank = Bank.objects.get(name="Bank " + str(ax['S' + str(y)].value))
 	  	jumlahhari = ax['Z' + str(y)].value
-	  	dp = Departemen.objects.get(name=str(ax['AD' + str(y)].value))
-	  	bg = Bagian.objects.get(name=str(ax['AE' + str(y)].value))
-	  	ps = Perusahaan.objects.get(name=str(ax['AC' + str(y)].value))
+	  	try:
+	  		dp = Departemen.objects.get(name=str(ax['AD' + str(y)].value))
+	  	except Departemen.DoesNotExist:
+	  		dp = Departemen(name=str(ax['AD' + str(y)].value), desc=str(ax['AD' + str(y)].value))
+			dp.save()
+
+		try:
+	  		bg = Bagian.objects.get(name=str(ax['AE' + str(y)].value))
+	  	except Bagian.DoesNotExist:
+	  		bg = Bagian(name=str(ax['AE' + str(y)].value), desc=str(ax['AE' + str(y)].value))
+			bg.save()
+
+		try:
+	  		ps = Perusahaan.objects.get(name=str(ax['AC' + str(y)].value))
+	  	except Perusahaan.DoesNotExist:
+	  		ps = Perusahaan(name=str(ax['AC' + str(y)].value), desc=str(ax['AC' + str(y)].value))
+			ps.save()
+
 	  	try:
 	  		jb = Jabatan.objects.get(name=str(ax['AG' + str(y)].value))
 	  		jb = jb.id
 	  	except Jabatan.DoesNotExist:
-	  		jb = ""
+	  		jb = Jabatan(name=str(ax['AG' + str(y)].value), desc=str(ax['AG' + str(y)].value))
+			jb.save()
+			jb = jb.id
 
   		k = Karyawan(NIK = NIK, name = nama, gender = gender,
 					tanggalmasuk = ax['K' + str(y)].value.strftime("%Y-%m-%d"),
@@ -57,7 +74,7 @@ class Command(BaseCommand):
 		g.save()
 
 		y = y + 1
-		print "[*] Tambah karyawan " + nama + " Sukses"
+		print "["+ str(y) +"] Tambah karyawan " + nama + " Sukses"
 
   	#print(ax['K3'].value).strftime("%Y-%m-%d")
   	
