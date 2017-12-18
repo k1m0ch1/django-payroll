@@ -11,12 +11,28 @@ from datetime import datetime, timedelta
 
 modules = Modules.objects.all()
 
+def waktu(waktu=None, jadwal=None, masuk=None):
+	hasil = 0
+	akhir = 0
+
+	wj, wm, wd = waktu.strftime("%H:%M:%S").split(':')
+	waktu = (int(wj)*3600) + (int(wm)*60) + int(wd)
+
+	jj, jm, jd = jadwal.strftime("%H:%M:%S").split(':')
+	jadwal = (int(jj)*3600) + (int(jm)*60) + int(jd)
+
+	nilai = waktu-jadwal
+
+	return nilai
+
 @login_required()
 def index(request):
 	banyak = Karyawan.objects.all().count()
 	banyakcuti = IzinCuti.objects.filter(tglmulai__month = datetime.now().month ).count()
 	banyakabsenkemaren = Absensi.objects.filter(tanggal__day = datetime.now().day - 1).count()
 	hariiniabsen = Absensi.objects.filter(tanggal__day = datetime.now().day).count()
+	banyaktelat = 0
+	banyakmasuk = 0
 	bulanabsen = ""
 	for x in range(0,12):
 		bulanabsen = str(Absensi.objects.filter(tanggal__month = x).count()) + ", " + str(bulanabsen)
@@ -27,10 +43,18 @@ def index(request):
 
 	mauabis = Karyawan.objects.filter(masakaryawan__range = [ datetime.now(), ( datetime.now() + timedelta(days=7))])
 
+	absenkemaren = Absensi.objects.filter(tanggal__day = datetime.now().day - 1)
+	for y in absenkemaren :
+		if waktu(y.masuk, y.karyawanshift.shift.jammasuk, True) > 300:
+			banyaktelat = banyaktelat + 1
+		else:
+			banyakmasuk = banyakmasuk + 1
+
 	dataPayroll = { 'dsb' : modules, 'banyakKaryawan' :  banyak , 'banyakCuti' : banyakcuti, 
 					'banyakabsenkemaren' : banyakabsenkemaren, 'hariiniabsen' : hariiniabsen,
 					'bulanabsen' : bulanabsen, 'bulancuti': bulancuti,
-					'mauabis' : mauabis}
+					'mauabis' : mauabis, 'banyaktelat' : banyaktelat,
+					'banyakmasuk' : banyakmasuk}
 	return render(request, "dashboard.html", dataPayroll)
 
 def loginpage(request):
