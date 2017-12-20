@@ -272,6 +272,12 @@ class GajiPokok(models.Model):
 	makanlembur = models.DecimalField(max_digits=7, decimal_places=0, null=True)
 	translembur = models.DecimalField(max_digits=7, decimal_places=0, null=True)
 	jumlahhari = models.DecimalField(max_digits=7, decimal_places=0)
+	umut = models.DecimalField(max_digits=7, decimal_places=0, null=True)
+	ttelepon = models.DecimalField(max_digits=7, decimal_places=0, null=True)
+	tmakan = models.DecimalField(max_digits=7, decimal_places=0, null=True)
+	ttransport = models.DecimalField(max_digits=7, decimal_places=0, null=True)
+	thr = models.DecimalField(max_digits=7, decimal_places=0, null=True)
+	bonus = models.DecimalField(max_digits=7, decimal_places=0, null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 

@@ -463,7 +463,11 @@ def karyawan_detail(request, karyawan_id):
 	absen = Absensi.objects.filter(karyawan_id=karyawan_id)
 	gajipokok = GajiPokok.objects.get(karyawan_id=karyawan_id)
 	pinjaman = Pinjaman.objects.filter(karyawan_id=karyawan_id)
-	potongan = PotonganKaryawan.objects.get(karyawan_id=karyawan_id)
+	try:
+		potongan = PotonganKaryawan.objects.get(karyawan_id=karyawan_id)
+	except PotonganKaryawan.DoesNotExist:
+		potongan = PotonganKaryawan
+
 	return render(request, "karyawan/detail.html", {'karyawan' : karyawan, 'absen': absen, 'gajipokok': gajipokok , 'pinjaman' : pinjaman, 
 													'parent' : getParent(request), 'potongan' : potongan, 'dsb': modules})
 
