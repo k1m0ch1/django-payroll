@@ -81,7 +81,7 @@ def karyawan_save(request, karyawan_id):
 	k = Karyawan.objects.select_for_update().filter(id=karyawan_id)
 	g = GajiPokok.objects.filter(karyawan_id=karyawan_id)
 
-	k.update(NIK = request.POST['NIK'], name = request.POST['nama1'],
+	k.update(name = request.POST['nama1'],
 			shortname = request.POST['nama1'], tempatlahir = request.POST['tempatlahir'],
 			tanggallahir = parse(request.POST['tanggallahir']).strftime("%Y-%m-%d"), gender = request.POST['gender'],
 			alamat = request.POST['alamat'], kota = request.POST['kota'],
