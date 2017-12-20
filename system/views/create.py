@@ -100,7 +100,7 @@ def karyawan_save(request):
 	# 	if conn:
 	# 		conn.disconnect()
 
-	banyakpegawai = Karyawan.objects.filter(tanggalmasuk__year=ax['K' + str(y)].value.strftime("%Y"), tanggalmasuk__month=ax['K' + str(y)].value.strftime("%m"))
+	banyakpegawai = Karyawan.objects.filter(tanggalmasuk__year=parse(request.POST['tanggalmasuk']).strftime("%Y"), tanggalmasuk__month=parse(request.POST['tanggalmasuk']).strftime("%m"))
 	banyakpegawai = len(banyakpegawai)+1
 	jarak = "000"
 	if banyakpegawai > 9 :
