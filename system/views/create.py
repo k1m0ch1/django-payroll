@@ -149,7 +149,9 @@ def karyawan_save(request):
 		
 
 	g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], 
-					jumlahhari = request.POST['jumlahhari'], jabatan = request.POST['jabatan'])
+					jumlahhari = request.POST['jumlahhari'], jabatan = request.POST['jabatan'],
+					umut = request.POST['umut'], ttelepon = request.POST['ttelepon'], tmakan = request.POST['tmakan'],
+					ttransport = request.POST['ttransport'], bonus = request.POST['bonus'])
 	g.save()
 
 	return redirect('karyawan-index')
@@ -181,10 +183,10 @@ def karyawan_save_api(request):
 	zk = ZK(ipmesin, port=4370, timeout=5)
 	try:
 		conn = zk.connect()
-		conn.disable_device()
+		#conn.disable_device()
 		conn.set_user(uid=int(str(k.fingerid).strip()), name="" + str(k.name), privilege=const.USER_DEFAULT, password='12345678', group_id='', user_id="" + str(k.fingerid).strip())
-		conn.test_voice()
-		conn.test_voice()
+		#conn.test_voice()
+		#conn.test_voice()
 		conn.test_voice()
 		conn.enable_device()
 	except Exception, e:
@@ -194,7 +196,9 @@ def karyawan_save_api(request):
 	        conn.disconnect()
 
 	g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], 
-					jumlahhari = request.POST['jumlahhari'], jabatan = request.POST['jabatan'])
+					jumlahhari = request.POST['jumlahhari'], jabatan = request.POST['jabatan'],
+					umut = request.POST['umut'], ttelepon = request.POST['ttelepon'], tmakan = request.POST['tmakan'],
+					ttransport = request.POST['ttransport'], bonus = request.POST['bonus'])
 	g.save()
 
 	return HttpResponse("berhasil-simpan-karyawan")
