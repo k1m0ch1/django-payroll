@@ -51,22 +51,22 @@ def karyawan(request, karyawan_id):
 	file = open("listip.txt", "r")
 	y=0
 	for line in file:
-		conn = None
+		#conn = None
 		dataip = line.strip()
 		dataip = dataip.split(";")
 		y = y + 1
 		objs.append(mesin(y, dataip[0], dataip[1]))
-		ipmesin = dataip[0]
-		zk = ZK(ipmesin, port=4370, timeout=5)
-		try:
-			conn = zk.connect()
-			conn.test_voice
-			conn.enable_device()
-		except Exception, e:
-		    print "Process terminate : {}".format(e)
-		finally:
-		    if conn:
-		        conn.disconnect()
+		# ipmesin = dataip[0]
+		# zk = ZK(ipmesin, port=4370, timeout=5)
+		# try:
+		# 	conn = zk.connect()
+		# 	conn.test_voice
+		# 	conn.enable_device()
+		# except Exception, e:
+		#     print "Process terminate : {}".format(e)
+		# finally:
+		#     if conn:
+		#         conn.disconnect()
 
 	objs.pop(0)
 
