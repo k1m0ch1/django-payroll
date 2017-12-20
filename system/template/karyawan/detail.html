@@ -26,106 +26,350 @@
                 
               </div>
               <div class="box-body">
-                <div class="col-md-2">
-                  <p class="text-right">NIK</p>
+                <div class="col-md-4 border-right">
+                  <div class="row"> 
+                    <div class="col-md-4">
+                      <p class="text-right">NIK</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{ karyawan.NIK }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row"> 
+                    <div class="col-md-4">
+                      <p class="text-right">Nama Lengkap</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.name }} </p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Jenis Kelamin</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p>{{ karyawan.gender }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Tempat Tanggal Lahir</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{ karyawan.tempatlahir }}, {{ karyawan.tanggallahir|date:"d-M-Y"}}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Alamat Tinggal</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.alamat }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Provinsi</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p>{{ karyawan.provinsi }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Kota</p>
+                    </div>
+                    <div class="col-md-4">
+                      <p>{{ karyawan.kota }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Nomor Kontak</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>Telepon {{ karyawan.telepon }}</p>
+                      <p>Handphone {{ karyawan.handphone }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">KTP</p>
+                    </div>
+                    <div class="col-md-4">
+                      <p>{{ karyawan.ktpid }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Agama</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.agama.name }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Warga Negara</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p> {{ karyawan.warganegara }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Status Menikah</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.statusmenikah }}</p>
+                    </div>
+                  </div>
+
                 </div>
-                <div class="col-md-10">
-                  <p>{{ karyawan.NIK }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Nama Lengkap</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.name }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Jenis Kelamin</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.gender }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Tempat Tanggal Lahir</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.tempatlahir }}, {{ karyawan.tanggallahir|date:"d-M-Y"}}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Alamat Tinggal</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.alamat }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Provinsi</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.provinsi }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Kota</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.kota }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Nomor Kontak</p>
-                </div>
-                <div class="col-md-10">
-                  <p>Telepon {{ karyawan.telepon }}</p>
-                  <p>Handphone {{ karyawan.handphone }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Tanggal Masuk Karyawan</p>
-                </div>
-                <div class="col-md-10">
-                  <p>{{ karyawan.created_at|date:"d-M-Y"}}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Status Karyawan</p>
-                </div>
-                <div class="col-md-10">
-                  <p>{{ karyawan.statuskaryawan }} {{ karyawan.tanggalmasuk }} s.d. {{ karyawan.masakaryawan }}</p>
+                
+                <div class="col-md-4 border-right">
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Bank</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.bank.name }} &nbsp;&nbsp; a.n. &nbsp;  {{ karyawan.atasnama }} &nbsp;&nbsp;No. Rek. {{ karyawan.norek }} </p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Finger ID</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.fingerid }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">NPWP</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.NPWP }} </p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">KPJ</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.KPJ }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Tanggal Masuk Karyawan</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.created_at|date:"d-M-Y"}}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Status Karyawan</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.statuskaryawan }} {{ karyawan.tanggalmasuk }} s.d. {{ karyawan.masakaryawan }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Jumlah Hari</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.jumlahhari }} Hari</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Perusahaan</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.perusahaan.name }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Departemen</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.departemen.name }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Jabatan</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.jabatan.name }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Bagian</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.bagian.name }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Golongan</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>{{ karyawan.golongan.name }}</p>
+                    </div>
+                  </div>
+
+
                 </div>
 
-                <div class="col-md-2">
-                  <p class="text-right">KTP</p>
-                </div>
                 <div class="col-md-4">
-                  <p>{{ karyawan.ktpid }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Agama</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.agama.name }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right"></p>
-                </div>
-                <div class="col-md-4">
-                  <p>Warga Negara {{ karyawan.warganegara }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Status Menikah</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.statusmenikah }}</p>
-                </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Gaji Pokok</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>Rp. {{ gajipokok.gajipokok }}</p>
+                    </div>
+                  </div>
 
-                <div class="col-md-2">
-                  <p class="text-right">Bank</p>
-                </div>
-                <div class="col-md-10">
-                  <p>{{ karyawan.bank.name }} &nbsp;&nbsp; a.n. &nbsp;  {{ karyawan.atasnama }} &nbsp;&nbsp;No. Rek. {{ karyawan.norek }} </p>
-                </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Tunjangan Tetap</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>Rp. {{ gajipokok.jabatan }}</p>
+                    </div>
+                  </div>
 
-                <div class="col-md-2">
-                  <p class="text-right">Finger ID</p>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">UMUT Lumpsum</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>Rp. {{ gajipokok.umut }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Tunjangan Transportasi</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>Rp. {{ gajipokok.ttransport }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Tunjangan Telepon</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>Rp. {{ gajipokok.ttelepon }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Tunjangan Makan</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>Rp. {{ gajipokok.tmakan }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Potongan</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Pajak</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>Rp. {{ potongan.pph }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">BPJS Kesehatan</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>Rp. {{ potongan.bpjs_ks }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">BPJS Ketenagakerjaan</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>Rp. {{ potongan.bpjs_kt }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Pinjaman</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p>Rp. {{ potongan.pinjkaryawan }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="text-right">Barang Pinjaman</p>
+                    </div>
+                    <div class="col-md-1">
+                      <p>List</p>
+                    </div>
+                    <div class="col-md-9">
+                    {% for p in pinjaman %}                  
+                        <p> {{ p.inventory.name }} </p>
+                    {% endfor %}
+                    </div>
+                  </div>
+
                 </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.fingerid }}</p>
-                </div>
+                
+                
+                
+
+
+                
+
 
                 <!-- <div class="col-md-2">
                   <p class="text-right">Link Acc</p>
@@ -146,13 +390,7 @@
                 <div class="col-md-4">
                   <p>---</p>
                 </div> -->
-
-                <div class="col-md-2">
-                  <p class="text-right">NPWP</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.NPWP }} </p>
-                </div>
+                
                 <!-- <div class="col-md-2">
                   <p class="text-right">Level</p>
                 </div>
@@ -160,25 +398,7 @@
                   <p>---</p>
                 </div> -->
 
-                <div class="col-md-2">
-                  <p class="text-right">KPJ</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.KPJ }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Jumlah Hari</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.jumlahhari }} Hari</p>
-                </div>
-
-                <div class="col-md-2">
-                  <p class="text-right">Perusahaan</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.perusahaan.name }}</p>
-                </div>
+                
                 <!-- <div class="col-md-2">
                   <p class="text-right">Lokasi</p>
                 </div>
@@ -186,31 +406,7 @@
                   <p>Jalan Sumbawa no 192/123 Kec. Ringring Kel. Baracuda, Karawang, Jawa Barat</p>
                 </div> -->
 
-                <div class="col-md-2">
-                  <p class="text-right">Departemen</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.departemen.name }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Jabatan</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.jabatan.name }}</p>
-                </div>
-
-                <div class="col-md-2">
-                  <p class="text-right">Bagian</p>
-                </div>
-                <div class="col-md-4">
-                  <p>{{ karyawan.bagian.name }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right">Golongan</p>
-                </div>
-                <div class="col-md-10">
-                  <p>{{ karyawan.golongan.name }}</p>
-                </div>
+                
 
                 <!-- <div class="col-md-2">
                   <p class="text-right">Jabatan</p>
@@ -218,64 +414,7 @@
                 <div class="col-md-10">
                   <p>Nama jabatan lengkap</p>
                 </div> -->
-                <div class="col-md-2">
-                  <p class="text-right">Item Gaji</p>
-                </div>
-                <div class="col-md-1">
-                  <p>Gaji Pokok</p>
-                </div>
-                <div class="col-md-8">
-                  <p>Rp. {{ gajipokok.gajipokok }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right"></p>
-                </div>
-
-                <div class="col-md-2">
-                  <p class="text-right">Barang Pinjaman</p>
-                </div>
-                <div class="col-md-9">
-                {% for p in pinjaman %}                  
-                    <p> {{ p.inventory.name }} </p>
-                {% endfor %}
-                </div>
-
-                <div class="col-md-2">
-                  <p class="text-right">Potongan</p>
-                </div>
-                <div class="col-md-1">
-                  <p>Pajak</p>
-                </div>
-                <div class="col-md-9">
-                  <p>Rp. {{ potongan.pph }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right"></p>
-                </div>
-                <div class="col-md-1">
-                  <p>BPJS Kesehatan</p>
-                </div>
-                <div class="col-md-9">
-                  <p>Rp. {{ potongan.bpjs_ks }}</p>
-                </div>
-                <div class="col-md-1">
-                  <p>BPJS Ketenagakerjaan</p>
-                </div>
-                <div class="col-md-9">
-                  <p>Rp. {{ potongan.bpjs_kt }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right"></p>
-                </div>
-                <div class="col-md-1">
-                  <p>Pinjaman</p>
-                </div>
-                <div class="col-md-9">
-                  <p>Rp. {{ potongan.pinjkaryawan }}</p>
-                </div>
-                <div class="col-md-2">
-                  <p class="text-right"></p>
-                </div>
+                
 
                 <!-- <div class="col-md-2">
                   <p class="text-right"></p>
