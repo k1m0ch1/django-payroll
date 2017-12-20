@@ -440,6 +440,17 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="row"> 
+                    <div class="col-md-2 ">
+                      <p class="text-right">Bonus</p>
+                    </div>
+                    <div class="col-md-10">
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control bonus" value="{{ gajipokok.bonus }}" placeholder="Rp. Bonus" name="bonus">
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col-md-3 text-left">
@@ -507,7 +518,8 @@ $(function () {
               norekening: $('.norekening').val(),atasnama: $('.atasnama').val(),fingerid: $('.fingerid').val(),
               NPWP: $('.NPWP').val(),KPJ: $('.KPJ').val(),jumlahhari: $('.jumlahhari').find(":selected").val(),
               departemen: $('.departemen').find(":selected").val(),bagian: $('.bagian').find(":selected").val(),golongan: $('.golongan').find(":selected").val(),
-              perusahaan: $('.perusahaan').find(":selected").val(), gajipokok: $('.gajipokok').val(), jabatan: $('.jabatan').val(),
+              perusahaan: $('.perusahaan').find(":selected").val(), gajipokok: $('.gajipokok').val(), jabatan: $('.jabatan').val(), umut: $('.umut').val(),
+              ttelepon: $('.ttelepon').val(), tmakan: $('.tmakan').val(), ttransport: $('.ttransport').val(), bonus: $('.bonus').val(),
               csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Simpan Karyawan Baru');
