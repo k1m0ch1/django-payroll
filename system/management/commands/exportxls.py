@@ -32,7 +32,12 @@ class Command(BaseCommand):
 	  	nama = str(ax['B' + str(y)].value)
 	  	gender = str(ax['C' + str(y)].value)
 	  	norek = str(ax['T' + str(y)].value)
-	  	bank = Bank.objects.get(name="Bank " + str(ax['S' + str(y)].value))
+	  	try:
+	  		bank = Bank.objects.get(name="Bank " + str(ax['S' + str(y)].value))
+	  	except Bank.DoesNotExist:
+	  		bank = Bank(name=str("Bank" + str(ax['S' + str(y)].value)), desc=str(ax['S' + str(y)].value))
+			bank.save()
+
 	  	jumlahhari = ax['Z' + str(y)].value
 
 	  	try:

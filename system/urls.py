@@ -160,7 +160,7 @@ urlpatterns = [
 
     #==eofedit
 
-    url(r'^perusahaan/(?P<perusahaan_id>[0-9]+)/delete/$', views.perusahaan_delete, name="perusahaan-delete"),
+    url(r'^perusahaan/(?P<perusahaan_id>[0-9]+)/delete/$', views.delete.perusahaan, name="perusahaan-delete"),
     url(r'^departemen/(?P<departemen_id>[0-9]+)/delete/$', views.delete.departemen, name="departemen-delete"),
     url(r'^bagian/(?P<bagian_id>[0-9]+)/delete/$', views.delete.bagian, name="bagian-delete"),
     url(r'^golongan/(?P<golongan_id>[0-9]+)/delete/$', views.delete.golongan, name="golongan-delete"),

@@ -89,4 +89,15 @@
       }
     
   }
+  , {
+    "model": "system.golongan",
+    "pk": 10,
+    "fields": 
+      {
+        "name": "Belum Diisi",
+        "desc": "Collapsed vertebra, not elsewhere classified, cervicothoracic region",
+        "created_at": "2017-03-01 15:03+07"
+      }
+    
+  }
 ]

@@ -11,6 +11,13 @@ from system.models import LokasiPerusahaan, Shift, Inventory, Konfigurasi, Karya
 from system.models import KaryawanShift, bpjs as BPJS
 
 @login_required()
+def perusahaan(request, perusahaan_id):
+	p = Perusahaan.objects.filter(id=perusahaan_id)
+	p.delete()
+	return redirect("perusahaan-index")
+
+
+@login_required()
 def departemen(request, departemen_id):
 	d = Departemen.objects.filter(id=departemen_id)
 	d.delete()
