@@ -79,7 +79,7 @@
                         <input type="text" value="{{ karyawan.tempatlahir }}" class="form-control tempatlahir" placeholder="Kota Lahir" name="tempatlahir" required>
                       </div>
                       <div class="form-group col-md-6 date">
-                        <input type="text" value="{{ karyawan.tanggallahir }}" class="form-control tanggallahir" id="datepicker" placeholder="Tanggal Lahir" name="tanggallahir" required>
+                        <input type="text" value="{{ karyawan.tanggallahir }}" class="form-control tanggallahir" id="datepicker" placeholder="Tanggal Lahir" name="tanggallahir">
                       </div>
                     </div>
                   </div>
@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" value="{{ karyawan.telepon }}" class="form-control telepon" placeholder="Telepon" name="telepon" required>
+                        <input type="text" value="{{ karyawan.telepon }}" class="form-control telepon" placeholder="Telepon" name="telepon" >
                       </div>
                       <div class="form-group col-md-6">
                         <input type="text" value="{{ karyawan.handphone }}" class="form-control handphone" placeholder="Handphone" name="handphone" required>
@@ -148,7 +148,7 @@
                       <div class="form-group col-md-6">
                         <select class="form-control statuskaryawan" name="statuskaryawan" required>
                           <option value="Kontrak 1 (PKWT)" {% if karyawan.statuskaryawan == "Kontrak 1 (PKWT)" %} selected {% endif %}>Kontrak 1 (PKWT)</option>
-                          <option value="Kontrak 2 (PKWTT)" {% if karyawan.statuskaryawan == "Kontrak 2 (PKWT)" %} selected {% endif %}>Kontrak 2 (PKWTT)</option>
+                          <option value="Kontrak 2 (PKWT)" {% if karyawan.statuskaryawan == "Kontrak 2 (PKWT)" %} selected {% endif %}>Kontrak 2 (PKWT)</option>
                           <option value="Probation" {% if karyawan.statuskaryawan == "Probation" %} selected {% endif %}>Probation</option>
                           <option value="Permanent" {% if karyawan.statuskaryawan == "Permanent" %} selected {% endif %}>Permanent</option>
                         </select>
@@ -365,7 +365,7 @@
                         <select class="form-control golongan" name="golongan" required>
                           <option>== Pilih Golongan ==</option>
                           {% for g in golongan %}
-                            <option value="{{g.id}}" {% if karyawan.golongan_id == g.id %} selected {% endif %}>{{g.name}}</option>
+                            <option value="{{ g.id}}" {% if karyawan.golongan_id == g.id %} selected {% endif %}>{{g.name}}</option>
                           {% endfor %}
                         </select>
                       </div>
