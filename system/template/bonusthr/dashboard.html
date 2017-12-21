@@ -126,7 +126,7 @@
                 </tr>
                 {% for d in tk %}
                 <tr>
-                  <td>{{ d.karyawan.NIK }}</td>
+                  <td>{% ez d.karyawan.NIK %}</td>
                   <td>{{ d.karyawan.name }}</td>
                   <td>{% mon d.bonus %}</td>
                   <td>{% mon d.thr %}</td>
