@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load dashboard %}
+{% load money %}
 
 {% block content %} 
 	<div class="content-wrapper">
@@ -45,7 +46,7 @@
                   <td>{{ data.id }}</td>
                   <td>{{ data.tglpinjam }}</td>
                   <td>{{ data.karyawan.name }}</td>
-                  <td>{{ data.karyawan.NIK }}</td>
+                  <td>{% ez data.karyawan.NIK %}</td>
                   <td>{{ data.inventory.name }}</td>                  
                   <td>{{ data.tglkembali }}</td>
                 </tr>                
