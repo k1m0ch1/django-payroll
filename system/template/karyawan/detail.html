@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load hari %}
+{% load money %}
 
 {% block content %}
 	<div class="content-wrapper">
@@ -257,7 +258,7 @@
                       <p class="text-right">Gaji Pokok</p>
                     </div>
                     <div class="col-md-8">
-                      <p>Rp. {{ gajipokok.gajipokok }}</p>
+                      <p>{% mon gajipokok.gajipokok %}</p>
                     </div>
                   </div>
 
@@ -266,7 +267,7 @@
                       <p class="text-right">Tunjangan Tetap</p>
                     </div>
                     <div class="col-md-8">
-                      <p>Rp. {{ gajipokok.jabatan }}</p>
+                      <p>{% mon gajipokok.jabatan %}</p>
                     </div>
                   </div>
 
@@ -275,11 +276,11 @@
                       <p class="text-right">UMUT Lumpsum</p>
                     </div>
                     <div class="col-md-8">
-                      <p>Rp. {{ gajipokok.umut }}</p>
+                      <p>{% mon gajipokok.umut %}</p>
                     </div>
                   </div>
 
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-md-4">
                       <p class="text-right">Tunjangan Transportasi</p>
                     </div>
@@ -304,7 +305,7 @@
                     <div class="col-md-8">
                       <p>Rp. {{ gajipokok.tmakan }}</p>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="row">
                     <div class="col-md-4">
@@ -317,7 +318,7 @@
                       <p class="text-right">Pajak</p>
                     </div>
                     <div class="col-md-8">
-                      <p>Rp. {{ potongan.pph }}</p>
+                      <p>{% mon potongan.pph %}</p>
                     </div>
                   </div>
 
@@ -326,7 +327,7 @@
                       <p class="text-right">BPJS Kesehatan</p>
                     </div>
                     <div class="col-md-8">
-                      <p>Rp. {{ potongan.bpjs_ks }}</p>
+                      <p>{% mon potongan.bpjs_ks %}</p>
                     </div>
                   </div>
 
@@ -335,7 +336,7 @@
                       <p class="text-right">BPJS Ketenagakerjaan</p>
                     </div>
                     <div class="col-md-8">
-                      <p>Rp. {{ potongan.bpjs_kt }}</p>
+                      <p>{% mon potongan.bpjs_kt %}</p>
                     </div>
                   </div>
 
@@ -344,7 +345,7 @@
                       <p class="text-right">Pinjaman</p>
                     </div>
                     <div class="col-md-8">
-                      <p>Rp. {{ potongan.pinjkaryawan }}</p>
+                      <p>{% mon potongan.pinjkaryawan %}</p>
                     </div>
                   </div>
 
