@@ -560,13 +560,15 @@ def profile_perusahaan_index(request):
 																 'dsb' : modules, 'parent' : getParent(request)})
 
 def getModule(request):
-	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]
+	getmodule = [x.strip() for x in request.get_full_path().split('?')][0]
+	getmodule = [x.strip() for x in getmodule.split('/')][2]
 	for sb in modules:
 		if getmodule.upper() == sb.name:
 			return sb.fungsi
 
 def getParent(request):
-	getmodule = [x.strip() for x in request.get_full_path().split('/')][2]
+	getmodule = [x.strip() for x in request.get_full_path().split('?')][0]
+	getmodule = [x.strip() for x in getmodule.split('/')][2]
 	for sb in modules:
 		if getmodule.upper() == sb.name:
 			return sb.menu

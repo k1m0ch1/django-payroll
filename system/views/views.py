@@ -25,6 +25,12 @@ def waktu(waktu=None, jadwal=None, masuk=None):
 
 	return nilai
 
+def pindahinkalo404(request):
+    response = render_to_response('404.html', {},
+                              context_instance=RequestContext(request))
+    response.status_code = 404
+    return redirect('index')
+
 @login_required()
 def index(request):
 	banyak = Karyawan.objects.all().count()

@@ -9,6 +9,7 @@ from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah
 from system.models import LokasiPerusahaan, Shift, Inventory, Konfigurasi, Karyawan, MasaTenggangClosing, TunjanganKaryawan, PotonganKaryawan
 from system.models import KaryawanShift, bpjs as BPJS
+from django.contrib import messages
 
 @login_required()
 def perusahaan(request, perusahaan_id):
@@ -61,8 +62,13 @@ def warganegara(request, warganegara_id):
 
 @login_required()
 def statusmenikah(request, statusmenikah_id):
-	s = StatusMenikah.objects.filter(id=statusmenikah_id)
-	s.delete()
+	if statusmenikah_id == 1 :
+		messages.success(request, 'Data Default tidak boleh di hapus')
+	else:
+		messages.success(request, 'Data Berhasil di hapus')
+		s = StatusMenikah.objects.filter(id=statusmenikah_id)
+		s.delete()
+
 	return redirect("statusmenikah-index")
 
 @login_required()

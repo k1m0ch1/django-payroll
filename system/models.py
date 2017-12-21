@@ -198,8 +198,8 @@ class Shift(models.Model):
 
 class KaryawanShift(models.Model):
 	name = models.CharField(max_length=75, null=True)
-	karyawan = models.ForeignKey(Karyawan,related_name="karyawan", on_delete=models.PROTECT)
-	shift = models.ForeignKey(Shift, related_name="shift", on_delete=models.PROTECT)
+	karyawan = models.ForeignKey(Karyawan,related_name="karyawan", on_delete=models.CASCADE)
+	shift = models.ForeignKey(Shift, related_name="shift", on_delete=models.CASCADE)
 	tglawal = models.DateField()
 	tglakhir = models.DateField()
 	tgloffawal = models.DateField(null=True)
@@ -214,8 +214,8 @@ class KaryawanShift(models.Model):
 class Absensi(models.Model):
 	name = models.CharField(max_length=25, null=True)
 	desc = models.TextField(null=True)
-	karyawan = models.ForeignKey(Karyawan, on_delete=models.PROTECT)
-	karyawanshift = models.ForeignKey(KaryawanShift, on_delete=models.PROTECT)
+	karyawan = models.ForeignKey(Karyawan, on_delete=models.CASCADE)
+	karyawanshift = models.ForeignKey(KaryawanShift, on_delete=models.CASCADE)
 	tanggal = models.DateField()
 	hari = models.CharField(max_length=10)
 	masuk = models.TimeField(null=True)
@@ -247,7 +247,7 @@ class IzinCuti(models.Model):
 class Lembur(models.Model):
 	name = models.CharField(max_length=25, null=True)
 	desc = models.TextField(null=True)
-	karyawan = models.ForeignKey(Karyawan, on_delete=models.PROTECT)
+	karyawan = models.ForeignKey(Karyawan, on_delete=models.CASCADE)
 	tanggal = models.DateField()
 	hari = models.CharField(max_length=10, null=True)
 	masuk = models.TimeField(null=True)
@@ -263,7 +263,7 @@ class Lembur(models.Model):
 #== EOF
 
 class GajiPokok(models.Model):
-	karyawan = models.ForeignKey(Karyawan, on_delete=models.PROTECT)
+	karyawan = models.ForeignKey(Karyawan, on_delete=models.CASCADE)
 	name = models.CharField(max_length=255, null=True)
 	desc = models.TextField(null=True)
 	gajipokok = models.DecimalField(max_digits=20, decimal_places=0)
@@ -298,8 +298,8 @@ class Pinjaman(models.Model):
 	name = models.CharField(max_length=200, null=True)
 	tglpinjam = models.DateField(null=True)
 	tglkembali = models.DateField(null=True)
-	inventory = models.ForeignKey(Inventory, on_delete=models.PROTECT)
-	karyawan = models.ForeignKey(Karyawan, on_delete=models.PROTECT)
+	inventory = models.ForeignKey(Inventory, on_delete=models.CASCADE)
+	karyawan = models.ForeignKey(Karyawan, on_delete=models.CASCADE)
 	desc = models.TextField()
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
@@ -309,7 +309,7 @@ class Pinjaman(models.Model):
 
 class Cuti(models.Model):
 	name = models.CharField(max_length=200, null=True)
-	karyawan = models.ForeignKey(Karyawan)
+	karyawan = models.ForeignKey(Karyawan, on_delete=models.CASCADE)
 	alasan = models.CharField(max_length=255)
 	tglmulai = models.DateField()
 	tglakhir = models.DateField()
@@ -343,8 +343,8 @@ class PotonganKaryawan(models.Model):
 	cicil_pinjlain = models.DecimalField(max_digits=2, decimal_places=0,null=True, default=0)
 	pinjkaryawan = models.DecimalField(max_digits=8, decimal_places=0,null=True, default=0)
 	cicil_pinjkaryawan = models.DecimalField(max_digits=2, decimal_places=0,null=True, default=0)
-	masatenggangclosing = models.ForeignKey(MasaTenggangClosing, null=True, on_delete=models.PROTECT)
-	karyawan = models.ForeignKey(Karyawan, on_delete=models.PROTECT)
+	masatenggangclosing = models.ForeignKey(MasaTenggangClosing, default=3, null=True, on_delete=models.SET_DEFAULT)
+	karyawan = models.ForeignKey(Karyawan, on_delete=models.CASCADE)
 	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
@@ -355,11 +355,13 @@ class PotonganKaryawan(models.Model):
 class TunjanganKaryawan(models.Model):
 	name = models.CharField(max_length=200, null=True)
 	kemahalan = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
-	tmakan = models.DecimalField(max_digits=7, decimal_places=0, null=True)
-	masatenggangclosing = models.ForeignKey(MasaTenggangClosing, on_delete=models.PROTECT)
+	umut = models.DecimalField(max_digits=9, decimal_places=0, null=True)
+	ttelepon = models.DecimalField(max_digits=9, decimal_places=0, null=True)
+	tmakan = models.DecimalField(max_digits=9, decimal_places=0, null=True)
+	masatenggangclosing = models.ForeignKey(MasaTenggangClosing, default=3, null=True, on_delete=models.SET_DEFAULT)
 	transportexec = models.DecimalField(max_digits=7, decimal_places=0, null=True)
 	transportnonexec = models.DecimalField(max_digits=7, decimal_places=0, null=True)
-	karyawan = models.ForeignKey(Karyawan, on_delete=models.PROTECT)
+	karyawan = models.ForeignKey(Karyawan, on_delete=models.CASCADE)
 	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
@@ -380,10 +382,10 @@ class HariRaya(models.Model):
 
 class PostingGaji(models.Model):
 	name = models.CharField(max_length=200, null=True)
-	karyawan = models.ForeignKey(Karyawan, on_delete=models.PROTECT)
-	masatenggangclosing = models.ForeignKey(MasaTenggangClosing)	
+	karyawan = models.ForeignKey(Karyawan, on_delete=models.CASCADE)
+	masatenggangclosing = models.ForeignKey(MasaTenggangClosing,default=3, null=True, on_delete=models.SET_DEFAULT)	
 	gajipokok = models.ForeignKey(GajiPokok, on_delete=models.PROTECT)
-	potongankaryawan = models.ForeignKey(PotonganKaryawan, on_delete=models.PROTECT)
+	potongankaryawan = models.ForeignKey(PotonganKaryawan, default=3, null=True, on_delete=models.SET_DEFAULT)
 	tovertime = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
 	pabsen = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
 	desc = models.TextField(null=True)
@@ -420,7 +422,7 @@ class Modules(models.Model):
 
 class bpjs(models.Model):
 	name = models.CharField(max_length=200, null=True)
-	karyawan = models.ForeignKey(Karyawan, on_delete=models.PROTECT)
+	karyawan = models.ForeignKey(Karyawan, on_delete=models.CASCADE)
 	biaya = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
 	desc = models.TextField(null=True)
 	created_at = models.DateTimeField(auto_now=True)

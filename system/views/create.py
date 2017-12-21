@@ -377,9 +377,10 @@ def tunjangan_save(request):
 	listid = [x.strip() for x in idkaryawan.split(',')]
 	#pajakbulanan = request.POST['pajakbulanan']
 	kemahalan = request.POST['kemahalan']
-	jabatan = request.POST['jabatan']
 	for y in range(0, len(listid)-1):
-		p = TunjanganKaryawan(masatenggangclosing_id=idmas, kemahalan=kemahalan, karyawan_id=listid[y], jabatan=jabatan)	
+		p = TunjanganKaryawan(masatenggangclosing_id=idmas, kemahalan=kemahalan, karyawan_id=listid[y],
+								transportnonexec=request.POST['transportnonexec'], ttelepon = request.POST['ttelepon'], 
+								tmakan = request.POST['tmakan'])	
 		p.save()
 			
 

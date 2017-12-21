@@ -14,3 +14,5 @@ pathlib
 xlwt
 openpyxl
 argparse
+
+django-autofixture==0.12.1 django-bootstrap-toolkit==2.15.0 django-extensions==1.7.8 django-like==0.2.0 django-tables2==1.3.0 python-dateutil==2.6.0 psycopg2==2.6.2 pyzk==0.5 requests==2.13.0 beautifulsoup4==4.5.3 money==1.3.0 babel==2.5.0 pathlib xlwt openpyxl argparse
