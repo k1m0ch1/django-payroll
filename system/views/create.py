@@ -337,6 +337,7 @@ def potongan_save(request):
 	pinjaman = request.POST['pinjaman']
 	koperasi = request.POST['koperasi']
 	cicil_pinjaman = request.POST['cicil_pinjaman']
+	cicil_koperasi = request.POST['cicil_koperasi']
 	for y in range(0, len(listid)-1):
 		# p = PotonganKaryawan.objects.filter(karyawan_id=listid[y])
 		# g = GajiPokok.objects.get(karyawan_id=listid[y])
@@ -367,9 +368,9 @@ def potongan_save(request):
 		try:
 			p = PotonganKaryawan.objects.get(karyawan_id=listid[y])
 			p = PotonganKaryawan.objects.select_for_update().filter(karyawan_id=listid[y])
-			p.update(koperasi=koperasi, pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=cicil_pinjaman)
+			p.update(koperasi=koperasi, pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=cicil_pinjaman, cicil_koperasi=cicil_koperasi)
 		except PotonganKaryawan.DoesNotExist:
-			p = PotonganKaryawan(koperasi=koperasi, pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=cicil_pinjaman)	
+			p = PotonganKaryawan(koperasi=koperasi, pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=cicil_pinjaman, cicil_koperasi=cicil_koperasi)	
 			p.save()
 
 	return HttpResponse("Berhasil Simpan")
