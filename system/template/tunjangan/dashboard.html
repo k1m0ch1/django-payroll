@@ -24,7 +24,7 @@
           </div>                
       </div>
 
-      <div class="row">
+      <!-- <div class="row">
           <div class="col-md-12">
             <div class="col-md-2">
               <label class="control-label">Masa Tenggang Closing</label>               
@@ -36,7 +36,7 @@
               <button class="btn btn-primary" id="pilihMasaTenggangClosing" data-toggle="modal" data-target="#pilihMasaTenggangClosingModal"><i class="fa fa-plus"></i> Pilih Masa Tenggang Closing</button> 
               </div>             
           </div>                
-      </div>
+      </div> -->
 
       <div class="row">
           <div class="col-md-12">
@@ -177,10 +177,10 @@
                 <tbody><tr>
                   <th class="col-md-2">NIK</th>
                   <th class="col-md-2">Nama</th>
-                  <th class="col-md-3">MasaTenggang</th>
-                  <th class="col-md-1">Makan</th>
-                  <th class="col-md-1">Transportasi</th>
-                  <th class="col-md-1">Kemahalan</th>
+                  <!-- <th class="col-md-3">MasaTenggang</th> -->
+                  <th class="col-md-2">Makan</th>
+                  <th class="col-md-2">Transportasi</th>
+                  <th class="col-md-2">Kemahalan</th>
                   <th class="col-md-1">Telepon</th>
                   <th class="col-md-3">Action</th>
                 </tr>
@@ -188,7 +188,7 @@
                 <tr>
                   <td>{{ d.karyawan.NIK }}</td>
                   <td>{{ d.karyawan.name }}</td>
-                  <td>{{ d.masatenggangclosing.tanggal|date:"d M Y" }} sd {{ d.masatenggangclosing.sd|date:"d M Y" }}</td>
+                  <!-- <td>{{ d.masatenggangclosing.tanggal|date:"d M Y" }} sd {{ d.masatenggangclosing.sd|date:"d M Y" }}</td> -->
                   <td>{{ d.tmakan }}</td>
                   <td>{{ d.transportnonexec }}</td>
                   <td>{{ d.kemahalan }}</td>
