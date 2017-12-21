@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load money %}
 
 {% block content %}
 <div class="content-wrapper">
@@ -125,10 +126,10 @@
                 </tr>
                 {% for d in bpjs %}
                 <tr>
-                  <td>{{ d.karyawan.NIK }}</td>
+                  <td>{% ez d.karyawan.NIK %}</td>
                   <td>{{ d.karyawan.name }}</td>
-                  <td>{{ d.bpjs_ks }}</td>
-                  <td>{{ d.bpjs_kt }}</td>
+                  <td>{% mon d.bpjs_ks %}</td>
+                  <td>{% mon d.bpjs_kt %}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                       <a data-confirm="Yakin mau Hapus data ???" href="{% url 'bpjs-delete' bpjs_id=d.id %}" type="button" class="btn btn-default"><i class="fa fa-trash"></i></a>
