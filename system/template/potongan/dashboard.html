@@ -128,7 +128,7 @@
 
       <div class="row">
           <div class="col-md-12">
-            <form class="form-horizontal" method="GET" action="{% url 'tunjangankaryawan-index' %}">
+            <form class="form-horizontal" method="GET" action="{% url 'potongankaryawan-index' %}">
               <div class="form-group">
                 <label for="pencarian" class="col-sm-2 control-label">Pencarian</label>
                 <div class="col-sm-2">
@@ -157,7 +157,7 @@
                 <tbody><tr>
                   <th class="col-md-2">NIK</th>
                   <th class="col-md-2">Nama</th>
-                  <th class="col-md-3">MasaTenggang</th>
+                  <!-- <th class="col-md-3">MasaTenggang</th> -->
                   <th class="col-md-2">Pinjaman</th>
                   <th class="col-md-2">Cicilan</th>
                   <th class="col-md-2">Koperasi</th>
@@ -167,7 +167,7 @@
                 <tr>
                   <td>{{ d.karyawan.NIK }}</td>
                   <td>{{ d.karyawan.name }}</td>
-                  <td>{{ d.masatenggangclosing.tanggal|date:"d M Y" }} sd {{ d.masatenggangclosing.sd|date:"d M Y" }}</td>
+                  <!-- <td>{{ d.masatenggangclosing.tanggal|date:"d M Y" }} sd {{ d.masatenggangclosing.sd|date:"d M Y" }}</td> -->
                   <td>{{ d.pinjkaryawan }}</td>
                   <td>{{ d.cicil_pinjkaryawan }}</td>
                   <td>{{ d.koperasi }}</td>

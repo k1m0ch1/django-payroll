@@ -364,9 +364,13 @@ def potongan_save(request):
 
 		# if cicil_pinjaman == "":
 		# 	cicil_pinjaman = 0 if p[0].cicil_pinjkaryawan == 0 else p[0].cicil_pinjkaryawan
-
-		p = PotonganKaryawan(koperasi=koperasi, pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=cicil_pinjaman)	
-		p.save()
+		try:
+			p = PotonganKaryawan.objects.get(karyawan_id=listid[y])
+			p = PotonganKaryawan.objects.select_for_update().filter(karyawan_id=listid[y])
+			p.update(koperasi=koperasi, pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=cicil_pinjaman)
+		except PotonganKaryawan.DoesNotExist:
+			p = PotonganKaryawan(koperasi=koperasi, pinjkaryawan=pinjaman, karyawan_id=listid[y], cicil_pinjkaryawan=cicil_pinjaman)	
+			p.save()
 
 	return HttpResponse("Berhasil Simpan")
 
