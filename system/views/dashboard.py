@@ -14,6 +14,7 @@ from system.models import TunjanganKaryawan, bpjs as BPJS
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
+from dateutil.parser import parse
 import json
 import os, time
 from pathlib import * 
@@ -293,6 +294,55 @@ def tunjangankaryawan_index(request):
 
 @login_required()
 def bonusthr_index(request):
+
+	tk = Bonusthr.objects.all()
+
+	if request.method == "GET":
+
+		if 'search' in request.GET:
+			tk = tk.filter(karyawan__NIK__contains=request.GET['value']) if request.GET['search'] == "nik" else tk
+			tk = tk.filter(karyawan__name__contains=request.GET['value']) if request.GET['search'] == "name" else tk
+
+	k = Karyawan.objects.all()
+	dep = Departemen.objects.all()
+	bag = Bagian.objects.all()
+	gol = Golongan.objects.all()
+	per = Perusahaan.objects.all()
+	jab = Jabatan.objects.all()
+	shift = Shift.objects.all()
+	mas = MasaTenggangClosing.objects.all()	
+
+	tk = tk.order_by("-updated_at")
+	
+	page = request.GET.get('page', 1)
+	paginator = Paginator(tk, 15)
+    
+	try:
+ 		tk = paginator.page(page)
+	except PageNotAnInteger:
+		tk = paginator.page(1)
+	except EmptyPage:
+   		tk = paginator.page(paginator.num_pages)
+
+   	for xx in tk:
+   		gp = GajiPokok.objects.get(karyawan_id=xx.karyawan.id)
+   		lamakerja = (parse(time.strftime("%d/%m/%Y"))-parse(xx.karyawan.tanggalmasuk.strftime("%d/%m/%Y")))
+   		if lamakerja.days > 365 :
+   			try:
+	   			bti = Bonusthr.objects.get(karyawan_id=xx.karyawan.id)
+				bti = Bonusthr.objects.select_for_update().filter(karyawan_id=xx.karyawan.id)
+				bti.update(thr=(gp.gajipokok+gp.jabatan))
+			except Bonusthr.DoesNotExist:
+				bti = Bonusthr(thr=(gp.gajipokok+gp.jabatan))
+				bti.save()
+		elif lamakerja.days <365 and lamakerja.days >= 31 :
+			try:
+	   			bti = Bonusthr.objects.get(karyawan_id=xx.karyawan.id)
+				bti = Bonusthr.objects.select_for_update().filter(karyawan_id=xx.karyawan.id)
+				bti.update(thr=int(int(gp.gajipokok+gp.jabatan)/12)*int(lamakerja.days/30))
+			except Bonusthr.DoesNotExist:
+				bti = Bonusthr(thr=int(int(gp.gajipokok+gp.jabatan)/12)*int(lamakerja.days/30))
+				bti.save()
 
 	tk = Bonusthr.objects.all()
 

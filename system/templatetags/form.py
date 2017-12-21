@@ -1,5 +1,8 @@
 from django import template
 from django.core.urlresolvers import reverse
+from dateutil.parser import parse
+from datetime import timedelta
+from datetime import datetime
 
 register = template.Library()
 

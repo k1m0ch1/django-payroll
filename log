@@ -5,3 +5,5 @@
 - perhitungan makan perhari
 - perhitungan transport perhari
 - perhitungan telepon perbulan dan kemahalan
+
+thr = jika staff kebawah, jika hari ini dikurangi tanggal masuk lebih dari 12 bulan artinya dia dapet satu 1x gaji

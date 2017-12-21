@@ -304,7 +304,8 @@ class Pinjaman(models.Model):
 
 class Bonusthr(models.Model):
 	karyawan = models.ForeignKey(Karyawan, on_delete=models.CASCADE)
-	bonus = models.DecimalField(max_digits=7, decimal_places=0,null=True, default=0)
+	bonus = models.DecimalField(max_digits=8, decimal_places=0,null=True, default=0)
+	thr = models.DecimalField(max_digits=8, decimal_places=0,null=True, default=0)
 	created_at = models.DateTimeField(auto_now=True)
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 
