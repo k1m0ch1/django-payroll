@@ -378,10 +378,17 @@ def tunjangan_save(request):
 	#pajakbulanan = request.POST['pajakbulanan']
 	kemahalan = request.POST['kemahalan']
 	for y in range(0, len(listid)-1):
-		p = TunjanganKaryawan(masatenggangclosing_id=idmas, kemahalan=kemahalan, karyawan_id=listid[y],
-								transportnonexec=request.POST['transportnonexec'], ttelepon = request.POST['ttelepon'], 
-								tmakan = request.POST['tmakan'])	
-		p.save()
+		try:
+			b = TunjanganKaryawan.objects.get(karyawan_id=listid[y])
+			b = TunjanganKaryawan.objects.select_for_update().filter(karyawan_id=listid[y])
+			b.update(masatenggangclosing_id=idmas, kemahalan=kemahalan, karyawan_id=listid[y],
+									transportnonexec=request.POST['transportnonexec'], ttelepon = request.POST['ttelepon'], 
+									tmakan = request.POST['tmakan'])
+		except TunjanganKaryawan.DoesNotExist:
+			p = TunjanganKaryawan(masatenggangclosing_id=idmas, kemahalan=kemahalan, karyawan_id=listid[y],
+									transportnonexec=request.POST['transportnonexec'], ttelepon = request.POST['ttelepon'], 
+									tmakan = request.POST['tmakan'])	
+			p.save()
 			
 
 	return HttpResponse("Berhasil Simpan")
