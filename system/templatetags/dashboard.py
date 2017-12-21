@@ -132,6 +132,10 @@ def dashboard(module=None, mode=None, idpk=None):
     return{
       'indeks' : reverse('masatenggangclosing-index')
     }[mode]
+  elif module == 'Bonus dan THR':
+    return{
+      'indeks' : reverse('bonusthr-index')
+    }[mode]
   return "null"
 
 @register.assignment_tag

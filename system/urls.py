@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^laporan/datakaryawan$', views.dashboard.datakaryawan_index, name="datakaryawan-index"),
     url(r'^laporan/bpjs$', views.dashboard.laporanbpjs_index, name="laporanbpjs-index"),
     url(r'^tunjangankaryawan$', views.dashboard.tunjangankaryawan_index, name="tunjangankaryawan-index"),    
+    url(r'^bonusthr$', views.dashboard.bonusthr_index, name="bonusthr-index"),    
     url(r'^bpjs$', views.dashboard.bpjs_index, name="bpjs-index"),
     url(r'^ptkp$', views.dashboard.ptkp_index, name="ptkp-index"),
     # url(r'^gaji$', views.dashboard.gaji_index, name="gaji-index"),
@@ -157,6 +158,8 @@ urlpatterns = [
     url(r'^potongan/(?P<potongan_id>[0-9]+)/edit/save$', views.edit.potongan_save, name="potongan-edit-save"),
     url(r'^karyawanshift/(?P<karyawanshift_id>[0-9]+)/edit/$', views.edit.karyawanshift, name="karyawanshift-edit"),
     url(r'^karyawanshift/(?P<karyawanshift_id>[0-9]+)/edit/save$', views.edit.karyawanshift_save, name="karyawanshift-edit-save"),
+    url(r'^bonusthr/(?P<bonusthr_id>[0-9]+)/edit/$', views.edit.bonusthr, name="bonusthr-edit"),
+    url(r'^bonusthr/(?P<bonusthr_id>[0-9]+)/edit/save$', views.edit.bonusthr_save, name="bonusthr-edit-save"),
 
     #==eofedit
 
@@ -181,7 +184,7 @@ urlpatterns = [
     url(r'^potongan/(?P<potongan_id>[0-9]+)/delete/$', views.delete.potongan, name="potongan-delete"),
     url(r'^karyawanshift/(?P<karyawanshift_id>[0-9]+)/delete/$', views.delete.karyawanshift, name="karyawanshift-delete"),
     url(r'^bpjs/(?P<bpjs_id>[0-9]+)/delete/$', views.delete.bpjs, name="bpjs-delete"),
-
+    url(r'^bonusthr/(?P<bonusthr_id>[0-9]+)/delete/$', views.delete.bonusthr, name="bonusthr-delete"),
     #===api
 
     url(r'^api/karyawan$', views.dashboard.api_karyawan, name="karyawan-api"),
@@ -192,6 +195,7 @@ urlpatterns = [
     url(r'^api/potongan/save$', views.create.potongan_save, name="potongan-save"),
     url(r'^api/tunjangan/save$', views.create.tunjangan_save, name="tunjangan-save"),
     url(r'^api/bpjs/save$', views.create.bpjs_save, name="bpjs-save"),
+    url(r'^api/bonus/save$', views.create.bonus_save, name="bonus-save"),
 ]
 
 handler404  = 'system.views.pindahinkalo404' 

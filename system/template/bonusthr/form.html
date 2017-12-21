@@ -25,67 +25,18 @@
               <div class="box-header">
                 <h3 class="box-title">{{ mode }} {{ module }}</h3>
               </div>
-              <form method="post" action="{% url 'tunjangan-edit-save' idpk %}" >
+              <form method="post" action="{% url 'bonusthr-edit-save' idpk %}" >
             {% csrf_token %}
               <div class="box-body">
+                
                 <div class="row"> 
                   <div class="col-md-2 ">
-                    <p class="text-right">Masa Tenggang</p>
-                  </div>
-                  <div class="col-md-10">
-                    <div class="form-group col-md-5">
-                      <select name="masatenggang">
-                        {% for msi in ms %}
-                          <option value="{{msi.id}}" {% if msi.id == data.masatenggangclosing.id %} selected {% endif %}>{{ msi.name }} ( {{ msi.tanggal }} .s.d {{ msi.sd }} )</option>
-                        {% endfor %}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row"> 
-                  <div class="col-md-2 ">
-                    <p class="text-right">Makan</p>
+                    <p class="text-right">Bonus</p>
                   </div>
                   <div class="col-md-10">
                     <div class="form-group col-md-5">
                       <div class='input-group bootstrap-timepicker timepicker' >
-                          <input type='text' name="tmakan" class="form-control" value="{{ data.tmakan }}" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row"> 
-                  <div class="col-md-2 ">
-                    <p class="text-right">Tranportasi</p>
-                  </div>
-                  <div class="col-md-10">
-                    <div class="form-group col-md-5">
-                      <div class='input-group bootstrap-timepicker timepicker' >
-                          <input type='text' name="transportnonexec" class="form-control" value="{{ data.transportnonexec }}" />
-                      </div>
-                    </div>
-                  </div>
-                </div> 
-                <div class="row"> 
-                  <div class="col-md-2 ">
-                    <p class="text-right">Telepon</p>
-                  </div>
-                  <div class="col-md-10">
-                    <div class="form-group col-md-5">
-                      <div class='input-group bootstrap-timepicker timepicker' >
-                          <input type='text' name="ttelepon" class="form-control" value="{{ data.ttelepon }}" />
-                      </div>
-                    </div>
-                  </div>
-                </div> 
-                <div class="row"> 
-                  <div class="col-md-2 ">
-                    <p class="text-right">Kemahalan</p>
-                  </div>
-                  <div class="col-md-10">
-                    <div class="form-group col-md-5">
-                      <div class='input-group bootstrap-timepicker timepicker' >
-                          <input type='text' name="kemahalan" class="form-control" value="{{ data.kemahalan }}"/>
+                          <input type='text' name="bonus" class="form-control" value="{{ data.bonus }}"/>
                       </div>
                     </div>
                   </div>

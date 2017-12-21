@@ -288,6 +288,17 @@
         "url_slug": "ptkp-index",
         "created_at": "2017-03-01 15:03+07"
       }    
+  }, {
+    "model": "system.modules",
+    "fields": 
+      {
+        "name": "BONUSTHR",
+        "fungsi": "Bonus dan THR",
+        "menu": "DATAMASTER2",
+        "icon": "fa fa-plus",
+        "url_slug": "bonusthr-index",
+        "created_at": "2017-03-01 15:03+07"
+      }    
   },{
     "model": "system.modules",
     "fields": 

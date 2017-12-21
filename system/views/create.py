@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konfigurasi
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
-from system.models import GajiPokok, Absensi, Pinjaman, PotonganKaryawan, IzinCuti, MasaTenggangClosing
+from system.models import GajiPokok, Absensi, Pinjaman, PotonganKaryawan, IzinCuti, MasaTenggangClosing, Bonusthr
 from system.models import TunjanganKaryawan, bpjs as BPJS
 from dateutil.parser import parse
 from datetime import timedelta
@@ -381,6 +381,17 @@ def tunjangan_save(request):
 		p = TunjanganKaryawan(masatenggangclosing_id=idmas, kemahalan=kemahalan, karyawan_id=listid[y],
 								transportnonexec=request.POST['transportnonexec'], ttelepon = request.POST['ttelepon'], 
 								tmakan = request.POST['tmakan'])	
+		p.save()
+			
+
+	return HttpResponse("Berhasil Simpan")
+
+@login_required()
+def bonus_save(request):
+	idkaryawan = request.POST['idkaryawan']
+	listid = [x.strip() for x in idkaryawan.split(',')]
+	for y in range(0, len(listid)-1):
+		p = Bonusthr(karyawan_id=listid[y],bonus = request.POST['bonus'])	
 		p.save()
 			
 

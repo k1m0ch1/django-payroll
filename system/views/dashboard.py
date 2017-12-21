@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
-from system.models import Inventory, Konfigurasi, GajiPokok, PotonganKaryawan, Pinjaman
+from system.models import Inventory, Konfigurasi, GajiPokok, PotonganKaryawan, Pinjaman, Bonusthr
 from system.models import MasaTenggangClosing, IzinCuti
 from system.models import TunjanganKaryawan, bpjs as BPJS
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -290,6 +290,43 @@ def tunjangankaryawan_index(request):
 	return render(request, "tunjangan/dashboard.html", { 'tk': tk, 'mas' : mas,'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
 															 'golongan' : gol, 'jabatan' : jab,
 															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
+
+@login_required()
+def bonusthr_index(request):
+
+	tk = Bonusthr.objects.all()
+
+	if request.method == "GET":
+
+		if 'search' in request.GET:
+			tk = tk.filter(karyawan__NIK__contains=request.GET['value']) if request.GET['search'] == "nik" else tk
+			tk = tk.filter(karyawan__name__contains=request.GET['value']) if request.GET['search'] == "name" else tk
+
+	k = Karyawan.objects.all()
+	dep = Departemen.objects.all()
+	bag = Bagian.objects.all()
+	gol = Golongan.objects.all()
+	per = Perusahaan.objects.all()
+	jab = Jabatan.objects.all()
+	shift = Shift.objects.all()
+	mas = MasaTenggangClosing.objects.all()	
+
+	tk = tk.order_by("-updated_at")
+	
+	page = request.GET.get('page', 1)
+	paginator = Paginator(tk, 15)
+    
+	try:
+ 		tk = paginator.page(page)
+	except PageNotAnInteger:
+		tk = paginator.page(1)
+	except EmptyPage:
+   		tk = paginator.page(paginator.num_pages)
+
+	return render(request, "bonusthr/dashboard.html", { 'tk': tk, 'mas' : mas,'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+															 'golongan' : gol, 'jabatan' : jab,
+															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
+
 
 @login_required()
 def postinggaji_index(request):

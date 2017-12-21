@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
-from system.models import Bank, Agama, WargaNegara, StatusMenikah
+from system.models import Bank, Agama, WargaNegara, StatusMenikah, Bonusthr
 from system.models import LokasiPerusahaan, Shift, Inventory, Konfigurasi, Karyawan, MasaTenggangClosing, TunjanganKaryawan, PotonganKaryawan
 from system.models import KaryawanShift, bpjs as BPJS
 from django.contrib import messages
@@ -17,6 +17,11 @@ def perusahaan(request, perusahaan_id):
 	p.delete()
 	return redirect("perusahaan-index")
 
+@login_required()
+def bonusthr(request, bonusthr_id):
+	b = Bonusthr.objects.filter(id=bonusthr_id)
+	b.delete()
+	return redirect("bonusthr-index")
 
 @login_required()
 def departemen(request, departemen_id):

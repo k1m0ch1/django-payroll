@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from pprint import pprint
-from system.models import Karyawan, Perusahaan, Bank, Departemen, Bagian, GajiPokok, Jabatan, TunjanganKaryawan
+from system.models import Karyawan, Perusahaan, Bank, Departemen, Bagian, GajiPokok, Jabatan, TunjanganKaryawan, Bonusthr
 from openpyxl import load_workbook
 import argparse
 from datetime import datetime
@@ -83,6 +83,9 @@ class Command(BaseCommand):
 		t = TunjanganKaryawan(kemahalan=ax['AI' + str(y)].value, karyawan_id=k.id,
 								transportnonexec=ax['AJ' + str(y)].value, ttelepon = ax['AK' + str(y)].value)
 		t.save()
+
+		pollutebonus = Bonusthr(karyawan_id=k.id)
+		pollutebonus.save()
 
 		y = y + 1
 		print "["+ str(y) +"] Tambah karyawan " + nama + " Sukses"

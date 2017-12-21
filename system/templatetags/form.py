@@ -79,4 +79,9 @@ def form(module=None, mode=None, idpk=None):
 			'Tambah' : reverse('pinjaman-create-save'),
 			'Ubah'   : reverse('pinjaman-edit-save', kwargs={'pinjaman_id': idpk})
 		}[mode]
+	elif module == 'Bonus dan THR':
+	    return{
+			'Tambah' : reverse('bonusthr-create-save'),
+			'Ubah'   : reverse('bonusthr-edit-save', kwargs={'bonusthr_id': idpk})
+		}[mode]
 	return "null"

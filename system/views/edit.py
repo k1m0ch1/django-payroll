@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan, Konfigurasi
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Inventory, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift, GajiPokok
-from system.models import MasaTenggangClosing, TunjanganKaryawan, PotonganKaryawan
+from system.models import MasaTenggangClosing, TunjanganKaryawan, PotonganKaryawan, Bonusthr
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -162,8 +162,22 @@ def tunjangan(request, tunjangan_id):
 @login_required()
 def tunjangan_save(request, tunjangan_id):
 	d = TunjanganKaryawan.objects.select_for_update().filter(id=tunjangan_id)
-	d.update(masatenggangclosing_id = request.POST['masatenggang'] ,kemahalan = request.POST['kemahalan'])
+	d.update(masatenggangclosing_id = request.POST['masatenggang'] ,kemahalan = request.POST['kemahalan'], tmakan = request.POST['tmakan'],
+				transportnonexec =request.POST['transportnonexec'], ttelepon = request.POST['ttelepon'])
 	return redirect("tunjangankaryawan-index")
+
+@login_required()
+def bonusthr(request, bonusthr_id):
+	d = Bonusthr.objects.get(pk=bonusthr_id)
+	return render(request, "bonusthr/form.html", { 'data' : d , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   'idpk' : d.id, 'dsb' : modules, 'parent' : getParent(request)})
+	
+@login_required()
+def bonusthr_save(request, bonusthr_id):
+	d = Bonusthr.objects.select_for_update().filter(id=bonusthr_id)
+	d.update(bonus = request.POST['bonus'])
+	return redirect("bonusthr-index")
+
 
 @login_required()
 def potongan(request, potongan_id):
