@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load dashboard %}
+{% load money %}
 
 
 {% block content %}
@@ -71,10 +72,10 @@
                 </tr>
                 {% for d in ptkp %}
                 <tr>
-                  <td>{{ d.NIK }}</td>
+                  <td>{% ez d.NIK %}</td>
                   <td>{{ d.name }}</td>
                   <td>{{ d.statusmenikah.name }}</td>
-                  <td>{{ d.statusmenikah.desc|sptkp }}</td>
+                  <td>{% mon d.statusmenikah.desc|sptkp %}</td>
                   <!-- <td>{{ d.statusmenikah.desc }}</td> -->
                 </tr>
                 {% endfor %}
