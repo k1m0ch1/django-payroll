@@ -13,3 +13,14 @@ def mon(money=None):
 		hasil = hasil + x
 		i = i + 1
 	return hasil
+
+@register.simple_tag
+def ez(angka=None):
+	i = 0
+	hasil = ""
+	for x in str(angka):
+		if i%4 == 0 and i != 0:
+			hasil =  hasil + " "
+		hasil = hasil + x
+		i = i + 1
+	return hasil

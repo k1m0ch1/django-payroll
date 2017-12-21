@@ -96,8 +96,8 @@
                       <p class="text-right">Nomor Kontak</p>
                     </div>
                     <div class="col-md-8">
-                      <p>Telepon {{ karyawan.telepon }}</p>
-                      <p>Handphone {{ karyawan.handphone }}</p>
+                      <p>Telepon {% ez karyawan.telepon %}</p>
+                      <p>Handphone {% ez karyawan.handphone %}</p>
                     </div>
                   </div>
 
@@ -106,7 +106,7 @@
                       <p class="text-right">KTP</p>
                     </div>
                     <div class="col-md-4">
-                      <p>{{ karyawan.ktpid }}</p>
+                      <p>{% ez karyawan.ktpid %}</p>
                     </div>
                   </div>
 
@@ -146,7 +146,7 @@
                       <p class="text-right">Bank</p>
                     </div>
                     <div class="col-md-8">
-                      <p>{{ karyawan.bank.name }} &nbsp;&nbsp; a.n. &nbsp;  {{ karyawan.atasnama }} &nbsp;&nbsp;No. Rek. {{ karyawan.norek }} </p>
+                      <p>{{ karyawan.bank.name }} &nbsp;&nbsp; a.n. &nbsp;  {{ karyawan.atasnama }} &nbsp;&nbsp;<br/> No. Rek. {% ez karyawan.norek %} </p>
                     </div>
                   </div>
 
@@ -164,7 +164,7 @@
                       <p class="text-right">NPWP</p>
                     </div>
                     <div class="col-md-8">
-                      <p>{{ karyawan.NPWP }} </p>
+                      <p>{% ez karyawan.NPWP %} </p>
                     </div>
                   </div>
 
@@ -173,7 +173,7 @@
                       <p class="text-right">KPJ</p>
                     </div>
                     <div class="col-md-8">
-                      <p>{{ karyawan.KPJ }}</p>
+                      <p>{% ez karyawan.KPJ %}</p>
                     </div>
                   </div>
 
