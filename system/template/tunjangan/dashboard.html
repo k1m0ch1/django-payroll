@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load money %}
 
 {% block content %}
 <div class="content-wrapper">
@@ -198,13 +199,13 @@
                 </tr>
                 {% for d in tk %}
                 <tr>
-                  <td>{{ d.karyawan.NIK }}</td>
+                  <td>{% ez d.karyawan.NIK %}</td>
                   <td>{{ d.karyawan.name }}</td>
                   <!-- <td>{{ d.masatenggangclosing.tanggal|date:"d M Y" }} sd {{ d.masatenggangclosing.sd|date:"d M Y" }}</td> -->
-                  <td>{{ d.tmakan }}</td>
-                  <td>{{ d.transportnonexec }}</td>
-                  <td>{{ d.kemahalan }}</td>
-                  <td>{{ d.ttelepon }}</td>
+                  <td>{% mon d.tmakan %}</td>
+                  <td>{% mon d.transportnonexec %}</td>
+                  <td>{% mon d.kemahalan %}</td>
+                  <td>{% mon d.ttelepon %}</td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                       <a href="{% url 'tunjangan-edit' tunjangan_id=d.id %}" type="button" class="btn btn-default"><i class="fa fa-pencil"></i></a>
