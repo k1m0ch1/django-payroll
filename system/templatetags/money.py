@@ -7,11 +7,12 @@ register = template.Library()
 def mon(money=None):
 	i = 0
 	hasil = "Rp. "
+	y = len(str(money))
 	for x in str(money):
-		if i%3 == 1 and i != 0:
-			hasil =  hasil + "."
+		if y%3 == 0 and y != 1 and y != len(str(money)):
+			hasil = hasil + "."
 		hasil = hasil + x
-		i = i + 1
+		y = y - 1
 	return hasil
 
 @register.simple_tag
