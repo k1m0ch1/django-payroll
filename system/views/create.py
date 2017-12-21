@@ -390,10 +390,14 @@ def tunjangan_save(request):
 def bonus_save(request):
 	idkaryawan = request.POST['idkaryawan']
 	listid = [x.strip() for x in idkaryawan.split(',')]
+
 	for y in range(0, len(listid)-1):
-		p = Bonusthr(karyawan_id=listid[y],bonus = request.POST['bonus'])	
-		p.save()
-			
+		try:
+			b = Bonusthr.objects.select_for_update().filter(karyawan_id=listid[y])
+			b.update(bonus = request.POST['bonus'])
+		except Bonusthr.DoesNotExist:
+			b = Bonusthr(karyawan_id=listid[y],bonus = request.POST['bonus'])	
+			b.save()			
 
 	return HttpResponse("Berhasil Simpan")
 
