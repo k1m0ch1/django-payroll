@@ -436,3 +436,18 @@ class bpjs(models.Model):
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
+
+class Mesin(models.Model):
+	name = models.CharField(max_length=200, null=True, default="")
+	ip = models.CharField(max_length=15, null=True, default= "") 
+	port = models.CharField(max_length=7, default=4370)
+	desc = models.TextField(default="")
+	last_up = models.DateTimeField(null=True)
+	last_down = models.DateTimeField(null=True)
+	last_check = models.DateTimeField(null=True)
+	status = models.CharField(max_length=7, default="DOWN")
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name

@@ -200,54 +200,35 @@
 		        <!-- /.box -->
 
 		      </div>
-		      <div class="col-md-6">
-		          <!-- Widget: user widget style 1 -->
-		          <div class="box box-widget widget-user">
-		            <!-- Add the bg color to the header using any of the bg-* classes -->
-		            <div class="widget-user-header bg-aqua-active">
-		              <h3 class="widget-user-username">Ahmad F.A</h3>
-		              <h5 class="widget-user-desc">Administrator Absensi</h5>
-		            </div>
-		            <div class="widget-user-image">
-		              <img class="img-circle" src="{% static 'dist/img/user1-128x128.jpg' %}" alt="User Avatar">
-		            </div>
-		            <div class="box-footer">
-		              <div class="row">
-		                <div class="col-sm-10 col-sm-offset-1">
-		                  <p class="justify">asdasd asd asdasdasd asdasd asdasda sd asd asdasd asdasd as das da sda sdasdasdasd asd asdasdasd asdasdasda sdas dasdas da sd asd as da sda sd as da sd asdasdasdasd asdasda sdasdasd asdasdas</p>
-		                </div>              
-		              </div>
-		              <div class="row">
-		                <div class="col-sm-4 border-right">
-		                  <div class="description-block">
-		                    <h5 class="description-header">XXX</h5>
-		                    <span class="description-text">XXXXXXXX</span>
-		                  </div>
-		                  <!-- /.description-block -->
-		                </div>
-		                <!-- /.col -->
-		                <div class="col-sm-4 border-right">
-		                  <div class="description-block">
-		                    <h5 class="description-header">XXX</h5>
-		                    <span class="description-text">XXXXXXXX</span>
-		                  </div>
-		                  <!-- /.description-block -->
-		                </div>
-		                <!-- /.col -->
-		                <div class="col-sm-4">
-		                  <div class="description-block">
-		                    <h5 class="description-header">XXX</h5>
-		                    <span class="description-text">XXXXXXXX</span>
-		                  </div>
-		                  <!-- /.description-block -->
-		                </div>
-		                <!-- /.col -->
-		              </div>
-		              <!-- /.row -->
-		            </div>
-		          </div>
-		          <!-- /.widget-user -->
-		        </div>
+		      <div id="disatukan" class="col-md-6">
+			      <div id="ContentMesin">
+			      	{% for xx in mesin %}
+			      	<div class="col-md-6 col-sm-6 col-xs-12">
+			          <div class="info-box">
+			          	{% if xx.status == UP %}
+			            	<span class="info-box-icon bg-green">
+			            	<i class="fa fa-check"></i>
+			           	{% else %}
+			           		<span class="info-box-icon bg-red">
+			           		<i class="fa fa-close"></i>
+			           	{% endif %}
+			            	
+			           	</span>
+			           		<div class="info-box-content">
+			           			<span class="info-box-text">Mesin {{ xx.name }} is <strong>{{ xx.status }}</strong></span>
+			           			<span class="info-box-number">IP : {{xx.ip}}:{{xx.port}}</span>
+			           			<span class="info-box-text">Last Check {{ xx.last_check }} </span>
+			           			<!-- <span class="info-box-text">Last UP {{ xx.last_up }} </span>
+			           			<span class="info-box-text">Last Down {{ xx.last_down }} </span> --></div></div></div>
+			       {% endfor %}
+			      </div>
+			      <div id="loading" style="position: absolute;margin: auto;top:50%;left:50%;">
+			      		<img height=30 width=30 src='{% static '/images/loading.gif' %}' id='loading-indicator' />
+			      		<p align="center" style="margin-top:5px;margin-left:-50px;"><strong>Cek koneksi ke mesin</strong></p>
+			      </div>
+			  </div>
+		      
+
 		    </div>
 
 		    </section>
@@ -289,6 +270,39 @@
 		<!-- page script -->
 		<script>
 		  $(function () {
+		  	$('#loading').hide();
+
+		  	$.ajax({
+		        type: "GET",
+		        url: 'http://{{ request.get_host }}/index/api/machine/check',
+	            beforeSend: function() {
+	            	var wew = "";
+	                $('#ContentMesin').css({'-webkit-filter': 'blur(5px)', '-moz-filter' : 'blur(5px)', '-o-filter': 'blur(5px)', '-ms-filter': 'blur(5px)', 'filter': 'blur(5px)', 'background' : 'url('});
+	                $('#loading').show();
+	            },
+	            complete: function(){
+	            	$('#ContentMesin').removeAttr( 'style' );
+	            	$('#loading').hide();
+	            },
+		        success: function(result) {
+		            var obj = JSON.parse(result);
+		            var hasil = '';
+		            for (var key in obj){
+		            	hasil += '<div class="col-md-6 col-sm-6 col-xs-12"><div class="info-box">';
+		            	console.log(obj[key].fields.name);
+
+		            	if(obj[key].fields.status=='UP'){
+		            		hasil += '<span class="info-box-icon bg-green"><i class="fa fa-check"></i>';
+		            	}else{
+		            		hasil += '<span class="info-box-icon bg-red"><i class="fa fa-close"></i>';
+		            	}
+
+		            	hasil += '</span><div class="info-box-content"><span class="info-box-text">Mesin ' + obj[key].fields.name + ' is <strong>' + obj[key].fields.status + '</strong></span><span class="info-box-number">IP : ' + obj[key].fields.ip + ':' + obj[key].fields.port + '</span><span class="info-box-text">Last Check ' + obj[key].fields.last_check + ' </span></div></div></div>';
+		            }
+
+		            $('#ContentMesin').html(hasil);
+		      }
+		    });
 		    /* ChartJS
 		     * -------
 		     * Here we will create a few charts using ChartJS

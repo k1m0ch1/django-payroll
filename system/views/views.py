@@ -6,8 +6,13 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from system.models import Perusahaan, Departemen, Modules, Karyawan, Konfigurasi, IzinCuti, Absensi
+from system.models import Perusahaan, Departemen, Modules, Karyawan, Konfigurasi, IzinCuti, Absensi, Mesin
 from datetime import datetime, timedelta
+import time
+import pyping
+from django.http import JsonResponse
+from django.core import serializers
+
 
 modules = Modules.objects.all()
 
@@ -30,6 +35,21 @@ def pindahinkalo404(request):
                               context_instance=RequestContext(request))
     response.status_code = 404
     return redirect('index')
+
+@login_required()
+def cek_mesin(request):
+	msn = Mesin.objects.all()
+	for z in msn:
+		response = pyping.ping(z.ip)
+		msn = Mesin.objects.select_for_update().filter(id=z.id)
+		if response.ret_code == 0:		    
+		    msn.update(status="UP", last_up = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'), last_check = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') )
+		else:
+		    msn.update(status="DOWN", last_down = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'), last_check = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') )
+
+	msn = serializers.serialize("json", Mesin.objects.all())
+
+	return JsonResponse(msn, safe=False)
 
 @login_required()
 def index(request):
@@ -56,11 +76,13 @@ def index(request):
 		else:
 			banyakmasuk = banyakmasuk + 1
 
+	msn = Mesin.objects.all()
+
 	dataPayroll = { 'dsb' : modules, 'banyakKaryawan' :  banyak , 'banyakCuti' : banyakcuti, 
 					'banyakabsenkemaren' : banyakabsenkemaren, 'hariiniabsen' : hariiniabsen,
 					'bulanabsen' : bulanabsen, 'bulancuti': bulancuti,
 					'mauabis' : mauabis, 'banyaktelat' : banyaktelat,
-					'banyakmasuk' : banyakmasuk}
+					'banyakmasuk' : banyakmasuk, 'mesin' : msn}
 	return render(request, "dashboard.html", dataPayroll)
 
 def loginpage(request):
