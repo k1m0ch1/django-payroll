@@ -6,7 +6,7 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from system.models import Perusahaan, Departemen, Modules, Karyawan, Konfigurasi, IzinCuti, Absensi, Mesin
+from system.models import Perusahaan, Departemen, Modules, Karyawan, Konfigurasi, IzinCuti, Absensi, Mesin, MesinPull
 from datetime import datetime, timedelta
 import time
 import pyping

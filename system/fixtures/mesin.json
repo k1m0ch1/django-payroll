@@ -3,8 +3,8 @@
     "model": "system.mesin",
     "fields": 
       {
-        "name": "Techno 3",
-        "ip" : "175.176.166.178",
+        "name": "Mesin Random",
+        "ip" : "103.200.7.177",
         "port": "4371",
         "desc": "Other fracture of unspecified thoracic vertebra, sequela",
         "created_at": "2017-03-01 15:03+07"
@@ -25,8 +25,8 @@
     "model": "system.mesin",
     "fields": 
       {
-        "name": "Techno 2",
-        "ip" : "10.10.10.150",
+        "name": "Mesin Dota Singapur",
+        "ip" : "36.86.63.182",
         "port": "4370",
         "desc": "Malignant neoplasm of unspecified part of unspecified adrenal gland",
         "created_at": "2017-03-01 15:03+07"

@@ -451,3 +451,14 @@ class Mesin(models.Model):
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
+
+class MesinPull(models.Model):
+	ip = models.CharField(max_length=15, null=True, default= "") 
+	port = models.CharField(max_length=7, default=4370)
+	banyakdata = models.TextField(default="")
+	last_get = models.DateTimeField(null=True)
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
