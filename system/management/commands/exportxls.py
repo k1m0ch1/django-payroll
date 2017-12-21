@@ -76,8 +76,7 @@ class Command(BaseCommand):
 		k.save()
 
 		g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=ax['AA' + str(y)].value, 
-					jumlahhari = jumlahhari, jabatan = ax['AB' + str(y)].value, umut = ax['AH' + str(y)].value,
-					ttransport = ax['AJ' + str(y)].value, ttelepon = ax['AK' + str(y)].value)
+					jumlahhari = jumlahhari, jabatan = ax['AB' + str(y)].value, umut = ax['AH' + str(y)].value)
 		g.save()
 
 		t = TunjanganKaryawan(kemahalan=ax['AI' + str(y)].value, karyawan_id=k.id,

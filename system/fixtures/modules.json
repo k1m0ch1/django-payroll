@@ -184,7 +184,7 @@
         "name": "HARIRAYA",
         "fungsi": "Hari Raya",
         "menu": "DATAMASTER1",
-        "icon": "fa fa-user-plus",
+        "icon": "fa fa-hourglass",
         "url_slug": "hariraya-index",
         "created_at": "2017-03-01 15:03+07"
       }
@@ -196,7 +196,7 @@
         "name": "SHIFT",
         "fungsi": "Shift",
         "menu": "DATAMASTER1",
-        "icon": "fa fa-user-plus",
+        "icon": "fa fa-heartbeat",
         "url_slug": "shift-index",
         "created_at": "2017-03-01 15:03+07"
       }
