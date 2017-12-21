@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load money %}
 
 {% block content %}
 <div class="content-wrapper">
@@ -358,7 +359,7 @@
                 <tr>
                   <!-- <td><input type="checkbox" value=""></td> -->
                   <td>{{ d.tglawal|date:"d M Y" }} sd {{ d.tglakhir|date:"d M Y" }}</td>
-                  <td>{{ d.karyawan.NIK }}</td>
+                  <td>{% ez d.karyawan.NIK %}</td>
                   <td>{{ d.karyawan.name }}</td>
                   <td>{{ d.shift.name }}</td>
                   <td>
