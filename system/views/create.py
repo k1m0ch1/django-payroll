@@ -150,8 +150,7 @@ def karyawan_save(request):
 
 	g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], 
 					jumlahhari = request.POST['jumlahhari'], jabatan = request.POST['jabatan'],
-					umut = request.POST['umut'], ttelepon = request.POST['ttelepon'], tmakan = request.POST['tmakan'],
-					ttransport = request.POST['ttransport'], bonus = request.POST['bonus'])
+					umut = request.POST['umut'])
 	g.save()
 
 	return redirect('karyawan-index')
@@ -197,8 +196,7 @@ def karyawan_save_api(request):
 
 	g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], 
 					jumlahhari = request.POST['jumlahhari'], jabatan = request.POST['jabatan'],
-					umut = request.POST['umut'], ttelepon = request.POST['ttelepon'], tmakan = request.POST['tmakan'],
-					ttransport = request.POST['ttransport'], bonus = request.POST['bonus'])
+					umut = request.POST['umut'])
 	g.save()
 
 	return HttpResponse("berhasil-simpan-karyawan")

@@ -47,11 +47,14 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" value="{{ karyawan.name }}" class="form-control nama1" placeholder="Nama Depan" name="nama1">
+                      
+                        <input type="text" value="{{ karyawan.name }}" class="form-control nama1" placeholder="Nama Depan" name="nama1" required>
                       </div>
-                      <div class="form-group col-md-6">
-                        <input type="text" class="form-control nama2" placeholder="Nama Belakang" name="nama2">
-                      </div>
+                      {% if mode == "Tambah" %}
+                        <div class="form-group col-md-6">
+                          <input type="text" class="form-control nama2" placeholder="Nama Belakang" name="nama2" required>
+                        </div>
+                      {% endif %}
                     </div>
                   </div>
                   <div class="row">
@@ -60,7 +63,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <select class="form-control gender" name="gender">
+                        <select class="form-control gender" name="gender" required>
                           <option value="Laki-Laki" {% if karyawan.gender == "Laki-Laki" %} selected {% endif %} >Laki-laki</option>
                           <option value="Perempuan" {% if karyawan.gender == "Perempuan" %} selected {% endif %}>Perempuan</option>
                         </select>
@@ -73,10 +76,10 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" value="{{ karyawan.tempatlahir }}" class="form-control tempatlahir" placeholder="Kota Lahir" name="tempatlahir">
+                        <input type="text" value="{{ karyawan.tempatlahir }}" class="form-control tempatlahir" placeholder="Kota Lahir" name="tempatlahir" required>
                       </div>
                       <div class="form-group col-md-6 date">
-                        <input type="text" value="{{ karyawan.tanggallahir }}" class="form-control tanggallahir" id="datepicker" placeholder="Tanggal Lahir" name="tanggallahir">
+                        <input type="text" value="{{ karyawan.tanggallahir }}" class="form-control tanggallahir" id="datepicker" placeholder="Tanggal Lahir" name="tanggallahir" required>
                       </div>
                     </div>
                   </div>
@@ -86,7 +89,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-12">
-                        <textarea class="form-control alamat" placeholder="Alamat Lengkap" name="alamat">{{ karyawan.alamat }}</textarea>
+                        <textarea class="form-control alamat" placeholder="Alamat Lengkap" name="alamat" required>{{ karyawan.alamat }}</textarea>
                       </div>
                     </div>
                   </div>
@@ -96,7 +99,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" value="{{ karyawan.kota }}" class="form-control kota" placeholder="Kota" name="kota">
+                        <input type="text" value="{{ karyawan.kota }}" class="form-control kota" placeholder="Kota" name="kota" required>
                       </div>
                     </div>
                   </div>
@@ -106,7 +109,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" value="{{ karyawan.provinsi }}" class="form-control provinsi" placeholder="Provinsi" name="provinsi">
+                        <input type="text" value="{{ karyawan.provinsi }}" class="form-control provinsi" placeholder="Provinsi" name="provinsi" required>
                       </div>
                     </div>
                   </div>
@@ -117,10 +120,10 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" value="{{ karyawan.telepon }}" class="form-control telepon" placeholder="Telepon" name="telepon">
+                        <input type="text" value="{{ karyawan.telepon }}" class="form-control telepon" placeholder="Telepon" name="telepon" required>
                       </div>
                       <div class="form-group col-md-6">
-                        <input type="text" value="{{ karyawan.handphone }}" class="form-control handphone" placeholder="Handphone" name="handphone">
+                        <input type="text" value="{{ karyawan.handphone }}" class="form-control handphone" placeholder="Handphone" name="handphone" required>
                       </div>
                     </div>
                   </div>
@@ -132,7 +135,7 @@
                     <div class="col-md-10">
                       
                       <div class="form-group col-md-6 date">
-                        <input type="text" class="form-control tanggalmasuk" id="datepicker5" placeholder="Tanggal Masuk" name="tanggalmasuk" value="{{ karyawan.tanggalmasuk }}">
+                        <input type="text" class="form-control tanggalmasuk" id="datepicker5" placeholder="Tanggal Masuk" name="tanggalmasuk" value="{{ karyawan.tanggalmasuk }}" required>
                       </div>
                     </div>
                   </div>
@@ -143,7 +146,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <select class="form-control statuskaryawan" name="statuskaryawan">
+                        <select class="form-control statuskaryawan" name="statuskaryawan" required>
                           <option value="Kontrak 1 (PKWT)" {% if karyawan.statuskaryawan == "Kontrak 1 (PKWT)" %} selected {% endif %}>Kontrak 1 (PKWT)</option>
                           <option value="Kontrak 2 (PKWTT)" {% if karyawan.statuskaryawan == "Kontrak 2 (PKWT)" %} selected {% endif %}>Kontrak 2 (PKWTT)</option>
                           <option value="Probation" {% if karyawan.statuskaryawan == "Probation" %} selected {% endif %}>Probation</option>
@@ -151,7 +154,7 @@
                         </select>
                       </div>
                       <div class="form-group col-md-6 date">
-                        <input type="text" class="form-control masakaryawan" id="datepicker2" placeholder="Berlaku Sampai" name="masakaryawan" value="{{ karyawan.masakaryawan }}">
+                        <input type="text" class="form-control masakaryawan" id="datepicker2" placeholder="Berlaku Sampai" name="masakaryawan" value="{{ karyawan.masakaryawan }}" required>
                       </div>
                     </div>
                   </div>
@@ -164,7 +167,7 @@
                         <input type="text" class="form-control ktp" value="{{ karyawan.ktpid }}" placeholder="ID KTP" name="ktp">
                       </div>
                       <div class="form-group col-md-6 ">
-                        <select class="form-control warganegara" name="warganegara">
+                        <select class="form-control warganegara" name="warganegara" required>
                           <option>Warga Negara</option>
                           {% for wg in warganegara %}
                             <option value="{{wg.id}}" {% if wg.id == karyawan.warganegara_id %} selected {% endif %} >{{wg.name}}</option>
@@ -172,7 +175,7 @@
                         </select>
                       </div>
                       <div class="form-group col-md-6">
-                        <select class="form-control agama" name="agama">
+                        <select class="form-control agama" name="agama" required>
                           <option>Agama</option>
                           {% for ag in agama %}
                             <option value="{{ag.id}}" {% if ag.id == karyawan.agama_id %} selected {% endif %}>{{ag.name}}</option>
@@ -180,7 +183,7 @@
                         </select>
                       </div>
                       <div class="form-group col-md-6">
-                        <select class="form-control statusmenikah" name="statusmenikah">
+                        <select class="form-control statusmenikah" name="statusmenikah" required>
                           <option>Status Menikah</option>
                           {% for sm in statusmenikah %}
                             <option value="{{sm.id}}" {% if sm.id == karyawan.statusmenikah_id %} selected {% endif %}>{{sm.name}}</option>
@@ -195,7 +198,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <select class="form-control bank" name="bank">
+                        <select class="form-control bank" name="bank" required>
                           <option>Nama Bank</option>
                           {% for bk in bank %}
                             <option value="{{bk.id}}" {% if bk.id == karyawan.bank_id %} selected {% endif %}>{{bk.name}}</option>
@@ -203,10 +206,10 @@
                         </select>
                       </div>
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control norekening" placeholder="No Rekening" name="norekening" value="{{ karyawan.norek }}">
+                        <input type="text" class="form-control norekening" placeholder="No Rekening" name="norekening" value="{{ karyawan.norek }}" required>
                       </div>
                       <div class="form-group col-md-12">
-                        <input type="text" value="{{ karyawan.atasnama }}" class="form-control atasnama" placeholder="Rekening Atas Nama" name="atasnama">
+                        <input type="text" value="{{ karyawan.atasnama }}" class="form-control atasnama" placeholder="Rekening Atas Nama" name="atasnama" required>
                       </div>
                     </div>
                   </div>
@@ -216,7 +219,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control fingerid" value="{{ karyawan.fingerid }} {{ idfinger }}" placeholder="Finger ID" name="fingerid">
+                        <input type="text" class="form-control fingerid" value="{{ karyawan.fingerid }} {{ idfinger }}" placeholder="Finger ID" name="fingerid" required>
                       </div>
                     </div>
                   </div>
@@ -226,7 +229,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-10">
-                        <select class="form-control lokasimesin" name="lokasimesin">
+                        <select class="form-control lokasimesin" name="lokasimesin" required>
                           <option>Lokasi Mesin</option>
                           {% for m in mesin %}
                             <option value="{{ m.ipmesin }}" {% if karyawan.lokasimesin == m.ipmesin %} selected {% endif %}>{{ m.namamesin }}, {{ m.ipmesin }}</option>
@@ -241,7 +244,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control NPWP" value="{{ karyawan.NPWP }}" placeholder="NPWP" name="NPWP">
+                        <input type="text" class="form-control NPWP" value="{{ karyawan.NPWP }}" placeholder="NPWP" name="NPWP" required>
                       </div>
                     </div>
                   </div>
@@ -308,7 +311,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <input type="text" class="form-control KPJ" value="{{ karyawan.KPJ }}" placeholder="KPJ" name="KPJ">
+                        <input type="text" class="form-control KPJ" value="{{ karyawan.KPJ }}" placeholder="KPJ" name="KPJ" required>
                       </div>
                     </div>
                   </div>
@@ -318,7 +321,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-6">
-                        <select class="form-control jumlahhari" name="jumlahhari">
+                        <select class="form-control jumlahhari" name="jumlahhari" required>
                           <option>Jumlah Hari</option>
                           <option value="2" {% if karyawan.jumlahhari == 2 %} selected {% endif %}>2</option>
                           <option value="3" {% if karyawan.jumlahhari == 3 %} selected {% endif %}>3</option>
@@ -335,7 +338,7 @@
                     </div>
                     <div class="col-md-10">
                       <div class="form-group col-md-12">
-                        <select class="form-control perusahaan" name="perusahaan">
+                        <select class="form-control perusahaan" name="perusahaan" required>
                           <option>== Pilih Perusahaan ==</option>
                           {% for p in perusahaan %}
                             <option value="{{p.id}}" {% if karyawan.perusahaan_id == p.id %} selected {% endif %}>{{p.name}}</option>
@@ -343,7 +346,7 @@
                         </select>
                       </div>
                       <div class="form-group col-md-12">
-                        <select class="form-control departemen" name="departemen">
+                        <select class="form-control departemen" name="departemen" required>
                           <option>== Pilih Departemen ==</option>
                           {% for d in departemen %}
                             <option value="{{d.id}}" {% if karyawan.departemen_id == d.id %} selected {% endif %}>{{d.name}}</option>
@@ -351,7 +354,7 @@
                         </select>
                       </div>                      
                       <div class="form-group col-md-12">
-                        <select class="form-control bagian" name="bagian">
+                        <select class="form-control bagian" name="bagian" required>
                           <option>== Pilih Bagian ==</option>
                           {% for b in bagian %}
                             <option value="{{b.id}}" {% if karyawan.bagian_id == b.id %} selected {% endif %}>{{b.name}}</option>
@@ -359,7 +362,7 @@
                         </select>
                       </div>
                       <div class="form-group col-md-12">
-                        <select class="form-control golongan" name="golongan">
+                        <select class="form-control golongan" name="golongan" required>
                           <option>== Pilih Golongan ==</option>
                           {% for g in golongan %}
                             <option value="{{g.id}}" {% if karyawan.golongan_id == g.id %} selected {% endif %}>{{g.name}}</option>
@@ -378,20 +381,20 @@
                     </div>
                   </div>  
                   <div class="row"> 
-                    <div class="col-md-2 ">
+                    <div class="col-md-4">
                       <p class="text-right">Gaji Pokok (75%)</p>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                       <div class="form-group col-md-6">
                         <input type="text" class="form-control gajipokok" value="{{ gajipokok.gajipokok }}" placeholder="Rp. Gaji Pokok" name="gajipokok">
                       </div>
                     </div>
                   </div>
                   <div class="row"> 
-                    <div class="col-md-2 ">
+                    <div class="col-md-4">
                       <p class="text-right">Tunjangan Tetap (Jabatan) (25%)</p>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                       <div class="form-group col-md-6">
                         <input type="text" class="form-control jabatan" value="{{ gajipokok.jabatan }}" placeholder="Rp. Tunjangan Jabatan" name="jabatan">
                       </div>
@@ -399,17 +402,17 @@
                   </div>
                   
                   <div class="row"> 
-                    <div class="col-md-2 ">
+                    <div class="col-md-4">
                       <p class="text-right">Tunjangan UMUT Lumpsum</p>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                       <div class="form-group col-md-6">
                         <input type="text" class="form-control umut" value="{{ gajipokok.umut }}" placeholder="Rp. Umut Lumpsum" name="umut">
                       </div>
                     </div>
                   </div>
 
-                  <div class="row"> 
+                  <!-- <div class="row"> 
                     <div class="col-md-2 ">
                       <p class="text-right">Tunjangan Telefon</p>
                     </div>
@@ -440,9 +443,9 @@
                         <input type="text" class="form-control ttransport" value="{{ gajipokok.ttransport }}" placeholder="Rp. Tunjangan Transport" name="ttransport">
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
-                  <div class="row"> 
+                  <!-- <div class="row"> 
                     <div class="col-md-2 ">
                       <p class="text-right">Bonus</p>
                     </div>
@@ -451,7 +454,7 @@
                         <input type="text" class="form-control bonus" value="{{ gajipokok.bonus }}" placeholder="Rp. Bonus" name="bonus">
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="row">
                   <div class="col-md-5 text-left">
@@ -461,7 +464,7 @@
                           <button type="submit" class=" btn btn-primary"><i class="fa fa-plus"></i> Simpan</button> 
                         </div>
 
-                        <div class="col-md-1"></div>
+                        <div class="col-md-1" style="margin-right:10px;"></div>
                         
                         <div class="col-md-1">
                         {% if mode == "Tambah" %} 

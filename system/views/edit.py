@@ -104,7 +104,7 @@ def karyawan_save(request, karyawan_id):
 					jabatan = request.POST['jabatan'])
 	else:
 		g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], 
-					jumlahhari = request.POST['jumlahhari'], jabatan = request.POST['jabatan'])
+					jumlahhari = request.POST['jumlahhari'], jabatan = request.POST['jabatan'], umut = request.POST['umut'])
 
 		g.save()
 
