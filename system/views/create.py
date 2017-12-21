@@ -393,6 +393,7 @@ def bonus_save(request):
 
 	for y in range(0, len(listid)-1):
 		try:
+			b = Bonusthr.objects.get(karyawan_id=listid[y])
 			b = Bonusthr.objects.select_for_update().filter(karyawan_id=listid[y])
 			b.update(bonus = request.POST['bonus'])
 		except Bonusthr.DoesNotExist:
