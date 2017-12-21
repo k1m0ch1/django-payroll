@@ -63,7 +63,7 @@
             </div> 
             <div class="col-md-2">
               <div class="form-group">
-                  <input type="text" class="form-control" id="bpjsks" placeholder="Nilai Mata Uang " value="" />
+                  <input type="text" class="form-control rupiah" id="bpjsks" placeholder="Nilai Mata Uang " value="" />
                 </div>
             </div> 
           </div> 
@@ -74,7 +74,7 @@
             </div> 
             <div class="col-md-2">
               <div class="form-group">
-                  <input type="text" class="form-control" id="bpjskt" placeholder="Nilai Mata Uang " value="" />
+                  <input type="text" class="form-control rupiah" id="bpjskt" placeholder="Nilai Mata Uang " value="" />
                 </div>
             </div> 
           </div> 
@@ -200,6 +200,8 @@
   <script>
   $(function () {    
 
+
+
     //Date range picker
     $('#reservation').daterangepicker();
 
@@ -211,6 +213,10 @@
         success: function(result) {
             $('#contentKaryawan').html(result);
       }
+    });
+
+    $(".rupiah").on("click", function(){
+      alert($(".rupiah").val());
     });
 
     $('#bersih').on("click", function(){

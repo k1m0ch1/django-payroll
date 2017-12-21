@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load money %}
 
 {% block content %}
 	<div class="content-wrapper">
@@ -65,7 +66,7 @@
                 </tr>
                 {% for data in karyawan %}
                 <tr>
-                  <td>{{data.NIK}}</td>
+                  <td>{% ez data.NIK %}</td>
                   <td>{{data.name}}</td>
                   <td>{{data.departemen.name}}</td>
                   <td>{{data.bagian.name}}</td>
