@@ -178,6 +178,18 @@ def bonusthr_save(request, bonusthr_id):
 	d.update(bonus = request.POST['bonus'])
 	return redirect("bonusthr-index")
 
+@login_required()
+def bonusthr_toggle_off(request, bonusthr_id):
+	d = Bonusthr.objects.select_for_update().filter(id=bonusthr_id)
+	d.update(toggle = 0)
+	return redirect("bonusthr-index")
+
+@login_required()
+def bonusthr_toggle_on(request, bonusthr_id):
+	d = Bonusthr.objects.select_for_update().filter(id=bonusthr_id)
+	d.update(toggle = 1)
+	return redirect("bonusthr-index")
+
 
 @login_required()
 def potongan(request, potongan_id):

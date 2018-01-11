@@ -160,6 +160,8 @@ urlpatterns = [
     url(r'^karyawanshift/(?P<karyawanshift_id>[0-9]+)/edit/save$', views.edit.karyawanshift_save, name="karyawanshift-edit-save"),
     url(r'^bonusthr/(?P<bonusthr_id>[0-9]+)/edit/$', views.edit.bonusthr, name="bonusthr-edit"),
     url(r'^bonusthr/(?P<bonusthr_id>[0-9]+)/edit/save$', views.edit.bonusthr_save, name="bonusthr-edit-save"),
+    url(r'^bonusthr/(?P<bonusthr_id>[0-9]+)/off$', views.edit.bonusthr_toggle_off, name="bonusthr-toggle-off"),
+    url(r'^bonusthr/(?P<bonusthr_id>[0-9]+)/on$', views.edit.bonusthr_toggle_on, name="bonusthr-toggle-on"),
 
     #==eofedit
 

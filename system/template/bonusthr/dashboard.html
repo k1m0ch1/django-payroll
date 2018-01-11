@@ -122,6 +122,7 @@
                   <th class="col-md-2">Nama</th>
                   <th class="col-md-1">Bonus</th>
                   <th class="col-md-1">THR</th>
+                  <th class="col-md-1">Status</th>
                   <th class="col-md-1">Action</th>
                 </tr>
                 {% for d in tk %}
@@ -130,6 +131,13 @@
                   <td>{{ d.karyawan.name }}</td>
                   <td>{% mon d.bonus %}</td>
                   <td>{% mon d.thr %}</td>
+                  <td>
+                    {% if d.toggle == 1 %}
+                      <a href="{% url 'bonusthr-toggle-off' bonusthr_id=d.id %}" type="button" class="btn btn-default"><i class="fa fa-toggle-on"></i></a>
+                    {% else %}
+                      <a href="{% url 'bonusthr-toggle-on' bonusthr_id=d.id %}" type="button" class="btn btn-default"><i class="fa fa-toggle-off"></i></a>
+                    {% endif %}
+                  </td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                       <a href="{% url 'bonusthr-edit' bonusthr_id=d.id %}" type="button" class="btn btn-default"><i class="fa fa-pencil"></i></a>
