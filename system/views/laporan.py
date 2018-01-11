@@ -135,6 +135,13 @@ def laporanbpjs(request):
 
 			banyak = len(ab)
 
+			if k.jumlahhari == 5 :
+				hari = 21
+				bjam = 8
+			elif k.jumlahhari == 6 :
+				hari = 25
+				bjam = 7	
+
 			for abi in ab:
 				if abi.SPL == 1:
 					hari = abi.created_at.strftime("%A")
@@ -281,7 +288,7 @@ def laporanbpjs(request):
 			if b.NPWP == 0 or b.NPWP == None :
 				pph = int(float(float(120)/100) * int(pph))
 			
-			objs.append(bpjs(y, b.NIK, b.NIK, b.kpj, b.name, 
+			objs.append(bpjs(y, b.KPJ, b.NIK, b.name, 
 									b.gender, kpjkk, kpjht, kpjkm, kpjp, 
 									totala, kpkes, totalb, kkjht, kkjp, totalc, kkkes, totald))
 
@@ -327,6 +334,13 @@ def laporanbpjs(request):
 			hari = hari.days
 
 			banyak = len(ab)
+
+			if k.jumlahhari == 5 :
+				hari = 21
+				bjam = 8
+			elif k.jumlahhari == 6 :
+				hari = 25
+				bjam = 7	
 			
 			for abi in ab:
 				if abi.SPL == 1:
@@ -469,7 +483,7 @@ def laporanbpjs(request):
 			if k.NPWP == 0 or k.NPWP == None :
 				pph = int(float(float(120)/100) * int(pph))
 			
-			objs.append(bpjs(y, k.NIK, k.NIK, k.kpj, k.name, 
+			objs.append(bpjs(y, k.KPJ, k.NIK, k.name, 
 									k.gender, kpjkk, kpjht, kpjkm, kpjp, 
 									totala, kpkes, totalb, kkjht, kkjp, totalc, kkkes, totald))
 	objs.pop(0)
@@ -477,7 +491,7 @@ def laporanbpjs(request):
 	ws = wb.add_sheet('Laporan Gaji',cell_overwrite_ok=True)
 
 	ws.write(1, 6, "Laporan BPJS")
-	ws.write(2, 6, "Periode " + mas.name)
+	ws.write(2, 6, "Periode " + mas.name + " " + mas.tanggal.strftime("%d-%m-%Y") + " s/d " + mas.sd.strftime("%d-%m-%Y"))
 	ws.write(4, 1, "No")
 	ws.write(4, 2, "KPJ")
 	ws.write(4, 3, "NIK")
@@ -519,7 +533,7 @@ def laporanbpjs(request):
 		ws.write(ob[x].no+y, 16, ob[x].kkkes)
 		ws.write(ob[x].no+y, 17, ob[x].totald)
 
-	wb.save("laporan/bpjs/LAPORAN GAJI " + mas.name + ' ' + mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'-' + datetime.datetime.now().strftime("%d%m%Y-%H%M%S") + '.xls')
+	wb.save("laporan/bpjs/LAPORAN BPJS " + mas.name + ' ' + mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'-' + datetime.datetime.now().strftime("%d%m%Y-%H%M%S") + '.xls')
 
 	return redirect("laporanbpjs-index")
 
@@ -636,6 +650,13 @@ def laporangaji(request):
 			hari = hari.days
 
 			banyak = len(ab)
+
+			if k.jumlahhari == 5 :
+				hari = 21
+				bjam = 8
+			elif k.jumlahhari == 6 :
+				hari = 25
+				bjam = 7	
 
 			for abi in ab:
 				if abi.SPL == 1:
@@ -812,6 +833,13 @@ def laporangaji(request):
 			hari = hari.days
 
 			banyak = len(ab)
+
+			if k.jumlahhari == 5 :
+				hari = 21
+				bjam = 8
+			elif k.jumlahhari == 6 :
+				hari = 25
+				bjam = 7	
 			
 			for abi in ab:
 				if abi.SPL == 1:
