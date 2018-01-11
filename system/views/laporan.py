@@ -22,6 +22,18 @@ import re
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
 
+
+def mon(money=None):
+	i = 0
+	hasil = "Rp. "
+	y = len(str(money))
+	for x in str(money):
+		if y%3 == 0 and y != 1 and y != len(str(money)):
+			hasil = hasil + "."
+		hasil = hasil + x
+		y = y - 1
+	return hasil
+
 @login_required()
 def laporanbpjs(request):
 
@@ -288,9 +300,9 @@ def laporanbpjs(request):
 			if b.NPWP == 0 or b.NPWP == None :
 				pph = int(float(float(120)/100) * int(pph))
 			
-			objs.append(bpjs(y, b.KPJ, b.NIK, b.name, 
-									b.gender, kpjkk, kpjht, kpjkm, kpjp, 
-									totala, kpkes, totalb, kkjht, kkjp, totalc, kkkes, totald))
+			objs.append(bpjs(y, k.KPJ, k.NIK, k.name, 
+									k.gender, mon(kpjkk), mon(kpjht), mon(kpjkm), mon(kpjp), 
+									mon(totala), mon(kpkes), mon(totalb), mon(kkjht), mon(kkjp), mon(totalc), mon(kkkes), mon(totald)))
 
 	else:
 		listid = [x.strip() for x in idkaryawan.split(',')]
@@ -484,8 +496,8 @@ def laporanbpjs(request):
 				pph = int(float(float(120)/100) * int(pph))
 			
 			objs.append(bpjs(y, k.KPJ, k.NIK, k.name, 
-									k.gender, kpjkk, kpjht, kpjkm, kpjp, 
-									totala, kpkes, totalb, kkjht, kkjp, totalc, kkkes, totald))
+									k.gender, mon(kpjkk), mon(kpjht), mon(kpjkm), mon(kpjp), 
+									mon(totala), mon(kpkes), mon(totalb), mon(kkjht), mon(kkjp), mon(totalc), mon(kkkes), mon(totald)))
 	objs.pop(0)
 	wb = xlwt.Workbook()
 	ws = wb.add_sheet('Laporan Gaji',cell_overwrite_ok=True)
