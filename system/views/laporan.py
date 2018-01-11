@@ -301,8 +301,8 @@ def laporanbpjs(request):
 				pph = int(float(float(120)/100) * int(pph))
 			
 			objs.append(bpjs(y, k.KPJ, k.NIK, k.name, 
-									k.gender, mon(kpjkk), mon(kpjht), mon(kpjkm), mon(kpjp), 
-									mon(totala), mon(kpkes), mon(totalb), mon(kkjht), mon(kkjp), mon(totalc), mon(kkkes), mon(totald)))
+									k.gender, kpjkk, kpjht, kpjkm, kpjp, 
+									totala, kpkes, totalb, kkjht, kkjp, totalc, kkkes, totald))
 
 	else:
 		listid = [x.strip() for x in idkaryawan.split(',')]
@@ -496,8 +496,8 @@ def laporanbpjs(request):
 				pph = int(float(float(120)/100) * int(pph))
 			
 			objs.append(bpjs(y, k.KPJ, k.NIK, k.name, 
-									k.gender, mon(kpjkk), mon(kpjht), mon(kpjkm), mon(kpjp), 
-									mon(totala), mon(kpkes), mon(totalb), mon(kkjht), mon(kkjp), mon(totalc), mon(kkkes), mon(totald)))
+									k.gender, kpjkk, kpjht, kpjkm, kpjp, 
+									totala, kpkes, totalb, kkjht, kkjp, totalc, kkkes, totald))
 	objs.pop(0)
 	wb = xlwt.Workbook()
 	ws = wb.add_sheet('Laporan Gaji',cell_overwrite_ok=True)
@@ -576,14 +576,16 @@ def laporangaji(request):
 			pbpjs_kt = 0
 			ppinjam = 0
 			pkoperasi = 0
-			pcicil = 0
 			pabsen = 0
 			pph = 0
+			umut = 0
+			kemahalan = 0
+			telepon = 0
 
 			def __init__(self, no, nik, nama, departemen, bagian, 
 								golongan, norek, gajipokok, statusmenikah, tmakan, 
 								transportnonexec, tovertime, tunjangan, pbpjs_ks, pbpjs_kt, 
-								ppinjam, pkoperasi, pabsen, pph):
+								ppinjam, pkoperasi, pabsen, pph, umut, kemahalan, telepon):
 				self.no = no
 				self.nik = nik
 				self.nama = nama
@@ -603,6 +605,9 @@ def laporangaji(request):
 				self.pkoperasi = pkoperasi
 				self.pabsen = pabsen
 				self.pph = pph
+				self.umut = umut
+				self.kemahalan = kemahalan
+				self.telepon = telepon
 
 	today = datetime.datetime.now()
 	idkaryawan = request.POST['idkaryawan']
@@ -643,6 +648,8 @@ def laporangaji(request):
 			tunjanganmakan = tt.tmakan
 			makanlembur = g.makanlembur
 			transportnonexec = tt.transportnonexec
+			kemahalan = tt.kemahalan
+			ttelepon = tt.ttelepon
 			cicil = 0
 			tovertime = 0
 			pabsen = 0
@@ -806,7 +813,7 @@ def laporangaji(request):
 			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, 
 									b.golongan.name, b.norek + " a.n." + b.atasnama + " " + b.bank.name , 
 									g.gajipokok, b.statusmenikah.name, tunjanganmakan, transportnonexec, tovertime, 
-									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
+									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph, g.umut, kemahalan, ttelepon))
 
 	else:
 		listid = [x.strip() for x in idkaryawan.split(',')]
@@ -825,6 +832,8 @@ def laporangaji(request):
 			tunjanganmakan = tt.tmakan
 			makanlembur = g.makanlembur
 			transportnonexec = tt.transportnonexec
+			kemahalan = tt.kemahalan
+			ttelepon = tt.ttelepon
 
 			cicil = 0
 			tovertime = 0
@@ -984,7 +993,7 @@ def laporangaji(request):
 			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, 
 									k.golongan.name, k.norek + " a.n." + k.atasnama + " " + k.bank.name ,
 									g.gajipokok, k.statusmenikah.name, tunjanganmakan, transportnonexec,tovertime, 
-									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph))
+									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph, g.umut, kemahalan, ttelepon))
 	objs.pop(0)
 	wb = xlwt.Workbook()
 	ws = wb.add_sheet('Laporan Gaji',cell_overwrite_ok=True)
@@ -998,36 +1007,29 @@ def laporangaji(request):
 	ws.write(4, 5, "Bagian")
 	ws.write(4, 6, "Golongan")
 	ws.write(4, 7, "Gaji Pokok")
-	ws.write(4, 8, "Tunjangan Makan")
-	ws.write(4, 9, "Tunjangan Transportasi")
-	ws.write(4, 10, "Tunjangan Overtime")
-	ws.write(4, 11, "Potongan Pinjaman")
-	ws.write(4, 12, "Potongan Koperasi")
-	ws.write(4, 13, "BPJS")
-	ws.write(4, 14, "PPh 21")
-	ws.write(4, 15, "Potongan BPJS Kesehatan")
-	ws.write(4, 16, "Potongan BPJS Kesehatan")
-	ws.write(4, 17, "Total Potongan BPJS")
-	ws.write(4, 18, "Potongan Absensi")
+	ws.write(4, 8, "Jabatan")
+	ws.write(4, 9, "UMUT Lumpsum")
+	ws.write(4, 10, "Makan")
+	ws.write(4, 11, "Transportasi")
+	ws.write(4, 12, "Kemahalan")
+	ws.write(4, 13, "Telepon")
+	ws.write(4, 14, "JKK+JKM+JKES")
+	ws.write(4, 15, "PPh 21")
+	ws.write(4, 16, "Gaji Kotor")
+	ws.write(4, 17, "Overtime")
+	ws.write(4, 18, "Potongan Pinjaman")
+	ws.write(4, 19, "Potongan Koperasi")
+	ws.write(4, 20, "BPJS")	
+	ws.write(4, 21, "Potongan BPJS Kesehatan")
+	ws.write(4, 22, "Potongan BPJS Kesehatan")
+	ws.write(4, 23, "Total Potongan BPJS")
+	ws.write(4, 24, "Potongan Absensi")
 
 	y=4
 
 	ob = objs
 
 	for x in range(1, len(objs)):
-		ws.write(ob[x].no+y, 1, ob[x].no)
-		ws.write(ob[x].no+y, 2, ob[x].nik)
-		ws.write(ob[x].no+y, 3, ob[x].nama)
-		ws.write(ob[x].no+y, 4, ob[x].departemen)
-		ws.write(ob[x].no+y, 5, ob[x].bagian)
-		ws.write(ob[x].no+y, 6, ob[x].golongan)
-		ws.write(ob[x].no+y, 7, ob[x].gajipokok)
-		ws.write(ob[x].no+y, 8, ob[x].tmakan)
-		ws.write(ob[x].no+y, 9, ob[x].transportnonexec)
-		ws.write(ob[x].no+y, 10, ob[x].tovertime)
-		ws.write(ob[x].no+y, 11, ob[x].ppinjam)
-		ws.write(ob[x].no+y, 12, ob[x].pkoperasi)
-
 		bpjs_kes_kar = int(float(float(1)/100) * int(ob[x].pbpjs_ks)) # BPJS Kesehatan Karyawan 1%
 		bpjs_kes_per = int(float(float(4)/100) * int(ob[x].pbpjs_ks)) # BPJS Kesehatan Perusahaan 4%
 		bpjs_ktg_kar_jpn = int(float(float(1)/100) * int(ob[x].pbpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Pensiunan 1%
@@ -1040,11 +1042,30 @@ def laporangaji(request):
 		bpjs_ktg = bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht #+ bpjs_ktg_per_jpn + bpjs_ktg_per_jkk + bpjs_ktg_per_jht
 		bpjs_total = bpjs_kes + bpjs_ktg
 
-		ws.write(ob[x].no+y, 14, ob[x].pph)
-		ws.write(ob[x].no+y, 15, bpjs_kes)
-		ws.write(ob[x].no+y, 16, bpjs_ktg)
-		ws.write(ob[x].no+y, 17, bpjs_total)
-		ws.write(ob[x].no+y, 18, ob[x].pabsen)
+		ws.write(ob[x].no+y, 1, ob[x].no)
+		ws.write(ob[x].no+y, 2, ob[x].nik)
+		ws.write(ob[x].no+y, 3, ob[x].nama)
+		ws.write(ob[x].no+y, 4, ob[x].departemen)
+		ws.write(ob[x].no+y, 5, ob[x].bagian)
+		ws.write(ob[x].no+y, 6, ob[x].golongan)
+		ws.write(ob[x].no+y, 7, ob[x].gajipokok)
+		ws.write(ob[x].no+y, 8, ob[x].tunjangan)
+		ws.write(ob[x].no+y, 9, ob[x].umut)
+		ws.write(ob[x].no+y, 10, ob[x].tmakan)
+		ws.write(ob[x].no+y, 11, ob[x].transportnonexec)
+		ws.write(ob[x].no+y, 12, ob[x].kemahalan)
+		ws.write(ob[x].no+y, 13, ob[x].telepon)
+		ws.write(ob[x].no+y, 14, bpjs_ktg_per_jkk+bpjs_ktg_per_jkn+bpjs_kes_per)
+		ws.write(ob[x].no+y, 15, ob[x].pph)
+		gajikotor = ob[x].pph + ob[x].gajipokok + ob[x].tunjangan + ob[x].umut + ob[x].tmakan + ob[x].transportnonexec + ob[x].kemahalan + ob[x].telepon + bpjs_ktg_per_jkk+bpjs_ktg_per_jkn+bpjs_kes_per
+		ws.write(ob[x].no+y, 16, gajikotor)
+		ws.write(ob[x].no+y, 17, ob[x].tovertime)
+		ws.write(ob[x].no+y, 18, ob[x].ppinjam)
+		ws.write(ob[x].no+y, 19, ob[x].pkoperasi)		
+		ws.write(ob[x].no+y, 20, bpjs_kes)
+		ws.write(ob[x].no+y, 21, bpjs_ktg)
+		ws.write(ob[x].no+y, 22, bpjs_total)
+		ws.write(ob[x].no+y, 23, ob[x].pabsen)
 
 	wb.save("laporan/gaji/LAPORAN GAJI " + mas.name + ' ' + mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'-' + datetime.datetime.now().strftime("%d%m%Y-%H%M%S") + '.xls')
 
