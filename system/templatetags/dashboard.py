@@ -186,7 +186,17 @@ def bpjs_bayar(ks = None, kt = None):
   bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int('0' + kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
   bpjs_ktg_per_jht = int(float(float(3.7)/100) * int('0' + kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Hari Tua 3.7%
   bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int('0' + kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
-  return bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_kes_kar #+ bpjs_ktg_per_jpn + bpjs_ktg_per_jkk + bpjs_ktg_per_jht + bpjs_kes_per + bpjs_ktg_per_jkm
+  bayarkar = bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_kes_kar
+
+  i = 0
+  hasil = "Rp. "
+  y = len(str(bayarkar))
+  for x in str(bayarkar):
+    if y%3 == 0 and y != 1 and y != len(str(bayarkar)):
+      hasil = hasil + "."
+    hasil = hasil + x
+    y = y - 1
+  return hasil #+ bpjs_ktg_per_jpn + bpjs_ktg_per_jkk + bpjs_ktg_per_jht + bpjs_kes_per + bpjs_ktg_per_jkm
 
 @register.assignment_tag
 def penghasilan_bruto(gapok=None, tunjangan=None):

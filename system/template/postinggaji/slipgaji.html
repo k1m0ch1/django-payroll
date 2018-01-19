@@ -1,0 +1,221 @@
+{% load dashboard %}
+{% load money %}
+
+{% for p in posting %}
+<table border=1 align="center">
+	<tr><td>
+	<table align="center" border=0>
+		<tr>
+			<td align="center" colspan=12>SLIP GAJI</td>
+		</tr>
+
+		<tr>
+			<td align="center" colspan=12>{{ p.perusahaan }}</td>
+		</tr>
+
+		<tr>
+			<td align="center" colspan=12>MASA TENGGANG :  {{ mas.tanggal|date:"d-M-Y" }} s/d {{ mas.sd|date:"d-M-Y" }}</td>
+		</tr>
+
+		<tr>
+			<td align="center" colspan=12><hr/></td>
+		</tr>
+
+		<tr>
+			<td> NIK </td><td>:</td><td>{{p.nik}}</td>
+			<td width="50px"></td>
+			<td colspan=8>Gaji</td>
+		</tr>
+
+		<tr>
+			<td>Nama</td><td>:</td><td>{{p.nama}}</td>
+			<td width="50px"></td>
+			<td>Gaji Pokok 75%</td><td>:</td><td>{% mon p.gajipokok %}</td>
+			<td width="50px"></td>
+			<td colspan=4>*Lembur</td>
+		</tr>
+
+		<tr>
+			<td>Dept</td><td>:</td><td>{{ p.departemen }}</td>
+			<td width="50px"></td>
+			<td colspan=8>Tunjangan</td>
+		</tr>
+
+		<tr>
+			<td>Jabatan</td><td>:</td><td>{{ p.bagian }}</td>
+			<td width="50px"></td>
+			<td>Jabatan 25%</td><td>:</td><td>{% mon p.tunjangan %}</td>
+			<td width="50px"></td>
+			<td>Jenis Insentif</td><td>Jumlah Jam</td><td>Nominal</td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td>Status</td><td>:</td><td>{{ p.statusmenikah }}</td>
+			<td width="50px"></td>
+			<td>UMUT Lumpsum</td><td>:</td><td>{% mon p.umut %}</td>
+			<td width="50px"></td>
+			<td></td><td>0</td><td>0</td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>Makan</td><td>:</td><td>{% mon p.tmakan %}</td>
+			<td width="50px"></td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>Transport</td><td>:</td><td>{% mon p.transportnonexec %}</td>
+			<td width="50px"></td>
+			<td colspan=5><hr/></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>Kemahalan</td><td>:</td><td>{% mon p.kemahalan %}</td>
+			<td width="50px"></td>
+			<td>*Total</td><td>0</td><td>0</td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>PPH 21</td><td>:</td><td>{{ 0 }}</td>
+			<td width="50px"></td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>*Insentif</td><td>:</td><td>{% mon p.tovertime %}</td>
+			<td width="50px"></td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>Koreksi</td><td>:</td><td>{% mon p.koreksi %}</td>
+			<td width="50px"></td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>Lain Lain</td><td>:</td><td>{% mon p.lainlain %}</td>
+			<td width="50px"></td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td colspan=4><hr/></td>
+			<td colspan=5></td>			
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>Gaji Kotor</td><td>:</td><td>{% mon p.gajikotor %}</td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td colspan=9></td>			
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>Potongan</td>
+			<td colspan=8></td>			
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>BPJS</td><td>:</td><td>{% bpjs_bayar p.pbpjs_ks|slugify p.pbpjs_kt|slugify %}</td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>PPH 21</td><td>:</td><td>{% mon p.pph %}</td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>Absensi</td><td>:</td><td>{% mon p.pabsen %}</td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>Mangkir</td><td>:</td><td>{% mon 0 %}</td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>Pinjaman</td><td>:</td><td>{% mon p.ppinjam %}</td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>Koperasi</td><td>:</td><td>{% mon p.pkoperasi %}</td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td colspan=4><hr/></td>
+			<td colspan=5></td>			
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>Total Potongan</td><td>:</td><td>{% mon p.totalpotongan %}</td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td colspan=3></td>
+			<td width="50px"></td>
+			<td>Gaji Bersih</td><td>:</td><td>{% mon p.gajibersih %}</td>
+			<td colspan=5></td>
+		</tr>
+
+		<tr>
+			<td align="center" colspan=12><br/></td>
+		</tr>
+
+		<tr>
+			<td align="center" colspan=12>Gaji di Transfer ke {{ p.norek }}</td>
+		</tr>
+
+	</table>
+	</td></tr>
+</table>
+<br/><br/>
+{% endfor %}
