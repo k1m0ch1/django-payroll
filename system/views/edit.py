@@ -70,11 +70,14 @@ def karyawan(request, karyawan_id):
 
 	objs.pop(0)
 
+	totalgaji = gajipokok.gajipokok + gajipokok.jabatan
+
 	return render(request, "karyawan/form.html", { 'mode' : 'Ubah', 'module' : getModule(request), 
 													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request), 'departemen':dep,
 													   'bagian': bag, 'golongan':gol, 'jabatan': jab, 'warganegara' : wg,
 													   'statusmenikah' : sm, 'bank':bank, 'agama':agama,
-													   'perusahaan': per, 'karyawan': kar, 'gajipokok': gajipokok, "mesin": objs })
+													   'perusahaan': per, 'karyawan': kar, 'gajipokok': gajipokok, "mesin": objs, 
+													   'totalgaji': totalgaji})
 
 @login_required()
 def karyawan_save(request, karyawan_id):
@@ -100,11 +103,15 @@ def karyawan_save(request, karyawan_id):
 			perusahaan_id= request.POST['perusahaan'])
 
 	if len(g)>0:
+		jabatan = request.POST['gajipokok'] * (25/100)
+		gajipokok = request.POST['gajipokok'] * (75/100)
 		g.update(name="Gaji Pokok ", gajipokok=request.POST['gajipokok'], jumlahhari = request.POST['jumlahhari'],
-					jabatan = request.POST['jabatan'])
+					jabatan = jabatan)
 	else:
+		jabatan = request.POST['gajipokok'] * (25/100)
+		gajipokok = request.POST['gajipokok'] * (75/100)
 		g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], 
-					jumlahhari = request.POST['jumlahhari'], jabatan = request.POST['jabatan'], umut = request.POST['umut'])
+					jumlahhari = request.POST['jumlahhari'], jabatan = jabatan, umut = request.POST['umut'])
 
 		g.save()
 
