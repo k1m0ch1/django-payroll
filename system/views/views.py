@@ -67,7 +67,7 @@ def index(request):
 	for x in range(0, 12):
 		bulancuti = "["+ str(int(x+2)) + ", " + str(IzinCuti.objects.filter(tglmulai__month = x+1 ).count()) + "], " + str(bulancuti)
 
-	mauabis = Karyawan.objects.filter(masakaryawan__range = [ datetime.now(), ( datetime.now() + timedelta(days=7))])
+	mauabis = Karyawan.objects.filter(masakaryawan__range = [ datetime.now(), ( datetime.now() + timedelta(days=30))])
 
 	absenkemaren = Absensi.objects.filter(tanggal__day = datetime.now().day - 1)
 	for y in absenkemaren :

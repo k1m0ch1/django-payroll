@@ -494,12 +494,12 @@ def laporanpinjamankaryawan_index(request):
 	jab = Jabatan.objects.all()
 	mas = MasaTenggangClosing.objects.all()
 
-	filePath = Path("./laporan/absensi/")
+	filePath = Path("./laporan/pinjaman/")
 	files = []
 	if filePath.is_dir():
 	    files = list(x for x in filePath.iterdir() if x.is_file())
 
-	return render(request, "laporan-absensi/dashboard.html", { 'files': files, 'mas' : mas, 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
+	return render(request, "laporan-pinjaman-karyawan/dashboard.html", { 'files': files, 'mas' : mas, 'dsb' : modules, 'karyawan': k, 'departemen' : dep, 'bagian': bag,
 															 'golongan' : gol, 'jabatan' : jab,
 															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 

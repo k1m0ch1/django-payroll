@@ -1244,6 +1244,132 @@ def laporanabsensi(request):
 
 	return HttpResponse("Success")
 
+@login_required()
+def laporanpinjaman(request):
+
+	style0 = xlwt.easyxf('font: name Times New Roman, color-index red, bold on',
+    					 num_format_str='#,##0.00')
+	style1 = xlwt.easyxf(num_format_str='D-MMM-YY')
+
+	objs = [0]
+
+	class postpinjaman(object):
+			no = ""
+			nik = ""
+			nama = ""
+			departemen = ""
+			bagian = ""
+			golongan = ""
+			pinjaman = 0
+			cicil = 0
+			inventory_pinjaman = ""
+			tanggal_pinjam = ""
+			tanggal_kembali = ""
+
+			def __init__(self, no, nik, nama, departemen, bagian, golongan, pinjaman, cicil, inventory_pinjaman, tanggal_pinjam, tanggal_kembali):
+				self.no = no
+				self.nik = nik
+				self.nama = nama
+				self.departemen = departemen
+				self.bagian = bagian
+				self.golongan = golongan
+				self.pinjaman = pinjaman
+				self.cicil = cicil
+				self.inventory_pinjaman = inventory_pinjaman
+				self.tanggal_pinjam = tanggal_pinjam
+				self.tanggal_kembali = tanggal_kembali
+
+
+	today = datetime.datetime.now()
+	idkaryawan = request.POST['idkaryawan']
+	masatenggangclosing = request.POST['masatenggangclosing']
+	mas = MasaTenggangClosing.objects.get(pk=masatenggangclosing)
+	if idkaryawan.find("&") != -1 :
+		listid = [x.strip() for x in idkaryawan.split('&')]
+		a= ""
+		mantap = ""
+	
+		a = Karyawan.objects
+		if listid[0] != "":
+			a = a.filter(perusahaan=listid[0])
+
+		if listid[1] != "":
+			a = a.filter(departemen=listid[1])
+
+		if listid[2] != "":
+			a = a.filter(bagian=listid[2])
+
+		if listid[3] != "":
+			a = a.filter(golongan=listid[3])
+
+		#a = a.filter(tanggal__year=today.year).filter(tanggal__month=4)
+
+		y = 0
+
+		objs = [range(len(a))]
+
+		for b in a:
+			p = Pinjaman.objects.filter(karyawan=b.id)
+			potongan = PotonganKaryawan.objects.filter(karyawan=b.id).filter(masatenggangclosing=masatenggangclosing)
+
+			objs.append(postabsensi(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, len(ab), telat, overtime, izin, cuti, dinas, sakit))
+
+
+	else:
+		listid = [x.strip() for x in idkaryawan.split(',')]
+		a = ""
+		mantap = ""
+		objs = [range(0, len(listid)-1)]
+
+		for y in range(0, len(listid)-1):
+			
+			a = Absensi.objects.filter(karyawan=listid[y]).filter(tanggal__year=today.year).filter(tanggal__month=4)
+			
+
+			objs.append(postabsensi(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, len(ab), telat, overtime, izin, cuti, dinas, sakit))
+	
+	wb = xlwt.Workbook()
+	ws = wb.add_sheet('Laporan Absensi' ,cell_overwrite_ok=True )
+
+	ws.write(1, 6, "Laporan Absensi")
+	ws.write(2, 6, "Masa Tenggang Closing " + mas.name)
+	ws.write(4, 1, "No")
+	ws.write(4, 2, "NIK")
+	ws.write(4, 3, "Nama")
+	ws.write(4, 4, "Departemen")
+	ws.write(4, 5, "Bagian")
+	ws.write(4, 6, "Golongan")
+	ws.write(4, 7, "Jumlah Masuk")
+	ws.write(4, 8, "Jumlah Telat")
+	ws.write(4, 9, "Jumlah Overtime")
+	ws.write(4, 10, "Jumlah Izin")
+	ws.write(4, 11, "Jumlah Cuti")
+	ws.write(4, 12, "Jumlah Dinas")
+	ws.write(4, 13, "Jumlah Sakit")
+
+	y=4
+
+	ob = objs
+
+	for x in range(1, len(objs)):
+		ws.write(ob[x].no+y, 1, ob[x].no)
+		ws.write(ob[x].no+y, 2, ob[x].nik)
+		ws.write(ob[x].no+y, 3, ob[x].nama)
+		ws.write(ob[x].no+y, 4, ob[x].departemen)
+		ws.write(ob[x].no+y, 5, ob[x].bagian)
+		ws.write(ob[x].no+y, 6, ob[x].golongan)
+		ws.write(ob[x].no+y, 7, ob[x].masuk)
+		ws.write(ob[x].no+y, 8, ob[x].telat)
+		ws.write(ob[x].no+y, 9, ob[x].overtime)
+		ws.write(ob[x].no+y, 10, ob[x].izin)
+		ws.write(ob[x].no+y, 11, ob[x].cuti)
+		ws.write(ob[x].no+y, 12, ob[x].dinas)
+		ws.write(ob[x].no+y, 13, ob[x].sakit)
+
+	wb.save("laporan/pinjaman/AKUMULASI LAPORAN PINJAMAN " + + "-" + datetime.datetime.now().strftime("%d%m%Y-%H%M%S") + '.xls')
+
+	return HttpResponse("Success")
+
 def waktu(waktu=None, jadwal=None, masuk=None):
 	hasil = 0
 	akhir = 0

@@ -32,7 +32,7 @@
           </div>                
       </div>
 
-      <div class="row">
+      <!-- <div class="row">
           <div class="col-md-12">
             <div class="col-md-2">
               <label class="control-label">Masa Tenggang Closing</label>               
@@ -44,7 +44,7 @@
               <button class="btn btn-primary" id="pilihMasaTenggangClosing" data-toggle="modal" data-target="#pilihMasaTenggangClosingModal"><i class="fa fa-plus"></i> Pilih Masa Tenggang Closing</button> 
               </div>             
           </div>                
-      </div>
+      </div> -->
       
       <div class="row">
           <div class="col-md-12">
@@ -170,8 +170,8 @@
     $('#btnposting').on("click", function(){
       $.ajax({
             type: "POST",
-            url: 'http://{{ request.get_host }}/index/laporan/gaji/do',
-            data: {idkaryawan: $('#idKaryawan').val(), masatenggangclosing: $('#idmas').val() ,csrfmiddlewaretoken: '{{ csrf_token }}'},
+            url: 'http://{{ request.get_host }}/index/laporan/pinjaman/do',
+            data: {idkaryawan: $('#idKaryawan').val() ,csrfmiddlewaretoken: '{{ csrf_token }}'},
             success: function(result) {
                 // var mywindow = window.open('', 'PRINT');
                 // mywindow.document.write(result);

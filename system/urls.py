@@ -107,6 +107,7 @@ urlpatterns = [
     url(r'^laporan/datakaryawan/do$', views.datakaryawan.awal, name="datakaryawan-do"),
     url(r'^laporan/absensi/do$', views.laporan.laporanabsensi, name="laporanabsensi-do"),
     url(r'^laporan/bpjs/do$', views.laporan.laporanbpjs, name="laporanbpjs-do"),
+    url(r'^laporan/pinjaman/do$', views.laporan.laporanpinjaman, name="laporanpinjaman-do"),
 
     #==eof-create
     #==edit
