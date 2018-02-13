@@ -147,8 +147,8 @@ def karyawan_save(request):
 	    if conn:
 	        conn.disconnect()
 		
-	jabatan = request.POST['gajipokok'] * (25/100)
-	gajipokok = request.POST['gajipokok'] * (75/100)
+	jabatan = int(request.POST['gajipokok']) * (25/100)
+	gajipokok = int(request.POST['gajipokok']) * (75/100)
 	g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=gajipokok, 
 					jumlahhari = request.POST['jumlahhari'], jabatan = jabatan,
 					umut = request.POST['umut'])
@@ -195,8 +195,8 @@ def karyawan_save_api(request):
 	    if conn:
 	        conn.disconnect()
 
-	jabatan = request.POST['gajipokok'] * (25/100)
-	gajipokok = request.POST['gajipokok'] * (75/100)
+	jabatan = int(request.POST['gajipokok']) * (25/100)
+	gajipokok = int(request.POST['gajipokok']) * (75/100)
 	g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=gajipokok, 
 					jumlahhari = request.POST['jumlahhari'], jabatan = jabatan,
 					umut = request.POST['umut'])
