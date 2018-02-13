@@ -44,7 +44,7 @@ def postinggaji(request, id):
 			pabsen = 0
 			pph = 0
 			perusahaan = ""
-			umut = 0
+			umutlumpsum = 0
 			kemahalan = 0
 			koreksi = 0
 			gajikotor = 0
@@ -60,13 +60,14 @@ def postinggaji(request, id):
 			jkm = 0
 			mangkir =0
 			wd = 0
+			umut = 0
 
 			def __init__(self, no, nik, nama, departemen, bagian, 
 								golongan, norek, gajipokok, statusmenikah, tmakan, 
 								transportnonexec, tovertime, tunjangan, pbpjs_ks, pbpjs_kt, 
-								ppinjam, pkoperasi, pabsen, pph, perusahaan, umut, kemahalan, koreksi,
+								ppinjam, pkoperasi, pabsen, pph, perusahaan, umutlumpsum, kemahalan, koreksi,
 								lainlain, gajikotor, totalpotongan, gajibersih, totalgaji, telepon, trio,
-								kotor, jkk, jpn, jht, jkm, mangkir, wd):
+								kotor, jkk, jpn, jht, jkm, mangkir, wd, umut):
 				self.no = no
 				self.nik = nik
 				self.nama = nama
@@ -87,7 +88,7 @@ def postinggaji(request, id):
 				self.pabsen = pabsen
 				self.pph = pph
 				self.perusahaan = perusahaan
-				self.umut = umut
+				self.umutlumpsum = umutlumpsum
 				self.kemahalan = kemahalan
 				self.koreksi = koreksi
 				self.lainlain = lainlain
@@ -104,6 +105,7 @@ def postinggaji(request, id):
 				self.jkm = jkm
 				self.mangkir = mangkir
 				self.wd = wd
+				self.umut = umut
 
 	today = datetime.datetime.now()
 	idkaryawan = request.POST['idkaryawan']
@@ -144,6 +146,7 @@ def postinggaji(request, id):
 			tunjanganmakan = tt.tmakan
 			transportnonexec = tt.transportnonexec
 			perusahaan = k.perusahaan.name
+			umutlumpsum = g.umut
 
 			makanlembur = g.makanlembur
 			
@@ -219,10 +222,14 @@ def postinggaji(request, id):
 			if k.jumlahhari == 5 :
 				hari = 21
 				bjam = 8
+				tunjanganmakanX = int( 20000 * hari )
+				transportnonexecX = int( 20000 * hari )	
 			elif k.jumlahhari == 6 :
 				hari = 25
 				bjam = 7
-				
+				tunjanganmakanX = int( 25000 * hari )
+				transportnonexecX = int( 25000 * hari )	
+
 			# hari = mas.sd - mas.tanggal
 			# hari = hari.days
 
@@ -336,9 +343,9 @@ def postinggaji(request, id):
 			
 			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, 
 									b.golongan.name, b.norek + " a.n." + b.atasnama + " " + b.bank.name , 
-									g.gajipokok, b.statusmenikah.name, tunjanganmakan, transportnonexec, tovertime, 
-									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph, perusahaan, UMUT, tt.kemahalan,0,0, gajikotor, totalpotongan, gajibersih,
-									(g.gajipokok+g.jabatan), tt.ttelepon, trio, gajikotor, bpjs_ktg_per_jkk, bpjs_ktg_per_jpn, bpjs_ktg_per_jht, bpjs_ktg_per_jkm, mangkirx, banyak))
+									g.gajipokok, b.statusmenikah.name, tunjanganmakanX, transportnonexecX, tovertime, 
+									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph, perusahaan, umutlumpsum, tt.kemahalan,0,0, gajikotor, totalpotongan, gajibersih,
+									(g.gajipokok+g.jabatan), tt.ttelepon, trio, gajikotor, bpjs_ktg_per_jkk, bpjs_ktg_per_jpn, bpjs_ktg_per_jht, bpjs_ktg_per_jkm, mangkirx, banyak, UMUT))
 	else:
 		listid = [x.strip() for x in idkaryawan.split(',')]
 		a = ""
@@ -357,6 +364,7 @@ def postinggaji(request, id):
 			makanlembur = g.makanlembur
 			transportnonexec = tt.transportnonexec
 			perusahaan = k.perusahaan.name
+			umutlumpsum = g.umut
 
 			cicil = 0
 			tovertime = 0
@@ -428,8 +436,12 @@ def postinggaji(request, id):
 
 			if k.jumlahhari == 5 :
 				hari = 21
+				tunjanganmakanX = int( 20000 * hari )
+				transportnonexecX = int( 20000 * hari )	
 			elif k.jumlahhari == 6 :
 				hari = 25
+				tunjanganmakanX = int( 25000 * hari )
+				transportnonexecX = int( 25000 * hari )	
 
 			if k.golongan.id == 7 or k.golongan.id == 8 :
 				pabsen = pabsen * 20000
@@ -446,6 +458,8 @@ def postinggaji(request, id):
 
 			UMUT = 	(tunjanganmakan + transportnonexec)	
 			pabsen = UMUT - pabsen
+
+			UMUT = (tunjanganmakanX + transportnonexecX)	
 
 
 			# po = PostingGaji(karyawan_id = b.id, masatenggangclosing_id = masatenggangclosing, gajipokok_id = g.id, potongankaryawan_id = p.id,tovertime=tovertime, pabsen=pabsen)
@@ -540,9 +554,9 @@ def postinggaji(request, id):
 
 			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, 
 									k.golongan.name, k.norek + " a.n." + k.atasnama + " " + k.bank.name ,
-									g.gajipokok, k.statusmenikah.name, tunjanganmakan, transportnonexec,tovertime, 
-									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph, perusahaan, UMUT, tt.kemahalan, 0, 0, gajikotor, totalpotongan, gajibersih,
-									(g.gajipokok+g.jabatan), tt.ttelepon, trio, gajikotor, bpjs_ktg_per_jkk, bpjs_ktg_per_jpn, bpjs_ktg_per_jht, bpjs_ktg_per_jkm, mangkirx, banyak))
+									g.gajipokok, k.statusmenikah.name, tunjanganmakanX, transportnonexecX,tovertime, 
+									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph, perusahaan, umutlumpsum, tt.kemahalan, 0, 0, gajikotor, totalpotongan, gajibersih,
+									(g.gajipokok+g.jabatan), tt.ttelepon, trio, gajikotor, bpjs_ktg_per_jkk, bpjs_ktg_per_jpn, bpjs_ktg_per_jht, bpjs_ktg_per_jkm, mangkirx, banyak, UMUT))
 
 	objs.pop(0)
 
