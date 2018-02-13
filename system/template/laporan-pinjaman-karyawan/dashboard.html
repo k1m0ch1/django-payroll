@@ -32,7 +32,7 @@
           </div>                
       </div>
 
-      <!-- <div class="row">
+      <div class="row">
           <div class="col-md-12">
             <div class="col-md-2">
               <label class="control-label">Masa Tenggang Closing</label>               
@@ -44,7 +44,7 @@
               <button class="btn btn-primary" id="pilihMasaTenggangClosing" data-toggle="modal" data-target="#pilihMasaTenggangClosingModal"><i class="fa fa-plus"></i> Pilih Masa Tenggang Closing</button> 
               </div>             
           </div>                
-      </div> -->
+      </div>
       
       <div class="row">
           <div class="col-md-12">
@@ -96,7 +96,7 @@
                 <tbody>
                 {% for data in files %}                
                 <tr>
-                  <td><a href="{% url 'download' 'laporan/gaji/' data.name %}" > {{ data.name }}</a></td>
+                  <td><a href="{% url 'download' 'laporan/pinjaman/' data.name %}" > {{ data.name }}</a></td>
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                         <a data-confirm="Yakin mau Hapus data  ???" href="" class="btn btn-default"><i class="fa fa-trash"></i></a>
@@ -171,7 +171,7 @@
       $.ajax({
             type: "POST",
             url: 'http://{{ request.get_host }}/index/laporan/pinjaman/do',
-            data: {idkaryawan: $('#idKaryawan').val() ,csrfmiddlewaretoken: '{{ csrf_token }}'},
+            data: {idkaryawan: $('#idKaryawan').val() ,masatenggangclosing: $('#idmas').val() ,csrfmiddlewaretoken: '{{ csrf_token }}'},
             success: function(result) {
                 // var mywindow = window.open('', 'PRINT');
                 // mywindow.document.write(result);

@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan, Konfigurasi
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Inventory, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift, GajiPokok, PotonganKaryawan
-from system.models import PostingGaji, MasaTenggangClosing, IzinCuti, TunjanganKaryawan
+from system.models import PostingGaji, MasaTenggangClosing, IzinCuti, TunjanganKaryawan, Pinjaman
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -1262,11 +1262,17 @@ def laporanpinjaman(request):
 			golongan = ""
 			pinjaman = 0
 			cicil = 0
+			koperasi = 0
+			cicil_koperasi = 0
+			pinjlain = 0
+			cicil_pinjlain = 0
 			inventory_pinjaman = ""
 			tanggal_pinjam = ""
 			tanggal_kembali = ""
 
-			def __init__(self, no, nik, nama, departemen, bagian, golongan, pinjaman, cicil, inventory_pinjaman, tanggal_pinjam, tanggal_kembali):
+			def __init__(self, no, nik, nama, departemen, bagian, golongan, 
+						 pinjaman, cicil, koperasi, cicil_koperasi,
+						 pinjlain, cicil_pinjlain, inventory_pinjaman, tanggal_pinjam, tanggal_kembali):
 				self.no = no
 				self.nik = nik
 				self.nama = nama
@@ -1275,6 +1281,10 @@ def laporanpinjaman(request):
 				self.golongan = golongan
 				self.pinjaman = pinjaman
 				self.cicil = cicil
+				self.koperasi = koperasi
+				self.cicil_koperasi = cicil_koperasi
+				self.pinjlain = pinjlain
+				self.cicil_pinjlain = cicil_pinjlain
 				self.inventory_pinjaman = inventory_pinjaman
 				self.tanggal_pinjam = tanggal_pinjam
 				self.tanggal_kembali = tanggal_kembali
@@ -1309,10 +1319,40 @@ def laporanpinjaman(request):
 		objs = [range(len(a))]
 
 		for b in a:
-			p = Pinjaman.objects.filter(karyawan=b.id)
-			potongan = PotonganKaryawan.objects.filter(karyawan=b.id).filter(masatenggangclosing=masatenggangclosing)
+			try:
+				print b.id
+				p = Pinjaman.objects.get(karyawan_id=b.id)
+				try:
+					potongan = PotonganKaryawan.objects.filter(karyawan=b.id).filter(masatenggangclosing=masatenggangclosing).get()
 
-			objs.append(postabsensi(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, len(ab), telat, overtime, izin, cuti, dinas, sakit))
+					tglpinjam = ""
+					tglkembali = ""
+
+					if isinstance(p.tglpinjam, datetime.date) :
+						tglpinjam = p.tglpinjam.strftime("%d-%m-%Y")
+					if isinstance(p.tglkembali, datetime.date) :
+						tglkembali = p.tglkembali.strftime("%d-%m-%Y")
+
+
+					objs.append(postpinjaman(y+1, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name,
+											potongan.pinjkaryawan, potongan.cicil_pinjkaryawan, potongan.koperasi, potongan.cicil_koperasi,
+											potongan.pinjlain, potongan.cicil_pinjlain, p.inventory.name, tglpinjam , tglkembali))
+				except PotonganKaryawan.DoesNotExist:		
+					objs.append(postpinjaman(y+1, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name,
+											0, 0, 0, 0,
+											0, 0, p.inventory.name, p.tglpinjam, p.tglkembali))	
+			except Pinjaman.DoesNotExist:
+				try:
+					potongan = PotonganKaryawan.objects.filter(karyawan=b.id).filter(masatenggangclosing=masatenggangclosing).get()
+					objs.append(postpinjaman(y+1, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name,
+											potongan.pinjkaryawan, potongan.cicil_pinjkaryawan, potongan.koperasi, potongan.cicil_koperasi,
+											potongan.pinjlain, potongan.cicil_pinjlain, "Tidak ada", "", ""))
+				except PotonganKaryawan.DoesNotExist:		
+					objs.append(postpinjaman(y+1, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name,
+											0, 0, 0, 0,
+											0, 0, "Tidak ada", "", ""))	
+			y=y+1
+				
 
 
 	else:
@@ -1322,16 +1362,44 @@ def laporanpinjaman(request):
 		objs = [range(0, len(listid)-1)]
 
 		for y in range(0, len(listid)-1):
-			
-			a = Absensi.objects.filter(karyawan=listid[y]).filter(tanggal__year=today.year).filter(tanggal__month=4)
-			
 
-			objs.append(postabsensi(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name, len(ab), telat, overtime, izin, cuti, dinas, sakit))
+			try:
+				p = Pinjaman.objects.get(karyawan_id=listid[y])
+				try:
+					potongan = PotonganKaryawan.objects.filter(karyawan=listid[y]).filter(masatenggangclosing=masatenggangclosing).get()
+
+					tglpinjam = ""
+					tglkembali = ""
+
+					if isinstance(p.tglpinjam, datetime.datetime) :
+						tglpinjam = p.tglpinjam.strftime("%d-%m-%Y")
+					if isinstance(p.tglkembali, datetime.datetime) :
+						tglkembali = p.tglkembali.strftime("%d-%m-%Y")
+
+					objs.append(postpinjaman(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name,
+											potongan.pinjkaryawan, potongan.cicil_pinjkaryawan, potongan.koperasi, potongan.cicil_koperasi,
+											potongan.pinjlain, potongan.cicil_pinjlain, p.inventory.name, tglpinjam, tglkembali))
+				except PotonganKaryawan.DoesNotExist:		
+					objs.append(postpinjaman(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name,
+											0, 0, 0, 0,
+											0, 0, p.inventory.name, p.tglpinjam, p.tglkembali))	
+			except Pinjaman.DoesNotExist:
+				try:
+					potongan = PotonganKaryawan.objects.filter(karyawan=listid[y]).filter(masatenggangclosing=masatenggangclosing).get()
+					objs.append(postpinjaman(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name,
+											potongan.pinjkaryawan, potongan.cicil_pinjkaryawan, potongan.koperasi, potongan.cicil_koperasi,
+											potongan.pinjlain, potongan.cicil_pinjlain, "Tidak ada", "", ""))
+				except PotonganKaryawan.DoesNotExist:		
+					objs.append(postpinjaman(y, b.NIK, b.name, b.departemen.name, b.bagian.name, b.golongan.name,
+											0, 0, 0, 0,
+											0, 0, "Tidak ada", "", ""))	
 	
 	wb = xlwt.Workbook()
-	ws = wb.add_sheet('Laporan Absensi' ,cell_overwrite_ok=True )
+	ws = wb.add_sheet('Laporan Pinjaman Karyawan' ,cell_overwrite_ok=True )
 
-	ws.write(1, 6, "Laporan Absensi")
+	print len(objs)
+
+	ws.write(1, 6, "Laporan Pinjaman Karyawan")
 	ws.write(2, 6, "Masa Tenggang Closing " + mas.name)
 	ws.write(4, 1, "No")
 	ws.write(4, 2, "NIK")
@@ -1339,13 +1407,15 @@ def laporanpinjaman(request):
 	ws.write(4, 4, "Departemen")
 	ws.write(4, 5, "Bagian")
 	ws.write(4, 6, "Golongan")
-	ws.write(4, 7, "Jumlah Masuk")
-	ws.write(4, 8, "Jumlah Telat")
-	ws.write(4, 9, "Jumlah Overtime")
-	ws.write(4, 10, "Jumlah Izin")
-	ws.write(4, 11, "Jumlah Cuti")
-	ws.write(4, 12, "Jumlah Dinas")
-	ws.write(4, 13, "Jumlah Sakit")
+	ws.write(4, 7, "Pinjaman Karyawan")
+	ws.write(4, 8, "Sisa cicilan")
+	ws.write(4, 9, "Koperasi")
+	ws.write(4, 10, "Sisa cicilan")
+	ws.write(4, 11, "Pinjaman Lain")
+	ws.write(4, 12, "Sisa cicilan")
+	ws.write(4, 13, "Pinjaman Inventory")
+	ws.write(4, 14, "Tanggal Pinjam")
+	ws.write(4, 15, "Tanggal Kembali")
 
 	y=4
 
@@ -1358,15 +1428,19 @@ def laporanpinjaman(request):
 		ws.write(ob[x].no+y, 4, ob[x].departemen)
 		ws.write(ob[x].no+y, 5, ob[x].bagian)
 		ws.write(ob[x].no+y, 6, ob[x].golongan)
-		ws.write(ob[x].no+y, 7, ob[x].masuk)
-		ws.write(ob[x].no+y, 8, ob[x].telat)
-		ws.write(ob[x].no+y, 9, ob[x].overtime)
-		ws.write(ob[x].no+y, 10, ob[x].izin)
-		ws.write(ob[x].no+y, 11, ob[x].cuti)
-		ws.write(ob[x].no+y, 12, ob[x].dinas)
-		ws.write(ob[x].no+y, 13, ob[x].sakit)
+		ws.write(ob[x].no+y, 7, ob[x].pinjaman)
+		ws.write(ob[x].no+y, 8, ob[x].cicil)
+		ws.write(ob[x].no+y, 9, ob[x].koperasi)
+		ws.write(ob[x].no+y, 10, ob[x].cicil_koperasi)
+		ws.write(ob[x].no+y, 11, ob[x].pinjlain)
+		ws.write(ob[x].no+y, 12, ob[x].cicil_pinjlain)
+		ws.write(ob[x].no+y, 13, ob[x].inventory_pinjaman )
+		ws.write(ob[x].no+y, 14, ob[x].tanggal_pinjam )
+		ws.write(ob[x].no+y, 15, ob[x].tanggal_kembali )
 
-	wb.save("laporan/pinjaman/AKUMULASI LAPORAN PINJAMAN " + + "-" + datetime.datetime.now().strftime("%d%m%Y-%H%M%S") + '.xls')
+	wb.save("laporan/pinjaman/LAPORAN PINJAMAN " + mas.name + ' ' + 
+		     mas.tanggal.strftime("%d-%m-%Y") +' .s.d ' + mas.tanggal.strftime("%d-%m-%Y") +'-' + 
+		     datetime.datetime.now().strftime("%d%m%Y-%H%M%S") + '.xls')
 
 	return HttpResponse("Success")
 
