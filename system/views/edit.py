@@ -103,13 +103,13 @@ def karyawan_save(request, karyawan_id):
 			perusahaan_id= request.POST['perusahaan'])
 
 	if len(g)>0:
-		jabatan = request.POST['gajipokok'] * (25/100)
-		gajipokok = request.POST['gajipokok'] * (75/100)
+		jabatan = int(request.POST['gajipokok']) * (25/100)
+		gajipokok = int(request.POST['gajipokok']) * (75/100)
 		g.update(name="Gaji Pokok ", gajipokok=request.POST['gajipokok'], jumlahhari = request.POST['jumlahhari'],
 					jabatan = jabatan)
 	else:
-		jabatan = request.POST['gajipokok'] * (25/100)
-		gajipokok = request.POST['gajipokok'] * (75/100)
+		jabatan = int(request.POST['gajipokok']) * (25/100)
+		gajipokok = int(request.POST['gajipokok']) * (75/100)
 		g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=request.POST['gajipokok'], 
 					jumlahhari = request.POST['jumlahhari'], jabatan = jabatan, umut = request.POST['umut'])
 
