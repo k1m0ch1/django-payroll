@@ -1,0 +1,99 @@
+{% load dashboard %}
+{% load money %}
+
+<table border=1>
+	<tr>
+		<td colspan=32>DAFTAR GAJI DETAIL</td>
+	</tr>
+
+	<tr>
+		<td colspan=32>PERIODE : {{ mas.tanggal|date:"d-M-Y" }} </td>
+	</tr>
+
+	<tr>
+		<td>Perusahaan</td><td>:</td><td>{{ p.perusahaan }}</td>
+		<td colspan=29></td>
+	</tr>
+
+	<tr>
+		<td>Level</td><td>:</td><td>STAFF</td>
+		<td colspan=6></td>
+		<td colspan=2>Tunjangan Tetap</td>
+		<td colspan=8></td>
+		<td colspan=11>Potongan Potongan</td>
+		<td colspan=2></td>
+
+	</tr>
+
+	<tr>
+		<td>No</td>
+		<td>NIK</td>
+		<td>Nama</td>
+		<td>WD</td>
+		<td>AL</td>
+		<td>Sts</td>
+		<td>Total Pokok dan Jabatan</td>
+		<td>Gaji Pokok (75%)</td>
+		<td>Jabatan (25%)</td>
+		<td>UMUT Lumpsum</td>
+		<td>Makan</td>
+		<td>Transport</td>
+		<td>Kemahalan</td>
+		<td>Telepon</td>
+		<td>JKK+JKM+JKES</td>
+		<td>Insentif</td>
+		<td>PPh21</td>
+		<td>Gaji Kotor</td>
+		<td>BPJS Kes</td>
+		<td>BPJS Ket</td>
+		<td>PPh21</td>
+		<td>Mangkir</td>
+		<td>Absensi</td>
+		<td>Loan</td>
+		<td>JKK</td>
+		<td>JPN</td>
+		<td>JHT</td>
+		<td>JKM</td>
+		<td>BPJS Kesehatan</td>
+		<td>Total</td>
+		<td>Total Potongan</td>
+		<td>Gaji Bersih</td>
+	</tr>
+
+	{% for p in posting %}
+	<tr>
+		<td> {{ p.no }}</td>
+		<td> {{ p.nik }}</td>
+		<td> {{ p.nama }}</td>
+		<td> {{ p.wd }}</td>
+		<td>AL</td>
+		<td>{{ p.statusmenikah }}</td>
+		<td>{% mon p.totalgaji %}</td>
+		<td>{% mon p.gajipokok %}</td>
+		<td>{% mon p.tunjangan %}</td>
+		<td>{% mon p.umut %}</td>
+		<td>{% mon p.tmakan %}</td>
+		<td>{% mon p.transportnonexec %}</td>
+		<td>{% mon p.kemahalan %}</td>
+		<td>{% mon p.telepon %}</td>
+		<td>{% mon p.trio %}</td>
+		<td>0</td>
+		<td>{% mon p.pph %}</td>
+		<td>{% mon p.kotor %}</td>
+		<td>{% mon p.pbpjs_ks %}</td>
+		<td>{% mon p.pbpjs_kt %}</td>
+		<td>{% mon p.pph %}</td>
+		<td>{% mon p.mangkir %}</td>
+		<td>{% mon p.pabsen %}</td>
+		<td>{% mon p.ppinjam %}</td>
+		<td>{% mon p.jkk %}</td>
+		<td>{% mon p.jpn %}</td>
+		<td>{% mon p.jht %}</td>
+		<td>{% mon p.jkm %}</td>
+		<td>{% mon p.pbpjs_ks %}</td>
+		<td>{% potongtotal p.pbpjs_kt p.pph p.pabsen p.ppinjam p.jkk p.jpn p.jht p.jkm p.pbpjs_ks p.mangkir %}</td>
+		<td>Total Potongan</td>
+		<td>Gaji Bersih</td>
+	</tr>
+	{% endfor %}	
+</table>

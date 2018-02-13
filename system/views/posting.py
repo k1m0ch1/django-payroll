@@ -20,8 +20,8 @@ modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
 
 @login_required()
-def postinggaji(request):
-
+def postinggaji(request, id):
+	capeainggantiwae = id
 	class postgaji(object):
 			no = 0
 			nik = 0
@@ -50,12 +50,23 @@ def postinggaji(request):
 			gajikotor = 0
 			totalpotongan = 0
 			gajibersih = 0
+			totalgaji = 0
+			telepon = 0
+			trio = 0
+			kotor = 0
+			jkk = 0 
+			jpn = 0
+			jht = 0
+			jkm = 0
+			mangkir =0
+			wd = 0
 
 			def __init__(self, no, nik, nama, departemen, bagian, 
 								golongan, norek, gajipokok, statusmenikah, tmakan, 
 								transportnonexec, tovertime, tunjangan, pbpjs_ks, pbpjs_kt, 
 								ppinjam, pkoperasi, pabsen, pph, perusahaan, umut, kemahalan, koreksi,
-								lainlain, gajikotor, totalpotongan, gajibersih):
+								lainlain, gajikotor, totalpotongan, gajibersih, totalgaji, telepon, trio,
+								kotor, jkk, jpn, jht, jkm, mangkir, wd):
 				self.no = no
 				self.nik = nik
 				self.nama = nama
@@ -83,6 +94,16 @@ def postinggaji(request):
 				self.gajikotor = gajikotor
 				self.totalpotongan = totalpotongan
 				self.gajibersih = gajibersih
+				self.totalgaji = totalgaji
+				self.telepon = telepon
+				self.trio = trio
+				self.kotor = kotor
+				self.jkk = jkk
+				self.jpn = jpn
+				self.jht = jht
+				self.jkm = jkm
+				self.mangkir = mangkir
+				self.wd = wd
 
 	today = datetime.datetime.now()
 	idkaryawan = request.POST['idkaryawan']
@@ -192,6 +213,8 @@ def postinggaji(request):
 
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
 					pabsen = pabsen + 1
+
+			mangkirx = 0
 
 			if k.jumlahhari == 5 :
 				hari = 21
@@ -305,6 +328,8 @@ def postinggaji(request):
 
 			bayarkar = bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_kes_kar
 
+			trio = bpjs_ktg_per_jkk + bpjs_kes_kar + bpjs_ktg_per_jkm
+
 			totalpotongan = pph + bayarkar + pabsen + p.koperasi + cicil
 
 			gajibersih = gajikotor - totalpotongan
@@ -312,7 +337,8 @@ def postinggaji(request):
 			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, 
 									b.golongan.name, b.norek + " a.n." + b.atasnama + " " + b.bank.name , 
 									g.gajipokok, b.statusmenikah.name, tunjanganmakan, transportnonexec, tovertime, 
-									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph, perusahaan, UMUT, tt.kemahalan,0,0, gajikotor, totalpotongan, gajibersih))
+									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph, perusahaan, UMUT, tt.kemahalan,0,0, gajikotor, totalpotongan, gajibersih,
+									(g.gajipokok+g.jabatan), tt.ttelepon, trio, gajikotor, bpjs_ktg_per_jkk, bpjs_ktg_per_jpn, bpjs_ktg_per_jht, bpjs_ktg_per_jkm, mangkirx, banyak))
 	else:
 		listid = [x.strip() for x in idkaryawan.split(',')]
 		a = ""
@@ -397,6 +423,8 @@ def postinggaji(request):
 
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
 					pabsen = pabsen + 1
+
+			mangkirx = 0
 
 			if k.jumlahhari == 5 :
 				hari = 21
@@ -504,6 +532,8 @@ def postinggaji(request):
 
 			bayarkar = bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_kes_kar
 
+			bayarkar = bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_kes_kar
+
 			totalpotongan = pph + bayarkar + pabsen + p.koperasi + cicil
 
 			gajibersih = gajikotor - totalpotongan
@@ -511,10 +541,16 @@ def postinggaji(request):
 			objs.append(postgaji(y+1, k.NIK, k.name, k.departemen.name, k.bagian.name, 
 									k.golongan.name, k.norek + " a.n." + k.atasnama + " " + k.bank.name ,
 									g.gajipokok, k.statusmenikah.name, tunjanganmakan, transportnonexec,tovertime, 
-									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph, perusahaan, UMUT, tt.kemahalan, 0, 0, gajikotor, totalpotongan, gajibersih))
+									g.jabatan, p.bpjs_ks, p.bpjs_kt, cicil, p.koperasi, pabsen, pph, perusahaan, UMUT, tt.kemahalan, 0, 0, gajikotor, totalpotongan, gajibersih,
+									(g.gajipokok+g.jabatan), tt.ttelepon, trio, gajikotor, bpjs_ktg_per_jkk, bpjs_ktg_per_jpn, bpjs_ktg_per_jht, bpjs_ktg_per_jkm, mangkirx, banyak))
 
 	objs.pop(0)
-	return render(request,"postinggaji/slipgaji.html", { 'data': mantap, 'posting' : objs , "bruto" : bruto, "mas": mas})
+
+	print int(capeainggantiwae) == 2
+	if int(capeainggantiwae) == 2:
+		return render(request,"postinggaji/terusajaguntaganti.html", { 'data': mantap, 'posting' : objs , "bruto" : bruto, "mas": mas})
+	else:
+		return render(request,"postinggaji/slipgaji.html", { 'data': mantap, 'posting' : objs , "bruto" : bruto, "mas": mas})
 
 def waktu(waktu=None, jadwal=None, masuk=None):
 	hasil = 0

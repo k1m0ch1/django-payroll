@@ -365,3 +365,16 @@ def sptkp(val=None):
     ptkp = 72000000
 
   return ptkp
+
+@register.assignment_tag
+def potongtotal(a=0, b=0, c=0, d=0, e=0, f=0, g=0, h=0, i=0, j=0):
+  i = 0
+  hasil = "Rp. "
+  money = int(a+b+c+d+e+f+g+h+i+j)
+  y = len(str(money))
+  for x in str(money):
+    if y%3 == 0 and y != 1 and y != len(str(money)):
+      hasil = hasil + "."
+    hasil = hasil + x
+    y = y - 1
+  return hasil

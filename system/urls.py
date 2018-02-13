@@ -102,7 +102,7 @@ urlpatterns = [
 
     # url(r'^gaji/create$', views.create.gaji, name="gaji-create"),
     # url(r'^gaji/create/save$', views.create.gaji_save, name="gaji-create-save"),
-    url(r'^postinggaji/do$', views.posting.postinggaji, name="postinggaji-do"),
+    url(r'^postinggaji/do/(?P<id>[0-9]+)$', views.posting.postinggaji, name="postinggaji-do"),
     url(r'^laporan/gaji/do$', views.laporan.laporangaji, name="laporangaji-do"),
     url(r'^laporan/datakaryawan/do$', views.datakaryawan.awal, name="datakaryawan-do"),
     url(r'^laporan/absensi/do$', views.laporan.laporanabsensi, name="laporanabsensi-do"),

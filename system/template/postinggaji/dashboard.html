@@ -79,7 +79,8 @@
               <label class="control-label pull-right">Posting Gaji</label>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" id="btnposting"><i class="fa fa-plus"></i> Posting</button> 
+                <button class="btn btn-primary" id="btnposting2"><i class="fa fa-plus"></i> Posting Detail Gaji</button> 
+                <button class="btn btn-primary" id="btnposting1"><i class="fa fa-plus"></i> Posting Slip Gaji</button> 
             </div>
           </div>          
       </div>
@@ -139,17 +140,38 @@
         });  
     });
 
-    $('#btnposting').on("click", function(){
+    $('#btnposting1').on("click", function(){
       $.ajax({
             type: "POST",
-            url: 'http://{{ request.get_host }}/index/postinggaji/do',
+            url: 'http://{{ request.get_host }}/index/postinggaji/do/1',
             data: {idkaryawan: $('#idKaryawan').val(), masatenggangclosing: $('#idmas').val() ,csrfmiddlewaretoken: '{{ csrf_token }}'},
             success: function(result) {
-                var mywindow = window.open('', 'PRINT');
-                mywindow.document.write(result);
+                var mywindowa = window.open('', 'PRINT');
+                mywindowa.document.write(result);
                 $('#contentKaryawan').html(result);
                 // mywindow.print();
                 // $('#contentKaryawan').printElement();
+          },
+          error: function(result){
+            alert("Error, Periksa Kembali Datanya");
+          }
+        }); 
+    });
+
+    $('#btnposting2').on("click", function(){
+      $.ajax({
+            type: "POST",
+            url: 'http://{{ request.get_host }}/index/postinggaji/do/2',
+            data: {idkaryawan: $('#idKaryawan').val(), masatenggangclosing: $('#idmas').val() ,csrfmiddlewaretoken: '{{ csrf_token }}'},
+            success: function(result) {
+                var mywindowx = window.open('', 'PRINT');
+                mywindowx.document.write(result);
+                $('#contentKaryawan').html(result);
+                // mywindow.print();
+                // $('#contentKaryawan').printElement();
+          },
+          error: function(result){
+            alert("Error, Periksa Kembali Datanya");
           }
         }); 
     });
