@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load money %}
+{% load dashboard %}
 
 {% block content %}
 	<div class="content-wrapper">
@@ -26,8 +27,7 @@
       </div>
       <div class="row">
           <div class="col-md-12">
-            <form class="form-horizontal" action="{% url 'karyawan-search' %}" method="POST">
-            {% csrf_token %}
+            <form class="form-horizontal" action="{% url 'karyawan-search' %}" method="GET">
               <div class="form-group">
                 <label for="pencarian" class="col-sm-2 control-label">Pencarian</label>
                 <div class="col-sm-2">
@@ -41,7 +41,7 @@
                 </select>
                 </div>
                 <div class="input-group col-sm-4">
-                  <input type="text" name="keywords" class="form-control">
+                  <input type="text" name="keywords" class="form-control" value="{{ keywords }}">
                     <span class="input-group-btn">
                       <input type="submit" class="btn btn-primary btn-flat">Search</button>
                     </span>
@@ -99,7 +99,7 @@
                   <div class="col-md-8">
                     <ul class="pagination pagination-sm no-margin pull-right">
                       {% if karyawan.has_previous %}
-                        <li class="active"><a href="?page={{ karyawan.previous_page_number }}">PREV</a></li>
+                        <li class="active"><a href="?{% url_replace request 'page' karyawan.previous_page_number %}">PREV</a></li>
                       {% else %}
                         <li class="disabled"><a href="#">PREV</a></li>
                       {% endif %}
@@ -108,11 +108,11 @@
                         {% if karyawan.number == i %}
                           <li class="active"><a href="#">{{ i }}</a></li>
                         {% else %}
-                          <li><a href="?page={{ i }}">{{ i }}</a></li>
+                          <li><a href="?{% url_replace request 'page' i %}">{{ i }}</a></li>
                         {% endif %}
                       {% endfor %}
                       {% if karyawan.has_next %}
-                        <li class="active"><a href="?page={{ karyawan.next_page_number }}">NEXT</a></li>
+                        <li class="active"><a href="?{% url_replace request 'page' karyawan.next_page_number %}">NEXT</a></li>
                       {% else %}
                         <li class="disabled"><a href="#">NEXT</a></li>
                       {% endif %}

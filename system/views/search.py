@@ -34,8 +34,8 @@ def karyawan(request):
    				self.bagian = bagian
    				self.golongan = golongan
 
-	kategori = request.POST['kategori']
-	keywords = request.POST['keywords']
+	kategori = request.GET['kategori']
+	keywords = request.GET['keywords']
 	pilihan = Selected("selected" ,"", "", "", "", "")
 
 	if kategori=="Departemen":
@@ -69,4 +69,4 @@ def karyawan(request):
 
    	
 
-	return render(request, "karyawan/dashboard.html", { 'karyawan' : karyawan, 'dsb' : modules, 'selected': pilihan })
+	return render(request, "karyawan/dashboard.html", { 'karyawan' : karyawan, 'dsb' : modules, 'selected': pilihan, 'keywords' : keywords })

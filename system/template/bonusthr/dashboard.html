@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load money %}
+{% load dashboard %}
 
 {% block content %}
 <div class="content-wrapper">
@@ -155,7 +156,7 @@
                 <div class="col-md-12">
                   <ul class="pagination pagination-sm no-margin pull-right">
                     {% if tk.has_previous %}
-                      <li class="active"><a href="?page={{ tk.previous_page_number }}">PREV</a></li>
+                      <li class="active"><a href="?{% url_replace request 'page' tk.previous_page_number %}">PREV</a></li>
                     {% else %}
                       <li class="disabled"><a href="#">PREV</a></li>
                     {% endif %}
@@ -164,11 +165,11 @@
                       {% if tk.number == i %}
                         <li class="active"><a href="#">{{ i }}</a></li>
                       {% else %}
-                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        <li><a href="?{% url_replace request 'page' i %}">{{ i }}</a></li>
                       {% endif %}
                     {% endfor %}
                     {% if tk.has_next %}
-                      <li class="active"><a href="?page={{ tk.next_page_number }}">NEXT</a></li>
+                      <li class="active"><a href="?{% url_replace request 'page' tk.next_page_number %}">NEXT</a></li>
                     {% else %}
                       <li class="disabled"><a href="#">NEXT</a></li>
                     {% endif %}

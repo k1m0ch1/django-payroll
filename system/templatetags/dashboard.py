@@ -18,6 +18,15 @@ def ubah(val=None):
   return int(val)
 
 @register.simple_tag
+def url_replace(request, field, value):
+
+    dict_ = request.GET.copy()
+
+    dict_[field] = value
+
+    return dict_.urlencode()
+
+@register.simple_tag
 def dashboard(module=None, mode=None, idpk=None):
   if module == "Bagian/ Division":
   	return{
