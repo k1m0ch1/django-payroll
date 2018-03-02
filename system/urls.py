@@ -100,6 +100,8 @@ urlpatterns = [
     url(r'^absen/(?P<absensi_id>[0-9]+)/koreksi/create/save$', views.create.koreksi_save, name="koreksi-create-save"),
     url(r'^masatenggangclosing/create$', views.create.masatenggangclosing, name="masatenggangclosing-create"),
     url(r'^masatenggangclosing/create/save$', views.create.masatenggangclosing_save, name="masatenggangclosing-create-save"),
+    url(r'^mesin/create$', views.create.mesin, name="mesin-create"),
+    url(r'^mesin/create/save$', views.create.mesin_save, name="mesin-create-save"),
 
     # url(r'^gaji/create$', views.create.gaji, name="gaji-create"),
     # url(r'^gaji/create/save$', views.create.gaji_save, name="gaji-create-save"),
@@ -109,6 +111,7 @@ urlpatterns = [
     url(r'^laporan/absensi/do$', views.laporan.laporanabsensi, name="laporanabsensi-do"),
     url(r'^laporan/bpjs/do$', views.laporan.laporanbpjs, name="laporanbpjs-do"),
     url(r'^laporan/pinjaman/do$', views.laporan.laporanpinjaman, name="laporanpinjaman-do"),
+
 
     #==eof-create
     #==edit
@@ -165,6 +168,9 @@ urlpatterns = [
     url(r'^bonusthr/(?P<bonusthr_id>[0-9]+)/off$', views.edit.bonusthr_toggle_off, name="bonusthr-toggle-off"),
     url(r'^bonusthr/(?P<bonusthr_id>[0-9]+)/on$', views.edit.bonusthr_toggle_on, name="bonusthr-toggle-on"),
 
+    url(r'^mesin/(?P<mesin_id>[0-9]+)/edit/$', views.edit.mesin, name="mesin-edit"),
+    url(r'^mesin/(?P<mesin_id>[0-9]+)/edit/save$', views.edit.mesin_save, name="mesin-edit-save"),
+
     #==eofedit
 
     url(r'^perusahaan/(?P<perusahaan_id>[0-9]+)/delete/$', views.delete.perusahaan, name="perusahaan-delete"),
@@ -190,6 +196,7 @@ urlpatterns = [
     url(r'^bpjs/(?P<bpjs_id>[0-9]+)/delete/$', views.delete.bpjs, name="bpjs-delete"),
     url(r'^bonusthr/(?P<bonusthr_id>[0-9]+)/delete/$', views.delete.bonusthr, name="bonusthr-delete"),
     url(r'^konfigurasi/(?P<konfigurasi_id>[0-9]+)/delete/$', views.dashboard.konfigurasi_del, name="konfigurasi-delete"),
+    url(r'^mesin/(?P<mesin_id>[0-9]+)/delete/$', views.delete.mesin, name="mesin-delete"),
     #===api
 
     url(r'^api/karyawan$', views.dashboard.api_karyawan, name="karyawan-api"),

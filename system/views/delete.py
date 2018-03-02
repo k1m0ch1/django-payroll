@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Bonusthr
 from system.models import LokasiPerusahaan, Shift, Inventory, Konfigurasi, Karyawan, MasaTenggangClosing, TunjanganKaryawan, PotonganKaryawan
-from system.models import KaryawanShift, bpjs as BPJS
+from system.models import KaryawanShift, bpjs as BPJS, Mesin
 from django.contrib import messages
 
 @login_required()
@@ -141,3 +141,9 @@ def bpjs(request, bpjs_id):
 	s = PotonganKaryawan.objects.filter(id=bpjs_id)
 	s.update(bpjs=0)
 	return redirect("bpjs-index")
+
+@login_required()
+def mesin(request, mesin_id):
+	s = Mesin.objects.filter(id=mesin_id)
+	s.delete()
+	return redirect("mesin-index")

@@ -87,4 +87,14 @@ def form(module=None, mode=None, idpk=None):
 			'Tambah' : reverse('bonusthr-create-save'),
 			'Ubah'   : reverse('bonusthr-edit-save', kwargs={'bonusthr_id': idpk})
 		}[mode]
+	elif module == 'Pengaturan Aplikasi':
+	    return{
+	    	'Tambah' : reverse('konfigurasi-create-save'),
+			'Ubah'   : reverse('konfigurasi-edit-save', kwargs={'konfigurasi_id': idpk})
+	    }[mode]
+	elif module == 'Pengaturan Mesin':
+	    return{
+		    'Tambah' : reverse('mesin-create-save'),
+			'Ubah'   : reverse('mesin-edit-save', kwargs={'mesin_id': idpk})
+	    }[mode]
 	return "null"

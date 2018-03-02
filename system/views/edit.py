@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan, Konfigurasi
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Inventory, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift, GajiPokok
-from system.models import MasaTenggangClosing, TunjanganKaryawan, PotonganKaryawan, Bonusthr
+from system.models import MasaTenggangClosing, TunjanganKaryawan, PotonganKaryawan, Bonusthr, Mesin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
 from django.core import serializers
@@ -397,10 +397,27 @@ def konfigurasi(request, konfigurasi_id):
 def konfigurasi_save(request, konfigurasi_id):
 	name = request.POST['name']
 	value = request.POST['value']
-	desc = request.POST['desc']
 	s = Konfigurasi.objects.select_for_update().filter(id=konfigurasi_id)
 	s.update(name=name, value=value, desc=desc)
 	return redirect("konfigurasi-index")
+
+@login_required()
+def mesin(request, mesin_id):
+	s = Mesin.objects.get(pk=mesin_id)
+	exfield = [{"name": "ip","type":"text", "placeholder":"Values", "label":"IP Addresss", "data" : s.ip}, {"name": "port","type":"text", "placeholder":"Values", "label":"Port", "data" : s.port}]
+	return render(request, "include/base-dyn-form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : getModule(request), 
+													   		 'idpk' : mesin_id, 'dsb' : modules, 'parent' : getParent(request),
+													   		 'exfield' : exfield
+													   	})
+
+@login_required()
+def mesin_save(request, mesin_id):
+	name = request.POST['name']
+	ip = request.POST['ip']
+	port = request.POST['port']
+	s = Mesin.objects.select_for_update().filter(id=mesin_id)
+	s.update(name=name, ip=ip, port=port)
+	return redirect("mesin-index")
 
 
 def getModule(request):

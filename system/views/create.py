@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
-from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konfigurasi
+from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konfigurasi, Mesin
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
 from system.models import GajiPokok, Absensi, Pinjaman, PotonganKaryawan, IzinCuti, MasaTenggangClosing, Bonusthr
 from system.models import TunjanganKaryawan, bpjs as BPJS
@@ -504,9 +504,26 @@ def konfigurasi_save(request):
 	nama = request.POST['name']
 	value = request.POST['value']
 	desc = request.POST['desc']
-	d = Inventory(name=nama, value=value, desc=desc)
+	d = Konfigurasi(name=nama, value=value, desc=desc)
 	d.save()
 	return redirect("konfigurasi-index")
+
+@login_required()
+def mesin(request):
+	exfield = [{"name": "ip","type":"text", "placeholder":"Value", "label":"IP Address", "data": ""}, {"name": "port","type":"text", "placeholder":"Value", "label":"Port", "data": ""}]
+	return render(request, "include/base-dyn-form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
+													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request),
+													   'exfield' : exfield
+													  })
+
+@login_required()
+def mesin_save(request):
+	nama = request.POST['name']
+	ip = request.POST['ip']
+	port = request.POST['port']
+	d = Mesin(name=nama, ip=ip, port=port)
+	d.save()
+	return redirect("mesin-index")
 
 @login_required()
 def bagian(request):
