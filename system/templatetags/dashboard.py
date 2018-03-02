@@ -105,14 +105,14 @@ def dashboard(module=None, mode=None, idpk=None):
     }[mode]
   elif module == 'Pengaturan Aplikasi':
     return{
-      'indeks' : reverse('konfigurasi-index'),
+      'indeks' : reverse('konfigurasi'),
       'tambah' : reverse('konfigurasi-create'),
       'ubah'   : reverse('konfigurasi-edit', kwargs={'konfigurasi_id': idpk}),
       'hapus'  : reverse('konfigurasi-delete', kwargs={'konfigurasi_id': idpk})
     }[mode]
   elif module == 'Pengaturan Mesin':
     return{
-      'indeks' : reverse('mesin-index'),
+      'indeks' : reverse('mesin'),
       'tambah' : reverse('mesin-create'),
       'ubah'   : reverse('mesin-edit', kwargs={'mesin_id': idpk}),
       'hapus'  : reverse('mesin-delete', kwargs={'mesin_id': idpk})

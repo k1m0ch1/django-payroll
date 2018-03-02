@@ -506,7 +506,7 @@ def konfigurasi_save(request):
 	desc = request.POST['desc']
 	d = Konfigurasi(name=nama, value=value, desc=desc)
 	d.save()
-	return redirect("konfigurasi-index")
+	return redirect("konfigurasi")
 
 @login_required()
 def mesin(request):
@@ -523,7 +523,7 @@ def mesin_save(request):
 	port = request.POST['port']
 	d = Mesin(name=nama, ip=ip, port=port)
 	d.save()
-	return redirect("mesin-index")
+	return redirect("mesin")
 
 @login_required()
 def bagian(request):

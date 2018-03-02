@@ -399,7 +399,7 @@ def konfigurasi_save(request, konfigurasi_id):
 	value = request.POST['value']
 	s = Konfigurasi.objects.select_for_update().filter(id=konfigurasi_id)
 	s.update(name=name, value=value, desc=desc)
-	return redirect("konfigurasi-index")
+	return redirect("konfigurasi")
 
 @login_required()
 def mesin(request, mesin_id):
@@ -417,7 +417,7 @@ def mesin_save(request, mesin_id):
 	port = request.POST['port']
 	s = Mesin.objects.select_for_update().filter(id=mesin_id)
 	s.update(name=name, ip=ip, port=port)
-	return redirect("mesin-index")
+	return redirect("mesin")
 
 
 def getModule(request):

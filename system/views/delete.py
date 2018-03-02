@@ -146,4 +146,4 @@ def bpjs(request, bpjs_id):
 def mesin(request, mesin_id):
 	s = Mesin.objects.filter(id=mesin_id)
 	s.delete()
-	return redirect("mesin-index")
+	return redirect("mesin")
