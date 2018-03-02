@@ -386,10 +386,10 @@ def inventory_save(request, inventory_id):
 
 @login_required()
 def konfigurasi(request, konfigurasi_id):
-	s = Inventory.objects.get(pk=konfigurasi_id)
+	s = Konfigurasi.objects.get(pk=konfigurasi_id)
 	exfield = [{"name": "value","type":"text", "placeholder":"Values", "label":"Value", "data" : s.value}]
 	return render(request, "include/base-dyn-form.html", { 'data' : s , 'mode' : 'Ubah', 'module' : getModule(request), 
-													   		 'idpk' : inventory_id, 'dsb' : modules, 'parent' : getParent(request),
+													   		 'idpk' : konfigurasi_id, 'dsb' : modules, 'parent' : getParent(request),
 													   		 'exfield' : exfield
 													   	})
 
@@ -398,7 +398,7 @@ def konfigurasi_save(request, konfigurasi_id):
 	name = request.POST['name']
 	value = request.POST['value']
 	desc = request.POST['desc']
-	s = Inventory.objects.select_for_update().filter(id=konfigurasi_id)
+	s = Konfigurasi.objects.select_for_update().filter(id=konfigurasi_id)
 	s.update(name=name, value=value, desc=desc)
 	return redirect("konfigurasi-index")
 

@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^absensi$', views.dashboard.absensi_index, name="absensi-index"),
     url(r'^inventory$', views.dashboard.inventory_index, name="inventory-index"),
     url(r'^konfigurasi$', views.dashboard.konfigurasi_index, name="konfigurasi-index"),
+    url(r'^mesin$', views.dashboard.mesin_index, name="mesin-index"),
     url(r'^overtime$', views.dashboard.overtime_index, name="overtime-index"),
     url(r'^postinggaji$', views.dashboard.postinggaji_index, name="postinggaji-index"),
     url(r'^potongankaryawan$', views.dashboard.potongankaryawan_index, name="potongankaryawan-index"),
@@ -188,6 +189,7 @@ urlpatterns = [
     url(r'^karyawanshift/(?P<karyawanshift_id>[0-9]+)/delete/$', views.delete.karyawanshift, name="karyawanshift-delete"),
     url(r'^bpjs/(?P<bpjs_id>[0-9]+)/delete/$', views.delete.bpjs, name="bpjs-delete"),
     url(r'^bonusthr/(?P<bonusthr_id>[0-9]+)/delete/$', views.delete.bonusthr, name="bonusthr-delete"),
+    url(r'^konfigurasi/(?P<konfigurasi_id>[0-9]+)/delete/$', views.dashboard.konfigurasi_del, name="konfigurasi-delete"),
     #===api
 
     url(r'^api/karyawan$', views.dashboard.api_karyawan, name="karyawan-api"),

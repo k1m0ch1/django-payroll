@@ -9,7 +9,7 @@ from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Absensi
 from system.models import LokasiPerusahaan, Karyawan, HariRaya, KaryawanShift, Shift
 from system.models import Inventory, Konfigurasi, GajiPokok, PotonganKaryawan, Pinjaman, Bonusthr
-from system.models import MasaTenggangClosing, IzinCuti
+from system.models import MasaTenggangClosing, IzinCuti, Mesin
 from system.models import TunjanganKaryawan, bpjs as BPJS
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from sys import getsizeof
@@ -635,8 +635,29 @@ def statusmenikah_index(request):
 @login_required()
 def konfigurasi_index(request):
 	data = serializers.serialize( "python", Konfigurasi.objects.all(),fields=('name', 'value', 'desc'))
-	exfield = [{'field': 'Value'}]
-	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request), 'exfield' : exfield})
+	exfield = [{'field': 'Value'}, {'field': 'Deskripsi'}]
+	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules,
+																'parent' : getParent(request), 'exfield' : exfield})
+@login_required()
+def konfigurasi_del(request, konfigurasi_id):
+	data = serializers.serialize( "python", Konfigurasi.objects.all(),fields=('name', 'value', 'desc'))
+	exfield = [{'field': 'Value'}, {'field': 'Deskripsi'}]
+	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules,
+																'parent' : getParent(request), 'exfield' : exfield})
+
+@login_required()
+def mesin_index(request):
+	data = serializers.serialize( "python", Mesin.objects.all(),fields=('name', 'ip', 'port'))
+	exfield = [{'field': 'IP Address'}, {'field': 'Port'}]
+	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules,
+																'parent' : getParent(request), 'exfield' : exfield})
+
+@login_required()
+def mesin_del(request, mesin_id):
+	data = serializers.serialize( "python", Mesin.objects.all(),fields=('name', 'ip', 'port'))
+	exfield = [{'field': 'IP Address'}, {'field': 'Port'}]
+	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules,
+																'parent' : getParent(request), 'exfield' : exfield})
 
 @login_required()
 def profile_perusahaan_index(request):

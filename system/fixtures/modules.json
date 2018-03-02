@@ -454,7 +454,7 @@
     "model": "system.modules",
     "fields": 
       {
-        "name": "PENGATURANAPLIKASI",
+        "name": "KONFIGURASI",
         "fungsi": "Pengaturan Aplikasi",
         "mode": "alone",
         "menu": "root",
@@ -462,6 +462,17 @@
         "created_at": "2017-03-01 15:03+07"
       }    
   }, {
+    "model": "system.modules",
+    "fields": 
+      {
+        "name": "MESIN",
+        "fungsi": "Pengaturan Mesin",
+        "mode": "alone",
+        "menu": "root",
+        "url_slug" : "mesin",
+        "created_at": "2017-03-01 15:03+07"
+      }    
+  },{
     "model": "system.modules",
     "fields": 
       {
