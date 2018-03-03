@@ -181,6 +181,7 @@ def postinggaji(request, id):
 				bjam = 7			
 
 			for abi in ab:
+				#overtime
 				if abi.SPL == 1:
 					hari = abi.created_at.strftime("%A")
 					FMT = '%H:%M:%S'
@@ -201,7 +202,7 @@ def postinggaji(request, id):
 							if banyakwaktu <= 7 :
 								tovertime = tovertime + int(float((banyakwaktu * 2) * 20000))
 							elif banyakwaktu > 7 :
-								tovertime = tovertime + int(float((7 * 2) * 2	20000))
+								tovertime = tovertime + int(float((7 * 2) * 20000))
 								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 20000 )
 					else:
 						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
@@ -236,12 +237,12 @@ def postinggaji(request, id):
 				transportnonexec = int( 20000 * hari )			
 			elif k.golongan.id == 6 or k.golongan.id == 5 :
 				pabsen = pabsen * 40000
-				tunjanganmakan = int( 40000 * hari ) * banyak
-				transportnonexec = int( 40000 * hari )			
+				tunjanganmakan = int( 20000 * hari ) * banyak
+				transportnonexec = int( 20000 * hari )			
 			elif k.golongan_id < 5:
 				pabsen = pabsen * 60000
-				tunjanganmakan = int( 60000 * hari )
-				transportnonexec = int( 60000 * hari )
+				tunjanganmakan = int( 20000 * hari )
+				transportnonexec = int( 20000 * hari )
 
 			UMUT = 	(tunjanganmakan + transportnonexec)	
 			pabsen = UMUT - pabsen

@@ -1,5 +1,17 @@
-Cicilan Karyawan
-karyawan melakukan pinjaman sebesar 2 juta dicicil selama 12 bulan = 166.666 selama 12 bulan akan dipotong 166.666 dan setiap bulan ngurangin cicilan dan nilainya sama
+Perhitungan
 
-Hari Libur
-ditentukan dari libur general di tanggal dan hari libur karyawan
+[*] karyawan melakukan pinjaman sebesar 2 juta dicicil selama 12 bulan = 166.666 selama 12 bulan akan dipotong 166.666 dan setiap bulan ngurangin cicilan dan nilainya sama
+[*] Overtime ditentukan dari hari libur general di tanggal dan hari libur karyawan
+[*] SPV keatas tidak mendapatkan lembur di hari biasa
+
+General
+
+[*] Mesin ID pas daftar karyawan benerin
+[*] Pagination semua modul
+[*] Search
+[*] Make sure semua posting gaji bisa di pakai sama PT lain
+[*] Make sure semua menu bisa di pakai sama PT Lain 0/17
+[*] Pada saat tambah karyawan NIK nya yang awal GC di ganti menjadi sesuai nama PT, contoh PT. Galuh Mas Sinar = kalo 2 [PGM], kalo 3 [GMS], kalo 1 [PTG]
+[*] SPL itu harusnya memasukkan jam masuk jam berapa dan kapan jam keluar
+[*] setiap golongan potongannya beda
+[*] setiap golongan potongan umut sama
