@@ -225,8 +225,8 @@ def postinggaji(request, id):
 			elif k.jumlahhari == 6 :
 				hari = 25
 				bjam = 7
-				tunjanganmakanX = int( 25000 * hari )
-				transportnonexecX = int( 25000 * hari )	
+				tunjanganmakanX = int( 20000 * hari )
+				transportnonexecX = int( 20000 * hari )	
 
 			# hari = mas.sd - mas.tanggal
 			# hari = hari.days
