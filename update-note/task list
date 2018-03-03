@@ -26,7 +26,7 @@ Perhitungan
 [*] Benerin tampilan Detail Gaji
 
 Mesin Absensi
-[*] Setiap 8 pagi, 1 siang, 6 sore, 11 malam dan 5 pagi.
+[*] Setiap 8 pagi, 1 siang, 6 sore, 11 malam dan 5 pagi aplikasi akan melakukan penarikan.
 [*] Tombol Manual Singkron bertujuan untuk ambil data secara manual ke semua mesin
 [*] Setiap Karyawan terdaftar ke semua mesin
 
@@ -75,3 +75,8 @@ Note Standar
 
 gaji lumpsum [ di potong ]
 gaji tidak lumpusum [ tidak di potong ]
+
+Maintenance
+
+[*] partial backup, mampu merestore data 1 jaam yang lalu
+[*] full backup, mampu merestore data 1 hari yang lalu
