@@ -35,12 +35,14 @@ def karyawan(request):
 	idfinger = int(100) + len(Karyawan.objects.all()) + 1
 	#call_command('createuser', '1233', "lapet")
 
+	mesin = Mesin.objects.all()
+
 
 	return render(request, "karyawan/form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
 													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request), 'departemen':dep,
 													   'bagian': bag, 'golongan':gol, 'jabatan': jab, 'warganegara' : wg,
 													   'statusmenikah' : sm, 'bank':bank, 'agama':agama,
-													   'perusahaan': per , "idfinger" : idfinger})
+													   'perusahaan': per , "idfinger" : idfinger, 'mesin' : mesin})
 
 @login_required()
 def karyawan_save(request):
@@ -85,31 +87,33 @@ def karyawan_save(request):
 					warganegara_id = request.POST['warganegara'], agama_id = request.POST['agama'],
 					statusmenikah_id = request.POST['statusmenikah'], bank_id = request.POST['bank'],
 					norek = request.POST['norekening'], atasnama = request.POST['atasnama'],
-					fingerid = request.POST['fingerid'],  lokasimesin = request.POST['lokasimesin'],
+					fingerid = request.POST['fingerid'],
 					NPWP = request.POST['NPWP'],
 					KPJ = request.POST['KPJ'], jumlahhari = request.POST['jumlahhari'],
 					departemen_id = request.POST['departemen'], bagian_id = request.POST['bagian'],
 					golongan_id = request.POST['golongan'], #jabatan_id = request.POST['jabatan'],
 					perusahaan_id= request.POST['perusahaan'])
 	k.save()
+	
+	mesin = Mesin.objects.all()
 
-	conn = None
-	ipmesin = request.POST['lokasimesin']
-	zk = ZK(ipmesin, port=4370, timeout=5)
-	try:
-		conn = zk.connect()
-		#conn.disable_device()
-		conn.set_user(uid=int(str(k.fingerid).strip()), name="" + str(k.name), privilege=const.USER_DEFAULT, password='12345678', group_id='', user_id="" + str(k.fingerid).strip() )
-		#conn.test_voice()
-		#conn.test_voice()
-		conn.test_voice()
-		conn.enable_device()
-	except Exception, e:
-	    print "Process terminate : {}".format(e)
-	finally:
-	    if conn:
-	        conn.disconnect()
-		
+	for m in mesin:
+		conn = None
+		zk = ZK(m.ip, port=m.port, timeout=5)
+		try:
+			conn = zk.connect()
+			#conn.disable_device()
+			conn.set_user(uid=int(str(k.fingerid).strip()), name="" + str(k.name), privilege=const.USER_DEFAULT, password='12345678', group_id='', user_id="" + str(k.fingerid).strip() )
+			#conn.test_voice()
+			#conn.test_voice()
+			conn.test_voice()
+			#conn.enable_device()
+		except Exception, e:
+		    print "Process terminate : {}".format(e)
+		finally:
+		    if conn:
+		        conn.disconnect()
+			
 	jabatan = int(request.POST['gajipokok']) * (25/100)
 	gajipokok = int(request.POST['gajipokok']) * (75/100)
 	g = GajiPokok(karyawan_id=k.id, name="Gaji Pokok " + k.name, gajipokok=gajipokok, 
@@ -134,7 +138,7 @@ def karyawan_save_api(request):
 					warganegara_id = request.POST['warganegara'], agama_id = request.POST['agama'],
 					statusmenikah_id = request.POST['statusmenikah'], bank_id = request.POST['bank'],
 					norek = request.POST['norekening'], atasnama = request.POST['atasnama'],
-					fingerid = request.POST['fingerid'], lokasimesin = request.POST['lokasimesin'],
+					fingerid = request.POST['fingerid'],
 					NPWP = request.POST['NPWP'],
 					KPJ = request.POST['KPJ'], jumlahhari = request.POST['jumlahhari'],
 					departemen_id = request.POST['departemen'], bagian_id = request.POST['bagian'],

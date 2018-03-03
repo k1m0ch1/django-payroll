@@ -1,9 +1,10 @@
 from django.core.management.base import BaseCommand, CommandError
 from pprint import pprint
-from system.models import Karyawan, Perusahaan, Bank, Departemen, Bagian, GajiPokok, Jabatan, TunjanganKaryawan, Bonusthr
+from system.models import Karyawan, Perusahaan, Bank, Departemen, Bagian, GajiPokok, Jabatan, TunjanganKaryawan, Bonusthr, Mesin
 from openpyxl import load_workbook
 import argparse
 from datetime import datetime
+from zk import ZK, const
 
 class Command(BaseCommand):
   args = 'Arguments is not needed'
@@ -87,7 +88,28 @@ class Command(BaseCommand):
 		pollutebonus.save()
 
 		y = y + 1
-		print "["+ str(y) +"] Tambah karyawan " + nama + " Sukses"
+
+		mesin = Mesin.objects.all()
+
+		conn = None
+		for m in mesin:
+			if m.status == "UP":
+				zk = ZK(m.ip, port=4370, timeout=5)
+				try:
+					conn = zk.connect()
+					datausers = conn.get_users()
+					userid = 1
+					for user in datausers:
+						userid = userid + 1
+					conn.set_user(uid=userid, name=nama, privilege=const.USER_DEFAULT, password="", group_id="", user_id=str(userid))
+					#conn.test_voice()
+				except Exception, e:
+					print "Process terminate : {}" . format(e)
+				finally:
+					if conn:
+						conn.disconnect()
+
+		print "["+ str(y) +"] Tambah karyawan " + nama + " Tersimpan di mesin absensi"
 
   	#print(ax['K3'].value).strftime("%Y-%m-%d")
   	

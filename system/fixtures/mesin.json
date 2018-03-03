@@ -26,8 +26,9 @@
     "fields": 
       {
         "name": "Mesin Dota Singapur",
-        "ip" : "36.86.63.182",
+        "ip" : "172.17.182.201",
         "port": "4370",
+        "status": "UP",
         "desc": "Malignant neoplasm of unspecified part of unspecified adrenal gland",
         "created_at": "2017-03-01 15:03+07"
       }

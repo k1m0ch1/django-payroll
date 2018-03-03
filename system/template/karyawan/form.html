@@ -223,11 +223,6 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-2 ">
-                      <p class="text-right">Mesin Finger</p>
-                    </div>
-                  </div>
                   <div class="row"> 
                     <div class="col-md-2 ">
                       <p class="text-right">NPWP</p>
@@ -402,6 +397,8 @@
                     </div>
                   </div>
 
+
+
                   <!-- <div class="row"> 
                     <div class="col-md-2 ">
                       <p class="text-right">Tunjangan Telefon</p>
@@ -446,6 +443,29 @@
                     </div>
                   </div> -->
                 </div>
+                  <div id="disatukan" class="col-md">
+                    <h2><p>Status Mesin</p></h2>
+                    <div id="ContentMesin">
+                      {% for xx in mesin %}
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                          {% if xx.status == UP %}
+                              <div class="alert alert-success alert-message" role="alert">                              
+                                <i class="fa fa-check"></i>
+                          {% else %}
+                              <div class="alert alert-danger alert-message" role="alert">
+                                <i class="fa fa-close"></i>
+                          {% endif %}
+                              Mesin {{ xx.name }} is <strong>{{ xx.status }}</strong>
+                              <!-- <span class="info-box-text">Last UP {{ xx.last_up }} </span>
+                              <span class="info-box-text">Last Down {{ xx.last_down }} </span> --></div>
+                        </div>
+                     {% endfor %}
+                    </div>
+                    <div id="loading" style="position: absolute;margin: auto;top:40%;left:50%;">
+                        <img height=30 width=30 src='{% static '/images/loading.gif' %}' id='loading-indicator' />
+                        <p align="center" style="margin-top:5px;margin-left:-50px;"><strong>Cek koneksi ke mesin</strong></p>
+                    </div>
+                  </div>
                 <div class="row">
                   <div class="col-md-5 text-left">
                     <div class="form-group">
@@ -500,6 +520,40 @@
 
   <script>
 $(function () {
+
+  $('#loading').hide();
+
+  $.ajax({
+      type: "GET",
+      url: 'http://{{ request.get_host }}/index/api/machine/check',
+        beforeSend: function() {
+          var wew = "";
+            $('#ContentMesin').css({'-webkit-filter': 'blur(5px)', '-moz-filter' : 'blur(5px)', '-o-filter': 'blur(5px)', '-ms-filter': 'blur(5px)', 'filter': 'blur(5px)', 'background' : 'url('});
+            $('#loading').show();
+        },
+        complete: function(){
+          $('#ContentMesin').removeAttr( 'style' );
+          $('#loading').hide();
+        },
+      success: function(result) {
+          var obj = JSON.parse(result);
+          var hasil = '<div class="col-md-3 col-sm-3 col-xs-12">';
+          for (var key in obj){
+            hasil += '';
+            console.log(obj[key].fields.name);
+
+            if(obj[key].fields.status=='UP'){
+              hasil += '<div class="alert alert-success alert-message" role="alert"> <i class="fa fa-check"></i>';
+            }else{
+              hasil += '<div class="alert alert-danger alert-message" role="alert"> <i class="fa fa-close"></i>';
+            }
+
+            hasil += '&nbsp;&nbsp;Mesin ' + obj[key].fields.name + ' is <strong>' + obj[key].fields.status + '</strong> </div>';
+          }
+
+          $('#ContentMesin').html(hasil);
+    }
+  });
 
   $("#simpantambah").on("click", function(){
         $.ajax({
