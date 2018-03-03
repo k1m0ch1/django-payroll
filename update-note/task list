@@ -3,7 +3,12 @@ Perhitungan
 [*] karyawan melakukan pinjaman sebesar 2 juta dicicil selama 12 bulan = 166.666 selama 12 bulan akan dipotong 166.666 dan setiap bulan ngurangin cicilan dan nilainya sama
 [*] Overtime ditentukan dari hari libur general di tanggal dan hari libur karyawan
 [*] SPV keatas tidak mendapatkan lembur di hari biasa
-
+[*] SPL itu harusnya memasukkan jam masuk jam berapa dan kapan jam keluar
+[*] setiap golongan potongannya beda
+[*] setiap golongan potongan umut sama
+[*] 25 hari kerja, 3 kali telat, UMUT nya 22 hari
+[*] mangkir, sakit telat ga dihitung UMUT
+[*] Total Gaji tanpa UMUT
 General
 
 [*] Mesin ID pas daftar karyawan benerin
@@ -12,6 +17,3 @@ General
 [*] Make sure semua posting gaji bisa di pakai sama PT lain
 [*] Make sure semua menu bisa di pakai sama PT Lain 0/17
 [*] Pada saat tambah karyawan NIK nya yang awal GC di ganti menjadi sesuai nama PT, contoh PT. Galuh Mas Sinar = kalo 2 [PGM], kalo 3 [GMS], kalo 1 [PTG]
-[*] SPL itu harusnya memasukkan jam masuk jam berapa dan kapan jam keluar
-[*] setiap golongan potongannya beda
-[*] setiap golongan potongan umut sama

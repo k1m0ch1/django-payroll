@@ -253,8 +253,8 @@ def postinggaji(request, id):
 			wp = 0
 
 			gapok = g.gajipokok
-			ga_pok = gapok + UMUT + g.jabatan
-			gatu = ga_pok - UMUT
+			ga_pok = gapok + g.jabatan
+			gatu = gapok + g.jabatan
 			ga_pokii = gatu * (75/100)
 			tunjangan_ii = gatu * (25/100)
 
