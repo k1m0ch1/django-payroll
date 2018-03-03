@@ -32,7 +32,7 @@ Mesin Absensi
 
 General
 
-[X] Mesin ID pas daftar karyawan benerin [UNTESTED] [UNREFACTORED]
+[X] Mesin ID pas daftar karyawan benerin [UNTESTED] [REFACTORED]
 [*] Pagination semua modul
 [*] Search
 [*] Make sure semua posting gaji bisa di pakai sama PT lain
