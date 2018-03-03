@@ -566,7 +566,7 @@ def perusahaan_index(request):
 @login_required()
 def shift_index(request):
 	data = serializers.serialize( "python", Shift.objects.all().order_by("-created_at"),fields=('name','jammasuk', 'jamkeluar', 'desc'))
-	exfield = [{'field': 'Jam Masuk'}, {'field': 'Jam Keluar'}]
+	exfield = [{'field': 'Jam Masuk'}, {'field': 'Jam Keluar'}, {'field': "Deskripsi"}]
 	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request), 'exfield' : exfield})
 
 @login_required()
@@ -578,13 +578,13 @@ def masatenggangclosing_index(request):
 @login_required()
 def hariraya_index(request):
 	data = serializers.serialize( "python", HariRaya.objects.all(),fields=('name','tanggal', 'sd', 'desc'))
-	exfield = [{'field': 'Tanggal Mulai'}, {'field': 'Tanggal Akhir'}]
+	exfield = [{'field': 'Tanggal Mulai'}, {'field': 'Tanggal Akhir'}, {'field': "Deskripsi"}]
 	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request), 'exfield' : exfield})
 
 @login_required()
 def inventory_index(request):
 	data = serializers.serialize( "python", Inventory.objects.all(),fields=('name','nomer', 'desc'))
-	exfield = [{'field': 'Nomer'}]
+	exfield = [{'field': 'Nomer'}, {'field': "Deskripsi"}]
 	return render(request, "include/base-dyn-dashboard.html", { 'ulang' : data, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request), 'exfield' : exfield})
 
 @login_required()
