@@ -32,7 +32,7 @@ Mesin Absensi
 
 General
 
-[X] Mesin ID pas daftar karyawan benerin
+[X] Mesin ID pas daftar karyawan benerin [UNTESTED] [UNREFACTORED]
 [*] Pagination semua modul
 [*] Search
 [*] Make sure semua posting gaji bisa di pakai sama PT lain
@@ -41,7 +41,7 @@ General
 [*] coba testing sampedataabsen
 [*] Pada saaat tambah karyawan, karyawan didaftarkan ke semua mesin absensi
 [*] Validasi data none
-[*] Data Master Inventory, Hari Raya, Shift, Invesntory rusak si templatenya
+[X] Data Master Inventory, Hari Raya, Shift, Invesntory rusak si templatenya
 [*] Alamat Perusahaan
 [*] Hapus Profile Perusahaan
 [*] Pada saat karyawan shift search

@@ -44,26 +44,34 @@ def karyawan(request):
 													   'statusmenikah' : sm, 'bank':bank, 'agama':agama,
 													   'perusahaan': per , "idfinger" : idfinger, 'mesin' : mesin})
 
+def tambah_karyawan_ke_mesin(karyawan_id, nama_karyawan):
+	mesin = Mesin.objects.all()
+
+	for m in mesin:
+		conn = None
+		zk = ZK(m.ip, port=m.port, timeout=5)
+		try:
+			conn = zk.connect()
+			datausers = conn.get_users()
+			userid = 1
+			for user in datausers:
+				userid = userid + 1
+			#conn.disable_device()
+			conn.set_user(uid=userid, name="" + str(nama_karyawan), privilege=const.USER_DEFAULT, password='12345678', group_id='', user_id="" + str(userid) )
+			km = KaryawanMesin(mesin_id=m.id, karyawan_id=karyawan_id, userid=userid)
+			km.save()
+			#conn.test_voice()
+			#conn.enable_device()
+		except Exception, e:
+		    print "Process terminate : {}".format(e)
+		finally:
+		    if conn:
+		        conn.disconnect()
+
+
 @login_required()
 def karyawan_save(request):
 	nama = request.POST['nama1'] + " " + request.POST['nama2']
-	
-	# conn = None 
-	# zk = ZK('192.168.0.225', port=4370, timeout=5)
-	# try:
-	# 	conn = zk.connect()
-	# 	datausers = conn.get_users()
-	# 	userid = 1
-	# 	for user in datausers:
-	# 		userid = userid + 1
-	# 	print request.POST['fingerid']
-	# 	conn.set_user(uid=userid, name=nama, privilege=const.USER_DEFAULT, password="", group_id="", user_id=request.POST['fingerid'])
-	# 	conn.test_voice()
-	# except Exception, e:
-	# 	print "Process terminate : {}" . format(e)
-	# finally:
-	# 	if conn:
-	# 		conn.disconnect()
 
 	banyakpegawai = Karyawan.objects.filter(tanggalmasuk__year=parse(request.POST['tanggalmasuk']).strftime("%Y"), tanggalmasuk__month=parse(request.POST['tanggalmasuk']).strftime("%m"))
 	banyakpegawai = len(banyakpegawai)+1
@@ -94,29 +102,8 @@ def karyawan_save(request):
 					golongan_id = request.POST['golongan'], #jabatan_id = request.POST['jabatan'],
 					perusahaan_id= request.POST['perusahaan'])
 	k.save()
-	
-	mesin = Mesin.objects.all()
 
-	for m in mesin:
-		conn = None
-		zk = ZK(m.ip, port=m.port, timeout=5)
-		try:
-			conn = zk.connect()
-			datausers = conn.get_users()
-			userid = 1
-			for user in datausers:
-				userid = userid + 1
-			#conn.disable_device()
-			conn.set_user(uid=userid, name="" + str(k.name), privilege=const.USER_DEFAULT, password='12345678', group_id='', user_id="" + str(userid) )
-			km = KaryawanMesin(mesin_id=m.id, karyawan_id=k.id, userid=userid)
-			km.save()
-			#conn.test_voice()
-			#conn.enable_device()
-		except Exception, e:
-		    print "Process terminate : {}".format(e)
-		finally:
-		    if conn:
-		        conn.disconnect()
+	tambah_karyawan_ke_mesin(k.id, k.name)
 			
 	jabatan = int(request.POST['gajipokok']) * (25/100)
 	gajipokok = int(request.POST['gajipokok']) * (75/100)
@@ -150,25 +137,7 @@ def karyawan_save_api(request):
 					perusahaan_id= request.POST['perusahaan'])
 	k.save()
 
-	ipmesin = request.POST['lokasimesin']
-	zk = ZK(ipmesin, port=4370, timeout=5)
-	try:
-		conn = zk.connect()
-		#conn.disable_device()
-		conn.set_user(uid=userid, name="" + str(k.name), privilege=const.USER_DEFAULT, password='12345678', group_id='', user_id="" + str(userid))
-		datausers = conn.get_users()
-		userid = 1
-		for user in datausers:
-			userid = userid + 1
-		km = KaryawanMesin(mesin_id=m.id, karyawan_id=k.id, userid=userid)
-		km.save()
-		conn.test_voice()
-		conn.enable_device()
-	except Exception, e:
-	    print "Process terminate : {}".format(e)
-	finally:
-	    if conn:
-	        conn.disconnect()
+	tambah_karyawan_ke_mesin(k.id, k.name)
 
 	jabatan = int(request.POST['gajipokok']) * (25/100)
 	gajipokok = int(request.POST['gajipokok']) * (75/100)
