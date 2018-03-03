@@ -6,9 +6,30 @@ Perhitungan
 [*] SPL itu harusnya memasukkan jam masuk jam berapa dan kapan jam keluar
 [*] setiap golongan potongannya beda
 [*] setiap golongan potongan umut sama
-[*] 25 hari kerja, 3 kali telat, UMUT nya 22 hari
-[*] mangkir, sakit telat ga dihitung UMUT
+[*] 25 hari kerja, 3 kali ga masuk, UMUT nya 22 hari
+[*] mangkir, sakit ga dihitung UMUT
 [*] Total Gaji tanpa UMUT
+[*] UMUT mempengaruhi ketidak hardiran
+[*] karyawan yang mempunyai UMUT 0 hitungannya 40 ribu, dan akan di potong jika tidak hadir
+[*] karyawan yang mempuntai UMUT tetap, dia tidak akan di potong kalo tidak masuk karena sudah tetap 
+[*] ga ada absensi sama sekali tanpa keterangan jelasan sama dengan mangkir
+[*] ga daa perhitungan izin atau sakit
+[*] semua tunjangan di hitung line 274
+[*] wp diambil dari gaji pokok setahun baru di bandingkan
+[*] jika cuti dia di bayar seolah2 dia masuk
+[*] jika dinas dia di bayar seolah2 dia masuk
+[*] pas pajak, tunjangan ada tambahan sama bonus
+[*] THR tergantung status, kalo on ditambahinnya di slip gaji aja
+	[*] THR dikasih 2 minggu sebelum lebaran
+	[*] THR ada slip gaji sendiri, dimana Gaji bulan lalu di tambahkan dengan THR
+	[*] format nya mirip sama kaya slip gaji biasa	
+[*] Benerin tampilan Detail Gaji
+
+Mesin Absensi
+[*] Setiap 8 pagi, 1 siang, 6 sore, 11 malam dan 5 pagi.
+[*] Tombol Manual Singkron bertujuan untuk ambil data secara manual ke semua mesin
+[*] Setiap Karyawan terdaftar ke semua mesin
+
 General
 
 [*] Mesin ID pas daftar karyawan benerin
@@ -17,3 +38,40 @@ General
 [*] Make sure semua posting gaji bisa di pakai sama PT lain
 [*] Make sure semua menu bisa di pakai sama PT Lain 0/17
 [*] Pada saat tambah karyawan NIK nya yang awal GC di ganti menjadi sesuai nama PT, contoh PT. Galuh Mas Sinar = kalo 2 [PGM], kalo 3 [GMS], kalo 1 [PTG]
+[*] coba testing sampedataabsen
+[*] Pada saaat tambah karyawan, karyawan didaftarkan ke semua mesin absensi
+[*] Validasi data none
+[*] Data Master Inventory, Hari Raya, Shift, Invesntory rusak si templatenya
+[*] Alamat Perusahaan
+[*] Hapus Profile Perusahaan
+[*] Pada saat karyawan shift search
+	[*] fokus ke tabel
+	[*] pagination
+	[*] filed search terisi
+[*] Setelah berhasil simpan Karyawan shift, refresh halaman
+[*] Untuk banyak pilihan karyawan pas lagi tambah karyawan shift, datanya ga masuk pas simpan shift rolling baru
+[*] Detail karyawan listing shift rolling, izin sakit, potongan, BPJS, PTKP, Bonus dan THR, Tunjangan Karyawan, Inventory Pinjaman
+[*] Validasi di Karyawan shift kalo orangnya belum masukin karyawan bakal error
+[*] Pada saat ubah shift jika karyawan tidak ada datanya, akan muncul pesan (Karyawan *** tidak mempunya rolling shift di hari ini, klik ya jika ingin ditambahkan, klik tidak jika tidak mau ditambahkan) jika ada datanya akan merubah data
+[*] Izin cuti banyak simpan karyawan ga bisa kalo sesuai departemen etc
+[*] izin cuti ga bisa simpan multi karyawann
+[X] karyawan shift berhasil simpan multi karyawan
+[*] izin cuti ga bisa simpan karyawan
+[*] Potongan karyawan yang cicil tolong di perhatikan kalo udah posting gaji jadi ngurangin
+[*] Potongan Karyawan ga bisa simpan potongan dengan multi karyawan/ tergantung departemen
+[*] Potongan Karyawan data baru di akhir, harusnya di awal
+[*] BPJS, ngeklik text box BpJS kesehatan ada alert kosong
+[*] BPJS data baru di akhir,  harusnya di awal
+[*] Modul pilih karyawan kalo checkboxnya di matikan malah nambah
+[*] Kalo nambah bonux pesannya masih "berhasil tambah potongan"
+[*] Data yang di update langsung ke atas
+[*] Tunjangan Karyawan semuanya maasih error
+
+
+Note Standar
+[*] Supaya bisa generate laporan, karyawan harus mempunya
+	[*] Jadwal Shift
+[*] Pada saat Memilih tanggal off di klik dua kali
+
+gaji lumpsum [ di potong ]
+gaji tidak lumpusum [ tidak di potong ]

@@ -237,7 +237,7 @@ def postinggaji(request, id):
 				transportnonexec = int( 20000 * hari )			
 			elif k.golongan.id == 6 or k.golongan.id == 5 :
 				pabsen = pabsen * 40000
-				tunjanganmakan = int( 20000 * hari ) * banyak
+				tunjanganmakan = int( 20000 * hari ) 
 				transportnonexec = int( 20000 * hari )			
 			elif k.golongan_id < 5:
 				pabsen = pabsen * 60000
@@ -259,13 +259,13 @@ def postinggaji(request, id):
 			tunjangan_ii = gatu * (25/100)
 
 			if k.golongan.id == 7 or k.golongan.id == 8 :
-				mangkir = (gatu / hari) + 20000	
+				mangkir = (ga_pokii / hari) + 40000	
 				mangkir = (hari - banyak) * mangkir
 			elif k.golongan.id == 6 or k.golongan.id == 5 :
-				mangkir = (gatu / hari) + 40000		
+				mangkir = (ga_pokii / hari) + 40000		
 				mangkir = (hari - banyak) * mangkir
 			elif k.golongan_id < 5:
-				mangkir = (gatu / hari) + 60000
+				mangkir = (ga_pokii / hari) + 40000
 				mangkir = (hari - banyak) * mangkir
 
 			ga_pok = ga_pok - mangkir
@@ -276,6 +276,7 @@ def postinggaji(request, id):
 			bpjs_ks = p.bpjs_ks
 			bpjs_kt = p.bpjs_kt
 
+			#wp is wajibpajak
 			if ga_pok <= 50000000 :
 			  wp = float(float(5)/100) 
 			elif ga_pok > 50000000 or ga_pok <= 250000000 :
