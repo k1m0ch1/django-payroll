@@ -4,3 +4,5 @@ __pycache__
 .DS_Store
 system/migrations/*
 db.sqlite3
+resetData.bat
+resetData.sh
