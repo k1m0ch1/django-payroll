@@ -154,6 +154,8 @@ def postinggaji(request, id):
 			tovertime = 0
 			pabsen = 0
 
+			#cicilan karyawan
+
 			if p.cicil_pinjkaryawan > 0 :
 				cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
 				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
@@ -188,17 +190,18 @@ def postinggaji(request, id):
 					banyakwaktu = penjumlahan - bjam - istirahat
 					if hari == "Minggu" or hari == "Sunday" :
 						hitungot = abi.SPL_banyak
+						#marketing ga dapet OT
 						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
 							if banyakwaktu <= 7 :
-								tovertime = tovertime + int(float((banyakwaktu * 2) * 10000))
+								tovertime = tovertime + int(float((banyakwaktu * 2) * 10000)) #bener
 							elif banyakwaktu > 7 :
-								tovertime = tovertime + int(float((7 * 2) * 10000))
-								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 10000 )
+								tovertime = tovertime + int(float((7 * 2) * 10000)) #bener
+								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 10000 ) #bener
 						elif abi.karyawan.golongan.id < 7 :
 							if banyakwaktu <= 7 :
 								tovertime = tovertime + int(float((banyakwaktu * 2) * 20000))
 							elif banyakwaktu > 7 :
-								tovertime = tovertime + int(float((7 * 2) * 10000))
+								tovertime = tovertime + int(float((7 * 2) * 2	20000))
 								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 20000 )
 					else:
 						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
@@ -207,12 +210,6 @@ def postinggaji(request, id):
 							elif banyakwaktu > 1 :
 								tovertime = tovertime + int(float(1.5 * 10000))
 								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 10000 )
-						elif abi.karyawan.golongan.id < 7 :
-							if banyakwaktu >= 1 :
-								tovertime = tovertime + int(float(1.5 * 20000))
-							elif banyakwaktu > 1 :
-								tovertime = tovertime + int(float(1.5 * 20000))
-								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 20000 )
 
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
 					pabsen = pabsen + 1
