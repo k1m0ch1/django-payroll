@@ -89,25 +89,26 @@ class Command(BaseCommand):
 
 		y = y + 1
 
-		mesin = Mesin.objects.all()
+		# Fungsi menambahkan karyawan ke dalam mesin absensi
+		# mesin = Mesin.objects.all()
 
-		conn = None
-		for m in mesin:
-			if m.status == "UP":
-				zk = ZK(m.ip, port=4370, timeout=5)
-				try:
-					conn = zk.connect()
-					datausers = conn.get_users()
-					userid = 1
-					for user in datausers:
-						userid = userid + 1
-					conn.set_user(uid=userid, name=nama, privilege=const.USER_DEFAULT, password="", group_id="", user_id=str(userid))
-					#conn.test_voice()
-				except Exception, e:
-					print "Process terminate : {}" . format(e)
-				finally:
-					if conn:
-						conn.disconnect()
+		# conn = None
+		# for m in mesin:
+		# 	if m.status == "UP":
+		# 		zk = ZK(m.ip, port=4370, timeout=5)
+		# 		try:
+		# 			conn = zk.connect()
+		# 			datausers = conn.get_users()
+		# 			userid = 1
+		# 			for user in datausers:
+		# 				userid = userid + 1
+		# 			conn.set_user(uid=userid, name=nama, privilege=const.USER_DEFAULT, password="", group_id="", user_id=str(userid))
+		# 			#conn.test_voice()
+		# 		except Exception, e:
+		# 			print "Process terminate : {}" . format(e)
+		# 		finally:
+		# 			if conn:
+		# 				conn.disconnect()
 
 		print "["+ str(y) +"] Tambah karyawan " + nama + " Tersimpan di mesin absensi"
 

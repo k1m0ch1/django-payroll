@@ -461,7 +461,7 @@
                         </div>
                      {% endfor %}
                     </div>
-                    <div id="loading" style="position: absolute;margin: auto;top:40%;left:50%;">
+                    <div id="loading" style="position: absolute;margin: auto;top:65%;left:74%;">
                         <img height=30 width=30 src='{% static '/images/loading.gif' %}' id='loading-indicator' />
                         <p align="center" style="margin-top:5px;margin-left:-50px;"><strong>Cek koneksi ke mesin</strong></p>
                     </div>
@@ -537,9 +537,9 @@ $(function () {
         },
       success: function(result) {
           var obj = JSON.parse(result);
-          var hasil = '<div class="col-md-3 col-sm-3 col-xs-12">';
+          var hasil = '';
           for (var key in obj){
-            hasil += '';
+            hasil += '<div class="col-md-3 col-sm-3 col-xs-12">';
             console.log(obj[key].fields.name);
 
             if(obj[key].fields.status=='UP'){
@@ -548,7 +548,7 @@ $(function () {
               hasil += '<div class="alert alert-danger alert-message" role="alert"> <i class="fa fa-close"></i>';
             }
 
-            hasil += '&nbsp;&nbsp;Mesin ' + obj[key].fields.name + ' is <strong>' + obj[key].fields.status + '</strong> </div>';
+            hasil += '&nbsp;&nbsp;Mesin ' + obj[key].fields.name + ' is <strong>' + obj[key].fields.status + '</strong> </div></div>';
           }
 
           $('#ContentMesin').html(hasil);
