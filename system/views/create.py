@@ -35,49 +35,12 @@ def karyawan(request):
 	idfinger = int(100) + len(Karyawan.objects.all()) + 1
 	#call_command('createuser', '1233', "lapet")
 
-	objs = [0]
-
-	class mesin(object):
-		no = 0
-		ipmesin = ""
-		namamesin = ""
-
-		def __init__(self, no, ipmesin, namamesin):
-
-			self.no = no
-			self.ipmesin = ipmesin
-			self.namamesin = namamesin
-
-	#akses ke mesin
-	file = open("listip.txt", "r")
-	y=0
-	for line in file:
-		conn = None
-		dataip = line.strip()
-		dataip = dataip.split(";")
-		y = y + 1
-		objs.append(mesin(y, dataip[0], dataip[1]))
-		# ipmesin = dataip[0]
-		# zk = ZK(ipmesin, port=4370, timeout=5)
-		# try:
-		# 	conn = zk.connect()
-		# 	conn.test_voice
-		# 	conn.enable_device()
-		# except Exception, e:
-		#     print "Process terminate : {}".format(e)
-		# finally:
-		#     if conn:
-		#         conn.disconnect()
-
-	objs.pop(0)
-
-
 
 	return render(request, "karyawan/form.html", { 'mode' : 'Tambah', 'module' : getModule(request), 
 													   'idpk' : 0, 'dsb' : modules, 'parent' : getParent(request), 'departemen':dep,
 													   'bagian': bag, 'golongan':gol, 'jabatan': jab, 'warganegara' : wg,
 													   'statusmenikah' : sm, 'bank':bank, 'agama':agama,
-													   'perusahaan': per , "idfinger" : idfinger, "mesin": objs})
+													   'perusahaan': per , "idfinger" : idfinger})
 
 @login_required()
 def karyawan_save(request):
