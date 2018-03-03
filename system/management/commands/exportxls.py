@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from pprint import pprint
-from system.models import Karyawan, Perusahaan, Bank, Departemen, Bagian, GajiPokok, Jabatan, TunjanganKaryawan, Bonusthr, Mesin
+from system.models import Karyawan, Perusahaan, Bank, Departemen, Bagian, GajiPokok, Jabatan, TunjanganKaryawan, Bonusthr, Mesin, KaryawanMesin
 from openpyxl import load_workbook
 import argparse
 from datetime import datetime
@@ -103,6 +103,8 @@ class Command(BaseCommand):
 		# 			for user in datausers:
 		# 				userid = userid + 1
 		# 			conn.set_user(uid=userid, name=nama, privilege=const.USER_DEFAULT, password="", group_id="", user_id=str(userid))
+		# 			km = KaryawanMesin(mesin_id=m.id, karyawan_id=k.id, userid=userid)
+		# 			km.save()
 		# 			#conn.test_voice()
 		# 		except Exception, e:
 		# 			print "Process terminate : {}" . format(e)

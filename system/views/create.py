@@ -8,7 +8,7 @@ from django.conf import settings
 from system.models import Perusahaan, Departemen, Bagian, Golongan, Jabatan
 from system.models import Bank, Agama, WargaNegara, StatusMenikah, Modules, Konfigurasi, Mesin
 from system.models import LokasiPerusahaan, HariRaya, Shift,KaryawanShift, Karyawan, Inventory
-from system.models import GajiPokok, Absensi, Pinjaman, PotonganKaryawan, IzinCuti, MasaTenggangClosing, Bonusthr
+from system.models import GajiPokok, Absensi, Pinjaman, PotonganKaryawan, IzinCuti, MasaTenggangClosing, Bonusthr, KaryawanMesin
 from system.models import TunjanganKaryawan, bpjs as BPJS
 from dateutil.parser import parse
 from datetime import timedelta
@@ -102,11 +102,15 @@ def karyawan_save(request):
 		zk = ZK(m.ip, port=m.port, timeout=5)
 		try:
 			conn = zk.connect()
+			datausers = conn.get_users()
+			userid = 1
+			for user in datausers:
+				userid = userid + 1
 			#conn.disable_device()
-			conn.set_user(uid=int(str(k.fingerid).strip()), name="" + str(k.name), privilege=const.USER_DEFAULT, password='12345678', group_id='', user_id="" + str(k.fingerid).strip() )
+			conn.set_user(uid=userid, name="" + str(k.name), privilege=const.USER_DEFAULT, password='12345678', group_id='', user_id="" + str(userid) )
+			km = KaryawanMesin(mesin_id=m.id, karyawan_id=k.id, userid=userid)
+			km.save()
 			#conn.test_voice()
-			#conn.test_voice()
-			conn.test_voice()
 			#conn.enable_device()
 		except Exception, e:
 		    print "Process terminate : {}".format(e)
@@ -151,9 +155,13 @@ def karyawan_save_api(request):
 	try:
 		conn = zk.connect()
 		#conn.disable_device()
-		conn.set_user(uid=int(str(k.fingerid).strip()), name="" + str(k.name), privilege=const.USER_DEFAULT, password='12345678', group_id='', user_id="" + str(k.fingerid).strip())
-		#conn.test_voice()
-		#conn.test_voice()
+		conn.set_user(uid=userid, name="" + str(k.name), privilege=const.USER_DEFAULT, password='12345678', group_id='', user_id="" + str(userid))
+		datausers = conn.get_users()
+		userid = 1
+		for user in datausers:
+			userid = userid + 1
+		km = KaryawanMesin(mesin_id=m.id, karyawan_id=k.id, userid=userid)
+		km.save()
 		conn.test_voice()
 		conn.enable_device()
 	except Exception, e:

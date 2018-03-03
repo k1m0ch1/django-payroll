@@ -463,3 +463,13 @@ class MesinPull(models.Model):
 
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
+
+class KaryawanMesin(models.Model):
+	mesin = models.ForeignKey(Mesin)
+	karyawan = models.ForeignKey(Karyawan)
+	userid = models.TextField(default="")
+	created_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):              # __unicode__ on Python 2
+		return self.name
