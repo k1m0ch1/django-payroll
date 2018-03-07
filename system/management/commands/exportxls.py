@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from pprint import pprint
 from system.models import Karyawan, Perusahaan, Bank, Departemen, Bagian, GajiPokok, Jabatan, TunjanganKaryawan, Bonusthr, Mesin, KaryawanMesin
 from openpyxl import load_workbook
-import argparse
+import argparse, pyping, time
 from datetime import datetime
 from zk import ZK, const
 
@@ -89,28 +89,37 @@ class Command(BaseCommand):
 
 		y = y + 1
 
-		# Fungsi menambahkan karyawan ke dalam mesin absensi
-		# mesin = Mesin.objects.all()
+		msn = Mesin.objects.all()
+		for z in msn:
+			response = pyping.ping(z.ip, timeout=800, packet_size=10)
+			msn = Mesin.objects.select_for_update().filter(id=z.id)
+			if response.ret_code == 0:		    
+			    msn.update(status="UP", last_up = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'), last_check = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') )
+			else:
+			    msn.update(status="DOWN", last_down = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'), last_check = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') )
 
-		# conn = None
-		# for m in mesin:
-		# 	if m.status == "UP":
-		# 		zk = ZK(m.ip, port=4370, timeout=5)
-		# 		try:
-		# 			conn = zk.connect()
-		# 			datausers = conn.get_users()
-		# 			userid = 1
-		# 			for user in datausers:
-		# 				userid = userid + 1
-		# 			conn.set_user(uid=userid, name=nama, privilege=const.USER_DEFAULT, password="", group_id="", user_id=str(userid))
-		# 			km = KaryawanMesin(mesin_id=m.id, karyawan_id=k.id, userid=userid)
-		# 			km.save()
-		# 			#conn.test_voice()
-		# 		except Exception, e:
-		# 			print "Process terminate : {}" . format(e)
-		# 		finally:
-		# 			if conn:
-		# 				conn.disconnect()
+
+		# Fungsi menambahkan karyawan ke dalam mesin absensi
+		mesin = Mesin.objects.all()
+		conn = None
+		for m in mesin:
+			if m.status == "UP":
+				zk = ZK(m.ip, port=4370, timeout=5)
+				try:
+					conn = zk.connect()
+					datausers = conn.get_users()
+					userid = 1
+					for user in datausers:
+						userid = userid + 1
+					conn.set_user(uid=userid, name=nama, privilege=const.USER_DEFAULT, password="", group_id="", user_id=str(userid))
+					km = KaryawanMesin(mesin_id=m.id, karyawan_id=k.id, userid=userid)
+					km.save()
+					#conn.test_voice()
+				except Exception, e:
+					print "Process terminate : {}" . format(e)
+				finally:
+					if conn:
+						conn.disconnect()
 
 		print "["+ str(y) +"] Tambah karyawan " + nama + " Tersimpan di mesin absensi"
 

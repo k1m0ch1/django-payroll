@@ -148,59 +148,56 @@ def karyawan_save_api(request):
 
 	return HttpResponse("berhasil-simpan-karyawan")
 
+def simpan_karyawan_shift(karyawan_id, masa_shift, shift, off_day):
+	#bikin validasi kalo ga ada inputan
 
+	sm = masa_shift
 
+	for a in range(0,4):
+		if sm[a] != "" and off[a] != "":
+			mawal = parse([x.strip() for x in sm[a].split(' ')][0]).strftime("%Y-%m-%d")
+			makhir = parse([x.strip() for x in sm[a].split(' ')][2]).strftime("%Y-%m-%d")
+			moffawal = parse([x.strip() for x in off[a].split(' ')][0]).strftime("%Y-%m-%d")
+			moffakhir = parse([x.strip() for x in off[a].split(' ')][2]).strftime("%Y-%m-%d")
+			s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[0], tglawal=mawal, tglakhir=makhir, tgloffawal=moffawal, tgloffakhir=moffakhir)
+			s.save()
 
 @login_required()
 def karyawan_shift_save(request):
 	shift = [request.POST['shift1'], request.POST['shift2'], request.POST['shift3'],request.POST['shift4']]
 	idkaryawan = request.POST['idkaryawan']
-	offa = request.POST['off1']
-	offb = request.POST['off2']
-	offc = request.POST['off3']
-	offd = request.POST['off4']
-	sma = request.POST['sm1']
-	smb = request.POST['sm2']
-	smc = request.POST['sm3']
-	smd = request.POST['sm4']
+	off = [request.POST['off1'],request.POST['off2'],request.POST['off3'],request.POST['off4']]
+	sm = [request.POST['sm1'],request.POST['sm2'],request.POST['sm3'],request.POST['sm4']]
 
-	listid = [x.strip() for x in idkaryawan.split(',')]
-	for y in range(0, len(listid)-1):
-		k = Karyawan.objects.get(pk=listid[y])
-		jumlahhari = int(k.jumlahhari)
+	if idkaryawan.find("&") != -1 :
+		listid = [x.strip() for x in idkaryawan.split('&')]
+		a= ""
 
-		#bikin validasi kalo ga ada inputan
-		if request.POST['sm1'] != "" and request.POST['off1'] !=="" :
-			m1awal = parse([x.strip() for x in sma.split(' ')][0]).strftime("%Y-%m-%d")
-			m1akhir = parse([x.strip() for x in smb.split(' ')][2]).strftime("%Y-%m-%d")
-			m1offawal = parse([x.strip() for x in offa.split(' ')][0]).strftime("%Y-%m-%d")
-			m1offakhir = parse([x.strip() for x in offa.split(' ')][2]).strftime("%Y-%m-%d")
-			s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[0], tglawal=m1awal, tglakhir=m1akhir, tgloffawal=m1offawal, tgloffakhir=m1offakhir)
-			s.save()
+		a = Karyawan.objects
+		if listid[0] != "":
+			a = a.filter(perusahaan=listid[0])
 
-		if request.POST['sm2'] != "" and request.POST['off2'] !=="" :
-			m2awal = parse([x.strip() for x in sma.split(' ')][0]).strftime("%Y-%m-%d")
-			m2akhir = parse([x.strip() for x in smb.split(' ')][2]).strftime("%Y-%m-%d")
-			m2offawal = parse([x.strip() for x in offa.split(' ')][0]).strftime("%Y-%m-%d")
-			m2offakhir = parse([x.strip() for x in offa.split(' ')][2]).strftime("%Y-%m-%d")
-			s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[1], tglawal=m2awal, tglakhir=m2akhir, tgloffawal=m2offawal, tgloffakhir=m2offakhir)
-			s.save()
+		if listid[1] != "":
+			a = a.filter(departemen=listid[1])
 
-		if request.POST['sm3'] != "" and request.POST['off3'] !=="" :
-			m3awal = parse([x.strip() for x in sma.split(' ')][0]).strftime("%Y-%m-%d")
-			m3akhir = parse([x.strip() for x in smb.split(' ')][2]).strftime("%Y-%m-%d")
-			m3offawal = parse([x.strip() for x in offa.split(' ')][0]).strftime("%Y-%m-%d")
-			m3offakhir = parse([x.strip() for x in offa.split(' ')][2]).strftime("%Y-%m-%d")
-			s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[2], tglawal=m3awal, tglakhir=m3akhir, tgloffawal=m3offawal, tgloffakhir=m3offakhir)
-			s.save()
+		if listid[2] != "":
+			a = a.filter(bagian=listid[2])
 
-		if request.POST['sm4'] != "" and request.POST['off4'] !=="" :
-			m4awal = parse([x.strip() for x in sma.split(' ')][0]).strftime("%Y-%m-%d")
-			m4akhir = parse([x.strip() for x in smb.split(' ')][2]).strftime("%Y-%m-%d")
-			m4offawal = parse([x.strip() for x in offa.split(' ')][0]).strftime("%Y-%m-%d")
-			m4offakhir = parse([x.strip() for x in offa.split(' ')][2]).strftime("%Y-%m-%d")
-			s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[3], tglawal=m4awal, tglakhir=m4akhir, tgloffawal=m4offawal, tgloffakhir=m4offakhir)
-			s.save()	
+		if listid[3] != "":
+			a = a.filter(golongan=listid[3])
+
+		for b in a:
+			k = Karyawan.objects.get(pk=b.id)
+
+			simpan_karyawan_shift(k.id, shift, sm, off)
+
+	else:
+		listid = [x.strip() for x in idkaryawan.split(',')]
+		for y in range(0, len(listid)-1):
+			k = Karyawan.objects.get(pk=listid[y])
+			jumlahhari = int(k.jumlahhari)
+
+			simpan_karyawan_shift(k.id, shift, sm, off)
 
 	return HttpResponse("yay berhasil")
 

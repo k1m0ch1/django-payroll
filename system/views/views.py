@@ -40,7 +40,7 @@ def pindahinkalo404(request):
 def cek_mesin(request):
 	msn = Mesin.objects.all()
 	for z in msn:
-		response = pyping.ping(z.ip)
+		response = pyping.ping(z.ip, timeout=800, packet_size=10)
 		msn = Mesin.objects.select_for_update().filter(id=z.id)
 		if response.ret_code == 0:		    
 		    msn.update(status="UP", last_up = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'), last_check = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') )
