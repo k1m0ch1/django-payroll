@@ -163,13 +163,15 @@
               <table class="table table-hover">
                 <tbody><tr>
                   <th class="col-md-2">NIK</th>
-                  <th class="col-md-3">Nama</th>
+                  <th class="col-md-2">Nama</th>
                   <!-- <th class="col-md-3">MasaTenggang</th> -->
-                  <th class="col-md-2">Pinjaman</th>
-                  <th class="col-md-1">Cicilan</th>
+                  <th class="col-md-1">Pinjaman</th>
+                  <th class="col-md-1">Cicilan</th>                  
+                  <th class="col-md-2">Sisa Cicilan</th>
                   <th class="col-md-2">Koperasi</th>
+                  <th class="col-md-1">Cicilan</th>                  
                   <th class="col-md-1">Sisa Cicilan</th>
-                  <th class="col-md-2">Action</th>
+                  <th class="col-md-1">Action</th>
                 </tr>
                 {% for d in pk %}
                 <tr>
@@ -177,9 +179,16 @@
                   <td>{{ d.karyawan.name }}</td>
                   <!-- <td>{{ d.masatenggangclosing.tanggal|date:"d M Y" }} sd {{ d.masatenggangclosing.sd|date:"d M Y" }}</td> -->
                   <td>{% mon d.pinjkaryawan %}</td>
-                  <td>{{ d.cicil_pinjkaryawan }} kali ( {% sisa_cicil d.pinjkaryawan d.cicil_pinjkaryawan %} )</td>
+                  <td>{% banyak_cicil d.pinjkaryawan d.cicil_pinjkaryawan %} <br/> {{ d.cicil_pinjkaryawan }} kali cicilan</td>
+                  <td>sisa {% sisa_cicil d.pinjkaryawan d.cicil_pinjkaryawan d.sisa_cicil_pinjkaryawan %} <br/>{{ d.sisa_cicil_pinjkaryawan }} kali cicilan lagi</td>
                   <td>{% mon d.koperasi %}</td>
-                  <td>{% mon d.cicil_koperasi %}</td>
+                  {% if d.koperasi > 0 %}
+                    <td>{% banyak_cicil d.koperasi d.cicil_koperasi %} <br/> {{ d.cicil_koperasi }} kali cicilan</td>
+                    <td>sisa {% sisa_cicil d.koperasi d.cicil_koperasi d.sisa_cicil_koperasi %} <br/>{{ d.sisa_cicil_koperasi }} kali cicilan lagi</td>
+                  {% else %}
+                    <td>0</td>
+                    <td>0</td>
+                  {% endif %}
                   <td>
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                       <a href="{% url 'potongan-edit' potongan_id=d.id %}" type="button" class="btn btn-default"><i class="fa fa-pencil"></i></a>
