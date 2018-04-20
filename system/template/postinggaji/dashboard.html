@@ -145,6 +145,9 @@
             type: "POST",
             url: 'http://{{ request.get_host }}/index/postinggaji/do/1',
             data: {idkaryawan: $('#idKaryawan').val(), masatenggangclosing: $('#idmas').val() ,csrfmiddlewaretoken: '{{ csrf_token }}'},
+            beforeSend:function(){
+               return confirm("Pastikan untuk yakin melakukan posting gaji, karena akan melakukan perhitungan.");
+            },
             success: function(result) {
                 var mywindowa = window.open('', 'PRINT');
                 mywindowa.document.write(result);

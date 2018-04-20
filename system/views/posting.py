@@ -155,16 +155,16 @@ def postinggaji(request, id):
 			pabsen = 0
 
 			#cicilan karyawan
+			if int(capeainggantiwae) == 1:
+				if p.cicil_pinjkaryawan > 0 :
+					cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
+					pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
+					pe.update(cicil_pinjkaryawan=p.sisa_cicil_pinjkaryawan-1)
 
-			if p.cicil_pinjkaryawan > 0 :
-				cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
-				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
-				pe.update(cicil_pinjkaryawan=p.sisa_cicil_pinjkaryawan-1)
-
-			if p.cicil_koperasi > 0 :
-				cicil = (p.koperasi/p.cicil_koperasi)
-				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
-				pe.update(cicil_koperasi=p.sisa_cicil_koperasi-1)
+				if p.cicil_koperasi > 0 :
+					cicil = (p.koperasi/p.cicil_koperasi)
+					pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
+					pe.update(cicil_koperasi=p.sisa_cicil_koperasi-1)
 
 			# for x in a:
 			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
@@ -374,15 +374,16 @@ def postinggaji(request, id):
 			tovertime = 0
 			pabsen = 0
 
-			if p.cicil_pinjkaryawan > 0 :
-				cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
-				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
-				pe.update(cicil_pinjkaryawan=p.sisa_cicil_pinjkaryawan-1)
+			if int(capeainggantiwae) == 1:
+				if p.cicil_pinjkaryawan > 0 :
+					cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
+					pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
+					pe.update(cicil_pinjkaryawan=p.sisa_cicil_pinjkaryawan-1)
 
-			if p.cicil_koperasi > 0 :
-				cicil = (p.koperasi/p.cicil_koperasi)
-				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
-				pe.update(cicil_koperasi=p.sisa_cicil_koperasi-1)
+				if p.cicil_koperasi > 0 :
+					cicil = (p.koperasi/p.cicil_koperasi)
+					pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
+					pe.update(cicil_koperasi=p.sisa_cicil_koperasi-1)
 
 			# for x in a:
 			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
