@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load money %}
+{% load potongan %}
 
 {% block content %}
 <div class="content-wrapper">
@@ -167,7 +168,7 @@
                   <th class="col-md-2">Pinjaman</th>
                   <th class="col-md-1">Cicilan</th>
                   <th class="col-md-2">Koperasi</th>
-                  <th class="col-md-1">Cicilan</th>
+                  <th class="col-md-1">Sisa Cicilan</th>
                   <th class="col-md-2">Action</th>
                 </tr>
                 {% for d in pk %}
@@ -176,7 +177,7 @@
                   <td>{{ d.karyawan.name }}</td>
                   <!-- <td>{{ d.masatenggangclosing.tanggal|date:"d M Y" }} sd {{ d.masatenggangclosing.sd|date:"d M Y" }}</td> -->
                   <td>{% mon d.pinjkaryawan %}</td>
-                  <td>{% mon d.cicil_pinjkaryawan %}</td>
+                  <td>{{ d.cicil_pinjkaryawan }} kali ( {% sisa_cicil d.pinjkaryawan d.cicil_pinjkaryawan %} )</td>
                   <td>{% mon d.koperasi %}</td>
                   <td>{% mon d.cicil_koperasi %}</td>
                   <td>
