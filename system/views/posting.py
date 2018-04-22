@@ -203,12 +203,6 @@ def postinggaji(request, id):
 							elif banyakwaktu > 7 :
 								tovertime = tovertime + int(float((7 * 2) * 10000)) #bener
 								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 10000 ) #bener
-						elif abi.karyawan.golongan.id < 7 :
-							if banyakwaktu <= 7 :
-								tovertime = tovertime + int(float((banyakwaktu * 2) * 20000))
-							elif banyakwaktu > 7 :
-								tovertime = tovertime + int(float((7 * 2) * 20000))
-								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 20000 )
 					else:
 						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
 							if banyakwaktu <= 1 :
@@ -419,12 +413,6 @@ def postinggaji(request, id):
 							elif banyakwaktu > 7 :
 								tovertime = tovertime + int(float((7 * 2) * 10000))
 								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 10000 )
-						elif abi.karyawan.golongan.id < 7 :
-							if banyakwaktu <= 7 :
-								tovertime = tovertime + int(float((banyakwaktu * 2) * 20000))
-							elif banyakwaktu > 7 :
-								tovertime = tovertime + int(float((7 * 2) * 10000))
-								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 20000 )
 					else:
 						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
 							if banyakwaktu <= 1 :
@@ -432,12 +420,6 @@ def postinggaji(request, id):
 							elif banyakwaktu > 1 :
 								tovertime = tovertime + int(float(1.5 * 10000))
 								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 10000 )
-						elif abi.karyawan.golongan.id < 7 :
-							if banyakwaktu >= 1 :
-								tovertime = tovertime + int(float(1.5 * 20000))
-							elif banyakwaktu > 1 :
-								tovertime = tovertime + int(float(1.5 * 20000))
-								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 20000 )
 
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
 					pabsen = pabsen + 1

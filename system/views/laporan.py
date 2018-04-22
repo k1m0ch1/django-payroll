@@ -126,15 +126,16 @@ def laporanbpjs(request):
 			tovertime = 0
 			pabsen = 0
 
-			if p.cicil_pinjkaryawan > 0 :
-				cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
-				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
-				pe.update(cicil_pinjkaryawan=p.sisa_cicil_pinjkaryawan-1)
+			# cuman laporan ga di update
+			# if p.cicil_pinjkaryawan > 0 :
+			# 	cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
+			# 	pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
+			# 	pe.update(cicil_pinjkaryawan=p.sisa_cicil_pinjkaryawan-1)
 
-			if p.cicil_koperasi > 0 :
-				cicil = (p.koperasi/p.cicil_koperasi)
-				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
-				pe.update(cicil_koperasi=p.sisa_cicil_koperasi-1)
+			# if p.cicil_koperasi > 0 :
+			# 	cicil = (p.koperasi/p.cicil_koperasi)
+			# 	pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
+			# 	pe.update(cicil_koperasi=p.sisa_cicil_koperasi-1)
 
 			# for x in a:
 			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
@@ -170,12 +171,6 @@ def laporanbpjs(request):
 							elif banyakwaktu > 7 :
 								tovertime = tovertime + int(float((7 * 2) * 10000))
 								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 10000 )
-						elif abi.karyawan.golongan.id < 7 :
-							if banyakwaktu <= 7 :
-								tovertime = tovertime + int(float((banyakwaktu * 2) * 20000))
-							elif banyakwaktu > 7 :
-								tovertime = tovertime + int(float((7 * 2) * 10000))
-								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 20000 )
 					else:
 						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
 							if banyakwaktu <= 1 :
@@ -183,12 +178,6 @@ def laporanbpjs(request):
 							elif banyakwaktu > 1 :
 								tovertime = tovertime + int(float(1.5 * 10000))
 								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 10000 )
-						elif abi.karyawan.golongan.id < 7 :
-							if banyakwaktu >= 1 :
-								tovertime = tovertime + int(float(1.5 * 20000))
-							elif banyakwaktu > 1 :
-								tovertime = tovertime + int(float(1.5 * 20000))
-								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 20000 )
 
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
 					pabsen = pabsen + 1
@@ -370,12 +359,6 @@ def laporanbpjs(request):
 							elif banyakwaktu > 7 :
 								tovertime = tovertime + int(float((7 * 2) * 10000))
 								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 10000 )
-						elif abi.karyawan.golongan.id < 7 :
-							if banyakwaktu <= 7 :
-								tovertime = tovertime + int(float((banyakwaktu * 2) * 20000))
-							elif banyakwaktu > 7 :
-								tovertime = tovertime + int(float((7 * 2) * 10000))
-								tovertime = tovertime + ( ( ( banyakwaktu - 7 ) * 3 ) * 20000 )
 					else:
 						if abi.karyawan.golongan.id == 7 or abi.karyawan.golongan.id == 8 :
 							if banyakwaktu <= 1 :
@@ -383,12 +366,6 @@ def laporanbpjs(request):
 							elif banyakwaktu > 1 :
 								tovertime = tovertime + int(float(1.5 * 10000))
 								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 10000 )
-						elif abi.karyawan.golongan.id < 7 :
-							if banyakwaktu >= 1 :
-								tovertime = tovertime + int(float(1.5 * 20000))
-							elif banyakwaktu > 1 :
-								tovertime = tovertime + int(float(1.5 * 20000))
-								tovertime = tovertime + ( ( ( banyakwaktu - 1 ) * 2 ) * 20000 )
 
 				if waktu(abi.masuk, abi.karyawanshift.shift.jammasuk, True) > 300:
 					pabsen = pabsen + 1
@@ -654,11 +631,6 @@ def laporangaji(request):
 			tovertime = 0
 			pabsen = 0
 
-			if p.cicil_pinjkaryawan > 0 :
-				cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
-				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
-				pe.update(cicil_pinjkaryawan=p.cicil_pinjkaryawan-1)
-
 			# for x in a:
 			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
 
@@ -838,11 +810,6 @@ def laporangaji(request):
 			cicil = 0
 			tovertime = 0
 			pabsen = 0
-
-			if p.cicil_pinjkaryawan > 0 :
-				cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
-				pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
-				pe.update(cicil_pinjkaryawan=p.cicil_pinjkaryawan-1)
 
 			# for x in a:
 			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
