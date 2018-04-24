@@ -194,6 +194,11 @@ def postinggaji(request, id):
 					penjumlahan = (penjumlahan.seconds / 3600)
 					istirahat = ( penjumlahan / 5 )
 					banyakwaktu = penjumlahan - bjam - istirahat
+					todaydate = datetime.today()
+					SoW = todaydate - timedelta(days=dt.weekday())
+					EoW = SoW + timedelta(days=6)
+					start = SoW.strftime("%Y-%m-%d")
+					end = EoW.strftime("%Y-%m-%d")
 					if hari == "Minggu" or hari == "Sunday" :
 						hitungot = abi.SPL_banyak
 						#marketing ga dapet OT
