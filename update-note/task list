@@ -34,6 +34,7 @@ General
 
 [X] Mesin ID pas daftar karyawan benerin [UNTESTED] [REFACTORED]
 [*] Pagination semua modul
+	- Absensi
 [*] Search
 [*] Make sure semua posting gaji bisa di pakai sama PT lain
 [*] Make sure semua menu bisa di pakai sama PT Lain 0/17
