@@ -24,12 +24,13 @@ allmenu = Modules.objects.only('name')
 
 @login_required
 def absensi_index(request):
-	a = Absensi.objects.all().order_by("-created_at")
+	a = Absensi.objects.all()
 	if request.method == "GET":
 
 		if 'search' in request.GET:
 			a = a.filter(karyawan__NIK__contains=request.GET['value']) if request.GET['search'] == "nik" else a
 			a = a.filter(karyawan__name__contains=request.GET['value']) if request.GET['search'] == "name" else a
+			a = a.filter(tanggal__contains=request.GET['value']) if request.GET['search'] == "tanggal" else a
 
 	a = a.order_by("-updated_at")
 	
@@ -47,7 +48,7 @@ def absensi_index(request):
 
 @login_required
 def overtime_index(request):
-	a = Absensi.objects.all().order_by("-created_at")
+	a = Absensi.objects.all().order_by("-tanggal")
 
 	if request.method == "GET":
 
@@ -66,7 +67,7 @@ def overtime_index(request):
 		a = paginator.page(1)
 	except EmptyPage:
    		a = paginator.page(paginator.num_pages)
-   		
+
 	return render(request, "overtime/dashboard.html", { 'absen': a, 'module' : getModule(request), 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required
