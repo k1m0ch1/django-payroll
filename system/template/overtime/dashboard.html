@@ -29,6 +29,27 @@
         <div class="col-md-12">
           <div class="box">
             <div class="box-body table-responsive">
+            <div class="col-md-12">
+                <form class="form-horizontal" method="GET" action="{% url 'absensi-index' %}">
+                  <div class="form-group">
+                    <label for="pencarian" class="col-sm-2 control-label">Pencarian</label>
+                    <div class="col-sm-2">
+                      <select class="form-control" name="search">
+                      <option>Kategori</option>
+                      <option value="nik">NIK</option>
+                      <option value="name">Nama</option>
+                      <option value="tanggal">Tanggal</option>
+                    </select>
+                    </div>
+                    <div class="input-group col-sm-4">
+                      <input type="text" class="form-control" name="value">
+                        <span class="input-group-btn">
+                          <button type="submit" class="btn btn-primary btn-flat">Search</button>
+                        </span>
+                    </div>
+                  </div>              
+                </form>              
+              </div>    
               <table class="table table-hover" id="myTable">
                 <thead><tr>
                   <th class="col-md-1">#</th>
@@ -125,11 +146,11 @@
   <script src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 	<script>
     $(document).ready(function(){
-      $('#myTable').DataTable({
-            "language": {
-                "url": "dataTables.indonesia.lang"
-            }
-        });
+      // $('#myTable').DataTable({
+      //       "language": {
+      //           "url": "dataTables.indonesia.lang"
+      //       }
+      //   });
 
         $('[data-toggle="tooltip"]').tooltip();
     });
