@@ -215,7 +215,7 @@ class Absensi(models.Model):
 	name = models.CharField(max_length=25, null=True)
 	desc = models.TextField(null=True)
 	karyawan = models.ForeignKey(Karyawan, on_delete=models.CASCADE)
-	karyawanshift = models.ForeignKey(KaryawanShift, on_delete=models.CASCADE)
+	karyawanshift = models.ForeignKey(KaryawanShift, on_delete=models.CASCADE, null=True)
 	tanggal = models.DateField()
 	hari = models.CharField(max_length=10)
 	masuk = models.TimeField(null=True)
