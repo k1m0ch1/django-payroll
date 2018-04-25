@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load hari %}
+{% load dashboard %}
+
 
 {% block content %} 
 	<div class="content-wrapper">
@@ -27,6 +29,27 @@
         <div class="col-md-12">
           <div class="box">
             <div class="box-body table-responsive">
+            <div class="col-md-12">
+                <form class="form-horizontal" method="GET" action="{% url 'absensi-index' %}">
+                  <div class="form-group">
+                    <label for="pencarian" class="col-sm-2 control-label">Pencarian</label>
+                    <div class="col-sm-2">
+                      <select class="form-control" name="search">
+                      <option>Kategori</option>
+                      <option value="nik">NIK</option>
+                      <option value="name">Nama</option>
+                      <option value="tanggal">Tanggal</option>
+                    </select>
+                    </div>
+                    <div class="input-group col-sm-4">
+                      <input type="text" class="form-control" name="value">
+                        <span class="input-group-btn">
+                          <button type="submit" class="btn btn-primary btn-flat">Search</button>
+                        </span>
+                    </div>
+                  </div>              
+                </form>              
+              </div>    
               <table class="table table-hover" id="myTable">
                 <thead><tr>
                   <th class="col-md-1">#</th>
@@ -59,6 +82,33 @@
                 {% endfor %}
                 </tbody>
               </table>
+
+              <div class="box-footer clearfix">
+                {% if absen.has_other_pages %}
+                  <div class="col-md-12">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                      {% if bpjs.has_previous %}
+                        <li class="active"><a href="?{% url_replace request 'page' absen.previous_page_number %}">PREV</a></li>
+                      {% else %}
+                        <li class="disabled"><a href="#">PREV</a></li>
+                      {% endif %}
+
+                      {% for i in absen.paginator.page_range %}
+                        {% if absen.number == i %}
+                          <li class="active"><a href="#">{{ i }}</a></li>
+                        {% else %}
+                          <li><a href="?{% url_replace request 'page' i %}">{{ i }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+                      {% if absen.has_next %}
+                        <li class="active"><a href="?{% url_replace request 'page' absen.next_page_number %}">NEXT</a></li>
+                      {% else %}
+                        <li class="disabled"><a href="#">NEXT</a></li>
+                      {% endif %}
+                    </ul>
+                  </div>  
+                  {% endif %}  
+              </div>
 
             </div>
             
@@ -96,11 +146,11 @@
   <script src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 	<script>
     $(document).ready(function(){
-      $('#myTable').DataTable({
-            "language": {
-                "url": "dataTables.indonesia.lang"
-            }
-        });
+      // $('#myTable').DataTable({
+      //       "language": {
+      //           "url": "dataTables.indonesia.lang"
+      //       }
+      //   });
 
         $('[data-toggle="tooltip"]').tooltip();
     });

@@ -26,14 +26,15 @@ Perhitungan
 [*] Benerin tampilan Detail Gaji
 
 Mesin Absensi
-[*] Setiap 8 pagi, 1 siang, 6 sore, 11 malam dan 5 pagi aplikasi akan melakukan penarikan.
-[*] Tombol Manual Singkron bertujuan untuk ambil data secara manual ke semua mesin
-[*] Setiap Karyawan terdaftar ke semua mesin
+[X] Setiap 8 pagi, 1 siang, 6 sore, 11 malam dan 5 pagi aplikasi akan melakukan penarikan.
+[X] Tombol Manual Singkron bertujuan untuk ambil data secara manual ke semua mesin
+[X] Setiap Karyawan terdaftar ke semua mesin
 
 General
 
 [X] Mesin ID pas daftar karyawan benerin [UNTESTED] [REFACTORED]
 [*] Pagination semua modul
+	- Absensi
 [*] Search
 [*] Make sure semua posting gaji bisa di pakai sama PT lain
 [*] Make sure semua menu bisa di pakai sama PT Lain 0/17

@@ -228,6 +228,9 @@ class Absensi(models.Model):
 	updated_at = models.DateTimeField(auto_now_add=True, null=True)
 	delete_date = models.DateTimeField(auto_now_add=True, null=True)
 
+	class Meta:
+		ordering = ('-tanggal',)
+
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 
