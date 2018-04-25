@@ -12,6 +12,7 @@ import time
 import pyping
 from django.http import JsonResponse
 from django.core import serializers
+from django.core import management
 
 
 modules = Modules.objects.all()
@@ -50,6 +51,12 @@ def cek_mesin(request):
 	msn = serializers.serialize("json", Mesin.objects.all())
 
 	return JsonResponse(msn, safe=False)
+
+@login_required()
+def get_data_mesin(request):
+	management.call_command('tarikdata')
+	return "Done"
+
 
 @login_required()
 def index(request):

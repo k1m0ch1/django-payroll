@@ -209,6 +209,7 @@ urlpatterns = [
     url(r'^api/bpjs/save$', views.create.bpjs_save, name="bpjs-save"),
     url(r'^api/bonus/save$', views.create.bonus_save, name="bonus-save"),
     url(r'^api/machine/check$', views.cek_mesin,  name="machine-check"),
+    url(r'^api/machine/getdata$', views.get_data_mesin,  name="machine-getdata"),
 ]
 
 handler404  = 'system.views.pindahinkalo404' 
