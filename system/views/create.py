@@ -151,15 +151,13 @@ def karyawan_save_api(request):
 def simpan_karyawan_shift(karyawan_id, masa_shift, shift, off_day):
 	#bikin validasi kalo ga ada inputan
 
-	sm = masa_shift
-
 	for a in range(0,4):
-		if sm[a] != "" and off[a] != "":
-			mawal = parse([x.strip() for x in sm[a].split(' ')][0]).strftime("%Y-%m-%d")
-			makhir = parse([x.strip() for x in sm[a].split(' ')][2]).strftime("%Y-%m-%d")
-			moffawal = parse([x.strip() for x in off[a].split(' ')][0]).strftime("%Y-%m-%d")
-			moffakhir = parse([x.strip() for x in off[a].split(' ')][2]).strftime("%Y-%m-%d")
-			s = KaryawanShift(karyawan_id=listid[y], shift_id = shift[0], tglawal=mawal, tglakhir=makhir, tgloffawal=moffawal, tgloffakhir=moffakhir)
+		if shift[a] != "" and off_day[a] != "":
+			mawal = parse([x.strip() for x in shift[a].split(' ')][0]).strftime("%Y-%m-%d")
+			makhir = parse([x.strip() for x in shift[a].split(' ')][2]).strftime("%Y-%m-%d")
+			moffawal = parse([x.strip() for x in off_day[a].split(' ')][0]).strftime("%Y-%m-%d")
+			moffakhir = parse([x.strip() for x in off_day[a].split(' ')][2]).strftime("%Y-%m-%d")
+			s = KaryawanShift(karyawan_id=karyawan_id, shift_id = masa_shift[a], tglawal=mawal, tglakhir=makhir, tgloffawal=moffawal, tgloffakhir=moffakhir)
 			s.save()
 
 @login_required()

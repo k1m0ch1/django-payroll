@@ -55,6 +55,7 @@ def overtime_index(request):
 		if 'search' in request.GET:
 			a = a.filter(karyawan__NIK__contains=request.GET['value']) if request.GET['search'] == "nik" else a
 			a = a.filter(karyawan__name__contains=request.GET['value']) if request.GET['search'] == "name" else a
+			a = a.filter(tanggal__contains=request.GET['value']) if request.GET['search'] == "tanggal" else a
 
 	a = a.order_by("-updated_at")
 	
