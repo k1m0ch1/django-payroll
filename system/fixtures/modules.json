@@ -22,42 +22,6 @@
         "created_at": "2017-03-01 15:03+07"
       }
     
-  },{
-    "model": "system.modules",
-    "fields": 
-      {
-        "name": "NOTIFIKASISISTEM",
-        "fungsi": "Notifikasi Sistem",
-        "menu": "NOTIFIKASI",
-        "icon": "fa fa-commenting",
-        "url_slug": "index",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
-  },{
-    "model": "system.modules",
-    "fields": 
-      {
-        "name": "NOTIFIKASIUSERLOGIN",
-        "fungsi": "Notifikasi User Login",
-        "menu": "NOTIFIKASI",
-        "icon": "fa fa-commenting",
-        "url_slug": "index",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
-  },{
-    "model": "system.modules",
-    "fields": 
-      {
-        "name": "NOTIFIKASIAPLIKASi",
-        "fungsi": "Notifikasi Aplikasi",
-        "menu": "NOTIFIKASI",
-        "icon": "fa fa-commenting",
-        "url_slug": "index",
-        "created_at": "2017-03-01 15:03+07"
-      }
-    
   }, {
     "model": "system.modules",
     "fields": 
