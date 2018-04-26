@@ -35,15 +35,15 @@ General
 [X] Mesin ID pas daftar karyawan benerin [UNTESTED] [REFACTORED]
 [*] Pagination semua modul
 	- Absensi
-[*] Search
+[X] Search
 [*] Make sure semua posting gaji bisa di pakai sama PT lain
 [*] Make sure semua menu bisa di pakai sama PT Lain 0/17
 [*] Pada saat tambah karyawan NIK nya yang awal GC di ganti menjadi sesuai nama PT, contoh PT. Galuh Mas Sinar = kalo 2 [PGM], kalo 3 [GMS], kalo 1 [PTG]
-[*] coba testing sampedataabsen
-[*] Pada saaat tambah karyawan, karyawan didaftarkan ke semua mesin absensi
-[*] Validasi data none
+[X] coba testing sampedataabsen
+[X] Pada saaat tambah karyawan, karyawan didaftarkan ke semua mesin absensi
+[X] Validasi data none
 [X] Data Master Inventory, Hari Raya, Shift, Invesntory rusak si templatenya
-[*] Alamat Perusahaan
+[X] Alamat Perusahaan
 [X] Hapus Profile Perusahaan
 [*] Pada saat karyawan shift search
 	[*] fokus ke tabel

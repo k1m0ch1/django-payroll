@@ -552,6 +552,7 @@
                 csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Simpan Rolling Shift');
+            location.reload();
         }
       });
     });
@@ -563,28 +564,9 @@
         data: {idkaryawan: $('#idKaryawan').val(), shift: $('#shift5').val(), tanggal: $('#reservationKedua').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Ubah Shift');
+            location.reload();
         }
       });
-    });
-
-    $("#tambahLembur").on("click", function(){
-        $.ajax({
-        type: "POST",
-        url: 'http://{{ request.get_host }}/index/api/karyawan/lembur/create/save',
-        data: {idkaryawan: $('#idKaryawan').val(), lamalembur: $('#lembur').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
-        success: function(result) {
-            alert('Berhasil Tambah Lembur');
-        }});
-    });
-
-    $("#tambahizin").on("click", function(){
-        $.ajax({
-        type: "POST",
-        url: 'http://{{ request.get_host }}/index/api/karyawan/izin/create/save',
-        data: {idkaryawan: $('#idKaryawan').val(), izin: $('#izin').val(), izinlama: $('#izinlama').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
-        success: function(result) {
-            alert('Berhasil Tambah Lembur');
-        }});
     });
 
     $('#pilihKaryawan').on("click", function(){
