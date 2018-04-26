@@ -217,7 +217,7 @@
     });
 
     $(".rupiah").on("click", function(){
-      alert($(".rupiah").val());
+     
     });
 
     $('#bersih').on("click", function(){
@@ -241,7 +241,7 @@
         data: { idkaryawan: $('#idKaryawan').val(), bpjsks: $('#bpjsks').val(), 
                 bpjskt: $('#bpjskt').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
-            alert('Berhasil Tambah Potongan');
+            alert('Berhasil Tambah BPJS');
             location.reload();
         }});
     });

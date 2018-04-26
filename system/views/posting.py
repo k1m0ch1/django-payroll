@@ -15,6 +15,7 @@ from django.core import serializers
 import json
 from dateutil.parser import parse
 import datetime
+from datetime import timedelta
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
@@ -194,11 +195,11 @@ def postinggaji(request, id):
 					penjumlahan = (penjumlahan.seconds / 3600)
 					istirahat = ( penjumlahan / 5 )
 					banyakwaktu = penjumlahan - bjam - istirahat
-					todaydate = datetime.today()
-					SoW = todaydate - timedelta(days=dt.weekday())
-					EoW = SoW + timedelta(days=6)
-					start = SoW.strftime("%Y-%m-%d")
-					end = EoW.strftime("%Y-%m-%d")
+					# todaydate = datetime.datetime.today()
+					# SoW = todaydate - timedelta(days=dt.weekday())
+					# EoW = SoW + timedelta(days=6)
+					# start = SoW.strftime("%Y-%m-%d")
+					# end = EoW.strftime("%Y-%m-%d")
 					if hari == "Minggu" or hari == "Sunday" :
 						hitungot = abi.SPL_banyak
 						#marketing ga dapet OT
@@ -349,6 +350,7 @@ def postinggaji(request, id):
 			totalpotongan = pph + bayarkar + pabsen + p.koperasi + cicil
 
 			gajibersih = gajikotor - totalpotongan
+			print pph
 			
 			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, 
 									b.golongan.name, b.norek + " a.n." + b.atasnama + " " + b.bank.name , 

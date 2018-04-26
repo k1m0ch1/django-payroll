@@ -30,7 +30,7 @@
 		<tr>
 			<td>Nama</td><td>:</td><td>{{p.nama}}</td>
 			<td width="50px"></td>
-			<td>Gaji Pokok 75%</td><td>:</td><td>{% mon p.gajipokok %}</td>
+			<td>Gaji Pokok 75%</td><td>:</td><td>{% gajipokok p.gajipokok %}</td>
 			<td width="50px"></td>
 			<td colspan=4>*Lembur</td>
 		</tr>
@@ -44,7 +44,7 @@
 		<tr>
 			<td>Jabatan</td><td>:</td><td>{{ p.bagian }}</td>
 			<td width="50px"></td>
-			<td>Jabatan 25%</td><td>:</td><td>{% mon p.tunjangan %}</td>
+			<td>Jabatan 25%</td><td>:</td><td>{% tunjangan p.gajipokok %}</td>
 			<td width="50px"></td>
 			<td>Jenis Insentif</td><td>Jumlah Jam</td><td>Nominal</td>
 			<td></td>
@@ -53,7 +53,7 @@
 		<tr>
 			<td>Status</td><td>:</td><td>{{ p.statusmenikah }}</td>
 			<td width="50px"></td>
-			<td>UMUT Lumpsum</td><td>:</td><td>{% mon p.umut %}</td>
+			<td>UMUT Lumpsum</td><td>:</td><td>{% mon p.umutlumpsum %}</td>
 			<td width="50px"></td>
 			<td></td><td>0</td><td>0</td>
 			<td></td>
@@ -87,7 +87,7 @@
 		<tr>
 			<td colspan=3></td>
 			<td width="50px"></td>
-			<td>PPH 21</td><td>:</td><td>{{ 0 }}</td>
+			<td>PPH 21</td><td>:</td><td>{% mon p.pph %}</td>
 			<td width="50px"></td>
 			<td colspan=5></td>
 		</tr>

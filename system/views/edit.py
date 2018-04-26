@@ -36,26 +36,26 @@ def karyawan(request, karyawan_id):
 
 	objs = [0]
 
-	class mesin(object):
-		no = 0
-		ipmesin = ""
-		namamesin = ""
+	# class mesin(object):
+	# 	no = 0
+	# 	ipmesin = ""
+	# 	namamesin = ""
 
-		def __init__(self, no, ipmesin, namamesin):
+	# 	def __init__(self, no, ipmesin, namamesin):
 
-			self.no = no
-			self.ipmesin = ipmesin
-			self.namamesin = namamesin
+	# 		self.no = no
+	# 		self.ipmesin = ipmesin
+	# 		self.namamesin = namamesin
 
 	#akses ke mesin
-	file = open("listip.txt", "r")
-	y=0
-	for line in file:
-		#conn = None
-		dataip = line.strip()
-		dataip = dataip.split(";")
-		y = y + 1
-		objs.append(mesin(y, dataip[0], dataip[1]))
+	# file = open("listip.txt", "r")
+	# y=0
+	# for line in file:
+	# 	#conn = None
+	# 	dataip = line.strip()
+	# 	dataip = dataip.split(";")
+	# 	y = y + 1
+	# 	objs.append(mesin(y, dataip[0], dataip[1]))
 		# ipmesin = dataip[0]
 		# zk = ZK(ipmesin, port=4370, timeout=5)
 		# try:
@@ -68,7 +68,7 @@ def karyawan(request, karyawan_id):
 		#     if conn:
 		#         conn.disconnect()
 
-	objs.pop(0)
+	# objs.pop(0)
 
 	totalgaji = gajipokok.gajipokok + gajipokok.jabatan
 
@@ -95,7 +95,7 @@ def karyawan_save(request, karyawan_id):
 			warganegara_id = request.POST['warganegara'], agama_id = request.POST['agama'],
 			statusmenikah_id = request.POST['statusmenikah'], bank_id = request.POST['bank'],
 			norek = request.POST['norekening'], atasnama = request.POST['atasnama'],
-			fingerid = request.POST['fingerid'], lokasimesin = request.POST['lokasimesin'],
+			fingerid = request.POST['fingerid'],
 			NPWP = request.POST['NPWP'],
 			KPJ = request.POST['KPJ'], jumlahhari = request.POST['jumlahhari'],
 			departemen_id = request.POST['departemen'], bagian_id = request.POST['bagian'],

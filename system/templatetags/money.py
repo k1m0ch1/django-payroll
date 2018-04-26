@@ -25,3 +25,29 @@ def ez(angka=None):
 		hasil = hasil + x
 		i = i + 1
 	return hasil
+
+@register.simple_tag
+def gajipokok(angka=None):
+	money=int(float(angka) * float(0.75))
+	i = 0
+	hasil = "Rp. "
+	y = len(str(money))
+	for x in str(money):
+		if y%3 == 0 and y != 1 and y != len(str(money)):
+			hasil = hasil + "."
+		hasil = hasil + x
+		y = y - 1
+	return hasil
+
+@register.simple_tag
+def tunjangan(angka=None):
+	money=int(float(angka) * float(0.25))
+	i = 0
+	hasil = "Rp. "
+	y = len(str(money))
+	for x in str(money):
+		if y%3 == 0 and y != 1 and y != len(str(money)):
+			hasil = hasil + "."
+		hasil = hasil + x
+		y = y - 1
+	return hasil
