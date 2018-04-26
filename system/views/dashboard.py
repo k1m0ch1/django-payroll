@@ -315,7 +315,7 @@ def tunjangankaryawan_index(request):
 	shift = Shift.objects.all()
 	mas = MasaTenggangClosing.objects.all()	
 
-	tk = tk.order_by("-updated_at")
+	tk = tk.order_by("updated_at")
 	
 	page = request.GET.get('page', 1)
 	paginator = Paginator(tk, 15)

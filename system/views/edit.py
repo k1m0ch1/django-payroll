@@ -16,6 +16,7 @@ import json
 from dateutil.parser import parse
 from django.core.management import call_command
 from zk import ZK, const
+from datetime import datetime
 
 modules = Modules.objects.all()
 allmenu = Modules.objects.only('name')
@@ -169,8 +170,7 @@ def tunjangan(request, tunjangan_id):
 @login_required()
 def tunjangan_save(request, tunjangan_id):
 	d = TunjanganKaryawan.objects.select_for_update().filter(id=tunjangan_id)
-	d.update(masatenggangclosing_id = request.POST['masatenggang'] ,kemahalan = request.POST['kemahalan'], tmakan = request.POST['tmakan'],
-				transportnonexec =request.POST['transportnonexec'], ttelepon = request.POST['ttelepon'])
+	d.update(masatenggangclosing_id = request.POST['masatenggang'] ,kemahalan = request.POST['kemahalan'], ttelepon = request.POST['ttelepon'], updated_at=datetime.now())
 	return redirect("tunjangankaryawan-index")
 
 @login_required()

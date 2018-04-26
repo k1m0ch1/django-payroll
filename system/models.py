@@ -375,9 +375,9 @@ class TunjanganKaryawan(models.Model):
 	transportnonexec = models.DecimalField(max_digits=7, decimal_places=0, null=True, default=0)
 	karyawan = models.ForeignKey(Karyawan, on_delete=models.CASCADE)
 	desc = models.TextField(null=True)
-	created_at = models.DateTimeField(auto_now=True)
-	updated_at = models.DateTimeField(auto_now_add=True, null=True)
-
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True, null=True)
+	
 	def __str__(self):              # __unicode__ on Python 2
 		return self.name
 

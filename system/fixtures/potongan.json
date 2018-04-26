@@ -5,8 +5,8 @@
     "fields": 
       {
         "karyawan_id": 1,
-        "bpjs_ks" : 150000,
-        "bpjs_kt" : 300000,
+        "bpjs_ks" : 5000000,
+        "bpjs_kt" : 4000000,
         "pph" : 150000,
         "pinjkaryawan" : 1600000,
         "masatenggangclosing" : 1,

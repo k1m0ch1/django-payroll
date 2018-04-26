@@ -5,7 +5,7 @@
     "fields": 
       {
         "karyawan_id": 1,
-        "biaya" : 150000,
+        "biaya" : 5000000,
         "created_at": "2017-03-01 15:03+07"
       }    
   },

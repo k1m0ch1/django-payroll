@@ -139,7 +139,12 @@ def postinggaji(request, id):
 			y = y + 1
 			k = Karyawan.objects.get(pk=b.id)
 			g = GajiPokok.objects.get(karyawan_id=b.id)
-			p = PotonganKaryawan.objects.get(karyawan_id=b.id)
+			try:
+				p = PotonganKaryawan.objects.get(karyawan_id=b.id)
+			except PotonganKaryawan.DoesNotExist:
+				p = False
+				print "bypass"
+
 			tt = TunjanganKaryawan.objects.get(karyawan_id=b.id)
 
 			gajipokok = g.gajipokok 
@@ -157,15 +162,22 @@ def postinggaji(request, id):
 
 			#cicilan karyawan
 			if int(capeainggantiwae) == 1:
-				if p.cicil_pinjkaryawan > 0 :
-					cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
-					pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
-					pe.update(cicil_pinjkaryawan=p.sisa_cicil_pinjkaryawan-1)
+				if p != False:
+					if p.cicil_pinjkaryawan > 0 :
+						cicil = (p.pinjkaryawan/p.cicil_pinjkaryawan)
+						try:
+							pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
+							pe.update(cicil_pinjkaryawan=p.sisa_cicil_pinjkaryawan-1)
+						except PotonganKaryawan.DoesNotExist:
+							print "pass"
 
-				if p.cicil_koperasi > 0 :
-					cicil = (p.koperasi/p.cicil_koperasi)
-					pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
-					pe.update(cicil_koperasi=p.sisa_cicil_koperasi-1)
+					if p.cicil_koperasi > 0 :
+						cicil = (p.koperasi/p.cicil_koperasi)
+						try:
+							pe = PotonganKaryawan.objects.select_for_update().filter(id=p.id)
+							pe.update(cicil_koperasi=p.sisa_cicil_koperasi-1)
+						except PotonganKaryawan.DoesNotExist:
+							print "pass"
 
 			# for x in a:
 			# 	mantap =  waktu(x.keluar, x.karyawanshift.shift.jamkeluar, True)
@@ -264,7 +276,7 @@ def postinggaji(request, id):
 			wp = 0
 
 			gapok = g.gajipokok
-			ga_pok = gapok + g.jabatan
+			ga_pok = gapok #+ g.jabatan
 			gatu = gapok + g.jabatan
 			ga_pokii = gatu * (75/100)
 			tunjangan_ii = gatu * (25/100)
@@ -310,16 +322,22 @@ def postinggaji(request, id):
 			elif status == "Menikah 3 Tanggungan" :
 			  ptkp = 72000000
 
-			bpjs_ktg_per_jkk = int(float(float(0.54)) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
-			bpjs_ktg_per_jkm = int(float(float(0.3)) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
 			bpjs_kes_per = int(float(float(4)/100) * int(bpjs_ks)) # BPJS Kesehatan Perusahaan 4%
 			#gajipokok75% + tunjangan25%
-			bruto = ga_pok + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+			bruto = ga_pok + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per + tunjanganmakanX + transportnonexecX
+			print "bruto = " + str(ga_pok) + "+" + str(bpjs_ktg_per_jkk) + "+" + str(bpjs_ktg_per_jkm) + "+" + str(bpjs_kes_per) + "+" + str(tunjanganmakanX) + "+" + str(transportnonexecX)
+			print b.name + " bruto " + str(bruto)
 
 			bpjs_ktg_kar_jht = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
-			bpjs_ktg_per_jpn = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
+			bpjs_ktg_per_jpn = int(float(float(1)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
 
-			ph_netto_sebulan = bruto - ( (int(float(float(5)/100) * int(bruto))) + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn )
+			biaya_jabatan = (int(float(float(5)/100) * int(bruto)))
+
+			ph_netto_sebulan = ( biaya_jabatan + bpjs_ktg_kar_jht + bpjs_ktg_per_jpn )
+
+			ph_netto_sebulan = bruto - ph_netto_sebulan
 
 			ph_netto_setahun = ph_netto_sebulan * 12
 
@@ -340,9 +358,9 @@ def postinggaji(request, id):
 			bpjs_ktg_kar_jpn = int(float(float(1)/100) * int(bpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Pensiunan 1%
 			bpjs_ktg_kar_jht = int(float(float(2)/100) * int(bpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
 			bpjs_ktg_per_jpn = int(float(float(2)/100) * int(bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
-			bpjs_ktg_per_jkk = int(float(float(0.54)) * int(bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int(bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
 			bpjs_ktg_per_jht = int(float(float(3.7)) * int(bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Hari Tua 3.7%
-			bpjs_ktg_per_jkm = int(float(float(0.3)) * int(bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int(bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
 
 			bayarkar = bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_kes_kar
 
