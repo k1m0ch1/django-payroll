@@ -70,7 +70,7 @@
           </div>                
       </div>
 
-      <div class="row">
+      <!-- <div class="row">
           <div class="col-md-12"> 
             <div class="col-md-2">
               <label class="control-label pull-right">Makan </label>
@@ -85,9 +85,9 @@
             </div>
           </div>
               
-      </div>
+      </div> -->
 
-      <div class="row">
+      <!-- <div class="row">
           <div class="col-md-12"> 
             <div class="col-md-2">
               <label class="control-label pull-right">Transportasi </label>
@@ -102,7 +102,7 @@
             </div>
           </div>
               
-      </div>
+      </div> -->
 
       <div class="row">
           <div class="col-md-12"> 
@@ -311,8 +311,8 @@
         $.ajax({
         type: "POST",
         url: 'http://{{ request.get_host }}/index/api/tunjangan/save',
-        data: {idmas: $("#idmas").val(), idkaryawan: $('#idKaryawan').val(), tmakan: $('#tmakan').val(),
-                  ttelepon: $('#ttelepon').val(), transportnonexec: $('#transportnonexec').val(),
+        data: {idmas: $("#idmas").val(), idkaryawan: $('#idKaryawan').val(), 
+                  ttelepon: $('#ttelepon').val(), 
                   kemahalan: $('#kemahalan').val(), csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function(result) {
             alert('Berhasil Tambah Potongan');

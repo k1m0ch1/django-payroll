@@ -112,6 +112,28 @@ def karyawan_save(request):
 					umut = request.POST['umut'])
 	g.save()
 
+	if k.jumlahhari == 5 :
+		hari = 21
+		bjam = 8
+		tunjanganmakanX = int( 20000 * hari )
+		transportnonexecX = int( 20000 * hari )	
+	elif k.jumlahhari == 6 :
+		hari = 25
+		bjam = 7
+		tunjanganmakanX = int( 20000 * hari )
+		transportnonexecX = int( 20000 * hari )	
+
+	try:
+		b = TunjanganKaryawan.objects.get(karyawan_id=k.id)
+		b = TunjanganKaryawan.objects.select_for_update().filter(karyawan_id=k.id)
+		b.update(masatenggangclosing_id=1, karyawan_id=k.id,
+								transportnonexec=tunjanganmakanX, tmakan = tunjanganmakanX)
+	except TunjanganKaryawan.DoesNotExist:
+		p = TunjanganKaryawan(masatenggangclosing_id=1, karyawan_id=k.id,
+								transportnonexec=tunjanganmakanX, 
+								tmakan = tunjanganmakanX)	
+		p.save()
+
 	return redirect('karyawan-index')
 
 @login_required()
@@ -145,6 +167,28 @@ def karyawan_save_api(request):
 					jumlahhari = request.POST['jumlahhari'], jabatan = jabatan,
 					umut = request.POST['umut'])
 	g.save()
+
+	if k.jumlahhari == 5 :
+		hari = 21
+		bjam = 8
+		tunjanganmakanX = int( 20000 * hari )
+		transportnonexecX = int( 20000 * hari )	
+	elif k.jumlahhari == 6 :
+		hari = 25
+		bjam = 7
+		tunjanganmakanX = int( 20000 * hari )
+		transportnonexecX = int( 20000 * hari )	
+
+	try:
+		b = TunjanganKaryawan.objects.get(karyawan_id=k.id)
+		b = TunjanganKaryawan.objects.select_for_update().filter(karyawan_id=k.id)
+		b.update(masatenggangclosing_id=1, karyawan_id=k.id,
+								transportnonexec=tunjanganmakanX, tmakan = tunjanganmakanX)
+	except TunjanganKaryawan.DoesNotExist:
+		p = TunjanganKaryawan(masatenggangclosing_id=1, karyawan_id=k.id,
+								transportnonexec=tunjanganmakanX, 
+								tmakan = tunjanganmakanX)	
+		p.save()
 
 	return HttpResponse("berhasil-simpan-karyawan")
 

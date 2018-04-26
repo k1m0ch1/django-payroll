@@ -310,10 +310,11 @@ def postinggaji(request, id):
 			elif status == "Menikah 3 Tanggungan" :
 			  ptkp = 72000000
 
-			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
-			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+			bpjs_ktg_per_jkk = int(float(float(0.54)) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+			bpjs_ktg_per_jkm = int(float(float(0.3)) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
 			bpjs_kes_per = int(float(float(4)/100) * int(bpjs_ks)) # BPJS Kesehatan Perusahaan 4%
-			bruto = ga_pok + tunjangan + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
+			#gajipokok75% + tunjangan25%
+			bruto = ga_pok + bpjs_ktg_per_jkk + bpjs_ktg_per_jkm + bpjs_kes_per
 
 			bpjs_ktg_kar_jht = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
 			bpjs_ktg_per_jpn = int(float(float(2)/100) * int( bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
@@ -339,9 +340,9 @@ def postinggaji(request, id):
 			bpjs_ktg_kar_jpn = int(float(float(1)/100) * int(bpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Pensiunan 1%
 			bpjs_ktg_kar_jht = int(float(float(2)/100) * int(bpjs_kt)) # BPJS Ketenagakerjaan Karyawan Jaminan Hari Tua 2%
 			bpjs_ktg_per_jpn = int(float(float(2)/100) * int(bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Kematian 2%
-			bpjs_ktg_per_jkk = int(float(float(0.54)/100) * int(bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
-			bpjs_ktg_per_jht = int(float(float(3.7)/100) * int(bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Hari Tua 3.7%
-			bpjs_ktg_per_jkm = int(float(float(0.3)/100) * int(bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
+			bpjs_ktg_per_jkk = int(float(float(0.54)) * int(bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Kecelakaan Kerja 0.54% 
+			bpjs_ktg_per_jht = int(float(float(3.7)) * int(bpjs_kt)) # BPJS Ketenagakerjaan Perusahaan Jaminan Hari Tua 3.7%
+			bpjs_ktg_per_jkm = int(float(float(0.3)) * int(bpjs_kt)) # BPJS Ketenagakerjaan Perusaaan Jaminan Kematian 0.3%
 
 			bayarkar = bpjs_ktg_kar_jpn + bpjs_ktg_kar_jht + bpjs_kes_kar
 
@@ -350,7 +351,6 @@ def postinggaji(request, id):
 			totalpotongan = pph + bayarkar + pabsen + p.koperasi + cicil
 
 			gajibersih = gajikotor - totalpotongan
-			print pph
 			
 			objs.append(postgaji(y, b.NIK, b.name, b.departemen.name, b.bagian.name, 
 									b.golongan.name, b.norek + " a.n." + b.atasnama + " " + b.bank.name , 

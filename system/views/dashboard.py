@@ -296,7 +296,7 @@ def ptkp_index(request):
 															 'module' : getModule(request), 'perusahaan' : per, 'dsb' : modules, 'parent' : getParent(request)})
 
 @login_required()
-def tunjangankaryawan_index(request):
+def tunjangankaryawan_index(request):				
 
 	tk = TunjanganKaryawan.objects.all()
 
