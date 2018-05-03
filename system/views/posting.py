@@ -291,7 +291,7 @@ def postinggaji(request, id):
 				mangkir = (ga_pokii / hari) + 40000
 				mangkir = (hari - banyak) * mangkir
 
-			ga_pok = ga_pok - mangkir
+			ga_pok = ga_pok #- mangkir
 
 			status = b.statusmenikah.desc
 			tunjangan = g.jabatan + tt.kemahalan + UMUT
@@ -351,7 +351,9 @@ def postinggaji(request, id):
 			if b.NPWP == 0 or b.NPWP == None :
 				pph = int(float(float(120)/100) * int(pph))
 
-			gajikotor = g.gajipokok + g.jabatan + UMUT + tunjanganmakan + transportnonexec + tt.kemahalan + tovertime + 0 + 0
+			#gajikotor = g.gajipokok + g.jabatan + UMUT + tunjanganmakan + transportnonexec + tt.kemahalan + tovertime + 0 + 0
+
+			gajikotor = g.gajipokok + tunjanganmakanX + transportnonexecX + pph #+ bpjs_ktg_per_jkm + bpjs_ktg_per_jkk + bpjs_kes_per
 
 			bpjs_kes_kar = int(float(float(1)/100) * int(bpjs_ks)) # BPJS Kesehatan Karyawan 1%
 			bpjs_kes_per = int(float(float(4)/100) * int(bpjs_ks)) # BPJS Kesehatan Perusahaan 4%
