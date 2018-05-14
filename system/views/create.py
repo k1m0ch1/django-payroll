@@ -83,7 +83,11 @@ def karyawan_save(request):
 	elif banyakpegawai > 999 :
 		jarak = "" 
 
-	NIK = "GC" + str(request.POST['golongan']) + parse(request.POST['tanggalmasuk']).strftime("%Y")[2:] + parse(request.POST['tanggalmasuk']).strftime("%m") + jarak + str(banyakpegawai)
+	
+	firstletter = Perusahaan.objects.get(pk=request.POST['perusahaan']).name.split('.')[1]
+	fl = "".join(i[0].upper() for i in firstletter.split())
+
+	NIK = fl + str(request.POST['golongan']) + parse(request.POST['tanggalmasuk']).strftime("%Y")[2:] + parse(request.POST['tanggalmasuk']).strftime("%m") + jarak + str(banyakpegawai)
 	k = Karyawan(NIK = NIK, name = nama,
 					shortname = request.POST['nama1'], tempatlahir = request.POST['tempatlahir'],
 					tanggallahir = parse(request.POST['tanggallahir']).strftime("%Y-%m-%d"), gender = request.POST['gender'],
@@ -103,7 +107,7 @@ def karyawan_save(request):
 					perusahaan_id= request.POST['perusahaan'])
 	k.save()
 
-	#tambah_karyawan_ke_mesin(k.id, k.name)
+	tambah_karyawan_ke_mesin(k.id, k.name)
 			
 	jabatan = int(request.POST['gajipokok']) * (25/100)
 	gajipokok = int(request.POST['gajipokok']) * (75/100)
@@ -120,6 +124,11 @@ def karyawan_save(request):
 	elif k.jumlahhari == 6 :
 		hari = 25
 		bjam = 7
+		tunjanganmakanX = int( 20000 * hari )
+		transportnonexecX = int( 20000 * hari )	
+	else:
+		hari = 21
+		bjam = 8
 		tunjanganmakanX = int( 20000 * hari )
 		transportnonexecX = int( 20000 * hari )	
 
@@ -140,7 +149,23 @@ def karyawan_save(request):
 def karyawan_save_api(request):
 	nama = request.POST['nama1'] + " " + request.POST['nama2']
 
-	k = Karyawan(NIK = request.POST['NIK'], name = nama,
+	banyakpegawai = Karyawan.objects.filter(tanggalmasuk__year=parse(request.POST['tanggalmasuk']).strftime("%Y"), tanggalmasuk__month=parse(request.POST['tanggalmasuk']).strftime("%m"))
+	banyakpegawai = len(banyakpegawai)+1
+	jarak = "000"
+	if banyakpegawai > 9 :
+		jarak = "00"
+	elif banyakpegawai > 99 :
+		jarak = "0"
+	elif banyakpegawai > 999 :
+		jarak = "" 
+
+	
+	firstletter = Perusahaan.objects.get(pk=request.POST['perusahaan']).name.split('.')[1]
+	fl = "".join(i[0].upper() for i in firstletter.split())
+
+	NIK = fl + str(request.POST['golongan']) + parse(request.POST['tanggalmasuk']).strftime("%Y")[2:] + parse(request.POST['tanggalmasuk']).strftime("%m") + jarak + str(banyakpegawai)
+
+	k = Karyawan(NIK = NIK, name = nama,
 					shortname = request.POST['nama1'], tempatlahir = request.POST['tempatlahir'],
 					tanggallahir = parse(request.POST['tanggallahir']).strftime("%Y-%m-%d"), gender = request.POST['gender'],
 					alamat = request.POST['alamat'], kota = request.POST['kota'],
@@ -159,7 +184,7 @@ def karyawan_save_api(request):
 					perusahaan_id= request.POST['perusahaan'])
 	k.save()
 
-	#tambah_karyawan_ke_mesin(k.id, k.name)
+	tambah_karyawan_ke_mesin(k.id, k.name)
 
 	jabatan = int(request.POST['gajipokok']) * (25/100)
 	gajipokok = int(request.POST['gajipokok']) * (75/100)

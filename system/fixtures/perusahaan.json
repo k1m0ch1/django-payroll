@@ -3,7 +3,7 @@
 		"model" : "system.Perusahaan",
 		"pk" : 1,
 		"fields" : {
-			"name" : "Perusahaan Dummy",
+			"name" : "PT. Perusahaan Dummy",
 			"desc" : "Perusahaan Galuh Mas Citarum",
 			"created_at" : "2017-03-01 12:01:15"
 		}
@@ -20,7 +20,7 @@
 		"model" : "system.Perusahaan",
 		"pk" : 3,
 		"fields" : {
-			"name" : "Belum Diisi",
+			"name" : "PT. Belum Diisi",
 			"desc" : "Perusahaan Galuh Mas Citarum",
 			"created_at" : "2017-03-01 12:01:15"
 		}
