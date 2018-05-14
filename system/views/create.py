@@ -103,7 +103,7 @@ def karyawan_save(request):
 					perusahaan_id= request.POST['perusahaan'])
 	k.save()
 
-	tambah_karyawan_ke_mesin(k.id, k.name)
+	#tambah_karyawan_ke_mesin(k.id, k.name)
 			
 	jabatan = int(request.POST['gajipokok']) * (25/100)
 	gajipokok = int(request.POST['gajipokok']) * (75/100)
@@ -159,7 +159,7 @@ def karyawan_save_api(request):
 					perusahaan_id= request.POST['perusahaan'])
 	k.save()
 
-	tambah_karyawan_ke_mesin(k.id, k.name)
+	#tambah_karyawan_ke_mesin(k.id, k.name)
 
 	jabatan = int(request.POST['gajipokok']) * (25/100)
 	gajipokok = int(request.POST['gajipokok']) * (75/100)
