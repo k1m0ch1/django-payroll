@@ -112,6 +112,8 @@ urlpatterns = [
     url(r'^laporan/bpjs/do$', views.laporan.laporanbpjs, name="laporanbpjs-do"),
     url(r'^laporan/pinjaman/do$', views.laporan.laporanpinjaman, name="laporanpinjaman-do"),
 
+     url(r'^testing', views.testing.postinggaji, name="testing-do"),
+
 
     #==eof-create
     #==edit

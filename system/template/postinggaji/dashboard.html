@@ -143,7 +143,8 @@
     $('#btnposting1').on("click", function(){
       $.ajax({
             type: "POST",
-            url: 'http://{{ request.get_host }}/index/postinggaji/do/1',
+            // url: 'http://{{ request.get_host }}/index/postinggaji/do/1',
+            url : 'http://{{ request.get_host }}/index/testing',
             data: {idkaryawan: $('#idKaryawan').val(), masatenggangclosing: $('#idmas').val() ,csrfmiddlewaretoken: '{{ csrf_token }}'},
             beforeSend:function(){
                return confirm("Pastikan untuk yakin melakukan posting gaji, karena akan melakukan perhitungan.");
